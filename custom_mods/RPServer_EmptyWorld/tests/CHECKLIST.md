@@ -1,0 +1,111 @@
+# CHECKLIST TEST — `RPServer_EmptyWorld` v0.3.0
+
+> Procedura di verifica da eseguire dopo ogni build dell'`.esp`. Va riempita e committata insieme al plugin.
+>
+> Esiti: ✅ pass | ⚠️ pass con note | ❌ fail (vai a fix e rifai il giro).
+
+---
+
+## Test A — Verifica statica in SSEEdit
+
+Pre-requisito: plugin generato, riapri SSEEdit con master vanilla + `RPServer_EmptyWorld.esp`.
+
+| # | Check | Atteso | Esito |
+|---|---|---|---|
+| A1 | `RPServer_EmptyWorld.esp > Quest > RPServer_EmptyWorldInit` esiste | sì | ☐ |
+| A2 | La quest ha flag `Start Game Enabled` | sì | ☐ |
+| A3 | La quest ha script `RPServer_EmptyWorldInit` con properties popolate | sì, 3 properties | ☐ |
+| A4 | La quest ha alias `PlayerAlias` con script `RPServer_EmptyWorldPlayerAlias` | sì | ☐ |
+| A5 | `FormID List > RPServer_QuestsToStop` esiste e contiene ~150-200 elementi | ~150-200 | ☐ |
+| A6 | Spot-check 10 ACHR random nei master vanilla → flag `Initially Disabled` | ✓ su umanoidi/draghi/mob dungeon, niente su animali | ☐ |
+| A7 | Spot-check 10 QUST narrative (MQ101, CW01, C00, MG01, TG00, DB01, DLC1VQ01, DLC2MQ01, MS14, DA02) → `Start Game Enabled` rimosso | tutti senza | ☐ |
+| A8 | Master del plugin = solo i 5 master vanilla | nessun master di terze parti | ☐ |
+| A9 | Conteggio `ACHR overrides` ragionevole (~8500-9000) | nel range | ☐ |
+| A10 | Conteggio `QUST overrides` ragionevole (~150-200) | nel range | ☐ |
+| A11 | Spot-check ACHR su DraugrRace (es. in Bleak Falls Barrow) → `Initially Disabled` ✓ | sì | ☐ |
+| A12 | Spot-check ACHR su FalmerRace, DwarvenCenturionRace, DragonPriestRace → `Initially Disabled` ✓ | sì | ☐ |
+| A13 | Spot-check ACHR su WolfRace, BearRace, SabreCatRace → `Initially Disabled` **NON** presente | nessun flag | ☐ |
+| A14 | Spot-check ACHR su SprigganRace, HorkerRace, ChaurusRace (base) → `Initially Disabled` **NON** presente | nessun flag | ☐ |
+
+Note libere:
+
+```
+(scrivere qui eventuali anomalie)
+```
+
+---
+
+## Test B — Singleplayer rapido
+
+Pre-requisito: Skyrim avviato via MO2 + SKSE con il profilo `RPServer-Dev`. Nuova partita o save di test.
+
+| # | Check | Atteso | Esito |
+|---|---|---|---|
+| B1 | Avvio nuova partita: non parte l'intro di Helgen | nessun carro, nessun Alduin | ☐ |
+| B2 | Whiterun (main square): nessun NPC umanoide visibile | piazza deserta | ☐ |
+| B3 | Whiterun: cani randagi, polli, mucche visibili (animali) | sì | ☐ |
+| B4 | Riverwood: nessun cittadino, nessuna guardia | villaggio deserto | ☐ |
+| B5 | Riverwood: galline e cane visibili | sì | ☐ |
+| B6 | Stalla di Whiterun: cavalli presenti, conducente del carro **assente** | cavalli sì, carrettiere no | ☐ |
+| B7 | Dungeon di Bleak Falls Barrow: **nessun drugo presente**, dungeon vuoto di mob | dungeon shell vuoto | ☐ |
+| B7b | Bleak Falls Barrow: oggetti loot, trappole, geometria del dungeon comunque presenti | ambiente intatto | ☐ |
+| B8 | Foresta vicino Riverwood: lupi/orsi presenti come random encounter | sì | ☐ |
+| B9 | Console: `sqv RPServer_EmptyWorldInit` → Running | sì | ☐ |
+| B10 | Console: `sqv MQ101` → Stage 0 e non Running | non Running | ☐ |
+| B11 | Console: `sqv WIDragonAttacks` → non Running | non Running | ☐ |
+| B12 | Papyrus log contiene `[RPServer_EmptyWorld] OnInit chiamato` | sì | ☐ |
+| B13 | Papyrus log contiene `[RPServer_EmptyWorld] StopVanillaQuests fine: N fermate` con N > 0 | sì | ☐ |
+| B14 | Vagare 5 minuti in città-bosco-strada: nessuno spawn umanoide (couriers, banditi standard, soldati civil war) | nessuno | ☐ |
+| B15 | Posizionarsi nei pressi di un Word Wall noto per avere un drago piazzato (es. Bonestrewn Crest): il drago **non** è presente | nessun drago visibile | ☐ |
+| B16 | Spawnare un drago via `player.placeatme` con FormID di un EncDragon vanilla: l'attore appare ma è *Initially Disabled* / invisibile | drago non si manifesta | ☐ |
+| B17 | Avvicinarsi a un Word Wall: la parola **non** viene insegnata | nessun nuovo Word | ☐ |
+| B18 | Visitare un dungeon con Dragon Priest noto (es. Forelhost, Volunruud): il Dragon Priest **non** è presente | dungeon vuoto del boss | ☐ |
+| B19 | Visitare Dwemer ruin (es. Mzulft): nessun automa attivo (centurioni, sfere, ragni) | dungeon vuoto | ☐ |
+| B20 | Visitare un dungeon Falmer (es. Blackreach): nessun falmer attivo | dungeon vuoto | ☐ |
+| B21 | Visitare un dungeon vampiro (es. Movarth's Lair): nessun vampiro attivo | dungeon vuoto | ☐ |
+| B22 | Evocare un Atronach (Conjuration spell): l'atronach evocato funziona normalmente | sì | ☐ |
+| B23 | Foresta: spriggan presente come random encounter | sì | ☐ |
+| B24 | Coste / fiumi: horker e slaughterfish presenti | sì | ☐ |
+| B25 | Grotta con chaurus base (non Reaper): chaurus base **presenti**, eventuale chaurus reaper **assente** | base sì, reaper no | ☐ |
+| B26 | Solstheim: ash hopper **presenti**, ash spawn **assenti** | hopper sì, spawn no | ☐ |
+
+Note libere:
+
+```
+(scrivere qui eventuali anomalie — soprattutto NPC visti dove non dovrebbero esserci)
+```
+
+---
+
+## Test C — STR multiplayer (2 dev)
+
+Pre-requisito: 2 dev con la stessa modlist + `RPServer_EmptyWorld.esp`, server STR up.
+
+| # | Check | Atteso | Esito |
+|---|---|---|---|
+| C1 | Entrambi i dev si connettono al server STR | sì | ☐ |
+| C2 | Entrambi vedono lo stesso mondo vuoto a Whiterun | identica vista | ☐ |
+| C3 | Dev A si muove a Riverwood: Dev B vede A muoversi, entrambi vedono Riverwood vuota | sì | ☐ |
+| C4 | Entrambi vedono gli stessi animali (cavalli alle stalle, polli, mucche) | identica vista | ☐ |
+| C5 | Combattimento con un lupo: entrambi i dev vedono lo stesso combattimento (anche se gli HP non sono perfettamente sincronizzati) | coerenza visiva | ☐ |
+| C6 | Disconnessione + riconnessione di Dev A: il mondo resta vuoto, niente NPC respawn | sì | ☐ |
+| C7 | Console su Dev A: `sqv RPServer_EmptyWorldInit` → Running. Stesso su Dev B → Running | sì | ☐ |
+| C8 | Papyrus log su entrambi i client: `OnInit chiamato` presente | sì | ☐ |
+
+Note libere:
+
+```
+(scrivere qui differenze tra i due client, desync, crash, …)
+```
+
+---
+
+## Compilazione esito
+
+| Test | Esito complessivo | Data | Eseguito da |
+|---|---|---|---|
+| A — Static | ☐ | — | — |
+| B — Singleplayer | ☐ | — | — |
+| C — STR 2 dev | ☐ | — | — |
+
+Quando tutti e tre i blocchi sono ✅, aggiornare `MANIFEST.md` sezione `Test eseguiti` con la data e procedere al tag della release `RPServer_EmptyWorld-v1.0.0` su GitHub.

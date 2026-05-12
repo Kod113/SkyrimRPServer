@@ -1,0 +1,105 @@
+# MODLIST UFFICIALE — Server SkyrimRPServer
+
+> **Cosa contiene:** la lista delle mod (terze e custom) che compongono la modlist del server, con stato di compatibilità Skyrim Together Reborn e ruolo nella distribuzione.
+>
+> **Come si aggiorna:** ogni volta che si aggiunge, rimuove, o si cambia versione di una mod, si aggiorna la riga corrispondente. Le decisioni importanti vanno anche in `DECISIONS.md`.
+
+## Profili di modlist
+
+Manterremo **due modlist distinte**:
+
+- **Modlist Player** — ciò che ricevono i giocatori normali via Wabbajack. Identica byte-per-byte per tutti.
+- **Modlist Staff** — la Player + alcuni tool di sviluppo/moderazione (es. Jaxonz Positioner). Distribuita solo allo staff fidato.
+
+La colonna **Profilo** sotto indica per ognuna a quale modlist appartiene.
+
+## Stato di compatibilità STR
+
+Legenda della colonna *Stato STR*:
+
+- ✅ **Verificato** — testato in STR multiplayer, funziona senza desync significativi
+- ⚠️ **Da testare** — installato, da provare in scenario STR
+- ❓ **Incerto** — funziona in singleplayer, comportamento STR non noto
+- ❌ **Incompatibile** — testato e crea problemi (desync, crash, comportamento errato)
+- 🚫 **Esclusa** — decisa l'esclusione dalla modlist per design (vedi `DECISIONS.md`)
+
+---
+
+## Tool e infrastruttura (non sono mod, ma servono al dev)
+
+| Tool | Versione | Note |
+|---|---|---|
+| Skyrim Special Edition | *da fissare* | Versione bloccata, no auto-update |
+| Mod Organizer 2 | *da installare* | Profilo `RPServer-Dev` |
+| SKSE64 | *da installare* | Versione matched a SSE |
+| Creation Kit | *da installare* | Dev only |
+| SSEEdit (xEdit) | *da installare* | Dev only |
+| Visual Studio Code | *da installare* | Dev only |
+
+---
+
+## Mod tecniche / librerie (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Stato STR | Note |
+|---|---|---|---|---|
+| Skyrim Together Reborn | *da fissare* | Player + Staff | ✅ Core | È **la base**, non è una mod tra le altre |
+| Address Library for SKSE Plugins | *da fissare* | Player + Staff | ⚠️ Da testare | Versione matched a SSE |
+| PapyrusUtil SE | *da fissare* | Player + Staff | ⚠️ Da testare | Necessaria per framework RP |
+| ConsoleUtilSSE NG | *da fissare* | Staff | ❓ Incerto | Solo Staff (debug/GM tools) |
+| Unofficial Skyrim Special Edition Patch (USSEP) | *da fissare* | Player + Staff | ⚠️ Da testare | Bugfix vanilla |
+| SSE Engine Fixes | *da fissare* | Player + Staff | ⚠️ Da testare | Stabilità motore |
+| Crash Logger SSE AE VR | *da fissare* | Player + Staff | ⚠️ Da testare | Per debug crash |
+
+---
+
+## Mod gameplay / contenuto candidate
+
+| Mod | Versione | Profilo | Stato STR | Decisione Step 0 | Note |
+|---|---|---|---|---|---|
+| Skyrim Unbound Reborn | *da fissare* | Player + Staff | ⚠️ Da testare | **Inclusa** | Disabilita main quest e Dovahkiin — copre P6 dello Step 0 |
+| Static Skill Leveling Rewritten | *da fissare* | Player + Staff | ⚠️ Da testare | **Da valutare dopo test STR** | Crescita skill lenta; sync da verificare |
+| Trade and Barter | — | — | — | 🚫 **Esclusa** | Senza mercanti NPC non ha senso. Si valuta in fase Economia |
+| Skyrim Reputation | — | — | — | 🚫 **Esclusa** | Da reinterpretare nel framework RP custom |
+| Jaxonz Positioner Converted | *da fissare* | **Solo Staff** | ❓ Incerto | **Inclusa Staff** | Tool worldbuilding, mai nella modlist Player |
+
+---
+
+## Mod custom (sviluppate dal team)
+
+| Mod | Versione | Profilo | Status | Cartella |
+|---|---|---|---|---|
+| RPServer_EmptyWorld | v0.3.0 (sorgenti committati, .esp non ancora generato) | Player + Staff | 🛠️ In sviluppo | `custom_mods/RPServer_EmptyWorld/` |
+
+Le mod custom future si aggiungeranno qui via via che vengono progettate.
+
+---
+
+## Load order (sintesi)
+
+> Sarà definito formalmente in `configs/load_order.txt` quando l'ambiente sarà installato. Sintesi della logica:
+
+1. Master vanilla (`Skyrim.esm`, `Update.esm`, DLC)
+2. USSEP
+3. SSE Engine Fixes (parte plugin)
+4. Skyrim Together Reborn (e suoi master)
+5. Mod tecniche / librerie
+6. Mod gameplay (Skyrim Unbound Reborn, Static Skill Leveling, ecc.)
+7. Mod custom server (NoNPCs, future mod RP)
+8. (Solo Staff) tool di sviluppo come Jaxonz Positioner
+9. Patch di compatibilità (se necessarie)
+
+Regola generale: **le mod custom del server vanno verso il fondo del load order**, così sovrascrivono le mod terze dove necessario.
+
+---
+
+## Note sulla compatibilità con STR
+
+Skyrim Together Reborn ha sincronizzazione **parziale**: sincronizza i player, una parte degli NPC quest-critici, il combattimento, alcuni effetti magici. **Molto altro è lato client**, quindi ogni player vede e gestisce localmente. Conseguenze pratiche:
+
+- Mod che modificano AI degli NPC: spesso non sincronizzate → comportamenti diversi per ogni player. Per noi è meno grave perché stiamo per rimuoverli tutti.
+- Mod che toccano economia/inventario dei mercanti: ogni player ha la sua economia. Per noi è irrilevante per lo stesso motivo.
+- Mod che modificano skill/perk: sync imperfetto. Va testato caso per caso.
+- Mod con UI custom (menu, HUD): non sincronizzate, ogni player ha la sua. Va bene.
+- Mod che spawnano oggetti nel mondo via script: ogni player vede oggetti suoi. **Attenzione** se vogliamo che oggetti messi nel mondo siano condivisi.
+
+Per ogni nuova mod che valutiamo: prima di metterla in modlist Player, **due dev devono testarla in STR insieme** e annotare l'esito in questa tabella.
