@@ -23,32 +23,57 @@ Legenda della colonna *Stato STR*:
 - ❌ **Incompatibile** — testato e crea problemi (desync, crash, comportamento errato)
 - 🚫 **Esclusa** — decisa l'esclusione dalla modlist per design (vedi `DECISIONS.md`)
 
+Legenda della colonna *Install*:
+
+- 📥 **Installata** — presente nel profilo MO2 `Admin` del dev, abilitata
+- ⬜ **Non installata** — ancora da scaricare/abilitare
+- 🚫 **Esclusa** — non sarà installata (vedi `DECISIONS.md`)
+
+---
+
+## Base game / DLC / Creation Club (assunti come installati)
+
+> Queste righe **non sono mod modlist**, ma costituiscono la baseline del gioco su cui poggia tutto il resto. Sono attive nel profilo MO2 `Admin` del dev. Vanno richieste anche al giocatore (chi non ha i DLC o l'Anniversary Edition Upgrade non potrà entrare nel server).
+
+| Componente | Tipo | Profilo | Note |
+|---|---|---|---|
+| Skyrim Special Edition (base) | Base game | Player + Staff | Versione **da fissare** in `DECISIONS.md` e bloccata (no auto-update) |
+| HearthFires | DLC | Player + Staff | Richiesto |
+| Dragonborn | DLC | Player + Staff | Richiesto |
+| Dawnguard | DLC | Player + Staff | Richiesto |
+| ccQDRSSE001-SurvivalMode | Creation Club | Player + Staff | Survival Mode ufficiale — **valutare se attivarlo come gameplay RP** o lasciarlo presente ma disattivato in-game |
+| ccBGSSSE037-Curios | Creation Club | Player + Staff | Resource Pack assets |
+| ccBGSSSE025-AdvDSGS | Creation Club | Player + Staff | Advanced Daedric / armatura — content pack |
+| ccBGSSSE001-Fish | Creation Club | Player + Staff | Sistema pesca AE |
+| _ResourcePack | Creation Club | Player + Staff | Bethesda AE Resource Pack — dipendenza di molti CC |
+
 ---
 
 ## Tool e infrastruttura (non sono mod, ma servono al dev)
 
-| Tool | Versione | Note |
-|---|---|---|
-| Skyrim Special Edition | *da fissare* | Versione bloccata, no auto-update |
-| Mod Organizer 2 | *da installare* | Profilo `RPServer-Dev` |
-| SKSE64 | *da installare* | Versione matched a SSE |
-| Creation Kit | *da installare* | Dev only |
-| SSEEdit (xEdit) | *da installare* | Dev only |
-| Visual Studio Code | *da installare* | Dev only |
+| Tool | Versione | Install | Note |
+|---|---|---|---|
+| Skyrim Special Edition | *da fissare* | 📥 Installata | Versione bloccata, no auto-update |
+| Mod Organizer 2 | *da fissare* | 📥 Installata | Profilo attivo: `Admin` (sarà rinominato `RPServer-Dev` o sdoppiato Player/Staff) |
+| SKSE64 (loader + DLL) | *da fissare* | 📥 Installata | Versione matched a SSE — script Papyrus inclusi (`SKSE64 Script` in MO2) |
+| Creation Kit | *da fissare* | ⬜ Non installata | Dev only |
+| SSEEdit (xEdit) | *da fissare* | ⬜ Non installata | Dev only |
+| Visual Studio Code | *da fissare* | ⬜ Non installata | Dev only |
 
 ---
 
 ## Mod tecniche / librerie (modlist Player + Staff)
 
-| Mod | Versione | Profilo | Stato STR | Note |
-|---|---|---|---|---|
-| Skyrim Together Reborn | *da fissare* | Player + Staff | ✅ Core | È **la base**, non è una mod tra le altre |
-| Address Library for SKSE Plugins | *da fissare* | Player + Staff | ⚠️ Da testare | Versione matched a SSE |
-| PapyrusUtil SE | *da fissare* | Player + Staff | ⚠️ Da testare | Necessaria per framework RP |
-| ConsoleUtilSSE NG | *da fissare* | Staff | ❓ Incerto | Solo Staff (debug/GM tools) |
-| Unofficial Skyrim Special Edition Patch (USSEP) | *da fissare* | Player + Staff | ⚠️ Da testare | Bugfix vanilla |
-| SSE Engine Fixes | *da fissare* | Player + Staff | ⚠️ Da testare | Stabilità motore |
-| Crash Logger SSE AE VR | *da fissare* | Player + Staff | ⚠️ Da testare | Per debug crash |
+| Mod | Versione | Profilo | Install | Stato STR | Note |
+|---|---|---|---|---|---|
+| Skyrim Together Reborn | *da fissare* | Player + Staff | 📥 Installata | ✅ Core | È **la base**, non è una mod tra le altre |
+| Address Library for SKSE Plugins | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Versione matched a SSE |
+| PapyrusUtil SE — Modders Scripting Utility Functions | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Necessaria per framework RP |
+| ConsoleUtilSSE NG | *da fissare* | Staff *(attualmente abilitata anche in profilo Admin del dev)* | 📥 Installata | ❓ Incerto | **Da rimuovere dal pack Player** in fase di build. Solo Staff (debug/GM tools) |
+| Unofficial Skyrim Special Edition Patch (USSEP) | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Bugfix vanilla |
+| SSE Engine Fixes (`EngineFixes`) | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Stabilità motore — verificare di avere installato anche la parte `Part 2` (DLL + ini in `Data/SKSE/Plugins`) |
+| Crash Logger SSE AE VR — PDB support | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Per debug crash |
+| Open Cities Skyrim — Patches | *da fissare* | *da decidere* | 📥 Installata *(solo patches; mod base **Open Cities Skyrim** non risulta in lista)* | ❓ Incerto | ⚠️ **Da chiarire**: le patches richiedono la mod base `Open Cities Skyrim`. Va decisa l'inclusione di Open Cities nel server prima di lasciarle abilitate — incompatibilità note con STR (mondo apre città in worldspace condiviso, possibili effetti su sync) |
 
 ---
 

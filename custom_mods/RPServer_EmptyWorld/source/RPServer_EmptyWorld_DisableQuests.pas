@@ -389,6 +389,17 @@ begin
     Exit;
   end;
 
+  // Garantisce che i 5 master vanilla siano dichiarati nel plugin di
+  // destinazione PRIMA di qualsiasi wbCopyElementToFile. Senza questo,
+  // su un .esp creato vuoto la copia del primo record fallisce con:
+  //   "Load order FileID [00] can not be mapped to file FileID"
+  AddMasterIfMissing(TargetFile, 'Skyrim.esm');
+  AddMasterIfMissing(TargetFile, 'Update.esm');
+  AddMasterIfMissing(TargetFile, 'Dawnguard.esm');
+  AddMasterIfMissing(TargetFile, 'HearthFires.esm');
+  AddMasterIfMissing(TargetFile, 'Dragonborn.esm');
+  SortMasters(TargetFile);
+
   AddMessage('=== RPServer_EmptyWorld DisableQuests ===');
   AddMessage('Target plugin   : ' + GetFileName(TargetFile));
   AddMessage('Quest in lista  : ' + IntToStr(TargetQuests.Count));

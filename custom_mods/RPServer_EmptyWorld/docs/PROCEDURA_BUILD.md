@@ -12,7 +12,7 @@
 
 Prima di partire verifica che:
 
-1. Mod Organizer 2 ha il profilo `RPServer-Dev` attivo
+1. Mod Organizer 2 ha il profilo `RPServer-Dev` attivo (clonato dal Default, vergine — non il profilo `Admin` che usi per testare lo stack runtime). Vedi nota "Perché un profilo dedicato" più sotto.
 2. Nel profilo sono attivi (e solo loro, per ora) i master vanilla:
    - `Skyrim.esm`
    - `Update.esm`
@@ -21,6 +21,27 @@ Prima di partire verifica che:
    - `Dragonborn.esm`
 3. `SSEEdit.exe` (xEdit per SSE) è installato e lanciato via MO2
 4. Creation Kit è installato e lanciato via MO2
+
+### Perché un profilo dedicato `RPServer-Dev` e non `Admin`
+
+L'.esp si costruisce sul **minimo dei master**, non sull'intero stack di runtime. Tre motivi, in ordine di gravità:
+
+1. **Master incisi nell'header.** Quando overridi un record in SSEEdit, il plugin di destinazione eredita come master tutto ciò da cui quel record era già overridato nel load order corrente. Se buildi su Admin con USSEP attivo, il nostro `.esp` si porta dietro `Unofficial Skyrim Special Edition Patch.esp` come master — e il `MANIFEST.md` promette invece solo i 5 .esm vanilla. La mod si rompe ovunque non sia presente l'esatto stack di Admin.
+2. **Override incapsulati.** Anche tralasciando l'header, il record salvato parte dalla versione "winning" al momento del salvataggio. Costruire sopra USSEP significa incapsulare le correzioni USSEP dentro il nostro plugin, sovrascrivendo qualsiasi mod che voglia toccare quei record dopo. Noi vogliamo l'opposto: EmptyWorld deve essere il livello più semplice possibile sopra il vanilla puro.
+3. **Rumore in test.** Test A/B vanno fatti su "vanilla + EmptyWorld, niente altro". Se qualcosa va storto su Admin con 10 plugin attivi non sai dove guardare. Sul profilo pulito la responsabilità è al 100% del nostro `.esp`.
+
+Regola operativa: si costruisce su minimo dei master nel profilo `RPServer-Dev`, si integra in Admin dopo che A e B sono passati.
+
+### Nota sui Creation Club .esl di Anniversary Edition
+
+Su Skyrim AE, i CC distribuiti col gioco (`ccBGSSSE037-Curios.esl`, `ccBGSSSE001-Fish.esl`, `ccBGSSSE025-AdvDSGS.esl`, `ccQDRSSE001-SurvivalMode.esl`, `_ResourcePack.esl`) sono trattati dal motore come contenuto di base e MO2 **non li lascia disattivare a livello di profilo**. Non è un problema:
+
+- MO2 controlla cosa viene caricato dal **gioco**.
+- SSEEdit, a ogni apertura, mostra un proprio dialog di selezione master dove le spunte sono **libere**.
+
+In Fase 1.1, al dialog di SSEEdit deselezioni manualmente tutto tranne i 5 .esm vanilla. SSEEdit ignora i CC, lo script Pascal itera solo sui record vanilla, l'.esp finale dichiara come master solo i 5 .esm.
+
+**Conseguenza in Test B:** alcuni NPC del CC (es. pescatori di `ccBGSSSE001-Fish`, NPC della quest di `ccBGSSSE025-AdvDSGS`) **non verranno disabilitati** da `v0.3.0` perché i loro ACHR vivono nelle .esl del CC, non nei master vanilla. Se ne vedi in giro non è un bug del nostro plugin. Lo annotiamo e, se diventa fastidioso, faremo un bump `v0.4.0` che estende la disabilitazione al CC AE.
 
 ---
 
@@ -38,9 +59,9 @@ Nel left panel, click destro su un punto vuoto → **`Other > Add new file`**. I
 RPServer_EmptyWorld.esp
 ```
 
-Conferma. Il plugin compare nella lista, vuoto, con i 5 master automaticamente aggiunti come dipendenze.
+Conferma. Il plugin compare nella lista, **vuoto e senza master** — è il comportamento normale di xEdit, `Add new file` non aggiunge dipendenze. Va bene così: gli script Pascal (`v0.3.1`+) aggiungono da soli i 5 master vanilla all'avvio, prima di copiare qualsiasi record.
 
-> ⚠️ **Naming case-sensitive.** Lo script Pascal cerca il plugin per nome esatto. Niente spazi, niente varianti.
+> ⚠️ **Naming esatto.** Lo script Pascal cerca il plugin per nome esatto (il confronto è case-insensitive, ma niente spazi, underscore mancanti o varianti). Deve essere precisamente `RPServer_EmptyWorld.esp`.
 
 ### 1.3 Copia gli script Pascal nella cartella `Edit Scripts`
 
@@ -223,6 +244,7 @@ Tagga su GitHub `RPServer_EmptyWorld-vX.Y.Z` con la versione attuale del `MANIFE
 | Sintomo | Causa probabile | Fix |
 |---|---|---|
 | Lo script Pascal si ferma con "plugin non trovato" | Hai dimenticato di creare `RPServer_EmptyWorld.esp` in SSEEdit prima di lanciare lo script | Crea il plugin (Fase 1.2) e rilancia |
+| Lo script si ferma subito con `Load order FileID [00] can not be mapped to file FileID` | Il plugin di destinazione è stato creato vuoto e senza master vanilla | Gli script `v0.3.1`+ aggiungono i master da soli: assicurati che la versione dei `.pas` nella cartella `Edit Scripts` sia quella aggiornata da `source/`. In alternativa, click destro sul plugin → `Add Masters…` → spunta i 5 .esm vanilla, poi rilancia |
 | CK rifiuta di salvare con errori sui master | Master mancanti in modlist o ordine errato | Verifica che tutti e 5 i master vanilla siano attivi e nel giusto ordine |
 | Papyrus log mostra `QuestsToStop FormList non assegnato` | Property non collegata in CK | Fase 2.6: assegna a mano la property |
 | In gioco vedo ancora NPC in Whiterun | Mod che ripopolano cellule attive (es. Populated Cities) | Disattivale e ritesta. Vedi `MANIFEST.md` sezione "Mod incompatibili note" |

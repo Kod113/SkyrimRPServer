@@ -17,6 +17,16 @@
 
 ---
 
+## 2026-05-18
+
+- `[setup]` Installato e abilitato nel profilo MO2 `Admin` sul fisso del dev lo stack tecnico minimo della modlist: `Address Library for SKSE Plugins`, `Skyrim Together Reborn`, `Crash Logger SSE AE VR — PDB support`, `EngineFixes`, `Unofficial Skyrim Special Edition Patch (USSEP)`, `ConsoleUtilSSE NG`, `PapyrusUtil SE — Modders Scripting Utility Functions`, `SKSE64 Script`, `Open Cities Skyrim — Patches`. Confermati come presenti i tre DLC (HearthFires, Dragonborn, Dawnguard) e i Creation Club AE (`ccQDRSSE001-SurvivalMode`, `ccBGSSSE037-Curios`, `ccBGSSSE025-AdvDSGS`, `ccBGSSSE001-Fish`, `_ResourcePack`). Versioni esatte ancora da pinnare. Aggiornato `MODLIST.md` con nuova colonna *Install*, nuova sezione *Base game / DLC / Creation Club*, e flag 📥 sulle righe corrispondenti.
+
+- `[doc]` `MODLIST.md`: aggiunta riga **Open Cities Skyrim — Patches** con flag ⚠️ "Da chiarire": le patches richiedono la mod base **Open Cities Skyrim** che **non è in modlist**. Va deciso se includere Open Cities (potenziali implicazioni STR sul worldspace condiviso) oppure rimuovere le patches dal profilo. Registrare la decisione in `DECISIONS.md` quando presa.
+
+- `[doc]` `MODLIST.md`: chiuso il todo "ConsoleUtilSSE solo Staff" lato documentale, ma evidenziato che **oggi è abilitato nel profilo del dev (Admin)** — quando si genererà il pack Wabbajack Player andrà rimosso dal profilo Player.
+
+---
+
 ## 2026-05-12
 
 - `[mod]` `RPServer_EmptyWorld` bump a **v0.3.0**: aggiunte 19 race di mob dungeon a `RacesToDisable` — DraugrRace, DraugrSkeletonRace, SkeletonRace, DragonPriestRace, FalmerRace, DwarvenSpiderRace, DwarvenSphereRace, DwarvenCenturionRace, DwarvenBallistaRace, WispRace, WispmotherRace, FrostAtronachRace, FlameAtronachRace, StormAtronachRace, DLC2LurkerRace, DLC2SeekerRace, DLC2RieklingRace, DLC2RieklingChiefRace, DLC2AshSpawnRace, DLC1DeathHoundRace, DLC1GargoyleRace, DLC1ChaurusReaperRace, ChaurusReaperRace. Tutti i mob dei dungeon ora vengono *Initially Disabled*. Nel mondo restano: animali domestici + fauna pacifica + predatori selvatici naturali (lupi/orsi/sabrecat/troll/mammut/giganti/skeever/spider/hagraven) + fauna esotica (spriggan/horker/slaughterfish/chaurus base/ash hopper). Aggiornati WHITELIST, MANIFEST, CHECKLIST (test A11-A14, B7/B7b, B18-B26) di conseguenza.
