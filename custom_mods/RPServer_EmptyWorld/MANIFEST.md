@@ -7,10 +7,10 @@
 ## Identità
 
 - **Nome ufficiale mod:** `RPServer_EmptyWorld`
-- **Versione corrente:** `v0.3.0` (sorgenti aggiornati, .esp non ancora generato)
+- **Versione corrente:** `v0.4.0` (sorgenti aggiornati, .esp non ancora generato)
 - **Autore/i:** Team dev SkyrimRPServer (lead: David)
 - **Data di creazione:** 2026-05-12
-- **Ultimo aggiornamento:** 2026-05-12
+- **Ultimo aggiornamento:** 2026-05-21
 - **Stato:** In sviluppo
 - **Profilo:** Player + Staff (è una mod core, va a tutti)
 
@@ -20,7 +20,7 @@ Svuotare Skyrim dei suoi NPC umanoidi vanilla, dei suoi draghi, di **tutti i mob
 
 ## Cosa fa concretamente
 
-- Itera su tutti i reference `ACHR` (Placed NPC) presenti nei master vanilla (`Skyrim.esm`, `Update.esm`, `Dawnguard.esm`, `HearthFires.esm`, `Dragonborn.esm`) e flagga **`Initially Disabled`** ogni reference la cui base `NPC_` appartiene a una razza in `RacesToDisable`:
+- Itera su tutti i reference `ACHR` (Placed NPC) presenti nei master vanilla (`Skyrim.esm`, `Update.esm`, `Dawnguard.esm`, `HearthFires.esm`, `Dragonborn.esm`) e flagga **`Initially Disabled`** ogni reference la cui base — un `NPC_` diretto **oppure** un `LVLN` (Leveled NPC) risolto ricorsivamente fino agli `NPC_` foglia, template `Use Traits` inclusi — può generare un attore la cui razza è in `RacesToDisable`:
   - **Umanoidi vanilla** (uomini, mer, khajiit, argoniani, vampiri umanoidi, Skaal, Afflicted)
   - **Draghi** (`DragonRace` — Alduin, Paarthurnax, Odahviing, Sahloknir, draghi su Word Walls e dragon mound)
   - **Mob dungeon** (draughi, scheletri, falmer, Dragon Priest, automi dwemer, spettri/wisp, atronachi piazzati, lurker/seeker, riekling, ash spawn, death hound, gargoyle, chaurus reaper)
@@ -122,6 +122,14 @@ Vedi `docs/WHITELIST.md` per la versione completa con criteri tecnici. Sintesi:
 *Mod interna al server, non viene comunicata ai giocatori come feature a sé stante. La sua esistenza si manifesta implicitamente nel fatto che il mondo è vuoto, pronto per essere riempito dal team RP.*
 
 ## Changelog tecnico
+
+### v0.4.0 — 2026-05-21
+- **Fix maggiore di copertura.** Lo script `DisableNPCs.pas` v0.3.0 gestiva solo gli `ACHR` la cui base è un `NPC_` diretto, ignorando quelli piazzati tramite `LVLN` (Leveled NPC) — la maggior parte dei mob dei dungeon e dei nemici. Alla prima build reale disabilitava ~2500 ACHR sui ~8500-9000 attesi. La v0.4.0 risolve ricorsivamente le basi `LVLN` (liste annidate) e i template `NPC_` con flag *Use Traits* (`TPLT`) fino agli `NPC_` foglia. Vedi `DECISIONS.md` D-017.
+- Policy liste miste (D-017): un `ACHR` viene disabilitato se la base può generare anche un solo attore non-animale.
+- Lo script risolve sempre il *winning override* di basi, template e razze; aggiunge cache + visited-set (performance e protezione dai cicli).
+- Output diagnostico ampliato: contatori separati per disabilitati via `NPC_` e via `LVLN`.
+- `DisableQuests.pas` non interessato (opera su `QUST`).
+- Incluso anche il fix precedente per cui gli script non aggiungevano i 5 master vanilla al plugin di destinazione vuoto (errore `Load order FileID [00] can not be mapped`): entrambi gli script Pascal ora chiamano `AddMasterIfMissing` + `SortMasters` all'avvio.
 
 ### v0.3.0 — 2026-05-12
 - **Breaking della whitelist v0.2.0**: aggiunte 19 race di mob dungeon a `RacesToDisable` (`DraugrRace`, `DraugrSkeletonRace`, `SkeletonRace`, `DragonPriestRace`, `FalmerRace`, `DwarvenSpiderRace`, `DwarvenSphereRace`, `DwarvenCenturionRace`, `DwarvenBallistaRace`, `WispRace`, `WispmotherRace`, `FrostAtronachRace`, `FlameAtronachRace`, `StormAtronachRace`, `DLC2LurkerRace`, `DLC2SeekerRace`, `DLC2RieklingRace`, `DLC2RieklingChiefRace`, `DLC2AshSpawnRace`, `DLC1DeathHoundRace`, `DLC1GargoyleRace`, `DLC1ChaurusReaperRace`, `ChaurusReaperRace`). Vedi D-016.

@@ -207,6 +207,21 @@ Restano attivi (criterio "animale"):
 
 ---
 
+## D-017 — Disabilitazione anche degli ACHR piazzati via Leveled NPC (LVLN)
+
+**Data:** 2026-05-21
+**Contesto:** Durante la prima build reale dell'`.esp` di `RPServer_EmptyWorld`, lo script Pascal `DisableNPCs.pas` v0.3.0 ha disabilitato solo ~2500 ACHR sui ~8500-9000 attesi. Causa: lo script gestiva soltanto gli `ACHR` la cui base è un record `NPC_` diretto. In Skyrim la maggior parte dei mob dei dungeon e dei nemici (draughi, falmer, banditi, automi dwemer, scheletri) non è piazzata così, ma tramite reference a `LVLN` (Leveled NPC), che lo script ignorava — restavano attivi ~7000 attori che D-010/D-015/D-016 volevano spenti.
+**Decisione:** Lo script `DisableNPCs.pas` viene riscritto (bump `v0.4.0`) per risolvere **ricorsivamente** anche le basi `LVLN`: segue le liste annidate e i template `NPC_` con flag *Use Traits* (`TPLT`) fino agli `NPC_` foglia, e ne controlla la razza. Inoltre, per un Leveled NPC che può generare un **mix** di animali e non-animali (lista mista): l'`ACHR` viene disabilitato se la base può generare **anche un solo** attore non-animale.
+**Motivazione:** l'obiettivo "mondo vuoto" richiede che ogni punto di spawn potenzialmente capace di far comparire un nemico sia spento. Una lista mista lasciata attiva potrebbe far apparire un bandito dove il team RP non lo vuole. L'effetto collaterale (spegnere un punto di spawn che a volte avrebbe dato un animale) è minimo: in Skyrim le liste `LVLN` piazzate sono quasi sempre omogenee di categoria, e per un mondo "vuoto" l'errore va fatto pendere verso il più vuoto. Coerente con la filosofia "disabilitare, non eliminare": `LVLN`, `NPC_` e `RACE` restano intatti nei master, solo gli `ACHR` vengono silenziati.
+**Conseguenze:**
+- **Completa D-010, D-015 e D-016**: quelle decisioni stabilivano *quali* razze disabilitare; D-017 garantisce che vengano colpite anche quando raggiunte via `LVLN`, non solo via `NPC_` diretto. La whitelist razze non cambia.
+- `MANIFEST.md` bump `v0.3.0` → `v0.4.0`.
+- Lo script risolve sempre il *winning override* di basi, template e razze; usa una cache e un visited-set per performance e protezione dai cicli.
+- Output diagnostico ampliato: contatori separati per disabilitati via `NPC_` e via `LVLN`.
+- `DisableQuests.pas` non è interessato (opera su `QUST`, non su `ACHR`).
+
+---
+
 ## Decisioni in attesa (placeholder)
 
 Le seguenti decisioni sono **previste ma non ancora prese**. Verranno compilate quando il fondatore risponde alle domande bloccanti.

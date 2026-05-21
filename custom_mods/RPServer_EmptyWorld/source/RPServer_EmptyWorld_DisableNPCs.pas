@@ -6,70 +6,80 @@
   Scopo
   -----
   Itera sui reference ACHR (Placed NPC) presenti nei master selezionati
-  e, per ciascuno la cui base NPC_ appartiene a una razza inclusa nella
-  lista RacesToDisable, lo copia nel plugin "RPServer_EmptyWorld.esp"
-  applicandogli il flag "Initially Disabled" (bit 0x800 del Record
-  Header).
+  e flagga "Initially Disabled" (bit 0x800 del Record Header) ogni
+  reference che, risolvendone la base, puo' generare un attore la cui
+  razza appartiene a RacesToDisable.
 
-  Le razze da disabilitare sono quelle elencate in RegisterRacesToDisable
-  sotto:
-    - tutti gli umanoidi vanilla
-    - DragonRace
-    - tutti i mob dei dungeon (draughi, scheletri, falmer, automi
-      dwemer, spettri/wisp, Dragon Priest, atronachi, lurker/seeker,
-      riekling, ash spawn, death hound, gargoyle, chaurus reaper)
-  Restano IGNORATI (= attivi nel mondo):
-    - animali domestici (cavalli, cani, polli, mucche, capre, gatti)
-    - fauna pacifica selvatica (cervi, alci, volpi, conigli, cinghiali)
-    - predatori selvatici naturali (lupi, orsi, sabrecat, troll,
-      mammut, giganti, skeever, frostbite spider, hagraven)
-    - fauna esotica (spriggan, horker, slaughterfish, chaurus base,
-      ash hopper)
+  La base di un ACHR puo' essere:
+    - un NPC_  -> si legge la razza (RNAM). Se l'NPC eredita i Traits da
+                  un template (ACBS\Template Flags bit 0 = Use Traits),
+                  la razza viene risolta seguendo il template (TPLT).
+    - un LVLN  -> Leveled NPC: la lista viene risolta ricorsivamente
+                  (anche annidata) fino agli NPC_ foglia.
+
+  Questa e' la differenza chiave rispetto alla v0.3.x, che gestiva solo
+  le basi NPC_ dirette e ignorava i LVLN: la maggior parte dei mob dei
+  dungeon (draughi, falmer, banditi, automi) e' piazzata via LVLN.
+
+  Policy liste miste (decisione D-017)
+  ------------------------------------
+  Un ACHR viene disabilitato se la sua base puo' generare ANCHE UN SOLO
+  attore non-animale. Una lista che mescola animali e nemici viene
+  quindi disabilitata. Massima coerenza con l'obiettivo "mondo vuoto":
+  un punto di spawn che potrebbe far comparire un nemico va spento.
+  Restano attivi solo gli ACHR che risolvono ESCLUSIVAMENTE a razze
+  animali (domestici, fauna pacifica, predatori naturali, fauna esotica).
 
   Uso
   ---
   1. Apri xEdit con i master vanilla caricati: Skyrim.esm, Update.esm,
      Dawnguard.esm, HearthFires.esm, Dragonborn.esm.
-  2. Crea (se non esiste) un plugin vuoto chiamato esattamente
-     "RPServer_EmptyWorld.esp" (File > Other > Add New File) e salvalo.
-  3. Seleziona i master vanilla nel left panel (Skyrim.esm + DLC),
-     click destro > Apply Script > scegli questo script.
-  4. Al termine, controlla il messaggio finale (Messages tab) e salva
-     RPServer_EmptyWorld.esp.
+  2. Crea un plugin vuoto chiamato esattamente "RPServer_EmptyWorld.esp"
+     (File > Other > Add New File). Lo script aggiunge da solo i master.
+  3. Seleziona i master vanilla nel left panel, click destro >
+     Apply Script > scegli questo script.
+  4. Al termine controlla il blocco finale nel pannello Messages e
+     salva RPServer_EmptyWorld.esp (File > Save).
 
-  Convenzioni
-  -----------
-  - Lo script NON crea il plugin di destinazione: se non lo trova,
-    si ferma con messaggio chiaro.
-  - Lo script salta i reference che vivono gia' nel plugin di
-    destinazione (idempotenza: e' rilanciabile senza danni).
-  - Lo script salta i reference che appartengono a un file diverso
-    dai master vanilla (per non toccare overrides di terze mod).
-  - Tutti gli output diagnostici vanno nel pannello Messages di xEdit.
+  Note
+  ----
+  - Lo script e' idempotente: rilanciabile senza danni.
+  - Salta i reference gia' nel plugin di destinazione e quelli da
+    master non vanilla.
+  - Risolve sempre il winning override di basi, template e razze.
+  - Cache (ResolveCache) per non riesaminare la stessa base; visited-set
+    per protezione dai cicli nelle catene LVLN/template.
 
   Compatibilita'
   --------------
-  Testato concettualmente contro xEdit 4.1.5+. Le API usate
-  (LinksTo, EditorID, GetNativeValue, SetNativeValue, wbCopyElementToFile)
-  sono disponibili dal 4.0.x in poi.
+  xEdit 4.1.5+. API usate: LinksTo, WinningOverride, EditorID,
+  Signature, ElementByPath, ElementByName, ElementByIndex, ElementCount,
+  GetNativeValue, SetNativeValue, FormID, GetFile, GetFileName, Name,
+  wbCopyElementToFile, AddMasterIfMissing, SortMasters.
 }
 
 unit RPServer_EmptyWorld_DisableNPCs;
 
 const
-  TargetPluginName        = 'RPServer_EmptyWorld.esp';
-  InitiallyDisabledFlag   = $800;
-  AllowedMasterCount      = 5;
+  TargetPluginName      = 'RPServer_EmptyWorld.esp';
+  InitiallyDisabledFlag = $800;
+  UseTraitsFlag         = $01;   // ACBS\Template Flags bit 0
+  MaxResolveDepth       = 32;
 
 var
-  TargetFile          : IInterface;
-  RacesToDisable       : TStringList;
-  AllowedMasters      : TStringList;
-  DisabledCount       : Integer;
-  AlreadyDisabledCnt  : Integer;
-  SkippedCount        : Integer;
-  FailedCount         : Integer;
-  ForeignMasterCount  : Integer;
+  TargetFile         : IInterface;
+  RacesToDisable     : TStringList;
+  AllowedMasters     : TStringList;
+  ResolveCache       : TStringList;
+  DisabledViaNPC     : Integer;
+  DisabledViaLVLN    : Integer;
+  AlreadyDisabledCnt : Integer;
+  KeptAnimalNPC      : Integer;
+  KeptAnimalLVLN     : Integer;
+  SkippedNoBase      : Integer;
+  SkippedOther       : Integer;
+  FailedCount        : Integer;
+  ForeignMasterCount : Integer;
 
 // ---------------------------------------------------------------------
 //  Registrazione razze da disabilitare
@@ -206,15 +216,120 @@ begin
   Result := AllowedMasters.IndexOf(filename) >= 0;
 end;
 
+// Risolve un elemento-reference al suo record, winning override.
+function ResolveWinning(refElem: IInterface): IInterface;
+var
+  linked: IInterface;
+begin
+  Result := nil;
+  if not Assigned(refElem) then Exit;
+  linked := LinksTo(refElem);
+  if Assigned(linked) then
+    Result := WinningOverride(linked);
+end;
+
+// ---------------------------------------------------------------------
+//  Risoluzione razza: una base (NPC_ o LVLN) puo' generare un
+//  attore la cui razza e' in RacesToDisable?
+//  Ricorsiva: segue catene LVLN annidate e template NPC_ (Use Traits).
+//  'visited' protegge dai cicli; 'depth' e' un ulteriore tappo.
+// ---------------------------------------------------------------------
+function ReachesDisableRace(base: IInterface; visited: TStringList; depth: Integer): Boolean;
+var
+  sig, key, raceEdid : string;
+  tplElem, tpl, raceRef, entries, entry, target : IInterface;
+  tplFlags : Cardinal;
+  i : Integer;
+begin
+  Result := False;
+  if not Assigned(base) then Exit;
+  if depth > MaxResolveDepth then Exit;
+
+  sig := Signature(base);
+  if (sig <> 'NPC_') and (sig <> 'LVLN') then Exit;
+
+  key := sig + IntToHex(FormID(base), 8);
+  if visited.IndexOf(key) >= 0 then Exit;   // ciclo: nessun contributo
+  visited.Add(key);
+
+  if sig = 'NPC_' then begin
+    // Se l'NPC eredita i Traits da un template, la razza viene dal template.
+    tplElem := ElementByPath(base, 'ACBS\Template Flags');
+    if Assigned(tplElem) then tplFlags := GetNativeValue(tplElem)
+    else tplFlags := 0;
+
+    if (tplFlags and UseTraitsFlag) <> 0 then begin
+      tpl := ResolveWinning(ElementByPath(base, 'TPLT'));
+      if Assigned(tpl) then begin
+        Result := ReachesDisableRace(tpl, visited, depth + 1);
+        Exit;
+      end;
+      // template assente/non risolto: si ripiega su RNAM qui sotto.
+    end;
+
+    // Razza diretta da RNAM.
+    raceRef := ResolveWinning(ElementByPath(base, 'RNAM'));
+    if Assigned(raceRef) then begin
+      raceEdid := EditorID(raceRef);
+      Result := RacesToDisable.IndexOf(raceEdid) >= 0;
+    end;
+    Exit;
+  end;
+
+  // sig = 'LVLN': risolvi la lista, anche annidata. Policy D-017: basta
+  // una sola voce non-animale per far scattare il disable.
+  entries := ElementByName(base, 'Leveled List Entries');
+  if Assigned(entries) then begin
+    for i := 0 to Pred(ElementCount(entries)) do begin
+      entry := ElementByIndex(entries, i);
+      target := ResolveWinning(ElementByPath(entry, 'LVLO\Reference'));
+      if ReachesDisableRace(target, visited, depth + 1) then begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
+// Wrapper con cache sulla base diretta dell'ACHR (migliaia di ACHR
+// condividono la stessa base LVLN/NPC_).
+function BaseReachesDisableRace(base: IInterface): Boolean;
+var
+  key, cached : string;
+  visited : TStringList;
+begin
+  Result := False;
+  if not Assigned(base) then Exit;
+
+  key := Signature(base) + IntToHex(FormID(base), 8);
+  cached := ResolveCache.Values[key];
+  if cached = '1' then begin Result := True;  Exit; end;
+  if cached = '0' then begin Result := False; Exit; end;
+
+  visited := TStringList.Create;
+  try
+    Result := ReachesDisableRace(base, visited, 0);
+  finally
+    visited.Free;
+  end;
+
+  if Result then ResolveCache.Values[key] := '1'
+  else ResolveCache.Values[key] := '0';
+end;
+
 // ---------------------------------------------------------------------
 //  Lifecycle
 // ---------------------------------------------------------------------
 function Initialize: Integer;
 begin
   Result := 0;
-  DisabledCount      := 0;
+  DisabledViaNPC     := 0;
+  DisabledViaLVLN    := 0;
   AlreadyDisabledCnt := 0;
-  SkippedCount       := 0;
+  KeptAnimalNPC      := 0;
+  KeptAnimalLVLN     := 0;
+  SkippedNoBase      := 0;
+  SkippedOther       := 0;
   FailedCount        := 0;
   ForeignMasterCount := 0;
 
@@ -229,6 +344,9 @@ begin
   AllowedMasters.Duplicates := dupIgnore;
   AllowedMasters.CaseSensitive := False;
   RegisterAllowedMasters;
+
+  ResolveCache := TStringList.Create;
+  ResolveCache.CaseSensitive := False;
 
   TargetFile := FindTargetPlugin;
   if not Assigned(TargetFile) then begin
@@ -250,19 +368,17 @@ begin
   AddMasterIfMissing(TargetFile, 'Dragonborn.esm');
   SortMasters(TargetFile);
 
-  AddMessage('=== RPServer_EmptyWorld DisableNPCs ===');
+  AddMessage('=== RPServer_EmptyWorld DisableNPCs (v0.4.0, LVLN-aware) ===');
   AddMessage('Target plugin       : ' + GetFileName(TargetFile));
   AddMessage('Razze da disabilit. : ' + IntToStr(RacesToDisable.Count));
-  AddMessage('Master autorizzati  : ' + IntToStr(AllowedMasters.Count));
   AddMessage('---');
 end;
 
 function Process(e: IInterface): Integer;
 var
   sourceFileName : string;
-  baseNpc        : IInterface;
-  raceRef        : IInterface;
-  raceEdid       : string;
+  baseSig        : string;
+  base           : IInterface;
   refCopy        : IInterface;
   flagsElem      : IInterface;
   currentFlags   : Cardinal;
@@ -282,25 +398,22 @@ begin
     Exit;
   end;
 
-  baseNpc := LinksTo(ElementByPath(e, 'NAME'));
-  if not Assigned(baseNpc) then begin
-    Inc(SkippedCount);
-    Exit;
-  end;
-  if Signature(baseNpc) <> 'NPC_' then begin
-    Inc(SkippedCount);
+  base := ResolveWinning(ElementByPath(e, 'NAME'));
+  if not Assigned(base) then begin
+    Inc(SkippedNoBase);
     Exit;
   end;
 
-  raceRef := LinksTo(ElementByPath(baseNpc, 'RNAM'));
-  if not Assigned(raceRef) then begin
-    Inc(SkippedCount);
+  baseSig := Signature(base);
+  if (baseSig <> 'NPC_') and (baseSig <> 'LVLN') then begin
+    Inc(SkippedOther);
     Exit;
   end;
 
-  raceEdid := EditorID(raceRef);
-  if RacesToDisable.IndexOf(raceEdid) < 0 then begin
-    Inc(SkippedCount);
+  // Decisione: questa base puo' generare un non-animale?
+  if not BaseReachesDisableRace(base) then begin
+    if baseSig = 'NPC_' then Inc(KeptAnimalNPC)
+    else Inc(KeptAnimalLVLN);
     Exit;
   end;
 
@@ -326,23 +439,34 @@ begin
   end;
 
   SetNativeValue(flagsElem, currentFlags or InitiallyDisabledFlag);
-  Inc(DisabledCount);
+  if baseSig = 'NPC_' then Inc(DisabledViaNPC)
+  else Inc(DisabledViaLVLN);
 end;
 
 function Finalize: Integer;
+var
+  totalDisabledNew : Integer;
 begin
   Result := 0;
+  totalDisabledNew := DisabledViaNPC + DisabledViaLVLN;
+
   AddMessage('---');
   AddMessage('=== RPServer_EmptyWorld DisableNPCs: FINE ===');
-  AddMessage('Disabilitati nuovi     : ' + IntToStr(DisabledCount));
-  AddMessage('Gia'' disabilitati      : ' + IntToStr(AlreadyDisabledCnt));
-  AddMessage('Ignorati (race off-list): ' + IntToStr(SkippedCount));
-  AddMessage('Falliti                : ' + IntToStr(FailedCount));
-  AddMessage('Da master non vanilla  : ' + IntToStr(ForeignMasterCount));
+  AddMessage('Disabilitati nuovi via NPC_  : ' + IntToStr(DisabledViaNPC));
+  AddMessage('Disabilitati nuovi via LVLN  : ' + IntToStr(DisabledViaLVLN));
+  AddMessage('Disabilitati nuovi TOTALE    : ' + IntToStr(totalDisabledNew));
+  AddMessage('Gia'' disabilitati            : ' + IntToStr(AlreadyDisabledCnt));
+  AddMessage('Tenuti (animale, base NPC_)  : ' + IntToStr(KeptAnimalNPC));
+  AddMessage('Tenuti (animale, base LVLN)  : ' + IntToStr(KeptAnimalLVLN));
+  AddMessage('Saltati (base non risolta)   : ' + IntToStr(SkippedNoBase));
+  AddMessage('Saltati (base non NPC_/LVLN) : ' + IntToStr(SkippedOther));
+  AddMessage('Falliti                      : ' + IntToStr(FailedCount));
+  AddMessage('Da master non vanilla        : ' + IntToStr(ForeignMasterCount));
   AddMessage('=> Salva ora ' + TargetPluginName + ' (File > Save).');
 
   if Assigned(RacesToDisable) then RacesToDisable.Free;
   if Assigned(AllowedMasters) then AllowedMasters.Free;
+  if Assigned(ResolveCache)   then ResolveCache.Free;
 end;
 
 end.

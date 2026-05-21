@@ -1,4 +1,4 @@
-# CHECKLIST TEST — `RPServer_EmptyWorld` v0.3.0
+# CHECKLIST TEST — `RPServer_EmptyWorld` v0.4.0
 
 > Procedura di verifica da eseguire dopo ogni build dell'`.esp`. Va riempita e committata insieme al plugin.
 >
