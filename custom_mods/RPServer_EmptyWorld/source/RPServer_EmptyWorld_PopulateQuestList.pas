@@ -14,12 +14,18 @@
   "QuestsToStop" dello script Papyrus RPServer_EmptyWorldInit, che a
   runtime chiama Stop() su ogni quest della lista.
 
-  Perche' via script e non a mano in CK
-  -------------------------------------
-  La lista contiene ~180 quest: popolarla a mano in CK e' lungo e
-  soggetto a errori (quest dimenticate o sbagliate). Iterando i QUST
-  gia' nel plugin il risultato e' deterministico e sempre allineato
-  a cio' che DisableQuests.pas ha effettivamente disabilitato.
+  IMPORTANTE — perche' questa versione e' diversa dalla v1
+  -------------------------------------------------------
+  La v1 dello script, se non riusciva a popolare il FormList, usciva
+  con Result=1. Ma quando un Apply Script di xEdit termina in errore,
+  xEdit SCARTA le modifiche fatte dallo script — incluso il record
+  FLST appena creato. Risultato: il FormList non sopravviveva.
+
+  Questa versione, dopo aver creato il record FLST, NON torna mai
+  Result=1: termina sempre con successo, cosi' il FLST persiste.
+  Inoltre crea il container dei FormID aggiungendo una voce con la
+  signature corretta 'LNAM' (la v1 usava il nome 'FormIDs', che Add
+  non accetta).
 
   Uso
   ---
@@ -28,14 +34,15 @@
      prima DisableQuests.pas se non l'hai fatto.
   2. Nel left panel seleziona RPServer_EmptyWorld.esp, click destro
      > Apply Script > scegli questo script.
-  3. Controlla il blocco finale nel pannello Messages e salva
-     RPServer_EmptyWorld.esp (File > Save).
+  3. Lo script deve terminare con "Done" (non "Aborted").
+  4. Salva RPServer_EmptyWorld.esp (File > Save).
 
-  Rilancio
-  --------
-  Se "RPServer_QuestsToStop" esiste gia', lo script si ferma con un
-  messaggio e NON tocca nulla. Per rigenerarlo: cancella a mano il
-  record FLST in xEdit (click destro sul record > Remove) e rilancia.
+  Esito
+  -----
+  - Se vedi "Quest aggiunte al FormList : ~180" la popolazione
+    automatica e' riuscita: hai finito, salva.
+  - Se vedi la NOTA di fallback, il record FLST e' comunque creato:
+    salva, poi riempilo a mano con drag-drop dei QUST in xEdit.
 
   Compatibilita'
   --------------
@@ -94,73 +101,76 @@ end;
 // ---------------------------------------------------------------------
 function Initialize: Integer;
 var
-  i          : Integer;
-  r          : IInterface;
-  flst       : IInterface;
-  formIDs    : IInterface;
-  entry      : IInterface;
-  questCount : Integer;
+  i, questCount : Integer;
+  r, flst, firstEntry, formIDs, entry : IInterface;
 begin
   Result := 0;
 
-  AddMessage('=== RPServer_EmptyWorld PopulateQuestList ===');
+  AddMessage('=== RPServer_EmptyWorld PopulateQuestList (v2) ===');
 
   TargetFile := FindTargetPlugin;
   if not Assigned(TargetFile) then begin
     AddMessage('ERRORE: plugin "' + TargetPluginName + '" non caricato.');
-    Result := 1;
+    Result := 1;   // qui si puo' abortire: non e' stato creato nulla
     Exit;
   end;
 
   // Se il FormList esiste gia', non si tocca nulla.
   flst := FindExistingFormList;
   if Assigned(flst) then begin
-    AddMessage('Il FormList "' + FormListEdid + '" esiste gia''.');
+    AddMessage('Il FormList "' + FormListEdid + '" esiste gia''. Nessuna modifica.');
     AddMessage('Per rigenerarlo: cancella a mano il record FLST in xEdit e rilancia.');
-    AddMessage('Nessuna modifica effettuata.');
-    Result := 1;
-    Exit;
+    Exit;   // Result resta 0
   end;
 
   // Crea il record FLST.
   flst := Add(TargetFile, 'FLST', True);
   if not Assigned(flst) then begin
     AddMessage('ERRORE: impossibile creare il record FLST.');
-    Result := 1;
+    Result := 1;   // qui si puo' abortire: non e' stato creato nulla
     Exit;
   end;
   SetElementEditValues(flst, 'EDID', FormListEdid);
   AddMessage('Creato FormList "' + FormListEdid + '".');
 
-  // Container dei FormID.
-  formIDs := ElementByName(flst, 'FormIDs');
-  if not Assigned(formIDs) then
-    formIDs := Add(flst, 'FormIDs', True);
-  if not Assigned(formIDs) then begin
-    AddMessage('ERRORE: impossibile creare il container FormIDs.');
-    Result := 1;
-    Exit;
+  // --- DA QUI IN POI: MAI Result=1. Il record FLST esiste e deve ---
+  // --- sopravvivere. Se la popolazione fallisce, si lascia il    ---
+  // --- FLST vuoto da riempire a mano: ma esiste e si salva.      ---
+
+  // Crea il container dei FormID aggiungendo la prima voce 'LNAM'
+  // (signature corretta dei membri dell'array del FLST).
+  firstEntry := Add(flst, 'LNAM', True);
+  formIDs    := ElementByName(flst, 'FormIDs');
+
+  if (not Assigned(firstEntry)) or (not Assigned(formIDs)) then begin
+    AddMessage('---');
+    AddMessage('NOTA: record FLST creato, ma la popolazione automatica');
+    AddMessage('non e'' riuscita (API container). Salva il plugin, poi');
+    AddMessage('riempi "' + FormListEdid + '" con drag-drop dei QUST.');
+    Exit;   // Result 0: il FLST sopravvive
   end;
 
-  // Itera i QUST presenti nel plugin e aggiungili al FormList.
+  // Popola: la prima voce riusa firstEntry, le successive via ElementAssign.
   questCount := 0;
   for i := 0 to Pred(RecordCount(TargetFile)) do begin
     r := RecordByIndex(TargetFile, i);
     if Signature(r) <> 'QUST' then Continue;
 
-    entry := ElementAssign(formIDs, HighInteger, nil, False);
-    if not Assigned(entry) then begin
-      AddMessage('FAIL: impossibile aggiungere entry per ' + EditorID(r));
-      Continue;
+    if questCount = 0 then
+      entry := firstEntry
+    else
+      entry := ElementAssign(formIDs, HighInteger, nil, False);
+
+    if Assigned(entry) then begin
+      SetEditValue(entry, IntToHex(GetLoadOrderFormID(r), 8));
+      questCount := questCount + 1;
     end;
-    SetEditValue(entry, IntToHex(GetLoadOrderFormID(r), 8));
-    questCount := questCount + 1;
   end;
 
   AddMessage('---');
   AddMessage('Quest aggiunte al FormList : ' + IntToStr(questCount));
   if questCount = 0 then
-    AddMessage('ATTENZIONE: zero QUST nel plugin. Hai lanciato DisableQuests.pas?');
+    AddMessage('ATTENZIONE: zero QUST trovati. Hai lanciato DisableQuests.pas?');
   AddMessage('=> Salva ora ' + TargetPluginName + ' (File > Save).');
 end;
 

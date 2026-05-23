@@ -127,19 +127,19 @@ Lancia Creation Kit da MO2. `File > Data...`, seleziona `RPServer_EmptyWorld.esp
 
 > ⚠️ La prima volta il CK protesta con qualche centinaio di warning sui master vanilla — è normale. Ignorali (`Yes to All`).
 
-### 2.2 Crea la FormList `RPServer_QuestsToStop` — via script in SSEEdit
+### 2.2 Crea la FormList `RPServer_QuestsToStop` — in SSEEdit
 
-> ⚠️ **Aggiornamento procedura.** La FormList **non** si crea più a mano in CK (erano ~180 quest da trascinare, lungo e soggetto a errori). Si genera con lo script Pascal `RPServer_EmptyWorld_PopulateQuestList.pas`, che itera i QUST già presenti nel plugin (messi lì da `DisableQuests.pas`) e li aggiunge tutti al FormList. Risultato deterministico e sempre allineato.
+> ⚠️ **Aggiornamento procedura.** La FormList **non** si crea più a mano in CK (erano ~180 quest da trascinare una per una, lungo e soggetto a errori). Si fa in **SSEEdit**, **prima** di aprire il Creation Kit, sfruttando il fatto che i ~180 QUST sono già tutti nel plugin (ce li ha messi `DisableQuests.pas`).
 
-Questo passo si esegue in **SSEEdit**, non in CK, e va fatto **prima** di aprire il Creation Kit:
+Procedura operativa:
 
-1. Copia `source/RPServer_EmptyWorld_PopulateQuestList.pas` nella cartella `Edit Scripts` di SSEEdit.
-2. Apri SSEEdit con i 5 master vanilla + `RPServer_EmptyWorld.esp` (che deve già contenere i QUST: lancia prima `DisableQuests.pas`).
-3. Nel left panel seleziona `RPServer_EmptyWorld.esp` → click destro → `Apply Script` → `RPServer_EmptyWorld_PopulateQuestList` → OK.
-4. Nel pannello `Messages` deve comparire `Quest aggiunte al FormList : ~180`.
-5. `File > Save`.
+1. Lo script `RPServer_EmptyWorld_PopulateQuestList.pas` crea il record FLST vuoto `RPServer_QuestsToStop`. Copialo in `Edit Scripts`, seleziona `RPServer_EmptyWorld.esp` → `Apply Script` → eseguilo.
+   - ⚠️ **Limite noto v1:** lo script crea il FLST ma non riesce ancora a popolarlo (problema API xEdit sul container `FormIDs` — vedi task di fix). La creazione del record però funziona.
+2. Popola il FLST con drag-and-drop: nel left panel espandi `RPServer_EmptyWorld.esp`, apri la categoria `Quest`, seleziona tutte le ~183 quest (click sulla prima, Shift+click sull'ultima), e **trascina la selezione** sul record `RPServer_QuestsToStop` (categoria `Form List`). Conferma.
+3. Espandi `RPServer_QuestsToStop` e verifica che `FormIDs` contenga ~183 voci.
+4. `File > Save`.
 
-Lo script si ferma da solo se il FormList esiste già: per rigenerarlo, cancella a mano il record FLST in xEdit e rilancia.
+Quando lo script `PopulateQuestList.pas` sarà corretto, i passi 1-2 collasseranno in un solo Apply Script.
 
 ### 2.3 Crea la Global Variable `RPServer_EWInit_Done`
 
