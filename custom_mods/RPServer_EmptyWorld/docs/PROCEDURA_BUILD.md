@@ -98,14 +98,16 @@ I numeri esatti variano leggermente in base a quali DLC sono in modlist. Se vedi
 
 Stessa procedura: seleziona i 5 master, click destro → `Apply Script` → `RPServer_EmptyWorld_DisableQuests`.
 
-A fine esecuzione devi vedere:
+A fine esecuzione vedrai qualcosa come:
 
 ```
 === RPServer_EmptyWorld DisableQuests: FINE ===
-Quest disabilitate     : ~150-200
-Gia' Start Game off    : 0-10
+Quest disabilitate     : ~25-35
+Gia' Start Game off    : ~150-170
 Falliti                : 0
 ```
+
+> ℹ️ **Perché "Quest disabilitate" è basso.** In Skyrim la maggior parte delle quest narrative **non** ha il flag *Start Game Enabled*: vengono avviate da Story Manager, dialoghi o trigger, non all'avvio del gioco. Lo script può togliere il flag solo a chi ce l'ha — tipicamente ~25-35 quest "controller" (intro Helgen, incontri casuali, attacchi draghi, carrettieri). Le restanti (~150-170) finiscono in "Gia' Start Game off" perché non c'era nulla da togliere. Sono comunque coperte dalla rimozione degli NPC (niente quest giver) e dalla quest Papyrus di fallback. La somma `disabilitate + già off` (~180) è il numero di quest della lista effettivamente presenti come record QUST.
 
 Se compaiono righe `FAIL no DNAM\Flags on quest:` per certe quest, significa che l'EditorID nella lista non esiste in quel master (può succedere con varianti del DLC). Annota e ignora.
 
@@ -125,15 +127,19 @@ Lancia Creation Kit da MO2. `File > Data...`, seleziona `RPServer_EmptyWorld.esp
 
 > ⚠️ La prima volta il CK protesta con qualche centinaio di warning sui master vanilla — è normale. Ignorali (`Yes to All`).
 
-### 2.2 Crea la FormList `RPServer_QuestsToStop`
+### 2.2 Crea la FormList `RPServer_QuestsToStop` — via script in SSEEdit
 
-Nel `Object Window`, naviga su `Miscellaneous > FormList`. Click destro nel pannello destro → `New`.
+> ⚠️ **Aggiornamento procedura.** La FormList **non** si crea più a mano in CK (erano ~180 quest da trascinare, lungo e soggetto a errori). Si genera con lo script Pascal `RPServer_EmptyWorld_PopulateQuestList.pas`, che itera i QUST già presenti nel plugin (messi lì da `DisableQuests.pas`) e li aggiunge tutti al FormList. Risultato deterministico e sempre allineato.
 
-Compila:
-- **ID:** `RPServer_QuestsToStop`
-- **Form members:** trascina qui dentro **ogni** quest il cui EditorID compare in `source/RPServer_EmptyWorld_DisableQuests.pas` (puoi cercarle nel CK con `Ctrl+F` sull'Object Window dal pannello Quest).
+Questo passo si esegue in **SSEEdit**, non in CK, e va fatto **prima** di aprire il Creation Kit:
 
-> 💡 **Tip:** in alternativa, puoi popolare la FormList via Pascal post-build con uno script `PopulateQuestList.pas`. Per ora lo facciamo a mano per chiarezza didattica; lo script automatico è un miglioramento futuro.
+1. Copia `source/RPServer_EmptyWorld_PopulateQuestList.pas` nella cartella `Edit Scripts` di SSEEdit.
+2. Apri SSEEdit con i 5 master vanilla + `RPServer_EmptyWorld.esp` (che deve già contenere i QUST: lancia prima `DisableQuests.pas`).
+3. Nel left panel seleziona `RPServer_EmptyWorld.esp` → click destro → `Apply Script` → `RPServer_EmptyWorld_PopulateQuestList` → OK.
+4. Nel pannello `Messages` deve comparire `Quest aggiunte al FormList : ~180`.
+5. `File > Save`.
+
+Lo script si ferma da solo se il FormList esiste già: per rigenerarlo, cancella a mano il record FLST in xEdit e rilancia.
 
 ### 2.3 Crea la Global Variable `RPServer_EWInit_Done`
 
