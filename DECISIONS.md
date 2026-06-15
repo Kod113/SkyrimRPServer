@@ -41,6 +41,16 @@
 
 ---
 
+## D-004 — Versione di Skyrim SE fissata a 1.6.1170
+
+**Data:** 2026-06-15
+**Contesto:** Together Reborn non era più funzionante; in fase di reinstallazione delle mod collegate è emersa la necessità di fissare ufficialmente la versione del gioco su cui lavora il team.
+**Decisione:** La versione di Skyrim Special Edition di riferimento è `1.6.1170`. La build SKSE64 corrispondente è la **2.2.6**.
+**Motivazione:** Versione confermata dal dev lead sulla propria installazione. Fissarla evita che aggiornamenti automatici di Steam rompano la compatibilità con SKSE e le mod.
+**Conseguenze:** Tutti i dev devono disabilitare gli aggiornamenti automatici di Skyrim su Steam. Le mod installate devono essere compatibili con SSE 1.6.1170. Ogni cambio di versione richiede una nuova decisione che supera questa.
+
+---
+
 ## D-004 — Esclusione di "Trade and Barter" dallo Step 0
 
 **Data:** 2026-05-12

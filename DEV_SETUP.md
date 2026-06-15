@@ -4,15 +4,11 @@
 
 ## Versione di Skyrim Special Edition
 
-> ⚠️ **DA FISSARE.** Decisione bloccante in attesa di conferma del fondatore.
->
-> La versione esatta deve corrispondere a quella supportata da **Skyrim Together Reborn** al momento del setup. Verificare su [skyrim-together.com](https://skyrim-together.com/) la "Supported Skyrim version" attuale.
->
-> **Quando fissata:** annotare versione esatta qui sotto e replicare la decisione in `DECISIONS.md`.
+> ✅ **Versione fissata** — vedi D-004 in `DECISIONS.md`.
 
-**Versione SSE fissata:** *[da compilare]*
-**Build SKSE corrispondente:** *[da compilare]*
-**Data di fissaggio:** *[da compilare]*
+**Versione SSE fissata:** `1.6.1170`
+**Build SKSE corrispondente:** SKSE64 2.2.6 (per SSE 1.6.1170+)
+**Data di fissaggio:** 2026-06-15
 
 ### Disabilitare auto-update Steam (obbligatorio per tutti)
 
