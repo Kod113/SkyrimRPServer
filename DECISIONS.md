@@ -74,7 +74,7 @@
 ## D-006 — Due modlist parallele: Player vs Staff
 
 **Data:** 2026-05-12
-**Contesto:** Alcuni tool sono indispensabili per worldbuilding e moderazione (es. Jaxonz Positioner per spostare oggetti, ConsoleUtilSSE per comandi avanzati) ma sarebbero pericolosi nelle mani di player normali (desync, abusi, oggetti spostati a caso nel mondo).
+**Contesto:** Alcuni tool sono indispensabili per worldbuilding e moderazione (es. ConsoleUtilSSE per comandi avanzati) ma sarebbero pericolosi nelle mani di player normali (desync, abusi, oggetti spostati a caso nel mondo).
 **Decisione:** Manteniamo **due modlist**:
 - **Modlist Player** — distribuita a tutti via Wabbajack
 - **Modlist Staff** — Player + tool di sviluppo/moderazione, distribuita solo allo staff

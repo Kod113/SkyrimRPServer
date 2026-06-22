@@ -97,10 +97,9 @@ Su Steam: tasto destro su *Skyrim Special Edition* → *Properties* → *Updates
 Le seguenti mod sono nella lista del fondatore ma **non appartengono al setup tecnico obbligatorio**. Sono mod di gameplay/contenuto che entrano nel discorso "modlist del server" gestito in `MODLIST.md`. Le elenco qui solo per chiarezza:
 
 - **Skyrim Unbound Reborn** — disabilita main quest, intro, Dovahkiin. Candidata fortissima per Step 0 priorità 6.
-- **Static Skill Leveling Rewritten** — crescita skill più lenta. Da testare in STR per verifica sync.
+- **Static Skill Leveling Rewritten** — crescita skill più lenta. **Esclusa per ora**: troppe dipendenze, da rivalutare in futuro.
 - **Trade and Barter** — modifica prezzi mercanti. **Esclusa da Step 0** (vedi `DECISIONS.md`): senza NPC mercanti non ha senso.
 - **Skyrim Reputation** — sistema reputazione vanilla. **Esclusa da Step 0**: da reinterpretare nel framework RP custom.
-- **Jaxonz Positioner Converted** — strumento staff per spostare oggetti. Da usare **solo nella modlist Staff**, non in quella Player.
 
 ---
 

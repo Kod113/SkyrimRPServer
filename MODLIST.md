@@ -9,7 +9,7 @@
 Manterremo **due modlist distinte**:
 
 - **Modlist Player** — ciò che ricevono i giocatori normali via Wabbajack. Identica byte-per-byte per tutti.
-- **Modlist Staff** — la Player + alcuni tool di sviluppo/moderazione (es. Jaxonz Positioner). Distribuita solo allo staff fidato.
+- **Modlist Staff** — la Player + alcuni tool di sviluppo/moderazione. Distribuita solo allo staff fidato.
 
 La colonna **Profilo** sotto indica per ognuna a quale modlist appartiene.
 
@@ -82,10 +82,9 @@ Legenda della colonna *Install*:
 | Mod | Versione | Profilo | Stato STR | Decisione Step 0 | Note |
 |---|---|---|---|---|---|
 | Skyrim Unbound Reborn | *da fissare* | Player + Staff | ⚠️ Da testare | **Inclusa** | Disabilita main quest e Dovahkiin — copre P6 dello Step 0 |
-| Static Skill Leveling Rewritten | *da fissare* | Player + Staff | ⚠️ Da testare | **Da valutare dopo test STR** | Crescita skill lenta; sync da verificare |
+| Static Skill Leveling Rewritten | — | — | — | 🚫 **Esclusa** | Troppe dipendenze aggiuntive, complessità non giustificata in questa fase. Da rivalutare in futuro. |
 | Trade and Barter | — | — | — | 🚫 **Esclusa** | Senza mercanti NPC non ha senso. Si valuta in fase Economia |
 | Skyrim Reputation | — | — | — | 🚫 **Esclusa** | Da reinterpretare nel framework RP custom |
-| Jaxonz Positioner Converted | *da fissare* | **Solo Staff** | ❓ Incerto | **Inclusa Staff** | Tool worldbuilding, mai nella modlist Player |
 
 ---
 
@@ -108,9 +107,9 @@ Le mod custom future si aggiungeranno qui via via che vengono progettate.
 3. SSE Engine Fixes (parte plugin)
 4. Skyrim Together Reborn (e suoi master)
 5. Mod tecniche / librerie
-6. Mod gameplay (Skyrim Unbound Reborn, Static Skill Leveling, ecc.)
+6. Mod gameplay (Skyrim Unbound Reborn, ecc.)
 7. Mod custom server (NoNPCs, future mod RP)
-8. (Solo Staff) tool di sviluppo come Jaxonz Positioner
+8. (Solo Staff) tool di sviluppo e moderazione
 9. Patch di compatibilità (se necessarie)
 
 Regola generale: **le mod custom del server vanno verso il fondo del load order**, così sovrascrivono le mod terze dove necessario.
