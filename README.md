@@ -43,6 +43,19 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 
 **Quando apri una sessione con Claude (Cowork)**: chiedigli di leggere `README.md`, `IMPLEMENTED.md`, `DECISIONS.md` come prima cosa, così ha tutto il contesto del progetto.
 
+**Quando una sessione con Claude produce informazioni utili ai giocatori** (domande su installazione, comandi, problemi tecnici, regole di gioco): aggiorna il file corrispondente in `docs_for_players/` prima di chiudere la sessione. Regola pratica:
+
+| Tipo di contenuto | File da aggiornare |
+|---|---|
+| Domande frequenti su installazione o gioco | `docs_for_players/FAQ.md` |
+| Problemi tecnici e soluzioni | `docs_for_players/TROUBLESHOOTING.md` |
+| Passi di installazione nuovi o modificati | `docs_for_players/INSTALL_GUIDE.md` |
+| Passi del primo accesso nuovi o modificati | `docs_for_players/FIRST_LOGIN.md` |
+| Regole del server aggiornate | `docs_for_players/SERVER_RULES.md` |
+| Lore, RP, creazione personaggio | `docs_for_players/RP_GUIDE.md` |
+
+Questa regola vale su entrambi gli ambienti di sviluppo (Mac e Windows). Dopo aver aggiornato i file, fai sempre commit + push.
+
 ## Per i giocatori
 
 I giocatori del server **non devono usare questo repository**. Per loro è prevista una procedura di installazione semplificata tramite pacchetto Wabbajack (vedi `docs_for_players/`). Questo repo è solo per chi sviluppa il server.
