@@ -7,10 +7,10 @@
 ## Identità
 
 - **Nome ufficiale mod:** `RPServer_EmptyWorld`
-- **Versione corrente:** `v0.4.0` (sorgenti aggiornati, .esp non ancora generato)
+- **Versione corrente:** `v0.5.0` (sorgenti aggiornati, .esp non ancora generato)
 - **Autore/i:** Team dev SkyrimRPServer (lead: David)
 - **Data di creazione:** 2026-05-12
-- **Ultimo aggiornamento:** 2026-05-21
+- **Ultimo aggiornamento:** 2026-06-21
 - **Stato:** In sviluppo
 - **Profilo:** Player + Staff (è una mod core, va a tutti)
 
@@ -26,10 +26,8 @@ Svuotare Skyrim dei suoi NPC umanoidi vanilla, dei suoi draghi, di **tutti i mob
   - **Mob dungeon** (draughi, scheletri, falmer, Dragon Priest, automi dwemer, spettri/wisp, atronachi piazzati, lurker/seeker, riekling, ash spawn, death hound, gargoyle, chaurus reaper)
 
   Vedi `docs/WHITELIST.md` per la lista completa di race con criteri tecnici.
-- Marca un elenco curato di quest narrative (`MQ*`, `CW*`, `C0*`, `MG*`, `TG*`, `DB*`, `DLC1*` story, `DLC2*` story) come **non `Start Game Enabled`** e ne forza lo stato a `Stage 0` con flag `Stop On Quest End`.
-- Disabilita il sistema Shouts/Word Walls a livello di script di trigger (Word Walls restano nel mondo come prop ma non insegnano più Words).
-- Disabilita Random Dragon Attacks (lo storyteller `WIDragonAttacks` viene fermato).
-- Installa una **quest Papyrus di fallback** (`RPServer_EmptyWorldInit`) `Start Game Enabled` che al primo `OnInit()` ferma via `Stop()` le quest vanilla residue eventualmente avviate da altre mod nel load order, come safety net.
+
+> **Scope v0.5.0:** la mod si occupa esclusivamente di disabilitare gli ACHR. La disabilitazione delle quest vanilla e il sistema Papyrus di fallback sono stati esclusi dallo scope attuale e potranno essere reintrodotti in una versione futura se necessari.
 
 ## Cosa NON fa / cosa NON tocca
 
@@ -53,9 +51,7 @@ Svuotare Skyrim dei suoi NPC umanoidi vanilla, dei suoi draghi, di **tutti i mob
 
 ### Mod richieste
 
-- **SKSE64** — necessario per il Papyrus di fallback (usa `Game.GetPlayer()` e quest scripting standard, ma il caricamento di mod custom richiede SKSE).
-- **PapyrusUtil SE** — usata dal fallback per logging diagnostico (`MiscUtil.PrintConsole`).
-- **Address Library for SKSE Plugins** — dipendenza di PapyrusUtil.
+- Nessuna. Il plugin è puro override di record vanilla, senza script Papyrus né dipendenze runtime.
 
 ### Mod incompatibili note
 
@@ -69,11 +65,10 @@ Svuotare Skyrim dei suoi NPC umanoidi vanilla, dei suoi draghi, di **tutti i mob
 | Tipo record | Numero approssimativo | Note |
 |---|---|---|
 | `ACHR` (Placed NPC) | ~8500–9000 dei ~10000 totali | Umanoidi + draghi + mob dungeon. Flag *Initially Disabled* attivato. Restanti (~1000–1500: solo animali domestici, fauna pacifica, predatori selvatici, fauna esotica) **non toccati** |
-| `QUST` (Quest) | ~80–120 narrative vanilla | Flag *Start Game Enabled* rimosso; `Stop()` forzato runtime via fallback |
 | `NPC_` | 0 | Definizioni base non toccate |
 | `RACE`, `CLAS`, `FACT`, `KYWD` | 0 | Framework demografico intatto |
-| `WOOP` (Word of Power) | 0 record modificati, ma trigger `QF_WordOfPower*` disabilitati | Word Walls restano come prop ma non insegnano |
-| Nuovi record aggiunti | 1 `QUST` (`RPServer_EmptyWorldInit`) + 1 `SCPT` Papyrus | Quest di fallback |
+| `QUST` | 0 | Quest vanilla non toccate (fuori scope v0.5.0) |
+| Nuovi record aggiunti | 0 | Solo override di ACHR esistenti |
 
 ## Compatibilità con Skyrim Together Reborn
 
@@ -102,14 +97,11 @@ Vedi `docs/WHITELIST.md` per la versione completa con criteri tecnici. Sintesi:
 | File | Cosa è |
 |---|---|
 | `MANIFEST.md` | Questo file |
-| `source/RPServer_EmptyWorld_DisableNPCs.pas` | Pascal per xEdit: flagga *Initially Disabled* gli ACHR umanoidi |
-| `source/RPServer_EmptyWorld_DisableQuests.pas` | Pascal per xEdit: disabilita Start Game Enabled sulle quest narrative |
-| `source/RPServer_EmptyWorldInit.psc` | Sorgente Papyrus della quest fallback |
-| `scripts/RPServer_EmptyWorldInit.pex` | (Generato in build) Papyrus compilato |
+| `source/RPServer_EmptyWorld_DisableNPCs.pas` | Pascal per xEdit: flagga *Initially Disabled* gli ACHR target |
 | `RPServer_EmptyWorld.esp` | (Generato in build) Plugin deployabile |
 | `docs/PROCEDURA_BUILD.md` | Guida operativa step-by-step per generare l'.esp |
 | `docs/WHITELIST.md` | Whitelist tecnica completa con criteri |
-| `tests/CHECKLIST.md` | Checklist test singleplayer + STR |
+| `tests/CHECKLIST.md` | Checklist test singleplayer |
 
 ## Test eseguiti
 
@@ -122,6 +114,10 @@ Vedi `docs/WHITELIST.md` per la versione completa con criteri tecnici. Sintesi:
 *Mod interna al server, non viene comunicata ai giocatori come feature a sé stante. La sua esistenza si manifesta implicitamente nel fatto che il mondo è vuoto, pronto per essere riempito dal team RP.*
 
 ## Changelog tecnico
+
+### v0.5.0 — 2026-06-21
+- **Scope ridotto per testing locale.** Rimossa la disabilitazione delle quest vanilla (`DisableQuests.pas`) e l'intera Fase 2 Papyrus (quest fallback `RPServer_EmptyWorldInit`, script `RPServer_EmptyWorldPlayerAlias`, FormList `RPServer_QuestsToStop`, Global `RPServer_EWInit_Done`). La mod è ora esclusivamente un override di record ACHR. Nessuna dipendenza runtime (SKSE, PapyrusUtil, Address Library non più necessari). Il plugin risultante è più semplice, robusto e indipendente.
+- Aggiornata la procedura di build (solo Fase 1 + Fase 3), la checklist test (rimossi test A1-A5, B9-B13, B17) e il MANIFEST.
 
 ### v0.4.0 — 2026-05-21
 - **Fix maggiore di copertura.** Lo script `DisableNPCs.pas` v0.3.0 gestiva solo gli `ACHR` la cui base è un `NPC_` diretto, ignorando quelli piazzati tramite `LVLN` (Leveled NPC) — la maggior parte dei mob dei dungeon e dei nemici. Alla prima build reale disabilitava ~2500 ACHR sui ~8500-9000 attesi. La v0.4.0 risolve ricorsivamente le basi `LVLN` (liste annidate) e i template `NPC_` con flag *Use Traits* (`TPLT`) fino agli `NPC_` foglia. Vedi `DECISIONS.md` D-017.

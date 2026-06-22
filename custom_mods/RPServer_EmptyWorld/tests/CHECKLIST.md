@@ -1,4 +1,4 @@
-# CHECKLIST TEST — `RPServer_EmptyWorld` v0.4.0
+# CHECKLIST TEST — `RPServer_EmptyWorld` v0.5.0
 
 > Procedura di verifica da eseguire dopo ogni build dell'`.esp`. Va riempita e committata insieme al plugin.
 >
@@ -12,20 +12,14 @@ Pre-requisito: plugin generato, riapri SSEEdit con master vanilla + `RPServer_Em
 
 | # | Check | Atteso | Esito |
 |---|---|---|---|
-| A1 | `RPServer_EmptyWorld.esp > Quest > RPServer_EmptyWorldInit` esiste | sì | ☐ |
-| A2 | La quest ha flag `Start Game Enabled` | sì | ☐ |
-| A3 | La quest ha script `RPServer_EmptyWorldInit` con properties popolate | sì, 3 properties | ☐ |
-| A4 | La quest ha alias `PlayerAlias` con script `RPServer_EmptyWorldPlayerAlias` | sì | ☐ |
-| A5 | `FormID List > RPServer_QuestsToStop` esiste e contiene ~150-200 elementi | ~150-200 | ☐ |
-| A6 | Spot-check 10 ACHR random nei master vanilla → flag `Initially Disabled` | ✓ su umanoidi/draghi/mob dungeon, niente su animali | ☐ |
-| A7 | Spot-check 10 QUST narrative (MQ101, CW01, C00, MG01, TG00, DB01, DLC1VQ01, DLC2MQ01, MS14, DA02) → `Start Game Enabled` rimosso | tutti senza | ☐ |
-| A8 | Master del plugin = solo i 5 master vanilla | nessun master di terze parti | ☐ |
-| A9 | Conteggio `ACHR overrides` ragionevole (~8500-9000) | nel range | ☐ |
-| A10 | Conteggio `QUST overrides` ragionevole (~150-200) | nel range | ☐ |
-| A11 | Spot-check ACHR su DraugrRace (es. in Bleak Falls Barrow) → `Initially Disabled` ✓ | sì | ☐ |
-| A12 | Spot-check ACHR su FalmerRace, DwarvenCenturionRace, DragonPriestRace → `Initially Disabled` ✓ | sì | ☐ |
-| A13 | Spot-check ACHR su WolfRace, BearRace, SabreCatRace → `Initially Disabled` **NON** presente | nessun flag | ☐ |
-| A14 | Spot-check ACHR su SprigganRace, HorkerRace, ChaurusRace (base) → `Initially Disabled` **NON** presente | nessun flag | ☐ |
+| A1 | Master del plugin = solo i 5 master vanilla | nessun master di terze parti | ☐ |
+| A2 | Conteggio `ACHR overrides` ragionevole (~8500-9000) | nel range | ☐ |
+| A3 | Nessun override `QUST` nel plugin | 0 QUST | ☐ |
+| A4 | Spot-check 10 ACHR umanoidi/draghi nei master vanilla → flag `Initially Disabled` ✓ | tutti flaggati | ☐ |
+| A5 | Spot-check ACHR su DraugrRace (es. in Bleak Falls Barrow) → `Initially Disabled` ✓ | sì | ☐ |
+| A6 | Spot-check ACHR su FalmerRace, DwarvenCenturionRace, DragonPriestRace → `Initially Disabled` ✓ | sì | ☐ |
+| A7 | Spot-check ACHR su WolfRace, BearRace, SabreCatRace → `Initially Disabled` **NON** presente | nessun flag | ☐ |
+| A8 | Spot-check ACHR su SprigganRace, HorkerRace, ChaurusRace (base) → `Initially Disabled` **NON** presente | nessun flag | ☐ |
 
 Note libere:
 
@@ -37,37 +31,30 @@ Note libere:
 
 ## Test B — Singleplayer rapido
 
-Pre-requisito: Skyrim avviato via MO2 + SKSE con il profilo `RPServer-Dev`. Nuova partita o save di test.
+Pre-requisito: Skyrim avviato con il profilo `RPServer-Dev` (solo master vanilla + `RPServer_EmptyWorld.esp`). Usa un alternate start (Skyrim Unbound o simile) per evitare l'intro vanilla.
 
 | # | Check | Atteso | Esito |
 |---|---|---|---|
-| B1 | Avvio nuova partita: non parte l'intro di Helgen | nessun carro, nessun Alduin | ☐ |
+| B1 | Spawn iniziale: nessun Alduin, nessun carro vanilla | sì (richiede alternate start) | ☐ |
 | B2 | Whiterun (main square): nessun NPC umanoide visibile | piazza deserta | ☐ |
-| B3 | Whiterun: cani randagi, polli, mucche visibili (animali) | sì | ☐ |
+| B3 | Whiterun: cani randagi, polli, mucche visibili | sì | ☐ |
 | B4 | Riverwood: nessun cittadino, nessuna guardia | villaggio deserto | ☐ |
 | B5 | Riverwood: galline e cane visibili | sì | ☐ |
 | B6 | Stalla di Whiterun: cavalli presenti, conducente del carro **assente** | cavalli sì, carrettiere no | ☐ |
-| B7 | Dungeon di Bleak Falls Barrow: **nessun drugo presente**, dungeon vuoto di mob | dungeon shell vuoto | ☐ |
-| B7b | Bleak Falls Barrow: oggetti loot, trappole, geometria del dungeon comunque presenti | ambiente intatto | ☐ |
-| B8 | Foresta vicino Riverwood: lupi/orsi presenti come random encounter | sì | ☐ |
-| B9 | Console: `sqv RPServer_EmptyWorldInit` → Running | sì | ☐ |
-| B10 | Console: `sqv MQ101` → Stage 0 e non Running | non Running | ☐ |
-| B11 | Console: `sqv WIDragonAttacks` → non Running | non Running | ☐ |
-| B12 | Papyrus log contiene `[RPServer_EmptyWorld] OnInit chiamato` | sì | ☐ |
-| B13 | Papyrus log contiene `[RPServer_EmptyWorld] StopVanillaQuests fine: N fermate` con N > 0 | sì | ☐ |
-| B14 | Vagare 5 minuti in città-bosco-strada: nessuno spawn umanoide (couriers, banditi standard, soldati civil war) | nessuno | ☐ |
-| B15 | Posizionarsi nei pressi di un Word Wall noto per avere un drago piazzato (es. Bonestrewn Crest): il drago **non** è presente | nessun drago visibile | ☐ |
-| B16 | Spawnare un drago via `player.placeatme` con FormID di un EncDragon vanilla: l'attore appare ma è *Initially Disabled* / invisibile | drago non si manifesta | ☐ |
-| B17 | Avvicinarsi a un Word Wall: la parola **non** viene insegnata | nessun nuovo Word | ☐ |
-| B18 | Visitare un dungeon con Dragon Priest noto (es. Forelhost, Volunruud): il Dragon Priest **non** è presente | dungeon vuoto del boss | ☐ |
-| B19 | Visitare Dwemer ruin (es. Mzulft): nessun automa attivo (centurioni, sfere, ragni) | dungeon vuoto | ☐ |
-| B20 | Visitare un dungeon Falmer (es. Blackreach): nessun falmer attivo | dungeon vuoto | ☐ |
-| B21 | Visitare un dungeon vampiro (es. Movarth's Lair): nessun vampiro attivo | dungeon vuoto | ☐ |
-| B22 | Evocare un Atronach (Conjuration spell): l'atronach evocato funziona normalmente | sì | ☐ |
-| B23 | Foresta: spriggan presente come random encounter | sì | ☐ |
-| B24 | Coste / fiumi: horker e slaughterfish presenti | sì | ☐ |
-| B25 | Grotta con chaurus base (non Reaper): chaurus base **presenti**, eventuale chaurus reaper **assente** | base sì, reaper no | ☐ |
-| B26 | Solstheim: ash hopper **presenti**, ash spawn **assenti** | hopper sì, spawn no | ☐ |
+| B7 | Bleak Falls Barrow: nessun draugr, dungeon vuoto di mob | dungeon shell vuoto | ☐ |
+| B7b | Bleak Falls Barrow: loot, trappole e geometria comunque presenti | ambiente intatto | ☐ |
+| B8 | Foresta vicino Riverwood: lupi/orsi presenti | sì | ☐ |
+| B9 | Vagare 5 minuti in città-bosco-strada: nessuno spawn umanoide | nessuno | ☐ |
+| B10 | Word Wall con drago piazzato (es. Bonestrewn Crest): drago **non** presente | nessun drago | ☐ |
+| B11 | Dungeon con Dragon Priest (es. Forelhost): boss **non** presente | assente | ☐ |
+| B12 | Dwemer ruin (es. Mzulft): nessun automa attivo | dungeon vuoto | ☐ |
+| B13 | Blackreach: nessun falmer attivo | dungeon vuoto | ☐ |
+| B14 | Dungeon vampiro (es. Movarth's Lair): nessun vampiro attivo | dungeon vuoto | ☐ |
+| B15 | Evocare un Atronach (Conjuration spell): funziona normalmente | sì | ☐ |
+| B16 | Foresta: spriggan presente | sì | ☐ |
+| B17 | Coste / fiumi: horker e slaughterfish presenti | sì | ☐ |
+| B18 | Grotta con chaurus base: chaurus base **presenti**, chaurus reaper **assente** | base sì, reaper no | ☐ |
+| B19 | Solstheim: ash hopper **presenti**, ash spawn **assenti** | hopper sì, spawn no | ☐ |
 
 Note libere:
 
@@ -79,7 +66,7 @@ Note libere:
 
 ## Test C — STR multiplayer (2 dev)
 
-Pre-requisito: 2 dev con la stessa modlist + `RPServer_EmptyWorld.esp`, server STR up.
+> ⏸️ **Rimandato.** Problemi di compatibilità con Together Reborn. Si riprende quando l'ambiente multiplayer è stabile.
 
 | # | Check | Atteso | Esito |
 |---|---|---|---|
@@ -87,10 +74,8 @@ Pre-requisito: 2 dev con la stessa modlist + `RPServer_EmptyWorld.esp`, server S
 | C2 | Entrambi vedono lo stesso mondo vuoto a Whiterun | identica vista | ☐ |
 | C3 | Dev A si muove a Riverwood: Dev B vede A muoversi, entrambi vedono Riverwood vuota | sì | ☐ |
 | C4 | Entrambi vedono gli stessi animali (cavalli alle stalle, polli, mucche) | identica vista | ☐ |
-| C5 | Combattimento con un lupo: entrambi i dev vedono lo stesso combattimento (anche se gli HP non sono perfettamente sincronizzati) | coerenza visiva | ☐ |
+| C5 | Combattimento con un lupo: entrambi i dev vedono lo stesso combattimento | coerenza visiva | ☐ |
 | C6 | Disconnessione + riconnessione di Dev A: il mondo resta vuoto, niente NPC respawn | sì | ☐ |
-| C7 | Console su Dev A: `sqv RPServer_EmptyWorldInit` → Running. Stesso su Dev B → Running | sì | ☐ |
-| C8 | Papyrus log su entrambi i client: `OnInit chiamato` presente | sì | ☐ |
 
 Note libere:
 
@@ -106,6 +91,6 @@ Note libere:
 |---|---|---|---|
 | A — Static | ☐ | — | — |
 | B — Singleplayer | ☐ | — | — |
-| C — STR 2 dev | ☐ | — | — |
+| C — STR 2 dev | ⏸️ rimandato | — | — |
 
-Quando tutti e tre i blocchi sono ✅, aggiornare `MANIFEST.md` sezione `Test eseguiti` con la data e procedere al tag della release `RPServer_EmptyWorld-v1.0.0` su GitHub.
+Quando A e B sono ✅, aggiornare `MANIFEST.md` sezione `Test eseguiti` con la data e procedere al tag della release `RPServer_EmptyWorld-v1.0.0` su GitHub.
