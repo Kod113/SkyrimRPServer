@@ -73,7 +73,7 @@ Legenda della colonna *Install*:
 | Unofficial Skyrim Special Edition Patch (USSEP) | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Bugfix vanilla |
 | SSE Engine Fixes (`EngineFixes`) | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Stabilità motore — verificare di avere installato anche la parte `Part 2` (DLL + ini in `Data/SKSE/Plugins`) |
 | Crash Logger SSE AE VR — PDB support | *da fissare* | Player + Staff | 📥 Installata | ⚠️ Da testare | Per debug crash |
-| Open Cities Skyrim — Patches | *da fissare* | *da decidere* | 📥 Installata *(solo patches; mod base **Open Cities Skyrim** non risulta in lista)* | ❓ Incerto | ⚠️ **Da chiarire**: le patches richiedono la mod base `Open Cities Skyrim`. Va decisa l'inclusione di Open Cities nel server prima di lasciarle abilitate — incompatibilità note con STR (mondo apre città in worldspace condiviso, possibili effetti su sync) |
+| Open Cities Skyrim | — | — | 🚫 Esclusa | ❌ Incompatibile | Incompatibilità nota con STR: apre le città nel worldspace principale causando problemi di sync. Non verrà usata finché STR non la supporta ufficialmente. Le patches correlate sono anch'esse escluse. |
 
 ---
 
