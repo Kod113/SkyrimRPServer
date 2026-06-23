@@ -77,6 +77,58 @@ Legenda della colonna *Install*:
 
 ---
 
+## Interfaccia & QoL (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Install | Stato STR | Link | Note |
+|---|---|---|---|---|---|---|
+| SkyUI | 5.2SE | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/12604) | Richiede SKSE |
+| A Quality World Map | 9.0.1 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/5804) | Variante: Vivid with Stone Roads — caricare dopo Skyland AIO |
+| Better Jumping SE | 1.8.6 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/18967) | |
+| Bandolier – Bags and Pouches Classic | 1.2.3 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/2417) | Borse visibili sul personaggio — ottimo per immersione RP |
+
+---
+
+## Visual (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Install | Stato STR | Link | Note |
+|---|---|---|---|---|---|---|
+| Skyland AIO | 4.32 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/34179) | Base texture overhaul — caricare **prima** degli altri visual |
+| Obsidian Weathers and Seasons | 1.07a | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/12125) | |
+| Luminosity Lighting Overhaul | 4.2 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/16830) | Usare insieme a Relighting Skyrim |
+| Relighting Skyrim SE | 3.0 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/8586) | |
+| Enhanced Vanilla Trees SE | 2.2.2 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/11008) | |
+| Blended Roads | 1.7 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/8834) | Caricare dopo Skyland AIO |
+| Skyland Night Sky | 1.0 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/18022) | |
+
+---
+
+## Audio & Ambience (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Install | Stato STR | Link | Note |
+|---|---|---|---|---|---|---|
+| FSS – Better Bards | 1.0 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus LE](https://www.nexusmods.com/skyrim/mods/6496) | ⚠️ Verificare se MOSKYRIM include una port SSE compatibile |
+| The Northerner Diaries – Immersive Edition | 1.0 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/28108) | |
+| Celtic Music in Skyrim SE | 2.1 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/2179) | |
+
+---
+
+## Gameplay (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Install | Stato STR | Link | Note |
+|---|---|---|---|---|---|---|
+| Attack Speed Framework | 2.2.1 | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/45541) | Framework tecnico — da solo non cambia nulla al gameplay |
+| Alternate Start – Live Another Life | ultima | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/272) | Obbligatoria — tutti devono scegliere la stessa origine per evitare desync |
+
+---
+
+## Personaggio (modlist Player + Staff)
+
+| Mod | Versione | Profilo | Install | Stato STR | Link | Note |
+|---|---|---|---|---|---|---|
+| RaceMenu SE | ultima | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/19080) | Richiede SKSE — essenziale per identità visiva del personaggio RP |
+
+---
+
 ## Mod gameplay / contenuto candidate
 
 | Mod | Versione | Profilo | Stato STR | Decisione Step 0 | Note |
