@@ -134,6 +134,7 @@ Legenda della colonna *Install*:
 | Mod | Versione | Profilo | Stato STR | Decisione Step 0 | Note |
 |---|---|---|---|---|---|
 | Skyrim Unbound Reborn | *da fissare* | Player + Staff | ⚠️ Da testare | **Inclusa** | Disabilita main quest e Dovahkiin — copre P6 dello Step 0 |
+| STR Script Patch Hub | *da fissare* | Player + Staff | ⚠️ Da testare | 📌 **Da integrare (futuro)** | **Nexus ID: 84335** — patch di compatibilità STR per perk/magic overhaul (Ordinator, Adamant/SimonRim, Vokrii, Apocalypse ecc.). Risolve desync e CTD causati da script Papyrus. Ogni mod supportata ha il suo file opzionale separato. **Layer obbligatorio da attivare prima di integrare qualsiasi perk overhaul.** |
 | Static Skill Leveling Rewritten | — | — | — | 🚫 **Esclusa** | Troppe dipendenze aggiuntive, complessità non giustificata in questa fase. Da rivalutare in futuro. |
 | Trade and Barter | — | — | — | 🚫 **Esclusa** | Senza mercanti NPC non ha senso. Si valuta in fase Economia |
 | Skyrim Reputation | — | — | — | 🚫 **Esclusa** | Da reinterpretare nel framework RP custom |
