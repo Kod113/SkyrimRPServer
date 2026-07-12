@@ -43,7 +43,7 @@ Legenda della colonna *Install*:
 | HearthFires | DLC | Player + Staff | Richiesto |
 | Dragonborn | DLC | Player + Staff | Richiesto |
 | Dawnguard | DLC | Player + Staff | Richiesto |
-| ccQDRSSE001-SurvivalMode | Creation Club | Player + Staff | Presente ma disattivato in-game — da valutare |
+| ccQDRSSE001-SurvivalMode | Creation Club | Player + Staff | **Disattivato — non funzionante su STR allo stato attuale**: STR blocca wait/sleep (sync del tempo), ma in Survival il sonno è obbligatorio per smaltire l'exhaustion e per il level-up → debuff perenne e niente livelli. Fame/freddo invece funzionerebbero. Integrabile in futuro con patch nostra (azzerare exhaustion gain + rimuovere requisito sonno per level-up) |
 | ccBGSSSE037-Curios | Creation Club | Player + Staff | Resource Pack assets |
 | ccBGSSSE025-AdvDSGS | Creation Club | Player + Staff | Advanced Daedric / armatura |
 | ccBGSSSE001-Fish | Creation Club | Player + Staff | Sistema pesca AE |
