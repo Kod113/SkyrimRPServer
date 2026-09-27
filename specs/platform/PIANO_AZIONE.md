@@ -5,6 +5,7 @@
 >
 > **Scope di T-003 (deciso il 2026-09-27):** l'obiettivo minimo è capire **(1) la struttura di base** (server, client, gamemode), **(2) come collegarci** e **(3) come agganciare i nostri `.esp`**. Tutto il resto (persistenza, regole nel gamemode, test avanzati) è un **extra** se avanza tempo.
 > Contesto e domande: `README.md` di questa cartella. Resoconto da compilare: `skymp_spike.md`.
+> **Guida passo passo della prima sessione, con configurazioni pronte:** `SESSIONE_01_SKYMP.md`.
 
 ---
 
@@ -59,7 +60,7 @@
 
 **Client**
 1. Copiare `dist/client` dentro la cartella di Skyrim (quella di backup o la copia)
-2. Impostare l'indirizzo del server (127.0.0.1) nel file di impostazioni del client. Il nome esatto va verificato nella documentazione o sul Discord
+2. Impostare l'indirizzo del server (127.0.0.1) e un `profileId` in `Data/Platform/Plugins/skymp5-client-settings.txt` (dettagli e JSON pronto in `SESSIONE_01_SKYMP.md`)
 3. Avviare con `skse64_loader.exe`
 4. ✅ **Obiettivo del giorno:** essere dentro il mondo, collegati al proprio server
 

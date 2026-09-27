@@ -42,6 +42,7 @@ Fino a settembre 2026 il progetto era costruito su **Skyrim Together Reborn (STR
 | File | Contenuto | Chi |
 |---|---|---|
 | `PIANO_AZIONE.md` | Piano giorno per giorno della settimana di test + criteri di decisione | — |
+| `SESSIONE_01_SKYMP.md` | Guida operativa della prima sessione (lunedì 28/09): configurazioni pronte, passi, cosa annotare | David + Davide |
 | `skymp_spike.md` | Resoconto della prova pratica di SkyMP (domande A) | dev |
 | `_template_ricognizione.md` | Template da copiare per ogni server visitato | — |
 | `ricognizione_keizaal.md` | Ricognizione di Keizaal Online (domande B) | chi la fa |
