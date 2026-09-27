@@ -3,6 +3,7 @@
 Uso (eseguito dalle GitHub Actions in .github/workflows/):
   python comms/invia_discord.py messaggio   -> pubblica comms/messaggio_settimana.md
   python comms/invia_discord.py promemoria  -> se domani c'è la riunione, pubblica il promemoria
+  python comms/invia_discord.py promemoria --ora 12  -> come sopra, ma solo se in Italia sono le 12
 
 Il webhook arriva dalla variabile d'ambiente DISCORD_WEBHOOK_URL
 (GitHub → Settings → Secrets and variables → Actions). Non va mai scritto nel repo.
@@ -14,6 +15,7 @@ import os
 import sys
 import urllib.request
 from pathlib import Path
+from typing import Optional
 from zoneinfo import ZoneInfo
 
 COMMS = Path(__file__).parent
@@ -44,10 +46,16 @@ def messaggio() -> None:
     invia((COMMS / "messaggio_settimana.md").read_text(encoding="utf-8").strip())
 
 
-def promemoria() -> None:
+def promemoria(ora_invio: Optional[int] = None) -> None:
+    adesso = dt.datetime.now(FUSO)
+    # Le Action girano in UTC: con l'ora legale/solare si lancia due volte e si invia
+    # solo nell'ora italiana giusta.
+    if ora_invio is not None and adesso.hour != ora_invio:
+        print(f"Nessun promemoria: in Italia sono le {adesso:%H:%M}, si invia alle {ora_invio}:00.")
+        return
     riunione = json.loads((COMMS / "prossima_riunione.json").read_text(encoding="utf-8"))
     data = dt.date.fromisoformat(riunione["data"])
-    domani = dt.datetime.now(FUSO).date() + dt.timedelta(days=1)
+    domani = adesso.date() + dt.timedelta(days=1)
     if data != domani:
         print(f"Nessun promemoria: la riunione è il {data}, domani è il {domani}.")
         return
@@ -63,7 +71,10 @@ def promemoria() -> None:
 
 
 if __name__ == "__main__":
-    azioni = {"messaggio": messaggio, "promemoria": promemoria}
-    if len(sys.argv) != 2 or sys.argv[1] not in azioni:
-        sys.exit("Uso: python comms/invia_discord.py [messaggio|promemoria]")
-    azioni[sys.argv[1]]()
+    args = sys.argv[1:]
+    if args == ["messaggio"]:
+        messaggio()
+    elif args[:1] == ["promemoria"] and len(args) in (1, 3) and (len(args) == 1 or args[1] == "--ora"):
+        promemoria(int(args[2]) if len(args) == 3 else None)
+    else:
+        sys.exit("Uso: python comms/invia_discord.py messaggio | promemoria [--ora HH]")

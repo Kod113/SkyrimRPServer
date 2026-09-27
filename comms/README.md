@@ -16,7 +16,7 @@ Automatizza due cose:
 
 **Discord (automatico)**
 - Quando `messaggio_settimana.md` viene modificato e pushato su `main`, la Action `Discord - messaggio della settimana` lo pubblica sul canale.
-- Ogni giorno alle 17:00 UTC (19:00 ora legale / 18:00 ora solare in Italia) la Action `Discord - promemoria riunione` legge `prossima_riunione.json`. Se la riunione è il giorno dopo, manda il promemoria.
+- Alle **12:00 (ora italiana) del giorno prima** la Action `Discord - promemoria riunione` manda il promemoria, leggendo `prossima_riunione.json`. Gira alle 10 e alle 11 UTC e invia solo quando in Italia sono le 12, così funziona sia con l'ora legale sia con quella solare. GitHub può ritardare di qualche minuto.
 - Tutte e due si possono lanciare anche a mano: GitHub → Actions → scegli la Action → *Run workflow*.
 
 **WhatsApp (semi-automatico)**
@@ -43,4 +43,4 @@ Automatizza due cose:
 1. Si decidono le task (riunione del venerdì).
 2. Si aggiornano `TASKS.md`, `messaggio_settimana.md` e `prossima_riunione.json`.
 3. Commit + push → Discord riceve il messaggio. Per WhatsApp si usa il link `wa.me`.
-4. Il giorno prima della riunione arriva il promemoria su Discord.
+4. Alle 12:00 del giorno prima della riunione arriva il promemoria su Discord.

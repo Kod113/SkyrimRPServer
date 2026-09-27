@@ -1,6 +1,6 @@
 📋 **SkyrimRP — Task della settimana: lunedì 28/09 → venerdì 02/10**
 
-📅 Prossima riunione: **venerdì 2 ottobre, ore __:__**
+📅 Prossima riunione: **venerdì 2 ottobre, ore 21:30**
 
 🛠️ **Davide + David:** capire SkyMP → struttura di base, come collegarci al server e come agganciare i nostri .esp (il resto è un extra)
 🔎 **Alessio:** ricognizione su Keizaal Online da giocatore → compila il template
