@@ -1,0 +1,23 @@
+# Ogni giorno alle 17:00 UTC (19:00 ora legale / 18:00 ora solare in Italia)
+# controlla comms/prossima_riunione.json: se la riunione è domani, manda il promemoria su Discord.
+name: Discord - promemoria riunione
+
+on:
+  schedule:
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  promemoria:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python comms/invia_discord.py promemoria
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

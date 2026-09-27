@@ -25,6 +25,7 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | `STEP_0.md` | Roadmap della prima fase con criteri di completamento |
 | `ROADMAP.md` | Fasi successive (preliminare) |
 | `TASKS.md` | Task settimanali del team (aggiornato alla riunione del venerdì) |
+| `comms/` | Messaggio settimanale + promemoria riunione (Discord automatico, WhatsApp con un clic) |
 | `DEV_SETUP.md` | Tool e mod obbligatori per il reparto dev |
 | `MODLIST.md` | Lista mod unica: profilo MO2 attivo + tutte le mod con stato di compatibilità STR |
 | `fahdon_modlist_analisi.md` | Analisi della modlist Fahdon come riferimento per scegliere le mod |

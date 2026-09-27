@@ -1,7 +1,9 @@
 # Piano d'azione: test di SkyMP (settimana 28/09 → 02/10/2026)
 
 > **Obiettivo:** arrivare alla riunione di **venerdì 2 ottobre** con elementi concreti per decidere **D-019**: lasciamo STR e passiamo a SkyMP?
-> **Chi:** David + Davide (prova tecnica, T-003) · un "esploratore" in un server concorrente (T-004)
+> **Chi:** David + Davide (prova tecnica, T-003) · Alessio e Giacomo in ricognizione sui server concorrenti (T-004, T-002)
+>
+> **Scope di T-003 (deciso il 2026-09-27):** l'obiettivo minimo è capire **(1) la struttura di base** (server, client, gamemode), **(2) come collegarci** e **(3) come agganciare i nostri `.esp`**. Tutto il resto (persistenza, regole nel gamemode, test avanzati) è un **extra** se avanza tempo.
 > Contesto e domande: `README.md` di questa cartella. Resoconto da compilare: `skymp_spike.md`.
 
 ---
@@ -65,27 +67,26 @@
 
 ---
 
-## Fase 3 — Due giocatori sullo stesso server (mercoledì) · *checkpoint*
+## Fase 3 — Due giocatori sullo stesso server (mercoledì)
 
 1. Chi ospita il server installa **Tailscale** (o Hamachi, citato nella documentazione di SkyMP): crea una rete privata tra i due PC senza aprire porte sul router
 2. In `server-settings.json` mettere come `ip` l'indirizzo Tailscale del PC server
 3. L'altro si collega. **Verificare:** ci si vede? Movimenti fluidi? Scambio di un oggetto? Combattimento?
-4. **Test di persistenza:** spegnere e riaccendere il server. Posizione e inventario sono rimasti?
-5. 📣 **Checkpoint:** due righe nel gruppo su dove siete arrivati
+4. *(extra)* **Test di persistenza:** spegnere e riaccendere il server. Posizione e inventario sono rimasti?
 
 ---
 
 ## Fase 4 — Le cose che ci interessano davvero (giovedì)
 
-**4a. Una regola nostra nel gamemode** (Davide)
-- Partire dalla documentazione `docs_serverside_scripting_reference.md` e dagli esempi in `skymp5-functions-lib` / `skymp5-scripts` del repo
-- Obiettivo minimo, uno a scelta: messaggio di benvenuto al login, oppure "al primo login ricevi 10 monete", oppure un contatore di morti per giocatore salvato nel database
-- Farsi aiutare da un agente AI sul repo SkyMP (c'è `CLAUDE.md`)
-
-**4b. La nostra mod sul server** (David)
+**4a. La nostra mod sul server** (David) — *obiettivo minimo*
 - Serve un `.esp` di EmptyWorld: la v0.5 va ancora generata (`custom_mods/RPServer_EmptyWorld/docs/PROCEDURA_BUILD.md`). Se non c'è tempo, va bene qualunque `.esp` semplice
 - Metterlo in `data/` + `loadOrder` del server (e nel client)
 - **Verificare:** gli NPC disabilitati spariscono per entrambi i giocatori?
+
+**4b. Una regola nostra nel gamemode** (Davide) — *extra*
+- Partire dalla documentazione `docs_serverside_scripting_reference.md` e dagli esempi in `skymp5-functions-lib` / `skymp5-scripts` del repo
+- Idee, una a scelta: messaggio di benvenuto al login, oppure "al primo login ricevi 10 monete", oppure un contatore di morti per giocatore salvato nel database
+- Farsi aiutare da un agente AI sul repo SkyMP (c'è `CLAUDE.md`)
 
 ---
 
@@ -100,8 +101,8 @@
 
 | Livello | Criterio |
 |---|---|
-| 🟢 **Indispensabile** | Binari ottenuti senza un'odissea · server avviato · **2 giocatori collegati da casa** · persistenza dopo il riavvio · funziona con 1.6.1170 |
-| 🟡 **Importante** | Un `.esp` nostro caricato e visto da entrambi · una regola del gamemode funzionante · supporto dal Discord SkyMP reattivo |
+| 🟢 **Indispensabile** | Capita la struttura di base (server / client / gamemode) · binari ottenuti senza un'odissea · server avviato · **2 giocatori collegati da casa** · funziona con 1.6.1170 · **un nostro `.esp` caricato e visto da entrambi** (o almeno capito come si fa) |
+| 🟡 **Extra** | Persistenza dopo il riavvio · una regola del gamemode funzionante · supporto dal Discord SkyMP reattivo |
 | 🔴 **Campanelli d'allarme** | Crash frequenti · niente binari senza compilare per giorni · documentazione inesistente sui punti chiave · community che non risponde |
 
 **Esiti possibili:**
@@ -114,10 +115,9 @@
 ## Ricognizione nel server concorrente (T-004)
 
 - **Server:** **Keizaal Online** (il più grande e maturo). Sito: https://keizaal.com/en/play
-- **Chi:** Alessio, oppure Giacomo se il suo PC è pronto
+- **Chi:** Alessio su **Keizaal** (T-004) · Giacomo su **Keizaal o Mereth** a scelta (T-002). Mereth (https://www.merethroleplay.com/start/) dà un secondo punto di vista
 - **Requisiti:** Skyrim SE su Steam, Discord, **un PC diverso da quello di sviluppo** (il launcher usa Vortex e può cambiare la versione di Skyrim)
 - **Versione di Skyrim:** serve la **1.6.1170**. Se Steam ha aggiornato il gioco alla 1.7.x, prima fare il downgrade con Skyrim Downgrade Tool (tutorial della community: https://www.youtube.com/watch?v=A5rfyrMJgrg)
 - **Consegna:** `ricognizione_keizaal.md` (copiato da `_template_ricognizione.md`) + 3-5 screenshot
 - **Quando giocare:** almeno una sessione in un orario di punta (sera o weekend), per vedere il server pieno
-- **Checkpoint mercoledì:** installazione completata? Primo accesso fatto?
 - **Domande da fare a staff e giocatori** (sezione 8 del template)

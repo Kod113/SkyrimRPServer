@@ -18,6 +18,9 @@
 ---
 
 ## 2026-09-27
+- `[setup]` Creato `comms/`: messaggio settimanale del team + promemoria della riunione. Discord in automatico via GitHub Actions (`.github/workflows/discord_*.yml`, webhook nel secret `DISCORD_WEBHOOK_URL`), WhatsApp con un clic tramite link `wa.me`. Testato in locale con un webhook finto.
+- `[doc]` T-003 ridotta all'essenziale (struttura di base SkyMP, collegamento, aggancio dei nostri `.esp`). T-002 Giacomo: ricognizione su Keizaal o Mereth al posto dell'aggiornamento del PC (in sospeso).
+
 
 - `[doc]` Pulizia della documentazione. Voci da 2026-05-21 a 2026-09-25 ricostruite a posteriori dallo storico dei commit.
   - `DECISIONS.md`: il secondo "D-004" (versione SSE) spostato nello slot riservato **D-009**. Aggiornati i riferimenti in `DEV_SETUP.md` e `MODLIST.md`.

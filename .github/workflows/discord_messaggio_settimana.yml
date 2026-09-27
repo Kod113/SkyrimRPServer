@@ -1,0 +1,24 @@
+# Pubblica su Discord il messaggio della settimana ogni volta che
+# comms/messaggio_settimana.md cambia su main (o a mano da Actions).
+name: Discord - messaggio della settimana
+
+on:
+  push:
+    branches: [main]
+    paths: [comms/messaggio_settimana.md]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  invia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python comms/invia_discord.py messaggio
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
