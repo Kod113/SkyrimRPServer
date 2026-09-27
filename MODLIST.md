@@ -27,9 +27,37 @@ Legenda della colonna *Stato STR*:
 
 Legenda della colonna *Install*:
 
-- 📥 **Installata** — presente nel profilo MO2 del dev, abilitata
+- 📥 **Installata** — presente nella cartella `mods\` di MO2 (scaricata). **Non vuol dire che sia abilitata nel profilo**: per quello vale la sezione *Profilo attivo* qui sotto
 - ⬜ **Non installata** — ancora da scaricare/abilitare
 - 🚫 **Esclusa** — non sarà installata (vedi `DECISIONS.md`)
+
+---
+
+## Profilo attivo `RPServer-Dev` (MO2)
+
+> Mod **effettivamente abilitate** nel profilo MO2 in uso, in ordine di caricamento (dal basso verso l'alto, come in MO2). Ultimo aggiornamento: 2026-06-24. Mod ID estratti dai `meta.ini` di MO2.
+>
+> *Sezione assorbita dall'ex `MODS.md` (rimosso il 2026-09-27 per avere una sola lista mod).* Le mod segnate 📥 nelle tabelle sotto ma **assenti da qui** sono scaricate ma non abilitate.
+
+| # | Nome Mod | Nexus |
+|---|----------|-------|
+| 1 | Unofficial Skyrim Special Edition Patch - USSEP | [266](https://www.nexusmods.com/skyrimspecialedition/mods/266) |
+| 2 | Crash Logger SSE AE VR - PDB support | [59818](https://www.nexusmods.com/skyrimspecialedition/mods/59818) |
+| 3 | Address Library for SKSE Plugins | [32444](https://www.nexusmods.com/skyrimspecialedition/mods/32444) |
+| 4 | PapyrusUtil SE - Modders Scripting Utility Functions | [13048](https://www.nexusmods.com/skyrimspecialedition/mods/13048) |
+| 5 | ConsoleUtilSSE NG | [76649](https://www.nexusmods.com/skyrimspecialedition/mods/76649) |
+| 6 | SkyUI | [12604](https://www.nexusmods.com/skyrimspecialedition/mods/12604) |
+| 7 | EngineFixes | [17230](https://www.nexusmods.com/skyrimspecialedition/mods/17230) |
+| 8 | Skyrim Together Reborn | [69993](https://www.nexusmods.com/skyrimspecialedition/mods/69993) |
+| 9 | RaceMenu | [19080](https://www.nexusmods.com/skyrimspecialedition/mods/19080) |
+| 10 | Blended Roads | [8834](https://www.nexusmods.com/skyrimspecialedition/mods/8834) |
+| 11 | Obsidian Weathers and Seasons | [12125](https://www.nexusmods.com/skyrimspecialedition/mods/12125) |
+| 12 | Bandolier - Bags and Pouches Classic | [2417](https://www.nexusmods.com/skyrimspecialedition/mods/2417) |
+| 13 | A Quality World Map | [5804](https://www.nexusmods.com/skyrimspecialedition/mods/5804) |
+| 14 | Better Jumping SE | [18967](https://www.nexusmods.com/skyrimspecialedition/mods/18967) |
+| 15 | Relighting Skyrim SE | [8586](https://www.nexusmods.com/skyrimspecialedition/mods/8586) |
+| 16 | Luminosity Lighting Overhaul - The Cathedral Concept | [16830](https://www.nexusmods.com/skyrimspecialedition/mods/16830) |
+| 17 | Alternate Start - Live Another Life - SSE | [272](https://www.nexusmods.com/skyrimspecialedition/mods/272) |
 
 ---
 
@@ -39,7 +67,7 @@ Legenda della colonna *Install*:
 
 | Componente | Tipo | Profilo | Note |
 |---|---|---|---|
-| Skyrim Special Edition (base) | Base game | Player + Staff | Versione **1.6.1170** fissata (D-004), no auto-update |
+| Skyrim Special Edition (base) | Base game | Player + Staff | Versione **1.6.1170** fissata (D-009), no auto-update |
 | HearthFires | DLC | Player + Staff | Richiesto |
 | Dragonborn | DLC | Player + Staff | Richiesto |
 | Dawnguard | DLC | Player + Staff | Richiesto |
@@ -59,7 +87,7 @@ Legenda della colonna *Install*:
 | Mod Organizer 2 | *da fissare* | 📥 Installata | Profilo attivo: `RPServer-Dev` |
 | SKSE64 (loader + DLL) | 2.2.6 | 📥 Installata | Versione matched a SSE 1.6.1170 |
 | Creation Kit | *da fissare* | ⬜ Non installata | Dev only |
-| SSEEdit (xEdit) | *da fissare* | ⬜ Non installata | Dev only |
+| SSEEdit (xEdit) | *da fissare* | ⬜ Non installata | Dev only. ⚠️ Usato il 2026-05-21 per la prima build di EmptyWorld (vedi D-017): verificare se è ancora installato dopo la reinstallazione di giugno |
 | Visual Studio Code | *da fissare* | ⬜ Non installata | Dev only |
 
 ---
@@ -157,7 +185,7 @@ Legenda della colonna *Install*:
 
 | Mod | Profilo | Stato STR | Decisione | Note |
 |---|---|---|---|---|
-| Skyrim Unbound Reborn | Player + Staff | ⚠️ Da testare | 📌 Da integrare | Disabilita main quest e Dovahkiin |
+| Skyrim Unbound Reborn | Player + Staff | ⚠️ Da testare | 📌 Da decidere | Disabilita main quest e Dovahkiin. Nel profilo attivo oggi c'è **Alternate Start – LAL** al suo posto: scelta tra le due ancora da registrare (STEP_0 P6, D-018) |
 | STR Script Patch Hub | Player + Staff | ⚠️ Da testare | 📌 Da integrare (prima di perk overhaul) | [Nexus #84335](https://www.nexusmods.com/skyrimspecialedition/mods/84335) — obbligatorio con Adamant/Mysticism |
 | Static Skill Leveling Rewritten | — | — | 🚫 Esclusa | Troppe dipendenze, da rivalutare in futuro |
 | Trade and Barter | — | — | 🚫 Esclusa | Senza NPC mercanti non ha senso (D-004) |
@@ -169,7 +197,7 @@ Legenda della colonna *Install*:
 
 | Mod | Versione | Profilo | Status | Cartella |
 |---|---|---|---|---|
-| RPServer_EmptyWorld | v0.3.0 (sorgenti committati, .esp non ancora generato) | Player + Staff | 🛠️ In sviluppo | `custom_mods/RPServer_EmptyWorld/` |
+| RPServer_EmptyWorld | v0.5.0 (sorgenti committati, .esp v0.5 non ancora generato — solo ACHR, vedi D-018) | Player + Staff | 🛠️ In sviluppo | `custom_mods/RPServer_EmptyWorld/` |
 | RPServer_StaffTools | v1.0.0 (sorgenti pronti, .esp da generare in CK) | **Staff only** | 🛠️ In sviluppo | `custom_mods/RPServer_StaffTools/` |
 
 ---

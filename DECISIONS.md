@@ -41,16 +41,6 @@
 
 ---
 
-## D-004 — Versione di Skyrim SE fissata a 1.6.1170
-
-**Data:** 2026-06-15
-**Contesto:** Together Reborn non era più funzionante; in fase di reinstallazione delle mod collegate è emersa la necessità di fissare ufficialmente la versione del gioco su cui lavora il team.
-**Decisione:** La versione di Skyrim Special Edition di riferimento è `1.6.1170`. La build SKSE64 corrispondente è la **2.2.6**.
-**Motivazione:** Versione confermata dal dev lead sulla propria installazione. Fissarla evita che aggiornamenti automatici di Steam rompano la compatibilità con SKSE e le mod.
-**Conseguenze:** Tutti i dev devono disabilitare gli aggiornamenti automatici di Skyrim su Steam. Le mod installate devono essere compatibili con SSE 1.6.1170. Ogni cambio di versione richiede una nuova decisione che supera questa.
-
----
-
 ## D-004 — Esclusione di "Trade and Barter" dallo Step 0
 
 **Data:** 2026-05-12
@@ -106,10 +96,15 @@
 
 ---
 
-## D-009 — Versione di Skyrim Special Edition fissata
+## D-009 — Versione di Skyrim SE fissata a 1.6.1170
 
-**Status:** in attesa.
-Da decidere insieme al fondatore, confrontando con la versione supportata da STR oggi. Aggiornare `DEV_SETUP.md` quando fissata.
+**Data:** 2026-06-15
+**Contesto:** Together Reborn non era più funzionante; in fase di reinstallazione delle mod collegate è emersa la necessità di fissare ufficialmente la versione del gioco su cui lavora il team.
+**Decisione:** La versione di Skyrim Special Edition di riferimento è `1.6.1170`. La build SKSE64 corrispondente è la **2.2.6**.
+**Motivazione:** Versione confermata dal dev lead sulla propria installazione. Fissarla evita che aggiornamenti automatici di Steam rompano la compatibilità con SKSE e le mod.
+**Conseguenze:** Tutti i dev devono disabilitare gli aggiornamenti automatici di Skyrim su Steam. Le mod installate devono essere compatibili con SSE 1.6.1170. Ogni cambio di versione richiede una nuova decisione che supera questa.
+
+> **Nota di riordino (2026-09-27):** questa decisione era stata registrata per errore come un secondo "D-004", in conflitto con D-004 (Trade and Barter). È stata spostata qui, nello slot D-009 che era riservato proprio alla versione SSE. Il contenuto non è cambiato.
 
 ---
 
@@ -229,6 +224,19 @@ Restano attivi (criterio "animale"):
 - Lo script risolve sempre il *winning override* di basi, template e razze; usa una cache e un visited-set per performance e protezione dai cicli.
 - Output diagnostico ampliato: contatori separati per disabilitati via `NPC_` e via `LVLN`.
 - `DisableQuests.pas` non è interessato (opera su `QUST`, non su `ACHR`).
+
+---
+
+## D-018 — Scope di `RPServer_EmptyWorld` v0.5.0 ridotto ai soli ACHR
+
+**Data:** 2026-06-21 *(registrata a posteriori il 2026-09-27, ricostruita dal changelog del `MANIFEST.md`)*
+**Contesto:** La pipeline completa di EmptyWorld (disattivazione di ACHR + quest via Pascal + fallback runtime Papyrus) si è rivelata pesante da buildare e testare in locale. Serviva un primo plugin semplice da generare e validare.
+**Decisione:** Dalla v0.5.0 EmptyWorld si limita a disabilitare gli `ACHR` (NPC umanoidi, draghi, mob dei dungeon). Escono dallo scope `DisableQuests.pas` e tutta la Fase 2 Papyrus (`RPServer_EmptyWorldInit`, `RPServer_EmptyWorldPlayerAlias`, FormList `RPServer_QuestsToStop`, Global `RPServer_EWInit_Done`). I sorgenti restano nel repo per un eventuale reintegro.
+**Motivazione:** un plugin fatto solo di override di record ACHR non ha dipendenze runtime (SKSE, PapyrusUtil, Address Library), quindi è più robusto e più facile da testare su STR come primo passo.
+**Conseguenze:**
+- **Supera in parte D-012**: EmptyWorld non copre più la disattivazione delle quest.
+- **D-011 resta valida come obiettivo di design**, ma oggi nessuna mod la implementa. La disattivazione delle quest torna un punto aperto dello Step 0 (P6): va deciso se basta Alternate Start / Skyrim Unbound o se va reintrodotta in EmptyWorld o in una mod separata.
+- Il test C su STR deve verificare in modo esplicito come si comportano le quest vanilla ancora attive in un mondo senza NPC.
 
 ---
 

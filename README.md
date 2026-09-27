@@ -24,8 +24,10 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | `VISION.md` | Visione strategica del progetto (immutabile, citabile) |
 | `STEP_0.md` | Roadmap della prima fase con criteri di completamento |
 | `ROADMAP.md` | Fasi successive (preliminare) |
+| `TASKS.md` | Task settimanali del team (aggiornato alla riunione del venerdì) |
 | `DEV_SETUP.md` | Tool e mod obbligatori per il reparto dev |
-| `MODLIST.md` | Lista mod terze con stato di compatibilità STR |
+| `MODLIST.md` | Lista mod unica: profilo MO2 attivo + tutte le mod con stato di compatibilità STR |
+| `fahdon_modlist_analisi.md` | Analisi della modlist Fahdon come riferimento per scegliere le mod |
 | `DECISIONS.md` | Log delle decisioni di design (perché abbiamo scelto così) |
 | `IMPLEMENTED.md` | Changelog: cosa è stato fatto, in che versione, quando |
 | `MANIFEST_TEMPLATE.md` | Template che ogni mod custom deve compilare |

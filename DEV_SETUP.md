@@ -4,7 +4,7 @@
 
 ## Versione di Skyrim Special Edition
 
-> ✅ **Versione fissata** — vedi D-004 in `DECISIONS.md`.
+> ✅ **Versione fissata** — vedi D-009 in `DECISIONS.md`.
 
 **Versione SSE fissata:** `1.6.1170`
 **Build SKSE corrispondente:** SKSE64 2.2.6 (per SSE 1.6.1170+)

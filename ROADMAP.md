@@ -12,6 +12,8 @@ Vedi `STEP_0.md` per dettagli completi.
 
 **Obiettivo sintetico:** workflow stabile + ambiente dev funzionante + mondo vuoto in cui il team può connettersi e muoversi.
 
+> ⚠️ **Aggiornamento 2026-09-27:** lo Step 0 si apre con una **decisione di piattaforma** (STR o SkyMP, P0 in `STEP_0.md`). I server RP già esistenti con premesse come le nostre (Keizaal Online, Mereth Roleplay) girano su SkyMP. Gli step successivi potrebbero cambiare forma in base alla decisione D-019.
+
 **Esce quando:** il team dev può connettersi su STR in un mondo senza NPC vanilla, senza quest vanilla attive, con un sistema di background minimo, e mantenere stabilità di sessione per almeno un'ora.
 
 ---
@@ -100,6 +102,20 @@ Una volta che il server è vivo, il lavoro di sviluppo diventa:
 - Eventuali aggiornamenti di STR / SSE quando appropriato (con downtime pianificato)
 
 Non c'è una "fine" dichiarata: un server RP vive finché ha giocatori.
+
+## Step 7 — Hardening infrastruttura VPS *(idea, non ancora pianificata)*
+
+**Obiettivo sintetico:** quando il server passerà su un VPS dedicato (soprattutto dopo lo Step 5, con giocatori esterni al team), chiudere l'accesso remoto (SSH/RDP) dietro una rete privata invece di esporlo direttamente su internet.
+
+Ambito previsto:
+- Netbird (rete privata ZTNA, WireGuard-based, open source, self-hostabile) installato sul VPS
+- Setup Key generata dalla dashboard Netbird; il peer va approvato manualmente prima di poter comunicare
+- Firewall (`ufw`) configurato per accettare traffico solo dall'interfaccia Netbird (`wt0`), bloccando tutto il resto da internet
+- Opzionale: SSH in ascolto solo sull'IP dell'interfaccia `wt0`, così non è raggiungibile nemmeno provando l'IP pubblico
+
+**Why:** un VPS con SSH/RDP esposto a tutto internet è bersaglio facile di scansioni automatiche; più giocatori esterni si aggiungono (Step 5+), più cresce la superficie d'attacco del progetto.
+
+**Stato:** solo appunto per ora, molto avanzato rispetto a dove siamo — da approfondire quando si sceglierà l'hosting VPS dedicato.
 
 ---
 

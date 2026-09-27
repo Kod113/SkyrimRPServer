@@ -2,7 +2,7 @@
 
 > **Obiettivo:** arrivare al punto in cui il team può connettersi su un mondo Skyrim **vuoto e stabile**, pronto per essere riempito dai sistemi RP delle fasi successive.
 >
-> **Status attuale:** in corso (workflow di sviluppo in setup)
+> **Status attuale (2026-09-27):** in corso. Chiuse P1 (workflow) e P2 (versione). Blocco principale: generare l'`.esp` di EmptyWorld v0.5 e fare il test su STR con 2 dev (P3 + P5).
 
 ## Filosofia dello Step 0
 
@@ -15,26 +15,38 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 
 ## Priorità (in ordine)
 
+### Priorità 0 — Decisione piattaforma: STR o SkyMP (🔴 gate, aperta il 2026-09-27)
+
+**Cosa significa:** prima di costruire altro, verificare se Skyrim Together Reborn è una base adatta a un MMO RP persistente, oppure se conviene **SkyMP**, la piattaforma usata da Keizaal Online e Mereth Roleplay. Dettagli e domande in `specs/platform/README.md`.
+
+**Criterio di completamento:**
+- [ ] Spike tecnico SkyMP completato (`specs/platform/skymp_spike.md`)
+- [ ] Ricognizione di almeno un server concorrente (`specs/platform/ricognizione_*.md`)
+- [ ] Decisione **D-019** registrata in `DECISIONS.md`
+- [ ] Se si passa a SkyMP: STEP_0, ROADMAP, DEV_SETUP e MODLIST rivisti di conseguenza
+
+> Finché P0 è aperta, le priorità legate a STR (P3, P5 test C, P6) sono **in pausa**. Il lavoro già fatto su EmptyWorld resta valido: è un override di record e dovrebbe funzionare anche con SkyMP (da verificare nello spike).
+
 ### Priorità 1 — Workflow di sviluppo
 
 **Cosa significa:** GitHub + struttura di repo + GitHub Desktop su Mac e Windows, Cowork connesso al repo sul Mac.
 
 **Criterio di completamento:**
-- [ ] Repository `SkyrimRPServer` esistente su GitHub
-- [ ] Clonato sul Mac in `/Users/david/SkyrimRPServer`
-- [ ] Clonato sul fisso Windows in `C:\SkyrimRPServer`
-- [ ] Struttura iniziale di file creata e committata
-- [ ] Capacità di fare push/pull tra Mac, Windows e GitHub testata almeno una volta
+- [x] Repository `SkyrimRPServer` esistente su GitHub
+- [x] Clonato sul Mac in `/Users/david/SkyrimRPServer`
+- [x] Clonato sul fisso Windows in `C:\SkyrimRPServer`
+- [x] Struttura iniziale di file creata e committata
+- [x] Capacità di fare push/pull tra Mac, Windows e GitHub testata almeno una volta (merge Mac↔Windows del 2026-05-21)
 
 ### Priorità 2 — Versione di Skyrim fissata
 
 **Cosa significa:** decidere la build esatta di Skyrim Special Edition supportata da Skyrim Together Reborn ora, e bloccarla su ogni macchina del team.
 
 **Criterio di completamento:**
-- [ ] Versione SSE scelta e documentata in `DEV_SETUP.md`
+- [x] Versione SSE scelta e documentata in `DEV_SETUP.md` (1.6.1170 + SKSE 2.2.6)
 - [ ] Steam auto-update disabilitato su tutte le macchine dei dev
 - [ ] (Se necessario) downgrader applicato per allinearsi alla versione richiesta
-- [ ] Decisione registrata in `DECISIONS.md`
+- [x] Decisione registrata in `DECISIONS.md` (D-009)
 
 ### Priorità 3 — Connessione STR base verificata
 
@@ -53,7 +65,7 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 
 **Criterio di completamento:**
 - [ ] Tutti i tool/mod base dello `DEV_SETUP.md` installati
-- [ ] Profilo MO2 `RPServer-Dev` creato
+- [x] Profilo MO2 `RPServer-Dev` creato (17 mod attive, vedi `MODLIST.md`)
 - [ ] Skyrim si avvia tramite MO2 con SKSE attivo
 - [ ] Creation Kit si apre senza errori
 - [ ] SSEEdit si apre e carica i master vanilla
@@ -67,28 +79,34 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 **Cosa significa:** una mod che trasforma Skyrim in un mondo "tabula rasa" — niente NPC umanoidi vanilla attivi, niente quest narrative vanilla, sistema Dragonborn disabilitato. Tutto sotto controllo via whitelist tecnica (vedi D-010 + D-011).
 
 **Criterio di completamento:**
-- [x] Whitelist decisa e registrata in `DECISIONS.md` (D-010) e in `custom_mods/RPServer_EmptyWorld/docs/WHITELIST.md`
-- [x] Sorgenti Pascal personalizzati scritti e committati (`source/RPServer_EmptyWorld_DisableNPCs.pas` + `RPServer_EmptyWorld_DisableQuests.pas`)
-- [x] Sorgenti Papyrus scritti (`source/RPServer_EmptyWorldInit.psc` + `RPServer_EmptyWorldPlayerAlias.psc`)
+> **Aggiornamento 2026-06-21 (D-018):** dalla v0.5.0 EmptyWorld disabilita **solo gli ACHR**. La disattivazione delle quest e il fallback Papyrus sono usciti dallo scope, quindi P6 torna un punto aperto.
+
+- [x] Whitelist decisa e registrata in `DECISIONS.md` (D-010 → superata da D-015, D-016, D-017) e in `custom_mods/RPServer_EmptyWorld/docs/WHITELIST.md`
+- [x] Sorgente Pascal `source/RPServer_EmptyWorld_DisableNPCs.pas` scritto e committato (v0.4: risolve anche i `LVLN`)
+- [x] ~~Sorgenti quest Pascal + Papyrus~~: scritti, ma fuori scope dalla v0.5 (D-018)
 - [x] `MANIFEST.md` della mod compilato
 - [x] `PROCEDURA_BUILD.md` documentata
-- [ ] Plugin `.esp` generato sul fisso Windows e committato
+- [x] Prima build di prova dell'`.esp` (2026-05-21, v0.3): ha fatto emergere il bug dei `LVLN` → D-017
+- [ ] Plugin `.esp` **v0.5** generato sul fisso Windows e committato
 - [ ] Test A (statico SSEEdit) passato — vedi `custom_mods/RPServer_EmptyWorld/tests/CHECKLIST.md`
 - [ ] Test B (singleplayer Whiterun + Riverwood + dungeon) passato
 - [ ] Test C (STR con un altro dev) passato
 - [ ] Bug e edge case documentati in `IMPLEMENTED.md`
 - [ ] Release `v1.0.0` taggata su GitHub
 
-### Priorità 6 — Disattivazione main quest e narrativa vanilla (assorbita in P5)
+### Priorità 6 — Disattivazione main quest e narrativa vanilla (⚠️ riaperta)
 
-> Originariamente coperta da **Skyrim Unbound Reborn**. Con la decisione D-012, l'obiettivo è ora assorbito dentro `RPServer_EmptyWorld` (vedi P5).
+> **Aggiornamento 2026-06-21 (D-018):** EmptyWorld v0.5 non disattiva più le quest, quindi questa priorità **non è più assorbita** in P5 ed è di nuovo aperta. Nel profilo MO2 attivo oggi c'è **Alternate Start – Live Another Life**, non Skyrim Unbound. Va deciso se basta un alternate start o se la disattivazione delle quest va reintrodotta.
+>
+> *Storico:* originariamente coperta da **Skyrim Unbound Reborn**. Con la decisione D-012 l'obiettivo era stato assorbito dentro `RPServer_EmptyWorld`.
 >
 > Skyrim Unbound Reborn resta utile come **safety net** in modlist e come fornitore di **alternate start** (spawn iniziale del personaggio dove vuole, senza Helgen). EmptyWorld non dipende da Unbound: se Unbound viene rimosso, EmptyWorld continua a fare il suo lavoro.
 
 **Criterio di completamento (residuo):**
-- [ ] Skyrim Unbound Reborn installato e testato come alternate start in STR
-- [ ] Verifica incrociata: con EmptyWorld attivo + Unbound, le quest vanilla restano comunque inerti
-- [ ] Decisione finale "Unbound resta o si rimuove?" registrata in `DECISIONS.md`
+- [ ] Scelta tra Alternate Start – LAL e Skyrim Unbound Reborn, registrata in `DECISIONS.md`
+- [ ] Alternate start scelto testato in STR
+- [ ] Verifica: con EmptyWorld v0.5 + alternate start, le quest vanilla restano inerti (o non creano problemi) in un mondo senza NPC
+- [ ] Se non restano inerti: decisione su dove reintrodurre la disattivazione delle quest (EmptyWorld o mod separata)
 
 ### Priorità 7 — Prime città RP designate
 
@@ -127,11 +145,11 @@ Per evitare scope creep, esplicitiamo cosa **rimandiamo**:
 ## Dipendenze tra le priorità
 
 ```
-P1 (workflow) ──┬──> P5 (EmptyWorld: NPC + quest + Dragonborn) ──> P8 (background)
-                │
-P2 (versione)──┬──> P3 (STR test) ──> P4 (ambiente) ──> P5
-                │
-P6 (Unbound)──── safety net opzionale, in parallelo a P5
+P1 (workflow) ✅ ──┬──> P5 (EmptyWorld v0.5: solo ACHR) ──> P8 (background)
+                   │
+P2 (versione) ✅ ──┬──> P3 (STR test) ──> P4 (ambiente) ──> P5
+                   │
+P6 (quest vanilla / alternate start) ── riaperta da D-018, da verificare insieme al test C di P5
 
 P7 (città) può essere decisa in qualsiasi momento dopo P1
 ```

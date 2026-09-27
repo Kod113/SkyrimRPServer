@@ -19,6 +19,8 @@ specs/
 ├── powers/              ← una scheda per potere unico
 ├── classes/             ← (futuro) archetipi e classi RP
 ├── factions/            ← (futuro) fazioni del mondo
+├── platform/            ← studio STR vs SkyMP + ricognizioni dei server concorrenti
+├── systems/             ← studi di design di sistemi (es. mapping)
 └── _templates/          ← template per ogni tipo di scheda
 ```
 
