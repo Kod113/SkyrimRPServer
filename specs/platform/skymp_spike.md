@@ -1,9 +1,9 @@
 # Spike tecnico SkyMP
 
 ```
-Autore:   (nome)
-Data:     (data)
-Status:   Da fare
+Autore:   David (+ Davide)
+Data:     28/09/2026 → in corso
+Status:   In corso (sezioni 1 e 3 compilate il 30/09)
 Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risultato
 ```
 
@@ -11,11 +11,17 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
 > Le domande sono quelle della sezione A di `README.md`. Rispondi anche con "non lo so / non ci sono riuscito".
 
 ## 1. Setup
-- Da dove hai scaricato server e client (link + versione):
-- Sistema operativo e PC usato:
-- Passi seguiti (elenco breve):
-- Problemi incontrati e come li hai risolti:
-- Tempo totale:
+- Da dove hai scaricato server e client (link + versione): launcher ufficiale da https://skymp.net (`SkyMP [1c3b345].exe`). Collega al server ufficiale inglese (`sweetpie_en`). Il nostro server locale non è ancora stato provato
+- Sistema operativo e PC usato: Windows 11, PC Windows di David, installazione Steam di Skyrim SE (senza MO2)
+- Passi seguiti (elenco breve): installer → scarica altri 6 file → si sceglie la cartella di Skyrim → scarica client e modpack dentro `Data`
+- Cosa installa il launcher: il client SkyMP (`SkyrimPlatform.dll`, `MpClientPlugin.dll`) **più circa 40 plugin SKSE** scelti dal server ufficiale (EngineFixes, Precision, TrueHUD, NirnLab UI, Open Animation Replacer…). L'elenco completo e il confronto con la nostra modlist sono in `skymp_funzionalita.md`
+- Problemi incontrati e come li hai risolti (30/09):
+  1. **Popup di `BakaWorldMapSpeed.dll`**: *"Failed to find offset for Address Library ID 411155"* con Skyrim 1.6.1170. Address Library era giusta e aggiornata: il plugin non è compatibile. → Plugin spostato fuori da `Data\SKSE\Plugins\`, errore sparito
+  2. **Popup di `EngineFixes.dll`**: *"Failed to locate … versionlib-1-6-1170-0.bin"*, anche se il file c'è. Il log di SKSE mostra tutti i 37 plugin caricati correttamente, EngineFixes compreso. Ipotesi: il messaggio viene dal caricamento anticipato di EngineFixes (`EngineFixes_preload.txt`). Da verificare
+  3. **Gioco fermo sulla schermata di caricamento, con la musica.** Il log `NirnLabUIPlatform.log` dice `failed to initialize CEF, code 38` (`CEF_RESULT_CODE_NORMAL_EXIT_AUTO_DE_ELEVATED`): il browser interno non parte se il gioco è avviato **come amministratore**. Senza browser non compare il login con Discord. → Risolto avviando il loader senza privilegi di amministratore
+  4. **Steam ha aggiornato Skyrim alla 1.7.104** durante la sessione (stamattina era 1.6.1170). SKSE 2.2.6 si rifiuta di partire. → **Aperto:** downgrade alla 1.6.1170 alla prossima sessione. Ipotesi da verificare: il launcher di SkyMP o l'avvio passano da Steam, che così applica l'aggiornamento (con STR non succedeva)
+- Messaggi innocui da ignorare: `DirectoryMonitor(Data/Platform/PluginsDev) failed with code 2` (manca una cartella facoltativa); nei log di Chromium, `GpuControl.CreateCommandBuffer` e `Unable to get gpu adapter`
+- Tempo totale: in corso
 
 ## 2. Connessione
 - [ ] Server avviato
@@ -24,9 +30,12 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
 - Note (lag, errori, comportamento strano):
 
 ## 3. Versioni
-- Versione di Skyrim SE richiesta:
-- Serve SKSE? Quale versione?
-- Compatibile con la nostra 1.6.1170 (D-009)? Sì / No / Non chiaro:
+- Versione di Skyrim SE richiesta: **1.6.1170** (sito skymp.net; nel repo c'è `versionlib-1-6-1170-0.bin`). Il sito dice che è "l'attuale versione di Steam", ma non è più vero: Steam distribuisce la 1.7.104
+- Serve SKSE? Quale versione? Sì, **2.2.6** (verificato nel log di SKSE: runtime 1.6.1170)
+- Compatibile con la nostra 1.6.1170 (D-009)? **Sì**
+- ⚠️ Due requisiti da imporre a tutto il team (e poi ai giocatori):
+  - Skyrim **bloccato alla 1.6.1170**: Steam impostato su "aggiorna solo quando lo avvio", e il gioco avviato solo dal launcher o da `skse64_loader.exe`, mai da Steam
+  - **Mai avviare SkyMP come amministratore**: il browser interno non parte (CEF codice 38)
 
 ## 4. Le nostre mod
 - `RPServer_EmptyWorld.esp` caricato lato server? Come si fa?
