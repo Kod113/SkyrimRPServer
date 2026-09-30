@@ -30,6 +30,9 @@
 
 ### Prossime task già individuate (non ancora assegnate)
 - Bozza della decisione **D-019** (piattaforma), da scrivere dopo spike e ricognizioni.
+- **Politica di versione di SkyMP:** possiamo restare sulla 1.6.1170, o a ogni aggiornamento di Skyrim bisogna aspettare una release di SkyMP? (chiedere sul Discord di SkyMP + storia del repo)
+- **Bloccare la versione di Skyrim** in modo affidabile su tutti i PC: procedura testata (il 30/09 Steam ha aggiornato da solo Skyrim alla 1.7.104 durante lo spike)
+- **Guide per i giocatori:** sezione di downgrade alla 1.6.1170 in `TROUBLESHOOTING.md` e passo per bloccare gli aggiornamenti nella guida di installazione
 
 ---
 
