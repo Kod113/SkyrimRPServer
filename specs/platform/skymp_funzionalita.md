@@ -197,7 +197,7 @@ Legenda:
 | **Step 2 — economia** | Inventari e contenitori persistenti, craft alla forgia, gestione del ripopolamento | Negozi tra giocatori, valuta, prezzi regionali, risorse. Alchimia e incantamento mancano del tutto |
 | **Step 3 — reputazione e politica** | Proprietà persistenti, fazioni lato server, ruoli Discord | Tutto il sistema (reputazione, cariche, crimine e legge) |
 | **Step 4 — razze, magie, poteri** | Razze da `.esp`, lancio di incantesimi, formula del danno sostituibile, costi di stamina configurabili | Effetti magici a durata, grida, perk e skill (spenti di default) |
-| **Step 5 — distribuzione** | Launcher/installer, verifica automatica dei plugin, manifest scaricabile dal server | Il nostro pacchetto. **Wabbajack (D-003) potrebbe non servire più** 🔬 |
+| **Step 5 — distribuzione** | Launcher/installer, verifica automatica dei plugin, manifest scaricabile dal server | Il nostro pacchetto. **Wabbajack (D-003) potrebbe non servire più** 🔬. Da valutare: downgrade automatico di Skyrim nel launcher (vedi ROADMAP, Step 5) |
 | **Step 7 — infrastruttura** | Docker/Linux, metriche Prometheus, MongoDB | Hardening del VPS (resta com'è) |
 | **Mappa** (`mapping_system.md`) | Viaggio rapido già disattivato (coerente con l'opzione A) | Marker scoperti non salvati: vanno salvati noi |
 | **Chat RP** | Chat con raggio d'ascolto | Comandi `/me`, `/do`, canali OOC |

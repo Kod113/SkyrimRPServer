@@ -87,6 +87,7 @@ Ambito previsto:
 - Sistema di onboarding nuovo giocatore (in-game + Discord)
 - Regole del server pubblicate
 - Sistema di candidatura/screening per accesso al server
+- 🔶 **Da valutare: controllo automatico della versione di Skyrim nel nostro launcher.** A ogni avvio il launcher calcola lo SHA256 di `SkyrimSE.exe`, `SkyrimSELauncher.exe` e `Data\Skyrim - Shaders.bsa`. Se Steam li ha aggiornati, applica delle patch binarie (bsdiff) e riporta il gioco alla versione del server (oggi 1.6.1170), senza che il giocatore debba fare il downgrade a mano. Esempio reale: un server brasiliano basato su SkyMP pubblica un `downgrade-manifest.json` (hash di partenza e di arrivo + URL della patch per ogni file) e le patch prese dal Downgrade Patcher di Nexus (mod 169962) ([tangoplaybr/skymp-dist](https://github.com/tangoplaybr/skymp-dist/releases/tag/downgrade)). Da verificare: licenza e permessi per ridistribuire le patch
 
 Output: prima **Release v1.0.0** del pacchetto server, pubblicata su GitHub Releases e annunciata sulla community.
 
