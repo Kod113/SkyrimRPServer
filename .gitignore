@@ -402,3 +402,6 @@ FodyWeavers.xsd
 
 # macOS
 .DS_Store
+
+# Report generato da client_pack/Diagnostica/skymp_check.bat
+client_pack/Diagnostica/skymp_check_report.txt

@@ -3,7 +3,7 @@
 ```
 Autore:   David (+ Davide)
 Data:     28/09/2026 → in corso
-Status:   In corso (sezioni 1 e 3 compilate il 30/09)
+Status:   In corso (sezioni 1 e 3 compilate il 30/09, avvio sistemato il 07/10)
 Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risultato
 ```
 
@@ -19,7 +19,12 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
   1. **Popup di `BakaWorldMapSpeed.dll`**: *"Failed to find offset for Address Library ID 411155"* con Skyrim 1.6.1170. Address Library era giusta e aggiornata: il plugin non è compatibile. → Plugin spostato fuori da `Data\SKSE\Plugins\`, errore sparito
   2. **Popup di `EngineFixes.dll`**: *"Failed to locate … versionlib-1-6-1170-0.bin"*, anche se il file c'è. Il log di SKSE mostra tutti i 37 plugin caricati correttamente, EngineFixes compreso. Ipotesi: il messaggio viene dal caricamento anticipato di EngineFixes (`EngineFixes_preload.txt`). Da verificare
   3. **Gioco fermo sulla schermata di caricamento, con la musica.** Il log `NirnLabUIPlatform.log` dice `failed to initialize CEF, code 38` (`CEF_RESULT_CODE_NORMAL_EXIT_AUTO_DE_ELEVATED`): il browser interno non parte se il gioco è avviato **come amministratore**. Senza browser non compare il login con Discord. → Risolto avviando il loader senza privilegi di amministratore
-  4. **Steam ha aggiornato Skyrim alla 1.7.104** durante la sessione (stamattina era 1.6.1170). SKSE 2.2.6 si rifiuta di partire. → **Aperto:** downgrade alla 1.6.1170 alla prossima sessione. Ipotesi da verificare: il launcher di SkyMP o l'avvio passano da Steam, che così applica l'aggiornamento (con STR non succedeva)
+  4. **Steam ha aggiornato Skyrim alla 1.7.104** durante la sessione (stamattina era 1.6.1170). SKSE 2.2.6 si rifiuta di partire. → **Risolto il 07/10:** downgrade fatto con `Skyrim_1_7_104_to_1_6_1170_patcher.exe` (SkyrimSE.exe = 1.6.1170.0); Steam impostato su "aggiorna solo all'avvio". Ipotesi da verificare: il launcher di SkyMP o l'avvio passano da Steam, che così applica l'aggiornamento (con STR non succedeva)
+  5. **(07/10) Il gioco partiva ancora come amministratore → di nuovo CEF codice 38, fermo sul caricamento.** Trovate due cause con `client_pack/Diagnostica/skymp_check.bat`:
+     - il launcher `SkyMP [1c3b345].exe` ha nel manifest `requireAdministrator`: chiede **sempre** i permessi di amministratore e li passa a SKSE e a Skyrim. Non si può cambiare
+     - `steam.exe` (e `ModOrganizer.exe`) hanno la spunta **"Esegui come amministratore"** nelle proprietà di compatibilità. Se Steam è elevato, anche Skyrim avviato tramite Steam lo è
+     → **Soluzione:** togliere la spunta (`client_pack/Diagnostica/skymp_fix.bat`, con Steam chiuso) e **usare il launcher solo per installare/aggiornare**. Per giocare: `client_pack/SkyMP/avvia_skymp.bat`, che controlla versione e Steam e avvia `skse64_loader.exe` senza privilegi
+     - 💡 Probabile collegamento con il vecchio crash di STR (log con `Elevated: Yes` e errori in `libcef.dll`): anche MO2 partiva come amministratore
 - Messaggi innocui da ignorare: `DirectoryMonitor(Data/Platform/PluginsDev) failed with code 2` (manca una cartella facoltativa); nei log di Chromium, `GpuControl.CreateCommandBuffer` e `Unable to get gpu adapter`
 - Tempo totale: in corso
 
@@ -35,7 +40,7 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
 - Compatibile con la nostra 1.6.1170 (D-009)? **Sì**
 - ⚠️ Due requisiti da imporre a tutto il team (e poi ai giocatori):
   - Skyrim **bloccato alla 1.6.1170**: Steam impostato su "aggiorna solo quando lo avvio", e il gioco avviato solo dal launcher o da `skse64_loader.exe`, mai da Steam
-  - **Mai avviare SkyMP come amministratore**: il browser interno non parte (CEF codice 38)
+  - **Mai avviare SkyMP come amministratore**: il browser interno non parte (CEF codice 38). Attenzione: il launcher ufficiale lo fa da solo (`requireAdministrator`), quindi si gioca con `client_pack/SkyMP/avvia_skymp.bat`, e Steam/MO2 non devono avere la spunta "Esegui come amministratore"
 
 ## 4. Le nostre mod
 - `RPServer_EmptyWorld.esp` caricato lato server? Come si fa?
