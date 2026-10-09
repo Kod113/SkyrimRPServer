@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-10-09
+- `[test]` Server SkyMP locale funzionante: dopo il fix della password di rete, il client ufficiale si collega al server locale e arriva alla creazione del personaggio (`specs/platform/skymp_spike.md` §2).
+- `[doc]` Guide per il primo test online con Davide via Tailscale: `client_pack/SkyMP/test_online_host.md` (chi ospita) e `client_pack/SkyMP/test_online_ospite.md` (chi entra).
+
 ## 2026-10-07
 - `[setup]` Sistemato l'avvio di SkyMP sul PC Windows di David. Skyrim riportato alla 1.6.1170; il gioco però partiva come amministratore (CEF codice 38, fermo sul caricamento). Cause: il launcher `SkyMP [1c3b345].exe` richiede sempre l'amministratore (manifest `requireAdministrator`) e `steam.exe`/`ModOrganizer.exe` hanno la spunta "Esegui come amministratore". Aggiunti:
   - `client_pack/Diagnostica/skymp_check.bat` (+ `.ps1`): controlla UAC, spunte "Esegui come amministratore", versione di Skyrim, aggiornamenti Steam, launcher SkyMP. Scrive `skymp_check_report.txt` (ignorato da git)
