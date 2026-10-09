@@ -29,13 +29,14 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
 - Tempo totale: in corso
 
 ## 2. Connessione
-- [ ] Server avviato
-- [ ] Client collegato al server
+- [x] Server avviato
+- [x] Client collegato al server (09/10, server locale: si arriva alla creazione del personaggio)
 - [ ] Secondo client/giocatore collegato (se possibile)
 - Note (lag, errori, comportamento strano):
   - **08/10 - server ufficiale:** login Discord OK (CEF parte, niente admin), ma il client resta su `Connecting to 51.158.253.33:7331`. Causa non trovata. Diagnosi: `client_pack/Diagnostica/skymp_net_check.bat` (ping UDP RakNet, regole firewall, VPN). Sul sito c'e' anche l'aggiornamento `1c3b345-patch`, non installato
   - **08/10 - server locale (offline):** server = build fork `jqntn/skymp` (tag `jqntn-2026-10-05`) in `_locale/skymp-server`, config in `configs/skymp/` (vedi README li'). Avvio: `client_pack/SkyMP/server_locale.bat`; client sul server locale: `client_pack/SkyMP/client_profilo.bat locale` (gia' applicato sul PC di David), poi `avvia_skymp.bat`. Node.js installato
   - **08/10 - primo tentativo:** il client ufficiale compariva con "A new update is available" = connessione rifiutata per **password di rete** diversa (client: `Data/Platform/Distribution/password` = `1c3b345`; server: nessuna). Corretto: `server_locale.bat` ora copia la password del client nel server. **DA FARE:** riavviare server + gioco e verificare `Connecting a user ... 127.0.0.1` nella console del server. Se non basta: piano B = client della stessa fork in una copia separata di Skyrim
+  - **09/10 - funziona:** dopo il riavvio di server + gioco il client ufficiale si collega al server locale e porta alla creazione del personaggio. Il piano B non serve. Prossimo passo: Davide nello stesso mondo via Tailscale
 
 ## 3. Versioni
 - Versione di Skyrim SE richiesta: **1.6.1170** (sito skymp.net; nel repo c'è `versionlib-1-6-1170-0.bin`). Il sito dice che è "l'attuale versione di Steam", ma non è più vero: Steam distribuisce la 1.7.104
