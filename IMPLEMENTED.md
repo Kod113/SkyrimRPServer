@@ -17,6 +17,17 @@
 
 ---
 
+## 2026-10-09
+- `[test]` Server SkyMP locale funzionante: dopo il fix della password di rete, il client ufficiale si collega al server locale e arriva alla creazione del personaggio (`specs/platform/skymp_spike.md` §2).
+- `[doc]` Guide per il primo test online con Davide via Tailscale: `client_pack/SkyMP/test_online_host.md` (chi ospita) e `client_pack/SkyMP/test_online_ospite.md` (chi entra).
+
+## 2026-10-07
+- `[setup]` Sistemato l'avvio di SkyMP sul PC Windows di David. Skyrim riportato alla 1.6.1170; il gioco però partiva come amministratore (CEF codice 38, fermo sul caricamento). Cause: il launcher `SkyMP [1c3b345].exe` richiede sempre l'amministratore (manifest `requireAdministrator`) e `steam.exe`/`ModOrganizer.exe` hanno la spunta "Esegui come amministratore". Aggiunti:
+  - `client_pack/Diagnostica/skymp_check.bat` (+ `.ps1`): controlla UAC, spunte "Esegui come amministratore", versione di Skyrim, aggiornamenti Steam, launcher SkyMP. Scrive `skymp_check_report.txt` (ignorato da git)
+  - `client_pack/Diagnostica/skymp_fix.bat`: toglie la spunta "Esegui come amministratore" (solo utente corrente) da Steam, MO2 e Skyrim
+  - `client_pack/SkyMP/avvia_skymp.bat` (+ `.ps1`): avvia `skse64_loader.exe` senza privilegi, dopo aver controllato versione 1.6.1170 e Steam non elevato. Il launcher ufficiale resta solo per installare/aggiornare
+  - Dettagli in `specs/platform/skymp_spike.md` §1, problema 5
+
 ## 2026-09-27
 - `[setup]` Creato `comms/`: messaggio settimanale del team + promemoria della riunione. Discord in automatico via GitHub Actions (`.github/workflows/discord_*.yml`, webhook nel secret `DISCORD_WEBHOOK_URL`), WhatsApp con un clic tramite link `wa.me`. Promemoria alle 12:00 (ora italiana) del giorno prima. Testato in locale con un webhook finto.
 - `[doc]` T-003 ridotta all'essenziale (struttura di base SkyMP, collegamento, aggancio dei nostri `.esp`). T-002 Giacomo: ricognizione su Keizaal o Mereth al posto dell'aggiornamento del PC (in sospeso).

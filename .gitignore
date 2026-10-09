@@ -402,3 +402,12 @@ FodyWeavers.xsd
 
 # macOS
 .DS_Store
+
+# Report generato da client_pack/Diagnostica/skymp_check.bat
+client_pack/Diagnostica/skymp_check_report.txt
+
+# Report generato da client_pack/Diagnostica/skymp_net_check.bat
+client_pack/Diagnostica/skymp_net_report.txt
+
+# Server SkyMP locale scaricato da client_pack/SkyMP/server_locale.bat + backup del profilo client ufficiale
+_locale/

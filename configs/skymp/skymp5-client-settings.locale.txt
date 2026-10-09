@@ -1,0 +1,9 @@
+{
+  "server-ip": "127.0.0.1",
+  "server-port": 7777,
+  "master": "",
+  "server-master-key": null,
+  "gameData": { "profileId": 2 },
+  "ignoreLoadOrderMismatch": true,
+  "show-net-info": true
+}
