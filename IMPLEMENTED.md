@@ -17,6 +17,9 @@
 
 ---
 
+## 2026-10-10
+- `[setup]` Regole di collaborazione per più persone (D-020): creato `CLAUDE.md` (membri, identità git, branch + pull request, firma nei file condivisi, istruzioni per Claude) e le cartelle personali `team/david/` e `team/davide/`. Aggiornato il README (struttura e convenzione sui branch). — david
+
 ## 2026-10-09
 - `[test]` Server SkyMP locale funzionante: dopo il fix della password di rete, il client ufficiale si collega al server locale e arriva alla creazione del personaggio (`specs/platform/skymp_spike.md` §2).
 - `[doc]` Guide per il primo test online con Davide via Tailscale: `client_pack/SkyMP/test_online_host.md` (chi ospita) e `client_pack/SkyMP/test_online_ospite.md` (chi entra).

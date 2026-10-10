@@ -21,6 +21,7 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | Percorso | Cosa contiene |
 |---|---|
 | `README.md` | Questo file — punto di ingresso |
+| `CLAUDE.md` | Regole di collaborazione: chi scrive cosa, branch, cartelle personali (per persone e Claude) |
 | `VISION.md` | Visione strategica del progetto (immutabile, citabile) |
 | `STEP_0.md` | Roadmap della prima fase con criteri di completamento |
 | `ROADMAP.md` | Fasi successive (preliminare) |
@@ -37,14 +38,15 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | `specs/` | Specifiche tecniche di razze, spell, poteri (per i dev) |
 | `client_pack/` | Pacchetto distribuibile ai giocatori (futuro Wabbajack) |
 | `docs_for_players/` | Documentazione user-facing per i giocatori |
+| `team/<nome>/` | Cartella personale di ogni membro (note, log di sessione, bozze) |
 
 ## Per chi sviluppa (workflow)
 
 **Prima di iniziare a lavorare**, sempre: apri GitHub Desktop → *Fetch origin* → *Pull origin* se ci sono novità.
 
-**Quando finisci una sessione di lavoro**, sempre: GitHub Desktop → scrivi il summary → *Commit to main* → *Push origin*.
+**Quando finisci una sessione di lavoro**, sempre: GitHub Desktop → scrivi il summary → commit → *Push origin*. Su `main` solo per la tua cartella `team/<nome>/`; per i file condivisi usa il tuo branch e una pull request (procedura in `CLAUDE.md`).
 
-**Quando apri una sessione con Claude (Cowork)**: chiedigli di leggere `README.md`, `IMPLEMENTED.md`, `DECISIONS.md` come prima cosa, così ha tutto il contesto del progetto.
+**Quando apri una sessione con Claude (Cowork)**: chiedigli di leggere `CLAUDE.md`, `README.md`, `IMPLEMENTED.md`, `DECISIONS.md` come prima cosa, così ha tutto il contesto del progetto.
 
 **Quando una sessione con Claude produce informazioni utili ai giocatori** (domande su installazione, comandi, problemi tecnici, regole di gioco): aggiorna il file corrispondente in `docs_for_players/` prima di chiudere la sessione. Regola pratica:
 
@@ -67,5 +69,5 @@ I giocatori del server **non devono usare questo repository**. Per loro è previ
 
 - **Lingua**: tutta la documentazione interna è in italiano. I commenti tecnici nel codice possono essere in inglese se aiutano la chiarezza.
 - **Versioning mod**: schema `vMAJOR.MINOR.PATCH` (es. `v1.0.0`). Maggiore = breaking change, Minor = nuove funzionalità retrocompatibili, Patch = bugfix.
-- **Branch**: per ora usiamo solo `main`. Branch separati verranno introdotti se più persone svilupperanno in parallelo.
+- **Branch**: dal 2026-10-10 ognuno lavora su branch personali `<nome>/<argomento>` e i file condivisi entrano in `main` con una pull request (D-020, dettagli in `CLAUDE.md`).
 - **Commit message**: prima riga concisa in italiano (es. `NoNPCs v0.1 — primo build con whitelist`); dettagli opzionali sotto.

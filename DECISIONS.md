@@ -240,6 +240,22 @@ Restano attivi (criterio "animale"):
 
 ---
 
+## D-020 — Distinzione del lavoro tra persone nel repo
+
+**Data:** 2026-10-10
+**Autore:** david
+**Contesto:** Il repo inizia a essere modificato anche da Davide e dal suo Claude, e in futuro da altre persone. Finora si lavorava solo su `main` (vedi README, *Convenzioni*), con un solo sviluppatore.
+**Decisione:**
+- Ogni persona ha un **nome breve** (tabella Membri in `CLAUDE.md`) e un'identità git col proprio nome.
+- Ogni persona ha una cartella `team/<nome>/` per note, log e bozze: solo il proprietario ci scrive, ed è l'unica cosa committabile direttamente su `main`.
+- I file condivisi si modificano su branch `<nome>/<argomento>` e entrano in `main` con una pull request. Le PR degli altri le approva il responsabile dev.
+- Le nuove voci in `IMPLEMENTED.md` e `DECISIONS.md` sono firmate con il nome breve.
+- Le regole sono in `CLAUDE.md` alla radice, così le leggono anche i Claude di tutti.
+**Motivazione:** sapere sempre chi ha scritto cosa ed evitare che due persone (o due Claude) si sovrascrivano. Il sistema regge l'arrivo di nuove persone aggiungendo solo una riga e una cartella.
+**Conseguenze:** supera la convenzione "solo `main`" del README. Risponde in parte a D-014 (il reparto dev non è più composto dal solo lead). D-019 resta riservata alla decisione sulla piattaforma.
+
+---
+
 ## Decisioni in attesa (placeholder)
 
 Le seguenti decisioni sono **previste ma non ancora prese**. Verranno compilate quando il fondatore risponde alle domande bloccanti.
