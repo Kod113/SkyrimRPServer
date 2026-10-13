@@ -1,6 +1,6 @@
 # SkyrimRPServer
 
-Repository di sviluppo per un server **MMO RP persistente** ambientato in Skyrim Special Edition, basato sulla mod **Skyrim Together Reborn**. Il progetto trasforma Skyrim in un sandbox sociale interamente guidato dai giocatori: niente NPC vanilla, niente quest precostruite, economia e politica gestite dai player.
+Repository di sviluppo per un server **MMO RP persistente** ambientato in Skyrim Special Edition, basato su **SkyMP** (D-019; fino a settembre 2026 il progetto usava Skyrim Together Reborn). Il progetto trasforma Skyrim in un sandbox sociale interamente guidato dai giocatori: niente NPC vanilla, niente quest precostruite, economia e politica gestite dai player.
 
 > Status: **Step 0 — Fondamenta** (workflow + ambiente + mondo vuoto)
 

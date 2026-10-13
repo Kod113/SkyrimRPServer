@@ -47,6 +47,8 @@ Timebox:  ~6 ore. Se ti blocchi, annota dove e perché: anche quello è un risul
   - **Mai avviare SkyMP come amministratore**: il browser interno non parte (CEF codice 38). Attenzione: il launcher ufficiale lo fa da solo (`requireAdministrator`), quindi si gioca con `client_pack/SkyMP/avvia_skymp.bat`, e Steam/MO2 non devono avere la spunta "Esegui come amministratore"
 
 ## 4. Le nostre mod
+> **Annullata il 2026-10-13 (D-021):** EmptyWorld non serve più, il server SkyMP parte già senza NPC. Le domande su SkyUI/RaceMenu restano aperte.
+
 - `RPServer_EmptyWorld.esp` caricato lato server? Come si fa?
 - Gli NPC disabilitati restano disabilitati per tutti?
 - Mod client (SkyUI, RaceMenu…): funzionano?

@@ -12,9 +12,9 @@ Vedi `STEP_0.md` per dettagli completi.
 
 **Obiettivo sintetico:** workflow stabile + ambiente dev funzionante + mondo vuoto in cui il team può connettersi e muoversi.
 
-> ⚠️ **Aggiornamento 2026-09-27:** lo Step 0 si apre con una **decisione di piattaforma** (STR o SkyMP, P0 in `STEP_0.md`). I server RP già esistenti con premesse come le nostre (Keizaal Online, Mereth Roleplay) girano su SkyMP. Gli step successivi potrebbero cambiare forma in base alla decisione D-019.
+> ✅ **Aggiornamento 2026-10-13:** la piattaforma è **SkyMP** (D-019), come per i server RP con premesse come le nostre (Keizaal Online, SKY MP Brasil, Mereth Roleplay). Il mondo vuoto lo fa già SkyMP, quindi `RPServer_EmptyWorld` è archiviata (D-021). Gli step successivi vanno riletti con questa base: le regole si scrivono nel gamemode (TypeScript) sul server.
 
-**Esce quando:** il team dev può connettersi su STR in un mondo senza NPC vanilla, senza quest vanilla attive, con un sistema di background minimo, e mantenere stabilità di sessione per almeno un'ora.
+**Esce quando:** il team dev può connettersi allo stesso server SkyMP in un mondo senza NPC vanilla, senza quest vanilla attive, con un sistema di background minimo, e mantenere stabilità di sessione per almeno un'ora.
 
 ---
 
@@ -100,7 +100,7 @@ Una volta che il server è vivo, il lavoro di sviluppo diventa:
 - Eventi del DM (worldbuilding live, quest custom temporanee)
 - Espansioni di contenuto (nuove razze, nuove zone RP, nuove fazioni)
 - Bilanciamento basato su come i giocatori effettivamente usano i sistemi
-- Eventuali aggiornamenti di STR / SSE quando appropriato (con downtime pianificato)
+- Eventuali aggiornamenti di SkyMP / SSE quando appropriato (con downtime pianificato)
 
 Non c'è una "fine" dichiarata: un server RP vive finché ha giocatori.
 

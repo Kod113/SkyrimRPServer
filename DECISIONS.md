@@ -240,6 +240,28 @@ Restano attivi (criterio "animale"):
 
 ---
 
+## D-019 — Piattaforma multiplayer: SkyMP (supera Skyrim Together Reborn)
+
+**Data:** 2026-10-13
+**Autore:** david
+**Contesto:** Fino a settembre 2026 il progetto era costruito su **Skyrim Together Reborn (STR)**. Lo studio aperto il 2026-09-27 (`specs/platform/README.md`) ha mostrato che STR è pensato per il co-op tra pochi giocatori (la FAQ consiglia 2-8), senza logica lato server, mentre i server RP con premesse uguali alle nostre (Keizaal Online, SKY MP Brasil, Mereth Roleplay) girano tutti su **SkyMP**. Dal 30/09 il team non usa più STR (T-001 annullata) e lavora su SkyMP.
+**Decisione:** la piattaforma multiplayer del progetto è **SkyMP**. STR esce dal progetto.
+**Motivazione:**
+- **Server autoritativo e persistenza automatica:** il server tiene e salva da solo personaggi, inventari, posizioni e contenitori. STR non ha niente di simile.
+- **Regge i numeri di un server RP:** Keizaal Online ha toccato 650 giocatori connessi insieme e gestisce circa 1.200 posti su due server (`team/david/ricerca_top2_server_skymp.md`).
+- **Un solo posto per le regole:** la logica di gioco si scrive nel gamemode (TypeScript) sul server, che controlliamo noi.
+- **Lo spike funziona:** SkyMP gira con la nostra versione 1.6.1170 + SKSE 2.2.6 (D-009) e il client si collega al nostro server locale (09/10, `specs/platform/skymp_spike.md`).
+**Conseguenze:**
+- **D-009 resta valida** (Skyrim SE 1.6.1170).
+- Le regole del server si scrivono nel **gamemode TypeScript** (se ne occupa Davide) o nella Papyrus VM del server. Gli script Papyrus lato client sono bloccati da SkyMP: le mod che ne dipendono vanno verificate o rifatte (`specs/platform/skymp_funzionalita.md`).
+- **Ogni `.esp` va messo sia sul client sia sul server**, nello stesso ordine.
+- **D-003 (Wabbajack) da rivalutare allo Step 5:** SkyMP ha già un launcher e la verifica automatica dei plugin.
+- **Da rivedere in un secondo momento:** `DEV_SETUP.md` e `MODLIST.md`, scritti per STR + MO2.
+- **Lo spike continua per imparare** (sezioni 5-8), non più come condizione per decidere. Le ricognizioni da giocatore (T-002, T-004) restano utili per progettare i sistemi.
+- `STEP_0.md`: P0 chiusa; P3 diventa "connessione SkyMP tra 2 dev".
+
+---
+
 ## D-020 — Distinzione del lavoro tra persone nel repo
 
 **Data:** 2026-10-10
@@ -253,6 +275,24 @@ Restano attivi (criterio "animale"):
 - Le regole sono in `CLAUDE.md` alla radice, così le leggono anche i Claude di tutti.
 **Motivazione:** sapere sempre chi ha scritto cosa ed evitare che due persone (o due Claude) si sovrascrivano. Il sistema regge l'arrivo di nuove persone aggiungendo solo una riga e una cartella.
 **Conseguenze:** supera la convenzione "solo `main`" del README. Risponde in parte a D-014 (il reparto dev non è più composto dal solo lead). D-019 resta riservata alla decisione sulla piattaforma.
+
+---
+
+## D-021 — `RPServer_EmptyWorld` archiviata: il mondo vuoto lo fa già SkyMP
+
+**Data:** 2026-10-13
+**Autore:** david
+**Contesto:** EmptyWorld nasceva per svuotare Skyrim su STR (D-012, D-018). Con SkyMP (D-019) il server di default non carica nessun NPC (`npcEnabled: false`) e il client cancella gli attori locali che non vengono dal server: il mondo è già vuoto, **animali compresi** (`specs/platform/skymp_funzionalita.md` §1).
+**Decisione:**
+- EmptyWorld viene **archiviata**: non si genera l'`.esp` v0.5 e non si fanno i test A/B/C.
+- Il server resta con `npcEnabled: false`.
+- Gli animali e le altre creature che servono al gioco (per esempio per caccia e crafting) **non** vengono dagli spawn vanilla: li facciamo comparire noi con un **sistema di spawn dedicato**, da progettare in `specs/systems/`.
+**Motivazione:** una mod in meno da costruire, testare e mantenere. In più decidiamo noi dove, quanti e ogni quanto compaiono gli animali, invece di ereditare il posizionamento vanilla. È la strada più semplice.
+**Alternativa scartata:** accendere gli NPC (`npcEnabled: true`) e caricare EmptyWorld per tenere solo gli animali vanilla (il server salta da solo i riferimenti *Initially Disabled*). Si può riprendere se il sistema di spawn si rivelasse troppo costoso: i sorgenti restano in `custom_mods/RPServer_EmptyWorld/`.
+**Conseguenze:**
+- **Supera D-012 e D-018.** D-010, D-015, D-016 e D-017 restano come storico; l'elenco degli "animali" di D-016 è un buon punto di partenza per scegliere le creature da far comparire.
+- `STEP_0.md` P5 chiusa come archiviata. P6 (quest vanilla): con SkyMP probabilmente non serve, perché gli script Papyrus del client sono bloccati; resta da verificare in gioco.
+- Nuovo lavoro: specifica del sistema di spawn delle creature (`specs/systems/`).
 
 ---
 
