@@ -14,7 +14,7 @@
 |---|---|---|---|---|---|
 | T-001 | David | **Far partire STR sul PC Windows di David.** Oggi il client non si avvia. Trovare la causa e una soluzione per potersi collegare. | 🟡 Media | Causa + soluzione scritte in `docs_for_players/TROUBLESHOOTING.md` (se riguarda anche i giocatori) o in `IMPLEMENTED.md` | 🚫 Annullata (30/09: STR non verrà più usato) |
 | T-002 | Giacomo | **Ricognizione da giocatore su Keizaal Online o Mereth Roleplay** (a scelta; Mereth dà un secondo punto di vista, visto che Alessio fa Keizaal). Stesso template della T-004. L'aggiornamento del PC Windows resta in sospeso finché non si conferma che serve. **Non usare il PC di sviluppo.** | 🔴 Alta | `specs/platform/ricognizione_<server>.md` + 3-5 screenshot | ⏳ Aperta |
-| T-003 | Davide + David | **Capire SkyMP:** com'è fatta la struttura di base (server, client, gamemode), come collegarci al server e come agganciare i nostri `.esp`. Tutto il resto (persistenza, regole nel gamemode…) è un extra se avanza tempo. Guida: `specs/platform/PIANO_AZIONE.md`. | 🔴 **Assoluta** | `specs/platform/skymp_spike.md` compilato (almeno sezioni 1-4) + demo o screenshot venerdì | ⏳ Aperta |
+| T-003 | Davide + David | **Capire SkyMP:** com'è fatta la struttura di base (server, client, gamemode), come collegarci al server e come agganciare i nostri `.esp`. Tutto il resto (persistenza, regole nel gamemode…) è un extra se avanza tempo. Guida: `specs/platform/PIANO_AZIONE.md`. | 🔴 **Assoluta** | `specs/platform/skymp_spike.md` compilato (almeno sezioni 1-4) + demo o screenshot venerdì | 🔄 In parte: sezioni 1-3 fatte, D-019 presa il 13/10. Sezione 4 annullata (D-021). Gamemode (sezione 5) → Davide |
 | T-004 | Alessio | **Ricognizione di Keizaal Online da giocatore.** Installare il launcher, giocare 1-2 sessioni (una in orario di punta), compilare il template. **Non usare il PC di sviluppo.** | 🔴 Alta | `specs/platform/ricognizione_keizaal.md` (copiato da `_template_ricognizione.md`) + 3-5 screenshot | ⏳ Aperta |
 
 **Priorità della settimana:** capire SkyMP e come lo usano i server concorrenti (vedi `specs/platform/README.md`). Serve a prendere la decisione D-019 sulla piattaforma.
@@ -29,7 +29,9 @@
 - **Timebox:** se la decisione sulla piattaforma (STR o SkyMP) porta verso SkyMP, questa task perde valore. Non superare qualche ora senza parlarne in riunione.
 
 ### Prossime task già individuate (non ancora assegnate)
-- Bozza della decisione **D-019** (piattaforma), da scrivere dopo spike e ricognizioni.
+- ~~Bozza della decisione **D-019** (piattaforma)~~: registrata il 13/10 (SkyMP), insieme a D-021 (EmptyWorld archiviata).
+- **Sistema di spawn delle creature** (animali per caccia e crafting): specifica in `specs/systems/` (D-021).
+- **Rivedere `DEV_SETUP.md` e `MODLIST.md`** per SkyMP (D-019).
 - **Politica di versione di SkyMP:** possiamo restare sulla 1.6.1170, o a ogni aggiornamento di Skyrim bisogna aspettare una release di SkyMP? (chiedere sul Discord di SkyMP + storia del repo)
 - **Bloccare la versione di Skyrim** in modo affidabile su tutti i PC: procedura testata (il 30/09 Steam ha aggiornato da solo Skyrim alla 1.7.104 durante lo spike)
 - **Guide per i giocatori:** sezione di downgrade alla 1.6.1170 in `TROUBLESHOOTING.md` e passo per bloccare gli aggiornamenti nella guida di installazione

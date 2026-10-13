@@ -2,7 +2,7 @@
 
 ```
 Tipo:     Studio / decisione
-Status:   In corso
+Status:   Chiuso il 2026-10-13 → SkyMP (D-019)
 Aperto:   2026-09-27
 Chiude:   con la decisione D-019 (piattaforma) in DECISIONS.md
 ```

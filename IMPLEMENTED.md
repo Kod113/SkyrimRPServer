@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-10-13
+- `[decision]` **D-019**: la piattaforma è SkyMP, STR esce dal progetto. **D-021**: `RPServer_EmptyWorld` archiviata, il mondo vuoto lo fa già SkyMP (`npcEnabled: false`); gli animali per caccia e crafting verranno da un nostro sistema di spawn. Aggiornati `STEP_0.md` (P0 chiusa, P3 → SkyMP, P5 archiviata, nota su P6), `ROADMAP.md`, `README.md`, `TASKS.md`, `specs/platform/README.md`, `skymp_spike.md` §4, `custom_mods/README.md` e `MANIFEST.md` di EmptyWorld. — david
+- `[doc]` Ricerca sui due server SkyMP più grandi (Keizaal Online, SKY MP Brasil): client, server, login, caricamenti, crafting, level up, magie. In `team/david/ricerca_top2_server_skymp.md`. — david
+
 ## 2026-10-10
 - `[setup]` Regole di collaborazione per più persone (D-020): creato `CLAUDE.md` (membri, identità git, branch + pull request, firma nei file condivisi, istruzioni per Claude) e le cartelle personali `team/david/` e `team/davide/`. Aggiornato il README (struttura e convenzione sui branch). — david
 
@@ -161,11 +165,10 @@ Cose già iniziate o programmate ma non concluse:
 
 *(aggiornato 2026-09-27)*
 
-- 🛠️ Build dell'`.esp` **v0.5** di `RPServer_EmptyWorld` sul fisso Windows, secondo `custom_mods/RPServer_EmptyWorld/docs/PROCEDURA_BUILD.md`
-- ⏳ Test A/B/C di `RPServer_EmptyWorld` (statico, singleplayer, STR con 2 dev per almeno 1 ora)
+- ✅ ~~Build dell'`.esp` **v0.5** di `RPServer_EmptyWorld` e test A/B/C~~: non più necessari, mod archiviata (D-021, 2026-10-13)
 - 🛠️ Generazione dell'ESP di `RPServer_StaffTools` in CK
 - ⏳ Decisioni del fondatore ancora aperte: città RP (D-013), composizione del team dev (D-014), alternate start LAL vs Unbound + quest vanilla (STEP_0 P6, D-018)
-- ⏳ Verifica di solidità di STR (limite di giocatori, precedenti di server RP): ricerca in corso
+- ✅ ~~Verifica di solidità di STR~~: chiusa con il passaggio a SkyMP (D-019, 2026-10-13)
 - ⏳ Pulizia del profilo MO2: rimuovere *Wait Your Turn* (mod AI NPC) e verificare *VR Address Library* (probabilmente installata per errore)
 - 🛠️ Restructure di Discord nelle 5 categorie pianificate *(stato da verificare)*
 - ✅ ~~Setup di GitHub Desktop sul fisso Windows~~: fatto (merge del 2026-05-21)

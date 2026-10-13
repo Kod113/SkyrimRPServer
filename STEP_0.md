@@ -2,7 +2,7 @@
 
 > **Obiettivo:** arrivare al punto in cui il team può connettersi su un mondo Skyrim **vuoto e stabile**, pronto per essere riempito dai sistemi RP delle fasi successive.
 >
-> **Status attuale (2026-09-27):** in corso. Chiuse P1 (workflow) e P2 (versione). Blocco principale: generare l'`.esp` di EmptyWorld v0.5 e fare il test su STR con 2 dev (P3 + P5).
+> **Status attuale (2026-10-13):** in corso. Chiuse P0 (piattaforma = **SkyMP**, D-019), P1 (workflow) e P2 (versione). P5 archiviata (D-021): il mondo vuoto lo fa già SkyMP. Prossimo passo: 2 dev collegati allo stesso server SkyMP (P3).
 
 ## Filosofia dello Step 0
 
@@ -15,17 +15,15 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 
 ## Priorità (in ordine)
 
-### Priorità 0 — Decisione piattaforma: STR o SkyMP (🔴 gate, aperta il 2026-09-27)
+### Priorità 0 — Decisione piattaforma: STR o SkyMP (✅ chiusa il 2026-10-13: SkyMP, D-019)
 
 **Cosa significa:** prima di costruire altro, verificare se Skyrim Together Reborn è una base adatta a un MMO RP persistente, oppure se conviene **SkyMP**, la piattaforma usata da Keizaal Online e Mereth Roleplay. Dettagli e domande in `specs/platform/README.md`.
 
 **Criterio di completamento:**
-- [ ] Spike tecnico SkyMP completato (`specs/platform/skymp_spike.md`)
-- [ ] Ricognizione di almeno un server concorrente (`specs/platform/ricognizione_*.md`)
-- [ ] Decisione **D-019** registrata in `DECISIONS.md`
-- [ ] Se si passa a SkyMP: STEP_0, ROADMAP, DEV_SETUP e MODLIST rivisti di conseguenza
-
-> Finché P0 è aperta, le priorità legate a STR (P3, P5 test C, P6) sono **in pausa**. Il lavoro già fatto su EmptyWorld resta valido: è un override di record e dovrebbe funzionare anche con SkyMP (da verificare nello spike).
+- [x] Spike tecnico SkyMP: sezioni 1-3 fatte, abbastanza per decidere. Le sezioni 5-8 proseguono per imparare (`specs/platform/skymp_spike.md`)
+- [x] Studio dei server concorrenti: ricerca pubblica sui due server SkyMP più grandi (`team/david/ricerca_top2_server_skymp.md`). Le ricognizioni da giocatore (T-002, T-004) restano utili per il design
+- [x] Decisione **D-019** registrata in `DECISIONS.md`
+- [ ] STEP_0, ROADMAP e README rivisti (fatto il 2026-10-13); DEV_SETUP e MODLIST ancora da rivedere
 
 ### Priorità 1 — Workflow di sviluppo
 
@@ -48,13 +46,15 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 - [ ] (Se necessario) downgrader applicato per allinearsi alla versione richiesta
 - [x] Decisione registrata in `DECISIONS.md` (D-009)
 
-### Priorità 3 — Connessione STR base verificata
+### Priorità 3 — Connessione SkyMP tra 2 dev
 
-**Cosa significa:** Skyrim Together Reborn funziona tra almeno 2 dev con il gioco vanilla o quasi.
+> **Aggiornamento 2026-10-13 (D-019):** prima era "Connessione STR base verificata". Con il passaggio a SkyMP diventa la connessione di 2 dev allo stesso server SkyMP. Guide: `client_pack/SkyMP/test_online_host.md` e `test_online_ospite.md`.
+
+**Cosa significa:** SkyMP funziona tra almeno 2 dev sullo stesso server.
 
 **Criterio di completamento:**
-- [ ] STR installato secondo la guida ufficiale
-- [ ] 2 dev si connettono allo stesso server STR
+- [x] Server SkyMP locale avviato e client collegato (2026-10-09)
+- [ ] 2 dev si connettono allo stesso server SkyMP (test via Tailscale con Davide)
 - [ ] Si vedono nel mondo, si muovono insieme, dialogano in voce
 - [ ] Disconnessione e riconnessione testate
 - [ ] Risultato annotato in `IMPLEMENTED.md`
@@ -72,7 +72,9 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 - [ ] VS Code installato per editing Papyrus
 - [ ] Versioni installate documentate in `MODLIST.md`
 
-### Priorità 5 — Mod custom `RPServer_EmptyWorld` (prima mod proprietaria)
+### Priorità 5 — Mod custom `RPServer_EmptyWorld` (🗄️ archiviata il 2026-10-13, D-021)
+
+> **Aggiornamento 2026-10-13 (D-021):** con SkyMP il server non carica nessun NPC di default, quindi il mondo è già vuoto. EmptyWorld viene archiviata e i punti aperti qui sotto non si fanno più. Le creature che servono (es. animali per caccia e crafting) verranno da un nostro sistema di spawn, da progettare in `specs/systems/`.
 
 > **Nota storica:** lo Step 0 originale prevedeva due priorità separate, P5 "NoNPCs" + P6 "Disattivazione main quest". In data 2026-05-12 (vedi `DECISIONS.md` D-012) le due sono state unificate nella mod `RPServer_EmptyWorld`, che copre NPC + quest + sistema Dragonborn insieme.
 
@@ -95,6 +97,8 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 - [ ] Release `v1.0.0` taggata su GitHub
 
 ### Priorità 6 — Disattivazione main quest e narrativa vanilla (⚠️ riaperta)
+
+> **Aggiornamento 2026-10-13 (D-019, D-021):** con SkyMP gli script Papyrus del client sono bloccati, quindi le quest vanilla probabilmente non partono e gli alternate start non servono (`specs/platform/skymp_funzionalita.md`). Resta da verificare in gioco; i punti qui sotto sono scritti per STR.
 
 > **Aggiornamento 2026-06-21 (D-018):** EmptyWorld v0.5 non disattiva più le quest, quindi questa priorità **non è più assorbita** in P5 ed è di nuovo aperta. Nel profilo MO2 attivo oggi c'è **Alternate Start – Live Another Life**, non Skyrim Unbound. Va deciso se basta un alternate start o se la disattivazione delle quest va reintrodotta.
 >
@@ -145,11 +149,13 @@ Per evitare scope creep, esplicitiamo cosa **rimandiamo**:
 ## Dipendenze tra le priorità
 
 ```
-P1 (workflow) ✅ ──┬──> P5 (EmptyWorld v0.5: solo ACHR) ──> P8 (background)
+P0 (piattaforma = SkyMP) ✅
+P1 (workflow) ✅ ──┬──> P8 (background)
                    │
-P2 (versione) ✅ ──┬──> P3 (STR test) ──> P4 (ambiente) ──> P5
+P2 (versione) ✅ ──┬──> P3 (SkyMP tra 2 dev) ──> P4 (ambiente)
                    │
-P6 (quest vanilla / alternate start) ── riaperta da D-018, da verificare insieme al test C di P5
+P5 (EmptyWorld) 🗄️ archiviata (D-021)
+P6 (quest vanilla) ── probabilmente superflua con SkyMP, da verificare in gioco
 
 P7 (città) può essere decisa in qualsiasi momento dopo P1
 ```

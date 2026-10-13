@@ -11,7 +11,7 @@
 - **Autore/i:** Team dev SkyrimRPServer (lead: David)
 - **Data di creazione:** 2026-05-12
 - **Ultimo aggiornamento:** 2026-06-21
-- **Stato:** In sviluppo
+- **Stato:** 🗄️ Archiviata il 2026-10-13 (D-021): con SkyMP il server non carica NPC di default, quindi il mondo è già vuoto. I sorgenti restano come riferimento
 - **Profilo:** Player + Staff (è una mod core, va a tutti)
 
 ## Scopo della mod

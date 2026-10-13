@@ -32,6 +32,6 @@ Le versioni seguono lo schema `vMAJOR.MINOR.PATCH` (vedi `DECISIONS.md` D-007). 
 
 | Mod | Versione | Status | Cartella |
 |---|---|---|---|
-| RPServer_EmptyWorld | v0.3.0 (sorgenti, .esp non ancora generato) | 🛠️ In sviluppo | `RPServer_EmptyWorld/` |
+| RPServer_EmptyWorld | v0.5.0 (sorgenti, .esp mai generato) | 🗄️ Archiviata (D-021): il mondo vuoto lo fa già SkyMP | `RPServer_EmptyWorld/` |
 
 Aggiungere nuove righe quando si creano nuove mod. Sincronizzare con `MODLIST.md` (sezione "Mod custom") nella root del repo.
