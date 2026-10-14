@@ -1,0 +1,218 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-10-14",
+    "author": "david",
+    "description": "Fasce di prezzo e guadagni dal canale #fascia-di-prezzi. Sono valori di partenza: lo staff li tara dopo aver misurato in gioco.",
+    "sources": [
+      "Discord Atronach RP #fascia-di-prezzi"
+    ]
+  },
+  "currency": {
+    "id": "septim",
+    "name": "Septim"
+  },
+  "reference": {
+    "meal_in_tavern": 10,
+    "night_at_inn": 20
+  },
+  "balance_rules": {
+    "craft_multiplier": {
+      "min": 2,
+      "max": 3,
+      "note": "Un oggetto lavorato vale circa 2-3 volte i materiali."
+    },
+    "job_parity": "A parità di tempo nessun job guadagna molto più di un altro.",
+    "price_bands": "I prezzi si trattano dentro la fascia; fuori fascia solo per motivo di RP (rarità, urgenza, amicizia).",
+    "money_in": [
+      "stipendi e commissioni del Jarl",
+      "taglie",
+      "ricompense di quest ed eventi"
+    ],
+    "money_out": [
+      "pasti e locande",
+      "pozioni e rimedi",
+      "riparazioni",
+      "tasse",
+      "acquisti dallo Stato"
+    ],
+    "rewards_note": "Le ricompense in denaro di quest ed eventi passano dal Responsabile Lore, come ogni altro give."
+  },
+  "bands": {
+    "raw_materials": [
+      {
+        "id": "animal_hide",
+        "name_it": "Pelle di animale",
+        "min": 5,
+        "max": 8
+      },
+      {
+        "id": "meat",
+        "name_it": "Carne",
+        "min": 3,
+        "max": 5
+      },
+      {
+        "id": "raw_iron_ore",
+        "name_it": "Minerale grezzo (ferro)",
+        "min": 4,
+        "max": 6
+      },
+      {
+        "id": "iron_ingot",
+        "name_it": "Lingotto di ferro",
+        "min": 10,
+        "max": 14
+      },
+      {
+        "id": "steel_ingot",
+        "name_it": "Lingotto di acciaio",
+        "min": 25,
+        "max": 35
+      },
+      {
+        "id": "ingredient_common",
+        "name_it": "Ingrediente comune",
+        "min": 3,
+        "max": 6
+      },
+      {
+        "id": "ingredient_rare",
+        "name_it": "Ingrediente raro",
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "equipment": [
+      {
+        "id": "iron_weapon",
+        "name_it": "Arma di ferro",
+        "min": 90,
+        "max": 130
+      },
+      {
+        "id": "steel_weapon",
+        "name_it": "Arma d'acciaio",
+        "min": 200,
+        "max": 300
+      },
+      {
+        "id": "leather_armor",
+        "name_it": "Armatura di cuoio",
+        "min": 120,
+        "max": 180
+      },
+      {
+        "id": "iron_armor",
+        "name_it": "Armatura di ferro",
+        "min": 350,
+        "max": 500
+      },
+      {
+        "id": "repair",
+        "name_it": "Riparazione",
+        "min": 10,
+        "max": 25
+      }
+    ],
+    "alchemy_and_healing": [
+      {
+        "id": "basic_remedy",
+        "name_it": "Rimedio base (bende, erbe)",
+        "min": 15,
+        "max": 25
+      },
+      {
+        "id": "potion_health_minor",
+        "name_it": "Pozione curativa minore",
+        "min": 40,
+        "max": 60
+      },
+      {
+        "id": "potion_health_medium",
+        "name_it": "Pozione curativa media",
+        "min": 100,
+        "max": 140
+      },
+      {
+        "id": "potion_stamina",
+        "name_it": "Pozione di stamina",
+        "min": 30,
+        "max": 50
+      },
+      {
+        "id": "heal_wound_light",
+        "name_it": "Cura di una ferita lieve",
+        "min": 25,
+        "max": 40
+      },
+      {
+        "id": "heal_wound_severe",
+        "name_it": "Cura di una ferita grave",
+        "min": 80,
+        "max": 120
+      }
+    ],
+    "bounties": [
+      {
+        "id": "bounty_wolf",
+        "name_it": "Lupo",
+        "min": 40,
+        "max": 60
+      },
+      {
+        "id": "bounty_bear",
+        "name_it": "Orso",
+        "min": 120,
+        "max": 180
+      },
+      {
+        "id": "bounty_bandits",
+        "name_it": "Banditi",
+        "min": 100,
+        "max": 200
+      },
+      {
+        "id": "bounty_rare",
+        "name_it": "Creature rare o pericolose",
+        "min": 400,
+        "max": null,
+        "note": "da 400 in su"
+      }
+    ]
+  },
+  "estimated_earnings_per_hour": {
+    "note": "Stima per un'ora di gioco di lavoro attivo.",
+    "hunter": {
+      "min": 40,
+      "max": 70
+    },
+    "miner": {
+      "min": 40,
+      "max": 70
+    },
+    "blacksmith": {
+      "min": 50,
+      "max": 80
+    },
+    "alchemist": {
+      "min": 50,
+      "max": 80
+    },
+    "healer": {
+      "min": 45,
+      "max": 75
+    }
+  },
+  "jarl_salaries_per_session": {
+    "note": "Stipendio per una sessione di servizio (circa un'ora).",
+    "city_guard": {
+      "min": 60,
+      "max": 90
+    },
+    "soldier": {
+      "min": 70,
+      "max": 100
+    }
+  }
+}

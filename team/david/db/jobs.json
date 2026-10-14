@@ -1,0 +1,328 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-10-14",
+    "author": "david",
+    "description": "Catena economica dei job dal canale #job. I campi 'allowed_actions' sono da definire (vedi README): servono per il blocco azioni per job.",
+    "sources": [
+      "Discord Atronach RP #job"
+    ]
+  },
+  "rules": [
+    "Ogni scambio avviene in RP, tra personaggi.",
+    "I prezzi si trattano fra i player, dentro le fasce stabilite dallo staff.",
+    "Le commissioni importanti passano dalla bacheca cittadina.",
+    "Ogni job è utile agli altri."
+  ],
+  "bulletin_board_template": [
+    "requester",
+    "need",
+    "quantity",
+    "reward",
+    "deadline",
+    "job"
+  ],
+  "items": [
+    {
+      "id": "miner",
+      "name_it": "Minatore",
+      "does": "Estrae minerali e materiali grezzi dalle miniere.",
+      "supplies": [
+        "blacksmith",
+        "jarl"
+      ],
+      "needs": [
+        "blacksmith",
+        "healer",
+        "city_guard"
+      ],
+      "earns_from": [
+        "vendita al Fabbro",
+        "commissioni della bacheca"
+      ],
+      "allowed_actions": [
+        "gather_ore",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "gather_ore",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "hunter",
+      "name_it": "Cacciatore",
+      "does": "Caccia animali e porta pelli, carne e parti animali.",
+      "supplies": [
+        "blacksmith",
+        "alchemist",
+        "inns",
+        "jarl"
+      ],
+      "needs": [
+        "blacksmith",
+        "alchemist",
+        "healer"
+      ],
+      "earns_from": [
+        "vendita di pelli e carne",
+        "taglie della bacheca"
+      ],
+      "allowed_actions": [
+        "loot_animal",
+        "gather_plants",
+        "fish",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "loot_animal",
+        "gather_plants",
+        "fish",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "blacksmith",
+      "name_it": "Fabbro",
+      "does": "Forgia armi, armature e utensili.",
+      "supplies": [
+        "city_guard",
+        "soldier",
+        "jarl",
+        "miner",
+        "hunter",
+        "public_shop"
+      ],
+      "needs": [
+        "miner",
+        "hunter"
+      ],
+      "note": "Può chiedere a giovani avventurieri di recuperare materiali.",
+      "earns_from": [
+        "vendite nello shop",
+        "forniture al Jarl",
+        "riparazioni"
+      ],
+      "allowed_actions": [
+        "smith",
+        "sell_public_shop",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "smith",
+        "sell_public_shop",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "alchemist",
+      "name_it": "Alchimista",
+      "does": "Prepara pozioni, rimedi e veleni.",
+      "supplies": [
+        "healer",
+        "city_guard",
+        "soldier",
+        "hunter",
+        "public_shop"
+      ],
+      "needs": [
+        "hunter"
+      ],
+      "note": "Ingredienti raccolti da avventurieri e cacciatori; può appendere liste di ingredienti in bacheca.",
+      "earns_from": [
+        "vendita di pozioni",
+        "liste ingredienti",
+        "forniture al Jarl"
+      ],
+      "allowed_actions": [
+        "brew",
+        "gather_plants",
+        "sell_public_shop",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "brew",
+        "gather_plants",
+        "sell_public_shop",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "healer",
+      "name_it": "Medico",
+      "does": "Cura feriti e malati della città.",
+      "supplies": [
+        "everyone"
+      ],
+      "needs": [
+        "alchemist",
+        "city_guard"
+      ],
+      "earns_from": [
+        "pagamento delle cure",
+        "ingaggio dal Jarl per guardie e soldati"
+      ],
+      "allowed_actions": [
+        "heal",
+        "gather_plants",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "heal",
+        "gather_plants",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "city_guard",
+      "name_it": "Guardia cittadina",
+      "does": "Mantiene l'ordine e la sicurezza in città e sulle strade.",
+      "supplies": [
+        "citizens",
+        "merchants",
+        "craftsmen",
+        "miner"
+      ],
+      "needs": [
+        "blacksmith",
+        "alchemist",
+        "healer"
+      ],
+      "earns_from": [
+        "stipendio dal Jarl",
+        "incarichi e taglie della bacheca"
+      ],
+      "allowed_actions": [
+        "arrest",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "arrest",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "soldier",
+      "name_it": "Soldato",
+      "does": "Difende il territorio e combatte nelle guerre tra fazioni.",
+      "supplies": [
+        "jarl",
+        "faction"
+      ],
+      "needs": [
+        "blacksmith",
+        "alchemist",
+        "healer"
+      ],
+      "earns_from": [
+        "stipendio del Jarl",
+        "bottino concordato",
+        "taglie della bacheca"
+      ],
+      "allowed_actions": [
+        "fight_in_war",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "fight_in_war",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    },
+    {
+      "id": "jarl",
+      "name_it": "Jarl",
+      "does": "Guida la città e fa girare l'economia con le sue commissioni.",
+      "commissions": {
+        "blacksmith": "armi per i nuovi soldati",
+        "miner": "materiali",
+        "hunter": "taglie",
+        "soldier": "taglie",
+        "alchemist": "liste di ingredienti",
+        "healer": "cure e rimedi"
+      },
+      "pays": [
+        "city_guard",
+        "soldier",
+        "commissions"
+      ],
+      "allowed_actions": [
+        "pay_salary",
+        "post_board",
+        "take_board",
+        "trade"
+      ],
+      "allowed_actions_proposal": [
+        "pay_salary",
+        "post_board",
+        "take_board",
+        "trade"
+      ]
+    }
+  ],
+  "starting_role_proposal": {
+    "status": "PROPOSTA, da approvare",
+    "id": "adventurer",
+    "name_it": "Avventuriero",
+    "note": "Ruolo di partenza senza job: raccoglie materiali, prende incarichi in bacheca. Citato nel Discord come 'giovani avventurieri'.",
+    "allowed_actions_proposal": [
+      "gather_plants",
+      "loot_animal",
+      "fish",
+      "post_board",
+      "take_board",
+      "trade"
+    ]
+  },
+  "actions_proposal": {
+    "status": "PROVVISORIO: applicata il 14 ott 2026 su indicazione di David (\"per adesso si\"); le 5 decisioni di fondo restano aperte",
+    "common_to_all": [
+      "post_board",
+      "take_board",
+      "trade"
+    ],
+    "actions": {
+      "gather_plants": "Raccogliere piante, funghi e uova selvatiche",
+      "gather_ore": "Estrarre minerali dalle miniere",
+      "loot_animal": "Scuoiare/prendere parti da animali morti",
+      "fish": "Pescare",
+      "smith": "Forgiare e riparare armi, armature e utensili",
+      "brew": "Preparare pozioni, rimedi e veleni",
+      "heal": "Curare altri personaggi",
+      "arrest": "Arrestare e perquisire",
+      "fight_in_war": "Combattere nelle guerre tra fazioni",
+      "sell_public_shop": "Gestire uno shop pubblico",
+      "pay_salary": "Pagare stipendi e commissioni",
+      "post_board": "Appendere richieste in bacheca",
+      "take_board": "Accettare richieste dalla bacheca",
+      "trade": "Scambiare oggetti e monete con altri player"
+    }
+  }
+}

@@ -1,0 +1,2617 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-10-14",
+    "author": "david",
+    "description": "110 ingredienti del server (Skyrim base + Dawnguard + Hearthfire + Dragonborn + Aloe Vera della Resource Pack, senza Creation Club).",
+    "sources": [
+      "https://en.uesp.net/wiki/Skyrim:Ingredients",
+      "Discord Atronach RP #piante-e-spawn"
+    ],
+    "notes": [
+      "form_id_verified=false: gli ID di UESP vanno ricontrollati con xEdit prima dell'uso nel gamemode.",
+      "feudi.availability: both/rift/eastmarch = presente con hold noto; present = presente (hold non specificato); none = assente; unknown = dato mancante.",
+      "feudi.inferred=true: valore dedotto dai conteggi del Discord (non scritto esplicitamente); da confermare con le immagini di #creature-spawm e #loot-implicazioni-alchemiche.",
+      "type e' una classificazione provvisoria (pianta/fungo/animale/altro)."
+    ]
+  },
+  "items": [
+    {
+      "id": "abecean_longfin",
+      "name_en": "Abecean Longfin",
+      "name_it": "Pinna lunga di Abecea",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00106e1b",
+      "local_form_id": "106e1b",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Frost",
+        "Fortify Sneak",
+        "Weakness to Poison",
+        "Fortify Restoration"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "CritterPondFish02Ingredient",
+      "stats": {
+        "value": 15,
+        "weight": 0.5,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "aloe_vera_leaves",
+      "name_en": "Aloe Vera Leaves",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "_ResourcePack.esl",
+      "uesp_id": "FExxx0D0",
+      "local_form_id": "0d0",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Restore Stamina",
+        "Damage Magicka",
+        "Invisibility"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Invisibility' gia' completo nei feudi)"
+      },
+      "editor_id": "RP_AloeVeraLeaves01"
+    },
+    {
+      "id": "ancestor_moth_wing",
+      "name_en": "Ancestor Moth Wing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dawnguard.esm",
+      "uesp_id": "xx0059ba",
+      "local_form_id": "0059ba",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify Conjuration",
+        "Damage Magicka Regen",
+        "Fortify Enchanting"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC01MothWingAncestor"
+    },
+    {
+      "id": "ash_creep_cluster",
+      "name_en": "Ash Creep Cluster",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd74",
+      "local_form_id": "01cd74",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Invisibility",
+        "Resist Fire",
+        "Fortify Destruction"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Destruction' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2AshCreepCluster"
+    },
+    {
+      "id": "ash_hopper_jelly",
+      "name_en": "Ash Hopper Jelly",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd71",
+      "local_form_id": "01cd71",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify Light Armor",
+        "Resist Shock",
+        "Weakness to Frost"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Light Armor' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2AshHopperJelly"
+    },
+    {
+      "id": "ashen_grass_pod",
+      "name_en": "Ashen Grass Pod",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx016e26",
+      "local_form_id": "016e26",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Fire",
+        "Weakness to Shock",
+        "Fortify Lockpicking",
+        "Fortify Sneak"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Lockpicking' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2SpikyGrassAsh01"
+    },
+    {
+      "id": "bear_claws",
+      "name_en": "Bear Claws",
+      "name_it": "Artigli d'orso",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc02",
+      "local_form_id": "06bc02",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Health",
+        "Fortify One-handed",
+        "Damage Magicka Regen"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "BearClaws",
+      "stats": {
+        "value": 2,
+        "weight": 0.1,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "bee",
+      "name_en": "Bee",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000a9195",
+      "local_form_id": "0a9195",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Ravage Stamina",
+        "Regenerate Stamina",
+        "Weakness to Shock"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Regenerate Stamina' gia' completo nei feudi)"
+      },
+      "editor_id": "CritterBeeIngredient"
+    },
+    {
+      "id": "beehive_husk",
+      "name_en": "Beehive Husk",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000a9191",
+      "local_form_id": "0a9191",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Fortify Light Armor",
+        "Fortify Sneak",
+        "Fortify Destruction"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Destruction' gia' completo nei feudi)"
+      },
+      "editor_id": "BeeHiveHusk"
+    },
+    {
+      "id": "bleeding_crown",
+      "name_en": "Bleeding Crown",
+      "name_it": "Corona sanguinante",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da20",
+      "local_form_id": "04da20",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Fire",
+        "Fortify Block",
+        "Weakness to Poison",
+        "Resist Magic"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Mushroom02",
+      "world_plants": {
+        "eastmarch": 1,
+        "rift": 13
+      }
+    },
+    {
+      "id": "blisterwort",
+      "name_en": "Blisterwort",
+      "name_it": "Erba vescicante",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da25",
+      "local_form_id": "04da25",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Frenzy",
+        "Restore Health",
+        "Fortify Smithing"
+      ],
+      "feudi": {
+        "availability": "rift",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Mushroom06",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 3
+      }
+    },
+    {
+      "id": "blue_butterfly_wing",
+      "name_en": "Blue Butterfly Wing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000727de",
+      "local_form_id": "0727de",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify Conjuration",
+        "Damage Magicka Regen",
+        "Fortify Enchanting"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "MothWingBlue"
+    },
+    {
+      "id": "blue_dartwing",
+      "name_en": "Blue Dartwing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000e4f0c",
+      "local_form_id": "0e4f0c",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Shock",
+        "Fortify Pickpocket",
+        "Restore Health",
+        "Fear"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Pickpocket' gia' completo nei feudi)"
+      },
+      "editor_id": "DragonflyBlue"
+    },
+    {
+      "id": "blue_mountain_flower",
+      "name_en": "Blue Mountain Flower",
+      "name_it": "Fiore di montagna blu",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00077e1c",
+      "local_form_id": "077e1c",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify Conjuration",
+        "Fortify Health",
+        "Damage Magicka Regen"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "MountainFlower01Blue",
+      "world_plants": {
+        "eastmarch": 227,
+        "rift": 407
+      }
+    },
+    {
+      "id": "boar_tusk",
+      "name_en": "Boar Tusk",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd6f",
+      "local_form_id": "01cd6f",
+      "form_id_verified": true,
+      "effects": [
+        "Fortify Stamina",
+        "Fortify Health",
+        "Fortify Block",
+        "Frenzy"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Block' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2BoarTusk"
+    },
+    {
+      "id": "bone_meal",
+      "name_en": "Bone Meal",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00034cdd",
+      "local_form_id": "034cdd",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Resist Fire",
+        "Fortify Conjuration",
+        "Ravage Stamina"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "BoneMeal"
+    },
+    {
+      "id": "briar_heart",
+      "name_en": "Briar Heart",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad61",
+      "local_form_id": "03ad61",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Fortify Block",
+        "Paralysis",
+        "Fortify Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Block' gia' completo nei feudi)"
+      },
+      "editor_id": "BriarHeart"
+    },
+    {
+      "id": "burnt_spriggan_wood",
+      "name_en": "Burnt Spriggan Wood",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd6e",
+      "local_form_id": "01cd6e",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Fire",
+        "Fortify Alteration",
+        "Damage Magicka Regen",
+        "Slow"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Alteration' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2BurntSprigganWood"
+    },
+    {
+      "id": "butterfly_wing",
+      "name_en": "Butterfly Wing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000727e0",
+      "local_form_id": "0727e0",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify Barter",
+        "Lingering Damage Stamina",
+        "Damage Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Barter' gia' completo nei feudi)"
+      },
+      "editor_id": "MothWingMonarch"
+    },
+    {
+      "id": "canis_root",
+      "name_en": "Canis Root",
+      "name_it": "Radice di canis",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006abcb",
+      "local_form_id": "06abcb",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify One-handed",
+        "Fortify Marksman",
+        "Paralysis"
+      ],
+      "feudi": {
+        "availability": "rift",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "CanisRoot01",
+      "world_plants": {
+        "eastmarch": 9,
+        "rift": 375
+      }
+    },
+    {
+      "id": "charred_skeever_hide",
+      "name_en": "Charred Skeever Hide",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00052695",
+      "local_form_id": "052695",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Cure Disease",
+        "Resist Poison",
+        "Restore Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Cure Disease' gia' completo nei feudi)"
+      },
+      "editor_id": "CharredSkeeverHide",
+      "world_plants": {
+        "eastmarch": 2,
+        "rift": 2
+      }
+    },
+    {
+      "id": "chaurus_eggs",
+      "name_en": "Chaurus Eggs",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad56",
+      "local_form_id": "03ad56",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Poison",
+        "Fortify Stamina",
+        "Damage Magicka",
+        "Invisibility"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Stamina' gia' completo nei feudi)"
+      },
+      "editor_id": "ChaurusEggs"
+    },
+    {
+      "id": "chaurus_hunter_antennae",
+      "name_en": "Chaurus Hunter Antennae",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dawnguard.esm",
+      "uesp_id": "xx0183b7",
+      "local_form_id": "0183b7",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify Conjuration",
+        "Damage Magicka Regen",
+        "Fortify Enchanting"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC01ChaurusHunterAntennae"
+    },
+    {
+      "id": "chickens_egg",
+      "name_en": "Chicken's Egg",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00023d77",
+      "local_form_id": "023d77",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Damage Magicka Regen",
+        "Waterbreathing",
+        "Lingering Damage Stamina"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Resist Magic' gia' completo nei feudi)"
+      },
+      "editor_id": "BirdEgg03",
+      "world_plants": {
+        "eastmarch": 12,
+        "rift": 17
+      }
+    },
+    {
+      "id": "creep_cluster",
+      "name_en": "Creep Cluster",
+      "name_it": "Grappolo strisciante",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000b2183",
+      "local_form_id": "0b2183",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Damage Stamina Regen",
+        "Fortify Carry Weight",
+        "Weakness to Magic"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "CreepClusterRoot",
+      "world_plants": {
+        "eastmarch": 242,
+        "rift": 0
+      }
+    },
+    {
+      "id": "crimson_nirnroot",
+      "name_en": "Crimson Nirnroot",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000b701a",
+      "local_form_id": "0b701a",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Damage Stamina",
+        "Invisibility",
+        "Resist Magic"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Invisibility' gia' completo nei feudi)"
+      },
+      "editor_id": "NirnrootRed"
+    },
+    {
+      "id": "cyrodilic_spadetail",
+      "name_en": "Cyrodilic Spadetail",
+      "name_it": "Coda a vanga cyrodiliana",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00106e19",
+      "local_form_id": "106e19",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify Restoration",
+        "Fear",
+        "Ravage Health"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "CritterPondFish04Ingredient",
+      "stats": {
+        "value": 15,
+        "weight": 0.25,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "daedra_heart",
+      "name_en": "Daedra Heart",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad5b",
+      "local_form_id": "03ad5b",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Damage Stamina Regen",
+        "Damage Magicka",
+        "Fear"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Restore Health' gia' completo nei feudi)"
+      },
+      "editor_id": "DaedraHeart"
+    },
+    {
+      "id": "deathbell",
+      "name_en": "Deathbell",
+      "name_it": "Campana della morte",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000516c8",
+      "local_form_id": "0516c8",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Ravage Stamina",
+        "Slow",
+        "Weakness to Poison"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "deathBell",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 3
+      }
+    },
+    {
+      "id": "dragons_tongue",
+      "name_en": "Dragon's Tongue",
+      "name_it": "Lingua di drago",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000889a2",
+      "local_form_id": "0889a2",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Fire",
+        "Fortify Barter",
+        "Fortify Illusion",
+        "Fortify Two-handed"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "DragonsTongue",
+      "world_plants": {
+        "eastmarch": 555,
+        "rift": 2
+      }
+    },
+    {
+      "id": "dwarven_oil",
+      "name_en": "Dwarven Oil",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000f11c0",
+      "local_form_id": "0f11c0",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Magic",
+        "Fortify Illusion",
+        "Regenerate Magicka",
+        "Restore Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Illusion' gia' completo nei feudi)"
+      },
+      "editor_id": "DwarvenOil"
+    },
+    {
+      "id": "ectoplasm",
+      "name_en": "Ectoplasm",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad63",
+      "local_form_id": "03ad63",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Fortify Destruction",
+        "Fortify Magicka",
+        "Damage Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Destruction' gia' completo nei feudi)"
+      },
+      "editor_id": "Ectoplasm"
+    },
+    {
+      "id": "elves_ear",
+      "name_en": "Elves Ear",
+      "name_it": "Orecchio d'elfo",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00034d31",
+      "local_form_id": "034d31",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Fortify Marksman",
+        "Weakness to Frost",
+        "Resist Fire"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "ElvesEar",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 1
+      }
+    },
+    {
+      "id": "emperor_parasol_moss",
+      "name_en": "Emperor Parasol Moss",
+      "name_it": null,
+      "type": "fungo",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01ff75",
+      "local_form_id": "01ff75",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Fortify Magicka",
+        "Regenerate Health",
+        "Fortify Two-handed"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Two-handed' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2HangingMoss"
+    },
+    {
+      "id": "eye_of_sabre_cat",
+      "name_en": "Eye of Sabre Cat",
+      "name_it": "Occhio di tigre dai denti a sciabola",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc07",
+      "local_form_id": "06bc07",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Ravage Health",
+        "Damage Magicka",
+        "Restore Health"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "SabrecatEyeball",
+      "stats": {
+        "value": 2,
+        "weight": 0.1,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "falmer_ear",
+      "name_en": "Falmer Ear",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad5d",
+      "local_form_id": "03ad5d",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Frenzy",
+        "Resist Poison",
+        "Fortify Lockpicking"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Lockpicking' gia' completo nei feudi)"
+      },
+      "editor_id": "FalmerEar"
+    },
+    {
+      "id": "felsaad_tern_feathers",
+      "name_en": "Felsaad Tern Feathers",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx03cd8e",
+      "local_form_id": "03cd8e",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify Light Armor",
+        "Cure Disease",
+        "Resist Magic"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Cure Disease' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2TernFeathers"
+    },
+    {
+      "id": "fire_salts",
+      "name_en": "Fire Salts",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad5e",
+      "local_form_id": "03ad5e",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Frost",
+        "Resist Fire",
+        "Restore Magicka",
+        "Regenerate Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Resist Fire' gia' completo nei feudi)"
+      },
+      "editor_id": "FireSalts"
+    },
+    {
+      "id": "fly_amanita",
+      "name_en": "Fly Amanita",
+      "name_it": "Amanita muscaria",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da00",
+      "local_form_id": "04da00",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Fire",
+        "Fortify Two-handed",
+        "Frenzy",
+        "Regenerate Stamina"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Mushroom01",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 9
+      }
+    },
+    {
+      "id": "frost_mirriam",
+      "name_en": "Frost Mirriam",
+      "name_it": "Mirriam del gelo",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00034d32",
+      "local_form_id": "034d32",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Frost",
+        "Fortify Sneak",
+        "Ravage Magicka",
+        "Damage Stamina Regen"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "FrostMirriam",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 2
+      }
+    },
+    {
+      "id": "frost_salts",
+      "name_en": "Frost Salts",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad5f",
+      "local_form_id": "03ad5f",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Fire",
+        "Resist Frost",
+        "Restore Magicka",
+        "Fortify Conjuration"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "FrostSalts"
+    },
+    {
+      "id": "garlic",
+      "name_en": "Garlic",
+      "name_it": "Aglio",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00034d22",
+      "local_form_id": "034d22",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Fortify Stamina",
+        "Regenerate Magicka",
+        "Regenerate Health"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Garlic",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 6
+      }
+    },
+    {
+      "id": "giant_lichen",
+      "name_en": "Giant Lichen",
+      "name_it": "Lichene gigante",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007e8c1",
+      "local_form_id": "07e8c1",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Shock",
+        "Ravage Health",
+        "Weakness to Poison",
+        "Restore Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "GiantLichen"
+    },
+    {
+      "id": "giants_toe",
+      "name_en": "Giant's Toe",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad64",
+      "local_form_id": "03ad64",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Fortify Health",
+        "Fortify Carry Weight",
+        "Damage Stamina Regen"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Carry Weight' gia' completo nei feudi)"
+      },
+      "editor_id": "GiantToes"
+    },
+    {
+      "id": "gleamblossom",
+      "name_en": "Gleamblossom",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dawnguard.esm",
+      "uesp_id": "xx00b097",
+      "local_form_id": "00b097",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Fear",
+        "Regenerate Health",
+        "Paralysis"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Regenerate Health' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC01GlowPlant01Ingredient"
+    },
+    {
+      "id": "glow_dust",
+      "name_en": "Glow Dust",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad73",
+      "local_form_id": "03ad73",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Damage Magicka Regen",
+        "Fortify Destruction",
+        "Resist Shock"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Destruction' gia' completo nei feudi)"
+      },
+      "editor_id": "glowDust"
+    },
+    {
+      "id": "glowing_mushroom",
+      "name_en": "Glowing Mushroom",
+      "name_it": "Fungo luminoso",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007ee01",
+      "local_form_id": "07ee01",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Shock",
+        "Fortify Destruction",
+        "Fortify Smithing",
+        "Fortify Health"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "GlowingMushroom"
+    },
+    {
+      "id": "grass_pod",
+      "name_en": "Grass Pod",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00083e64",
+      "local_form_id": "083e64",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Ravage Magicka",
+        "Fortify Alteration",
+        "Restore Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Alteration' gia' completo nei feudi)"
+      },
+      "editor_id": "SpikyGrass01",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 2
+      }
+    },
+    {
+      "id": "hagraven_claw",
+      "name_en": "Hagraven Claw",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006b689",
+      "local_form_id": "06b689",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Lingering Damage Magicka",
+        "Fortify Enchanting",
+        "Fortify Barter"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Barter' gia' completo nei feudi)"
+      },
+      "editor_id": "HagravenClaw"
+    },
+    {
+      "id": "hagraven_feathers",
+      "name_en": "Hagraven Feathers",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad66",
+      "local_form_id": "03ad66",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Fortify Conjuration",
+        "Frenzy",
+        "Weakness to Shock"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Conjuration' gia' completo nei feudi)"
+      },
+      "editor_id": "HagravenFeathers"
+    },
+    {
+      "id": "hanging_moss",
+      "name_en": "Hanging Moss",
+      "name_it": "Muschio pendente",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00057f91",
+      "local_form_id": "057f91",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Fortify Health",
+        "Damage Magicka Regen",
+        "Fortify One-handed"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Health' gia' completo nei feudi)"
+      },
+      "editor_id": "HangingMoss",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 2
+      }
+    },
+    {
+      "id": "hawk_beak",
+      "name_en": "Hawk Beak",
+      "name_it": "Becco di falco",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000e7ebc",
+      "local_form_id": "0e7ebc",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Resist Frost",
+        "Fortify Carry Weight",
+        "Resist Shock"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "HawkBeak",
+      "stats": {
+        "value": 15,
+        "weight": 0.25,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "hawk_feathers",
+      "name_en": "Hawk Feathers",
+      "name_it": "Piume di falco",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000e7ed0",
+      "local_form_id": "0e7ed0",
+      "form_id_verified": true,
+      "effects": [
+        "Cure Disease",
+        "Fortify Light Armor",
+        "Fortify One-handed",
+        "Fortify Sneak"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "HawkFeathers",
+      "stats": {
+        "value": 15,
+        "weight": 0.1,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "hawks_egg",
+      "name_en": "Hawk's Egg",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "HearthFires.esm",
+      "uesp_id": "xx00f1cc",
+      "local_form_id": "00f1cc",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Damage Magicka Regen",
+        "Waterbreathing",
+        "Lingering Damage Stamina"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Resist Magic' gia' completo nei feudi)"
+      },
+      "editor_id": "BYOHHawkEgg01"
+    },
+    {
+      "id": "histcarp",
+      "name_en": "Histcarp",
+      "name_it": "Carpa di Hist",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00106e18",
+      "local_form_id": "106e18",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Magicka",
+        "Damage Stamina Regen",
+        "Waterbreathing"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "CritterPondFish05Ingredient",
+      "stats": {
+        "value": 6,
+        "weight": 0.25,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "honeycomb",
+      "name_en": "Honeycomb",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000b08c5",
+      "local_form_id": "0b08c5",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Block",
+        "Fortify Light Armor",
+        "Ravage Stamina"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Block' gia' completo nei feudi)"
+      },
+      "editor_id": "BeeHoneyComb"
+    },
+    {
+      "id": "human_flesh",
+      "name_en": "Human Flesh",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "001016b3",
+      "local_form_id": "1016b3",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Paralysis",
+        "Restore Magicka",
+        "Fortify Sneak"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Sneak' gia' completo nei feudi)"
+      },
+      "editor_id": "HumanFlesh"
+    },
+    {
+      "id": "human_heart",
+      "name_en": "Human Heart",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000b18cd",
+      "local_form_id": "0b18cd",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Damage Magicka",
+        "Damage Magicka Regen",
+        "Frenzy"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Damage Health' gia' completo nei feudi)"
+      },
+      "editor_id": "HumanHeart"
+    },
+    {
+      "id": "ice_wraith_teeth",
+      "name_en": "Ice Wraith Teeth",
+      "name_it": "Denti di spettro del ghiaccio",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad6a",
+      "local_form_id": "03ad6a",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Frost",
+        "Fortify Heavy Armor",
+        "Invisibility",
+        "Weakness to Fire"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "IceWraithTeeth",
+      "stats": {
+        "value": 30,
+        "weight": 0.25,
+        "other_uses": "required by quest 'Ice Cold'"
+      }
+    },
+    {
+      "id": "imp_stool",
+      "name_en": "Imp Stool",
+      "name_it": null,
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da23",
+      "local_form_id": "04da23",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Lingering Damage Health",
+        "Paralysis",
+        "Restore Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Restore Health' gia' completo nei feudi)"
+      },
+      "editor_id": "Mushroom04",
+      "world_plants": {
+        "eastmarch": 1,
+        "rift": 9
+      }
+    },
+    {
+      "id": "jazbay_grapes",
+      "name_en": "Jazbay Grapes",
+      "name_it": "Uva jazbay",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006ac4a",
+      "local_form_id": "06ac4a",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Magic",
+        "Fortify Magicka",
+        "Regenerate Magicka",
+        "Ravage Health"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "JazBay",
+      "world_plants": {
+        "eastmarch": 344,
+        "rift": 0
+      }
+    },
+    {
+      "id": "juniper_berries",
+      "name_en": "Juniper Berries",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0005076e",
+      "local_form_id": "05076e",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Fire",
+        "Fortify Marksman",
+        "Regenerate Health",
+        "Damage Stamina Regen"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Marksman' gia' completo nei feudi)"
+      },
+      "editor_id": "JuniperBerries",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 3
+      }
+    },
+    {
+      "id": "large_antlers",
+      "name_en": "Large Antlers",
+      "name_it": "Palchi grandi",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc0a",
+      "local_form_id": "06bc0a",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Stamina",
+        "Slow",
+        "Damage Stamina Regen"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "AntlersLarge"
+    },
+    {
+      "id": "lavender",
+      "name_en": "Lavender",
+      "name_it": "Lavanda",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00045c28",
+      "local_form_id": "045c28",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Fortify Stamina",
+        "Ravage Magicka",
+        "Fortify Conjuration"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Lavender"
+    },
+    {
+      "id": "luna_moth_wing",
+      "name_en": "Luna Moth Wing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000727df",
+      "local_form_id": "0727df",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Fortify Light Armor",
+        "Regenerate Health",
+        "Invisibility"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Light Armor' gia' completo nei feudi)"
+      },
+      "editor_id": "MothWingLuna"
+    },
+    {
+      "id": "moon_sugar",
+      "name_en": "Moon Sugar",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000d8e3f",
+      "local_form_id": "0d8e3f",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Fire",
+        "Resist Frost",
+        "Restore Magicka",
+        "Regenerate Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Restore Magicka' gia' completo nei feudi)"
+      },
+      "editor_id": "MoonSugar"
+    },
+    {
+      "id": "mora_tapinella",
+      "name_en": "Mora Tapinella",
+      "name_it": "Mora tapinella",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000ec870",
+      "local_form_id": "0ec870",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Lingering Damage Health",
+        "Regenerate Stamina",
+        "Fortify Illusion"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "MoraTapinellaBits",
+      "world_plants": {
+        "eastmarch": 70,
+        "rift": 28
+      }
+    },
+    {
+      "id": "mudcrab_chitin",
+      "name_en": "Mudcrab Chitin",
+      "name_it": "Chitina di granchio di fango",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc00",
+      "local_form_id": "06bc00",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Cure Disease",
+        "Resist Poison",
+        "Resist Fire"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "MudcrabChitin",
+      "stats": {
+        "value": 2,
+        "weight": 0.25,
+        "other_uses": "trophy"
+      }
+    },
+    {
+      "id": "namiras_rot",
+      "name_en": "Namira's Rot",
+      "name_it": null,
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da24",
+      "local_form_id": "04da24",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Fortify Lockpicking",
+        "Fear",
+        "Regenerate Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Lockpicking' gia' completo nei feudi)"
+      },
+      "editor_id": "Mushroom05",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 1
+      }
+    },
+    {
+      "id": "netch_jelly",
+      "name_en": "Netch Jelly",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd72",
+      "local_form_id": "01cd72",
+      "form_id_verified": true,
+      "effects": [
+        "Paralysis",
+        "Fortify Carry Weight",
+        "Restore Stamina",
+        "Fear"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Carry Weight' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2NetchJelly"
+    },
+    {
+      "id": "nightshade",
+      "name_en": "Nightshade",
+      "name_it": "Belladonna",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0002f44c",
+      "local_form_id": "02f44c",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Damage Magicka Regen",
+        "Lingering Damage Stamina",
+        "Fortify Destruction"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Nightshade",
+      "world_plants": {
+        "eastmarch": 25,
+        "rift": 7
+      }
+    },
+    {
+      "id": "nirnroot",
+      "name_en": "Nirnroot",
+      "name_it": "Nirnroot",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00059b86",
+      "local_form_id": "059b86",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Damage Stamina",
+        "Invisibility",
+        "Resist Magic"
+      ],
+      "feudi": {
+        "availability": "rift",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Nirnroot"
+    },
+    {
+      "id": "nordic_barnacle",
+      "name_en": "Nordic Barnacle",
+      "name_it": "Cirripede nordico",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007edf5",
+      "local_form_id": "07edf5",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka",
+        "Waterbreathing",
+        "Regenerate Health",
+        "Fortify Pickpocket"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "NordicBarnacles",
+      "world_plants": {
+        "eastmarch": 36,
+        "rift": 57
+      },
+      "stats": {
+        "value": 5,
+        "weight": 0.2,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "orange_dartwing",
+      "name_en": "Orange Dartwing",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000bb956",
+      "local_form_id": "0bb956",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Ravage Magicka",
+        "Fortify Pickpocket",
+        "Lingering Damage Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Pickpocket' gia' completo nei feudi)"
+      },
+      "editor_id": "DragonflyOrange"
+    },
+    {
+      "id": "pearl",
+      "name_en": "Pearl",
+      "name_it": "Perla",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000854fe",
+      "local_form_id": "0854fe",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Block",
+        "Restore Magicka",
+        "Resist Shock"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Pearl",
+      "stats": {
+        "value": 2,
+        "weight": 0.1,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "pine_thrush_egg",
+      "name_en": "Pine Thrush Egg",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00023d6f",
+      "local_form_id": "023d6f",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Lockpicking",
+        "Weakness to Poison",
+        "Resist Shock"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Lockpicking' gia' completo nei feudi)"
+      },
+      "editor_id": "BirdEgg02",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 67
+      }
+    },
+    {
+      "id": "poison_bloom",
+      "name_en": "Poison Bloom",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dawnguard.esm",
+      "uesp_id": "xx0185fb",
+      "local_form_id": "0185fb",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Slow",
+        "Fortify Carry Weight",
+        "Fear"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Carry Weight' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC01PoisonBloom"
+    },
+    {
+      "id": "powdered_mammoth_tusk",
+      "name_en": "Powdered Mammoth Tusk",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc10",
+      "local_form_id": "06bc10",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Sneak",
+        "Weakness to Fire",
+        "Fear"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Sneak' gia' completo nei feudi)"
+      },
+      "editor_id": "PowderedMammothTusk"
+    },
+    {
+      "id": "purple_mountain_flower",
+      "name_en": "Purple Mountain Flower",
+      "name_it": "Fiore di montagna viola",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00077e1e",
+      "local_form_id": "077e1e",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Sneak",
+        "Lingering Damage Magicka",
+        "Resist Frost"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "MountainFlower01Purple",
+      "world_plants": {
+        "eastmarch": 261,
+        "rift": 450
+      }
+    },
+    {
+      "id": "red_mountain_flower",
+      "name_en": "Red Mountain Flower",
+      "name_it": "Fiore di montagna rosso",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00077e1d",
+      "local_form_id": "077e1d",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Magicka",
+        "Ravage Magicka",
+        "Fortify Magicka",
+        "Damage Health"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "MountainFlower01Red",
+      "world_plants": {
+        "eastmarch": 145,
+        "rift": 465
+      }
+    },
+    {
+      "id": "river_betty",
+      "name_en": "River Betty",
+      "name_it": "Betta di fiume",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00106e1a",
+      "local_form_id": "106e1a",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Health",
+        "Fortify Alteration",
+        "Slow",
+        "Fortify Carry Weight"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "CritterPondFish03Ingredient",
+      "stats": {
+        "value": 15,
+        "weight": 0.25,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "rock_warbler_egg",
+      "name_en": "Rock Warbler Egg",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007e8c8",
+      "local_form_id": "07e8c8",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify One-handed",
+        "Damage Stamina",
+        "Weakness to Magic"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify One-handed' gia' completo nei feudi)"
+      },
+      "editor_id": "BirdEgg01",
+      "world_plants": {
+        "eastmarch": 2,
+        "rift": 7
+      }
+    },
+    {
+      "id": "sabre_cat_tooth",
+      "name_en": "Sabre Cat Tooth",
+      "name_it": "Dente di tigre dai denti a sciabola",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc04",
+      "local_form_id": "06bc04",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Heavy Armor",
+        "Fortify Smithing",
+        "Weakness to Poison"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "SabrecatTooth",
+      "stats": {
+        "value": 2,
+        "weight": 0.1,
+        "other_uses": "Hearthfire decor"
+      }
+    },
+    {
+      "id": "salmon_roe",
+      "name_en": "Salmon Roe",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "HearthFires.esm",
+      "uesp_id": "xx003545",
+      "local_form_id": "003545",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Waterbreathing",
+        "Fortify Magicka",
+        "Regenerate Magicka"
+      ],
+      "feudi": {
+        "availability": "present",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Restore Stamina': servono tutti i candidati)"
+      },
+      "editor_id": "BYOHSalmonRoe01",
+      "stats": {
+        "value": 5,
+        "weight": 0.2,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "salt_pile",
+      "name_en": "Salt Pile",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00034cdf",
+      "local_form_id": "034cdf",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Magic",
+        "Fortify Restoration",
+        "Slow",
+        "Regenerate Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Restoration' gia' completo nei feudi)"
+      },
+      "editor_id": "SaltPile"
+    },
+    {
+      "id": "scaly_pholiota",
+      "name_en": "Scaly Pholiota",
+      "name_it": "Pholiota squamosa",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006f950",
+      "local_form_id": "06f950",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Magic",
+        "Fortify Illusion",
+        "Regenerate Stamina",
+        "Fortify Carry Weight"
+      ],
+      "feudi": {
+        "availability": "rift",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "ScalyPholiotaBits",
+      "world_plants": {
+        "eastmarch": 1,
+        "rift": 179
+      }
+    },
+    {
+      "id": "scathecraw",
+      "name_en": "Scathecraw",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx017e97",
+      "local_form_id": "017e97",
+      "form_id_verified": true,
+      "effects": [
+        "Ravage Health",
+        "Ravage Stamina",
+        "Ravage Magicka",
+        "Lingering Damage Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Lingering Damage Health' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2Scathecraw01"
+    },
+    {
+      "id": "silverside_perch",
+      "name_en": "Silverside Perch",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00106e1c",
+      "local_form_id": "106e1c",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Damage Stamina Regen",
+        "Ravage Health",
+        "Resist Frost"
+      ],
+      "feudi": {
+        "availability": "present",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Restore Stamina': servono tutti i candidati)"
+      },
+      "editor_id": "CritterPondFish01Ingredient",
+      "stats": {
+        "value": 15,
+        "weight": 0.25,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "skeever_tail",
+      "name_en": "Skeever Tail",
+      "name_it": "Coda di skeever",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad6f",
+      "local_form_id": "03ad6f",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina Regen",
+        "Ravage Health",
+        "Damage Health",
+        "Fortify Light Armor"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "SkeeverTail",
+      "stats": {
+        "value": 3,
+        "weight": 0.2,
+        "other_uses": "alchemy only"
+      }
+    },
+    {
+      "id": "slaughterfish_egg",
+      "name_en": "Slaughterfish Egg",
+      "name_it": "Uovo di pesce macellaio",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007e8c5",
+      "local_form_id": "07e8c5",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Fortify Pickpocket",
+        "Lingering Damage Health",
+        "Fortify Stamina"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "SlaughterfishEgg01",
+      "world_plants": {
+        "eastmarch": 37,
+        "rift": 115
+      },
+      "stats": {
+        "value": 3,
+        "weight": 0.2,
+        "other_uses": null
+      }
+    },
+    {
+      "id": "slaughterfish_scales",
+      "name_en": "Slaughterfish Scales",
+      "name_it": "Squame di pesce macellaio",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad70",
+      "local_form_id": "03ad70",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Frost",
+        "Lingering Damage Health",
+        "Fortify Heavy Armor",
+        "Fortify Block"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "SlaughterfishScales",
+      "stats": {
+        "value": 3,
+        "weight": 0.1,
+        "other_uses": "Hearthfire trophy"
+      }
+    },
+    {
+      "id": "small_antlers",
+      "name_en": "Small Antlers",
+      "name_it": "Palchi piccoli",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc0b",
+      "local_form_id": "06bc0b",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Poison",
+        "Fortify Restoration",
+        "Lingering Damage Stamina",
+        "Damage Health"
+      ],
+      "feudi": {
+        "availability": "present",
+        "source": "discord:#pozioni-alchemiche (ricetta minima)"
+      },
+      "editor_id": "AntlersSmall"
+    },
+    {
+      "id": "small_pearl",
+      "name_en": "Small Pearl",
+      "name_it": "Perla piccola",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00085500",
+      "local_form_id": "085500",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify One-handed",
+        "Fortify Restoration",
+        "Resist Frost"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "PearlSmall"
+    },
+    {
+      "id": "snowberries",
+      "name_en": "Snowberries",
+      "name_it": "Bacche di neve",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0001b3bd",
+      "local_form_id": "01b3bd",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Fire",
+        "Fortify Enchanting",
+        "Resist Frost",
+        "Resist Shock"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Snowberry",
+      "world_plants": {
+        "eastmarch": 274,
+        "rift": 76
+      }
+    },
+    {
+      "id": "spawn_ash",
+      "name_en": "Spawn Ash",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx01cd6d",
+      "local_form_id": "01cd6d",
+      "form_id_verified": true,
+      "effects": [
+        "Ravage Stamina",
+        "Resist Fire",
+        "Fortify Enchanting",
+        "Ravage Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Enchanting' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2GhoulAsh"
+    },
+    {
+      "id": "spider_egg",
+      "name_en": "Spider Egg",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0009151b",
+      "local_form_id": "09151b",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Stamina",
+        "Damage Magicka Regen",
+        "Fortify Lockpicking",
+        "Fortify Marksman"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Lockpicking' gia' completo nei feudi)"
+      },
+      "editor_id": "SpiderEgg"
+    },
+    {
+      "id": "spriggan_sap",
+      "name_en": "Spriggan Sap",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "00063b5f",
+      "local_form_id": "063b5f",
+      "form_id_verified": true,
+      "effects": [
+        "Damage Magicka Regen",
+        "Fortify Enchanting",
+        "Fortify Smithing",
+        "Fortify Alteration"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Alteration' gia' completo nei feudi)"
+      },
+      "editor_id": "SprigganSap"
+    },
+    {
+      "id": "swamp_fungal_pod",
+      "name_en": "Swamp Fungal Pod",
+      "name_it": "Baccello fungino di palude",
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0007e8b7",
+      "local_form_id": "07e8b7",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Shock",
+        "Lingering Damage Magicka",
+        "Paralysis",
+        "Restore Health"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "SwampFungalPod01"
+    },
+    {
+      "id": "taproot",
+      "name_en": "Taproot",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad71",
+      "local_form_id": "03ad71",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Magic",
+        "Fortify Illusion",
+        "Regenerate Magicka",
+        "Restore Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Illusion' gia' completo nei feudi)"
+      },
+      "editor_id": "Taproot"
+    },
+    {
+      "id": "thistle_branch",
+      "name_en": "Thistle Branch",
+      "name_it": "Ramo di cardo",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "000134aa",
+      "local_form_id": "0134aa",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Frost",
+        "Ravage Stamina",
+        "Resist Poison",
+        "Fortify Heavy Armor"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Thistle01",
+      "world_plants": {
+        "eastmarch": 137,
+        "rift": 36
+      }
+    },
+    {
+      "id": "torchbug_thorax",
+      "name_en": "Torchbug Thorax",
+      "name_it": null,
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da73",
+      "local_form_id": "04da73",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Lingering Damage Magicka",
+        "Weakness to Magic",
+        "Fortify Stamina"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Stamina' gia' completo nei feudi)"
+      },
+      "editor_id": "FireflyThorax"
+    },
+    {
+      "id": "trama_root",
+      "name_en": "Trama Root",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dragonborn.esm",
+      "uesp_id": "xx017008",
+      "local_form_id": "017008",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Shock",
+        "Fortify Carry Weight",
+        "Damage Magicka",
+        "Slow"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Carry Weight' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC2TramaRoot01"
+    },
+    {
+      "id": "troll_fat",
+      "name_en": "Troll Fat",
+      "name_it": "Grasso di troll",
+      "type": "animale",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad72",
+      "local_form_id": "03ad72",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Fortify Two-handed",
+        "Frenzy",
+        "Damage Health"
+      ],
+      "feudi": {
+        "availability": "both",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "TrollFat",
+      "stats": {
+        "value": 15,
+        "weight": 1,
+        "other_uses": "troll trophy (Hearthfire)"
+      }
+    },
+    {
+      "id": "tundra_cotton",
+      "name_en": "Tundra Cotton",
+      "name_it": "Cotone della tundra",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003f7f8",
+      "local_form_id": "03f7f8",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Magic",
+        "Fortify Magicka",
+        "Fortify Block",
+        "Fortify Barter"
+      ],
+      "feudi": {
+        "availability": "none",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "TundraCotton"
+    },
+    {
+      "id": "vampire_dust",
+      "name_en": "Vampire Dust",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad76",
+      "local_form_id": "03ad76",
+      "form_id_verified": true,
+      "effects": [
+        "Invisibility",
+        "Restore Magicka",
+        "Regenerate Health",
+        "Cure Disease"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Cure Disease' gia' completo nei feudi)"
+      },
+      "editor_id": "vampireDust"
+    },
+    {
+      "id": "void_salts",
+      "name_en": "Void Salts",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0003ad60",
+      "local_form_id": "03ad60",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Shock",
+        "Resist Magic",
+        "Damage Health",
+        "Fortify Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Resist Magic' gia' completo nei feudi)"
+      },
+      "editor_id": "VoidSalts"
+    },
+    {
+      "id": "wheat",
+      "name_en": "Wheat",
+      "name_it": "Grano",
+      "type": "pianta",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004b0ba",
+      "local_form_id": "04b0ba",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Health",
+        "Fortify Health",
+        "Damage Stamina Regen",
+        "Lingering Damage Magicka"
+      ],
+      "feudi": {
+        "availability": "eastmarch",
+        "source": "discord:#piante-e-spawn"
+      },
+      "editor_id": "Wheat",
+      "world_plants": {
+        "eastmarch": 32,
+        "rift": 14
+      }
+    },
+    {
+      "id": "white_cap",
+      "name_en": "White Cap",
+      "name_it": null,
+      "type": "fungo",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0004da22",
+      "local_form_id": "04da22",
+      "form_id_verified": true,
+      "effects": [
+        "Weakness to Frost",
+        "Fortify Heavy Armor",
+        "Restore Magicka",
+        "Ravage Magicka"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Heavy Armor' gia' completo nei feudi)"
+      },
+      "editor_id": "Mushroom03",
+      "world_plants": {
+        "eastmarch": 0,
+        "rift": 12
+      }
+    },
+    {
+      "id": "wisp_wrappings",
+      "name_en": "Wisp Wrappings",
+      "name_it": null,
+      "type": "altro",
+      "plugin": "Skyrim.esm",
+      "uesp_id": "0006bc0e",
+      "local_form_id": "06bc0e",
+      "form_id_verified": true,
+      "effects": [
+        "Restore Stamina",
+        "Fortify Destruction",
+        "Fortify Carry Weight",
+        "Resist Magic"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Carry Weight' gia' completo nei feudi)"
+      },
+      "editor_id": "WispWrappings"
+    },
+    {
+      "id": "yellow_mountain_flower",
+      "name_en": "Yellow Mountain Flower",
+      "name_it": null,
+      "type": "pianta",
+      "plugin": "Dawnguard.esm",
+      "uesp_id": "xx002a78",
+      "local_form_id": "002a78",
+      "form_id_verified": true,
+      "effects": [
+        "Resist Poison",
+        "Fortify Restoration",
+        "Fortify Health",
+        "Damage Stamina Regen"
+      ],
+      "feudi": {
+        "availability": "none",
+        "inferred": true,
+        "source": "dedotto da #pozioni-alchemiche (effetto 'Fortify Health' gia' completo nei feudi)"
+      },
+      "editor_id": "DLC1MountainFlower01Yellow"
+    }
+  ]
+}

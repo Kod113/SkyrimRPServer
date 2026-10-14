@@ -1,0 +1,1308 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-10-14",
+    "author": "david",
+    "description": "Effetti alchemici. 'ingredients' e' calcolato da ingredients.json; 'discord_expected' sono i numeri scritti nel canale #pozioni-alchemiche, usati per la verifica.",
+    "rules": [
+      "Una pozione usa 2 o 3 ingredienti; almeno 2 devono condividere lo stesso effetto.",
+      "Effetto buono in comune = pozione. Effetto cattivo in comune = veleno.",
+      "Ogni ingrediente ha 4 effetti; mangiandolo si scopre il primo."
+    ]
+  },
+  "items": [
+    {
+      "id": "cure_disease",
+      "name_en": "Cure Disease",
+      "name_it": "Cura malattie",
+      "kind": "pozione",
+      "ingredients": [
+        "charred_skeever_hide",
+        "felsaad_tern_feathers",
+        "hawk_feathers",
+        "mudcrab_chitin",
+        "vampire_dust"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "hawk_feathers",
+        "mudcrab_chitin"
+      ]
+    },
+    {
+      "id": "fortify_alteration",
+      "name_en": "Fortify Alteration",
+      "name_it": "Potenzia Alterazione",
+      "kind": "pozione",
+      "ingredients": [
+        "burnt_spriggan_wood",
+        "grass_pod",
+        "river_betty",
+        "spriggan_sap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "fortify_barter",
+      "name_en": "Fortify Barter",
+      "name_it": "Potenzia Mercanteggiare",
+      "kind": "pozione",
+      "ingredients": [
+        "butterfly_wing",
+        "dragons_tongue",
+        "hagraven_claw",
+        "tundra_cotton"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "fortify_block",
+      "name_en": "Fortify Block",
+      "name_it": "Potenzia Parata",
+      "kind": "pozione",
+      "ingredients": [
+        "bleeding_crown",
+        "boar_tusk",
+        "briar_heart",
+        "honeycomb",
+        "pearl",
+        "slaughterfish_scales",
+        "tundra_cotton"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "bleeding_crown",
+        "slaughterfish_scales"
+      ]
+    },
+    {
+      "id": "fortify_carry_weight",
+      "name_en": "Fortify Carry Weight",
+      "name_it": "Potenzia Capacità di carico",
+      "kind": "pozione",
+      "ingredients": [
+        "creep_cluster",
+        "giants_toe",
+        "hawk_beak",
+        "netch_jelly",
+        "poison_bloom",
+        "river_betty",
+        "scaly_pholiota",
+        "trama_root",
+        "wisp_wrappings"
+      ],
+      "discord_expected": {
+        "total_ingredients": 9,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "creep_cluster",
+        "hawk_beak"
+      ]
+    },
+    {
+      "id": "fortify_conjuration",
+      "name_en": "Fortify Conjuration",
+      "name_it": "Potenzia Evocazione",
+      "kind": "pozione",
+      "ingredients": [
+        "ancestor_moth_wing",
+        "blue_butterfly_wing",
+        "blue_mountain_flower",
+        "bone_meal",
+        "chaurus_hunter_antennae",
+        "frost_salts",
+        "hagraven_feathers",
+        "lavender"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "fortify_destruction",
+      "name_en": "Fortify Destruction",
+      "name_it": "Potenzia Distruzione",
+      "kind": "pozione",
+      "ingredients": [
+        "ash_creep_cluster",
+        "beehive_husk",
+        "ectoplasm",
+        "glow_dust",
+        "glowing_mushroom",
+        "nightshade",
+        "wisp_wrappings"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "nightshade",
+        "glowing_mushroom"
+      ]
+    },
+    {
+      "id": "fortify_enchanting",
+      "name_en": "Fortify Enchanting",
+      "name_it": "Potenzia Incantamento",
+      "kind": "pozione",
+      "ingredients": [
+        "ancestor_moth_wing",
+        "blue_butterfly_wing",
+        "chaurus_hunter_antennae",
+        "hagraven_claw",
+        "snowberries",
+        "spawn_ash",
+        "spriggan_sap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "fortify_health",
+      "name_en": "Fortify Health",
+      "name_it": "Potenzia Salute",
+      "kind": "pozione",
+      "ingredients": [
+        "bear_claws",
+        "blue_mountain_flower",
+        "boar_tusk",
+        "giants_toe",
+        "glowing_mushroom",
+        "hanging_moss",
+        "wheat",
+        "yellow_mountain_flower"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "blue_mountain_flower",
+        "wheat"
+      ]
+    },
+    {
+      "id": "fortify_heavy_armor",
+      "name_en": "Fortify Heavy Armor",
+      "name_it": "Potenzia Armatura pesante",
+      "kind": "pozione",
+      "ingredients": [
+        "ice_wraith_teeth",
+        "sabre_cat_tooth",
+        "slaughterfish_scales",
+        "thistle_branch",
+        "white_cap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "thistle_branch",
+        "ice_wraith_teeth"
+      ]
+    },
+    {
+      "id": "fortify_illusion",
+      "name_en": "Fortify Illusion",
+      "name_it": "Potenzia Illusione",
+      "kind": "pozione",
+      "ingredients": [
+        "dragons_tongue",
+        "dwarven_oil",
+        "mora_tapinella",
+        "scaly_pholiota",
+        "taproot"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "dragons_tongue",
+        "mora_tapinella"
+      ]
+    },
+    {
+      "id": "fortify_light_armor",
+      "name_en": "Fortify Light Armor",
+      "name_it": "Potenzia Armatura leggera",
+      "kind": "pozione",
+      "ingredients": [
+        "ash_hopper_jelly",
+        "beehive_husk",
+        "felsaad_tern_feathers",
+        "hawk_feathers",
+        "honeycomb",
+        "luna_moth_wing",
+        "skeever_tail"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "hawk_feathers",
+        "skeever_tail"
+      ]
+    },
+    {
+      "id": "fortify_lockpicking",
+      "name_en": "Fortify Lockpicking",
+      "name_it": "Potenzia Scasso",
+      "kind": "pozione",
+      "ingredients": [
+        "ashen_grass_pod",
+        "falmer_ear",
+        "namiras_rot",
+        "pine_thrush_egg",
+        "spider_egg"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 0
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "fortify_magicka",
+      "name_en": "Fortify Magicka",
+      "name_it": "Potenzia Magicka",
+      "kind": "pozione",
+      "ingredients": [
+        "briar_heart",
+        "ectoplasm",
+        "emperor_parasol_moss",
+        "histcarp",
+        "jazbay_grapes",
+        "red_mountain_flower",
+        "salmon_roe",
+        "tundra_cotton",
+        "void_salts"
+      ],
+      "discord_expected": {
+        "total_ingredients": 9,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "jazbay_grapes",
+        "red_mountain_flower"
+      ]
+    },
+    {
+      "id": "fortify_marksman",
+      "name_en": "Fortify Marksman",
+      "name_it": "Potenzia Tiro con l'arco",
+      "kind": "pozione",
+      "ingredients": [
+        "canis_root",
+        "elves_ear",
+        "juniper_berries",
+        "spider_egg"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "canis_root",
+        "elves_ear"
+      ]
+    },
+    {
+      "id": "fortify_one_handed",
+      "name_en": "Fortify One-handed",
+      "name_it": "Potenzia Una mano",
+      "kind": "pozione",
+      "ingredients": [
+        "bear_claws",
+        "canis_root",
+        "hanging_moss",
+        "hawk_feathers",
+        "rock_warbler_egg",
+        "small_pearl"
+      ],
+      "discord_expected": {
+        "total_ingredients": 6,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "canis_root",
+        "bear_claws"
+      ]
+    },
+    {
+      "id": "fortify_pickpocket",
+      "name_en": "Fortify Pickpocket",
+      "name_it": "Potenzia Borseggio",
+      "kind": "pozione",
+      "ingredients": [
+        "blue_dartwing",
+        "nordic_barnacle",
+        "orange_dartwing",
+        "slaughterfish_egg"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "nordic_barnacle",
+        "slaughterfish_egg"
+      ]
+    },
+    {
+      "id": "fortify_restoration",
+      "name_en": "Fortify Restoration",
+      "name_it": "Potenzia Guarigione",
+      "kind": "pozione",
+      "ingredients": [
+        "abecean_longfin",
+        "cyrodilic_spadetail",
+        "salt_pile",
+        "small_antlers",
+        "small_pearl",
+        "yellow_mountain_flower"
+      ],
+      "discord_expected": {
+        "total_ingredients": 6,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "abecean_longfin",
+        "cyrodilic_spadetail"
+      ]
+    },
+    {
+      "id": "fortify_smithing",
+      "name_en": "Fortify Smithing",
+      "name_it": "Potenzia Forgiatura",
+      "kind": "pozione",
+      "ingredients": [
+        "blisterwort",
+        "glowing_mushroom",
+        "sabre_cat_tooth",
+        "spriggan_sap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "blisterwort",
+        "glowing_mushroom"
+      ]
+    },
+    {
+      "id": "fortify_sneak",
+      "name_en": "Fortify Sneak",
+      "name_it": "Potenzia Furtività",
+      "kind": "pozione",
+      "ingredients": [
+        "abecean_longfin",
+        "ashen_grass_pod",
+        "beehive_husk",
+        "frost_mirriam",
+        "hawk_feathers",
+        "human_flesh",
+        "powdered_mammoth_tusk",
+        "purple_mountain_flower"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "frost_mirriam",
+        "purple_mountain_flower"
+      ]
+    },
+    {
+      "id": "fortify_stamina",
+      "name_en": "Fortify Stamina",
+      "name_it": "Potenzia Stamina",
+      "kind": "pozione",
+      "ingredients": [
+        "boar_tusk",
+        "chaurus_eggs",
+        "garlic",
+        "large_antlers",
+        "lavender",
+        "slaughterfish_egg",
+        "torchbug_thorax"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "garlic",
+        "large_antlers"
+      ]
+    },
+    {
+      "id": "fortify_two_handed",
+      "name_en": "Fortify Two-handed",
+      "name_it": "Potenzia Due mani",
+      "kind": "pozione",
+      "ingredients": [
+        "dragons_tongue",
+        "emperor_parasol_moss",
+        "fly_amanita",
+        "troll_fat"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "dragons_tongue",
+        "fly_amanita"
+      ]
+    },
+    {
+      "id": "invisibility",
+      "name_en": "Invisibility",
+      "name_it": "Invisibilità",
+      "kind": "pozione",
+      "ingredients": [
+        "aloe_vera_leaves",
+        "ash_creep_cluster",
+        "chaurus_eggs",
+        "crimson_nirnroot",
+        "ice_wraith_teeth",
+        "luna_moth_wing",
+        "nirnroot",
+        "vampire_dust"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "nirnroot",
+        "ice_wraith_teeth"
+      ]
+    },
+    {
+      "id": "regenerate_health",
+      "name_en": "Regenerate Health",
+      "name_it": "Rigenera Salute",
+      "kind": "pozione",
+      "ingredients": [
+        "emperor_parasol_moss",
+        "garlic",
+        "gleamblossom",
+        "juniper_berries",
+        "luna_moth_wing",
+        "namiras_rot",
+        "nordic_barnacle",
+        "vampire_dust"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "garlic",
+        "nordic_barnacle"
+      ]
+    },
+    {
+      "id": "regenerate_magicka",
+      "name_en": "Regenerate Magicka",
+      "name_it": "Rigenera Magicka",
+      "kind": "pozione",
+      "ingredients": [
+        "dwarven_oil",
+        "fire_salts",
+        "garlic",
+        "jazbay_grapes",
+        "moon_sugar",
+        "salmon_roe",
+        "salt_pile",
+        "taproot"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "garlic",
+        "jazbay_grapes"
+      ]
+    },
+    {
+      "id": "regenerate_stamina",
+      "name_en": "Regenerate Stamina",
+      "name_it": "Rigenera Stamina",
+      "kind": "pozione",
+      "ingredients": [
+        "bee",
+        "fly_amanita",
+        "mora_tapinella",
+        "scaly_pholiota"
+      ],
+      "discord_expected": {
+        "total_ingredients": 4,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "fly_amanita",
+        "mora_tapinella"
+      ]
+    },
+    {
+      "id": "resist_fire",
+      "name_en": "Resist Fire",
+      "name_it": "Resistenza a Fuoco",
+      "kind": "pozione",
+      "ingredients": [
+        "ash_creep_cluster",
+        "ashen_grass_pod",
+        "bone_meal",
+        "dragons_tongue",
+        "elves_ear",
+        "fire_salts",
+        "fly_amanita",
+        "mudcrab_chitin",
+        "snowberries",
+        "spawn_ash"
+      ],
+      "discord_expected": {
+        "total_ingredients": 10,
+        "in_feudi": 5
+      },
+      "min_recipe_in_feudi": [
+        "dragons_tongue",
+        "elves_ear"
+      ]
+    },
+    {
+      "id": "resist_frost",
+      "name_en": "Resist Frost",
+      "name_it": "Resistenza a Gelo",
+      "kind": "pozione",
+      "ingredients": [
+        "frost_mirriam",
+        "frost_salts",
+        "hawk_beak",
+        "moon_sugar",
+        "purple_mountain_flower",
+        "silverside_perch",
+        "slaughterfish_scales",
+        "small_pearl",
+        "snowberries",
+        "thistle_branch"
+      ],
+      "discord_expected": {
+        "total_ingredients": 10,
+        "in_feudi": 7
+      },
+      "min_recipe_in_feudi": [
+        "frost_mirriam",
+        "purple_mountain_flower"
+      ]
+    },
+    {
+      "id": "resist_magic",
+      "name_en": "Resist Magic",
+      "name_it": "Resistenza a Magia",
+      "kind": "pozione",
+      "ingredients": [
+        "bleeding_crown",
+        "chickens_egg",
+        "crimson_nirnroot",
+        "felsaad_tern_feathers",
+        "gleamblossom",
+        "hagraven_claw",
+        "hawks_egg",
+        "lavender",
+        "nirnroot",
+        "tundra_cotton",
+        "void_salts",
+        "wisp_wrappings"
+      ],
+      "discord_expected": {
+        "total_ingredients": 12,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "nirnroot",
+        "bleeding_crown"
+      ]
+    },
+    {
+      "id": "resist_poison",
+      "name_en": "Resist Poison",
+      "name_it": "Resistenza a Veleno",
+      "kind": "pozione",
+      "ingredients": [
+        "beehive_husk",
+        "charred_skeever_hide",
+        "falmer_ear",
+        "garlic",
+        "grass_pod",
+        "mudcrab_chitin",
+        "slaughterfish_egg",
+        "thistle_branch",
+        "troll_fat",
+        "yellow_mountain_flower"
+      ],
+      "discord_expected": {
+        "total_ingredients": 10,
+        "in_feudi": 5
+      },
+      "min_recipe_in_feudi": [
+        "garlic",
+        "thistle_branch"
+      ]
+    },
+    {
+      "id": "resist_shock",
+      "name_en": "Resist Shock",
+      "name_it": "Resistenza a Fulmini",
+      "kind": "pozione",
+      "ingredients": [
+        "ash_hopper_jelly",
+        "blue_dartwing",
+        "glow_dust",
+        "glowing_mushroom",
+        "hawk_beak",
+        "pearl",
+        "pine_thrush_egg",
+        "snowberries",
+        "swamp_fungal_pod"
+      ],
+      "discord_expected": {
+        "total_ingredients": 9,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "snowberries",
+        "glowing_mushroom"
+      ]
+    },
+    {
+      "id": "restore_health",
+      "name_en": "Restore Health",
+      "name_it": "Ripristina Salute",
+      "kind": "pozione",
+      "ingredients": [
+        "aloe_vera_leaves",
+        "ash_hopper_jelly",
+        "blisterwort",
+        "blue_dartwing",
+        "blue_mountain_flower",
+        "butterfly_wing",
+        "charred_skeever_hide",
+        "daedra_heart",
+        "eye_of_sabre_cat",
+        "felsaad_tern_feathers",
+        "imp_stool",
+        "rock_warbler_egg",
+        "swamp_fungal_pod",
+        "wheat"
+      ],
+      "discord_expected": {
+        "total_ingredients": 14,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "blue_mountain_flower",
+        "wheat"
+      ]
+    },
+    {
+      "id": "restore_magicka",
+      "name_en": "Restore Magicka",
+      "name_it": "Ripristina Magicka",
+      "kind": "pozione",
+      "ingredients": [
+        "briar_heart",
+        "creep_cluster",
+        "dwarven_oil",
+        "ectoplasm",
+        "elves_ear",
+        "fire_salts",
+        "frost_salts",
+        "giant_lichen",
+        "grass_pod",
+        "human_flesh",
+        "moon_sugar",
+        "mora_tapinella",
+        "pearl",
+        "red_mountain_flower",
+        "taproot",
+        "vampire_dust",
+        "white_cap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 17,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "creep_cluster",
+        "elves_ear"
+      ]
+    },
+    {
+      "id": "restore_stamina",
+      "name_en": "Restore Stamina",
+      "name_it": "Ripristina Stamina",
+      "kind": "pozione",
+      "ingredients": [
+        "aloe_vera_leaves",
+        "bear_claws",
+        "bee",
+        "charred_skeever_hide",
+        "eye_of_sabre_cat",
+        "hawk_beak",
+        "histcarp",
+        "honeycomb",
+        "large_antlers",
+        "mudcrab_chitin",
+        "netch_jelly",
+        "orange_dartwing",
+        "pearl",
+        "pine_thrush_egg",
+        "powdered_mammoth_tusk",
+        "purple_mountain_flower",
+        "sabre_cat_tooth",
+        "salmon_roe",
+        "silverside_perch",
+        "small_pearl",
+        "torchbug_thorax",
+        "wisp_wrappings"
+      ],
+      "discord_expected": {
+        "total_ingredients": 22,
+        "in_feudi": 10
+      },
+      "min_recipe_in_feudi": [
+        "purple_mountain_flower",
+        "bear_claws"
+      ]
+    },
+    {
+      "id": "waterbreathing",
+      "name_en": "Waterbreathing",
+      "name_it": "Respirare sott'acqua",
+      "kind": "pozione",
+      "ingredients": [
+        "chickens_egg",
+        "hawks_egg",
+        "histcarp",
+        "nordic_barnacle",
+        "salmon_roe"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "histcarp",
+        "nordic_barnacle"
+      ]
+    },
+    {
+      "id": "damage_health",
+      "name_en": "Damage Health",
+      "name_it": "Danneggia Salute",
+      "kind": "veleno",
+      "ingredients": [
+        "crimson_nirnroot",
+        "deathbell",
+        "ectoplasm",
+        "emperor_parasol_moss",
+        "falmer_ear",
+        "human_flesh",
+        "human_heart",
+        "imp_stool",
+        "nightshade",
+        "nirnroot",
+        "poison_bloom",
+        "red_mountain_flower",
+        "river_betty",
+        "skeever_tail",
+        "small_antlers",
+        "troll_fat",
+        "void_salts"
+      ],
+      "discord_expected": {
+        "total_ingredients": 17,
+        "in_feudi": 7
+      },
+      "min_recipe_in_feudi": [
+        "nightshade",
+        "nirnroot"
+      ]
+    },
+    {
+      "id": "damage_magicka",
+      "name_en": "Damage Magicka",
+      "name_it": "Danneggia Magicka",
+      "kind": "veleno",
+      "ingredients": [
+        "aloe_vera_leaves",
+        "butterfly_wing",
+        "chaurus_eggs",
+        "daedra_heart",
+        "eye_of_sabre_cat",
+        "glow_dust",
+        "hagraven_feathers",
+        "hanging_moss",
+        "human_heart",
+        "luna_moth_wing",
+        "namiras_rot",
+        "nordic_barnacle",
+        "trama_root"
+      ],
+      "discord_expected": {
+        "total_ingredients": 13,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "eye_of_sabre_cat",
+        "nordic_barnacle"
+      ]
+    },
+    {
+      "id": "damage_magicka_regen",
+      "name_en": "Damage Magicka Regen",
+      "name_it": "Danneggia Rigenerazione Magicka",
+      "kind": "veleno",
+      "ingredients": [
+        "ancestor_moth_wing",
+        "bear_claws",
+        "blue_butterfly_wing",
+        "blue_mountain_flower",
+        "burnt_spriggan_wood",
+        "chaurus_hunter_antennae",
+        "chickens_egg",
+        "glow_dust",
+        "hanging_moss",
+        "hawks_egg",
+        "human_heart",
+        "nightshade",
+        "spider_egg",
+        "spriggan_sap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 14,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "blue_mountain_flower",
+        "nightshade"
+      ]
+    },
+    {
+      "id": "damage_stamina",
+      "name_en": "Damage Stamina",
+      "name_it": "Danneggia Stamina",
+      "kind": "veleno",
+      "ingredients": [
+        "ancestor_moth_wing",
+        "ash_creep_cluster",
+        "blisterwort",
+        "blue_butterfly_wing",
+        "bone_meal",
+        "canis_root",
+        "chaurus_hunter_antennae",
+        "crimson_nirnroot",
+        "cyrodilic_spadetail",
+        "giants_toe",
+        "nirnroot",
+        "rock_warbler_egg",
+        "spider_egg"
+      ],
+      "discord_expected": {
+        "total_ingredients": 13,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "canis_root",
+        "nirnroot"
+      ]
+    },
+    {
+      "id": "damage_stamina_regen",
+      "name_en": "Damage Stamina Regen",
+      "name_it": "Danneggia Rigenerazione Stamina",
+      "kind": "veleno",
+      "ingredients": [
+        "creep_cluster",
+        "daedra_heart",
+        "frost_mirriam",
+        "giants_toe",
+        "histcarp",
+        "juniper_berries",
+        "large_antlers",
+        "silverside_perch",
+        "skeever_tail",
+        "wheat",
+        "yellow_mountain_flower"
+      ],
+      "discord_expected": {
+        "total_ingredients": 11,
+        "in_feudi": 7
+      },
+      "min_recipe_in_feudi": [
+        "creep_cluster",
+        "frost_mirriam"
+      ]
+    },
+    {
+      "id": "fear",
+      "name_en": "Fear",
+      "name_it": "Paura",
+      "kind": "veleno",
+      "ingredients": [
+        "blue_dartwing",
+        "cyrodilic_spadetail",
+        "daedra_heart",
+        "gleamblossom",
+        "namiras_rot",
+        "netch_jelly",
+        "poison_bloom",
+        "powdered_mammoth_tusk"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "frenzy",
+      "name_en": "Frenzy",
+      "name_it": "Frenesia",
+      "kind": "veleno",
+      "ingredients": [
+        "blisterwort",
+        "boar_tusk",
+        "falmer_ear",
+        "fly_amanita",
+        "hagraven_feathers",
+        "human_heart",
+        "troll_fat"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "blisterwort",
+        "fly_amanita"
+      ]
+    },
+    {
+      "id": "lingering_damage_health",
+      "name_en": "Lingering Damage Health",
+      "name_it": "Danno persistente Salute",
+      "kind": "veleno",
+      "ingredients": [
+        "imp_stool",
+        "mora_tapinella",
+        "orange_dartwing",
+        "scathecraw",
+        "slaughterfish_egg",
+        "slaughterfish_scales"
+      ],
+      "discord_expected": {
+        "total_ingredients": 6,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "mora_tapinella",
+        "slaughterfish_egg"
+      ]
+    },
+    {
+      "id": "lingering_damage_magicka",
+      "name_en": "Lingering Damage Magicka",
+      "name_it": "Danno persistente Magicka",
+      "kind": "veleno",
+      "ingredients": [
+        "hagraven_claw",
+        "purple_mountain_flower",
+        "swamp_fungal_pod",
+        "torchbug_thorax",
+        "wheat"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "purple_mountain_flower",
+        "wheat"
+      ]
+    },
+    {
+      "id": "lingering_damage_stamina",
+      "name_en": "Lingering Damage Stamina",
+      "name_it": "Danno persistente Stamina",
+      "kind": "veleno",
+      "ingredients": [
+        "butterfly_wing",
+        "chickens_egg",
+        "hawks_egg",
+        "nightshade",
+        "small_antlers"
+      ],
+      "discord_expected": {
+        "total_ingredients": 5,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "nightshade",
+        "small_antlers"
+      ]
+    },
+    {
+      "id": "paralysis",
+      "name_en": "Paralysis",
+      "name_it": "Paralisi",
+      "kind": "veleno",
+      "ingredients": [
+        "briar_heart",
+        "canis_root",
+        "gleamblossom",
+        "human_flesh",
+        "imp_stool",
+        "netch_jelly",
+        "swamp_fungal_pod"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "ravage_health",
+      "name_en": "Ravage Health",
+      "name_it": "Devasta Salute",
+      "kind": "veleno",
+      "ingredients": [
+        "cyrodilic_spadetail",
+        "eye_of_sabre_cat",
+        "giant_lichen",
+        "jazbay_grapes",
+        "scathecraw",
+        "silverside_perch",
+        "skeever_tail"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 5
+      },
+      "min_recipe_in_feudi": [
+        "jazbay_grapes",
+        "cyrodilic_spadetail"
+      ]
+    },
+    {
+      "id": "ravage_magicka",
+      "name_en": "Ravage Magicka",
+      "name_it": "Devasta Magicka",
+      "kind": "veleno",
+      "ingredients": [
+        "frost_mirriam",
+        "grass_pod",
+        "lavender",
+        "orange_dartwing",
+        "red_mountain_flower",
+        "scathecraw",
+        "spawn_ash",
+        "white_cap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "frost_mirriam",
+        "red_mountain_flower"
+      ]
+    },
+    {
+      "id": "ravage_stamina",
+      "name_en": "Ravage Stamina",
+      "name_it": "Devasta Stamina",
+      "kind": "veleno",
+      "ingredients": [
+        "bee",
+        "bone_meal",
+        "deathbell",
+        "honeycomb",
+        "scathecraw",
+        "spawn_ash",
+        "thistle_branch"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 1
+      },
+      "min_recipe_in_feudi": null
+    },
+    {
+      "id": "slow",
+      "name_en": "Slow",
+      "name_it": "Rallentamento",
+      "kind": "veleno",
+      "ingredients": [
+        "burnt_spriggan_wood",
+        "deathbell",
+        "large_antlers",
+        "poison_bloom",
+        "river_betty",
+        "salt_pile",
+        "trama_root"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "large_antlers",
+        "river_betty"
+      ]
+    },
+    {
+      "id": "weakness_to_fire",
+      "name_en": "Weakness to Fire",
+      "name_it": "Debolezza a Fuoco",
+      "kind": "veleno",
+      "ingredients": [
+        "bleeding_crown",
+        "burnt_spriggan_wood",
+        "frost_salts",
+        "ice_wraith_teeth",
+        "juniper_berries",
+        "moon_sugar",
+        "powdered_mammoth_tusk"
+      ],
+      "discord_expected": {
+        "total_ingredients": 7,
+        "in_feudi": 2
+      },
+      "min_recipe_in_feudi": [
+        "bleeding_crown",
+        "ice_wraith_teeth"
+      ]
+    },
+    {
+      "id": "weakness_to_frost",
+      "name_en": "Weakness to Frost",
+      "name_it": "Debolezza a Gelo",
+      "kind": "veleno",
+      "ingredients": [
+        "abecean_longfin",
+        "ash_hopper_jelly",
+        "elves_ear",
+        "fire_salts",
+        "ice_wraith_teeth",
+        "white_cap"
+      ],
+      "discord_expected": {
+        "total_ingredients": 6,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "elves_ear",
+        "abecean_longfin"
+      ]
+    },
+    {
+      "id": "weakness_to_magic",
+      "name_en": "Weakness to Magic",
+      "name_it": "Debolezza a Magia",
+      "kind": "veleno",
+      "ingredients": [
+        "creep_cluster",
+        "dwarven_oil",
+        "jazbay_grapes",
+        "rock_warbler_egg",
+        "salt_pile",
+        "scaly_pholiota",
+        "taproot",
+        "torchbug_thorax"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 3
+      },
+      "min_recipe_in_feudi": [
+        "creep_cluster",
+        "jazbay_grapes"
+      ]
+    },
+    {
+      "id": "weakness_to_poison",
+      "name_en": "Weakness to Poison",
+      "name_it": "Debolezza a Veleno",
+      "kind": "veleno",
+      "ingredients": [
+        "abecean_longfin",
+        "bleeding_crown",
+        "chaurus_eggs",
+        "deathbell",
+        "giant_lichen",
+        "pine_thrush_egg",
+        "sabre_cat_tooth",
+        "small_antlers"
+      ],
+      "discord_expected": {
+        "total_ingredients": 8,
+        "in_feudi": 4
+      },
+      "min_recipe_in_feudi": [
+        "abecean_longfin",
+        "bleeding_crown"
+      ]
+    },
+    {
+      "id": "weakness_to_shock",
+      "name_en": "Weakness to Shock",
+      "name_it": "Debolezza a Fulmini",
+      "kind": "veleno",
+      "ingredients": [
+        "ashen_grass_pod",
+        "bee",
+        "giant_lichen",
+        "hagraven_feathers",
+        "trama_root",
+        "void_salts"
+      ],
+      "discord_expected": {
+        "total_ingredients": 6,
+        "in_feudi": 0
+      },
+      "min_recipe_in_feudi": null
+    }
+  ]
+}

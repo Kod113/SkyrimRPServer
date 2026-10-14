@@ -1,0 +1,60 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-14",
+  "author": "david",
+  "status": "proposta di Dave_St, bozza",
+  "description": "Regole di mondo: ciclo giorno/notte e struttura/limiti di popolazione per città.",
+  "sources": [
+   "Discord #ciclo-giorno-notte",
+   "Discord #player-presenti-in-game"
+  ]
+ },
+ "day_night": {
+  "real_day_equals_game_day": true,
+  "sunset": "23:00",
+  "night": "23:15",
+  "timezone": null,
+  "skymp_note": "In SkyMP l'ora di gioco segue l'ora reale UTC con spostamento configurabile (hoursOffset): il fuso dell'orario scritto nel Discord non è indicato."
+ },
+ "population": {
+  "cap_per_city": 70,
+  "cap_reason_discord": "Mettere 100 player in un'unica cella è impossibile per come è scriptato Skyrim e Together Reborn.",
+  "cap_status": "DA RIVALUTARE: motivazione legata a Together Reborn, non a SkyMP",
+  "split_players_by_design": "rendere vivo il feudo per distribuire i player; con questa divisione 'si possono avere anche 1000 persone'",
+  "per_city": {
+   "main_hold": 1,
+   "villages": {
+    "count": 2,
+    "purpose": "fazioni o job sussidiari"
+   },
+   "mines": 3,
+   "dungeons": {
+    "total": 5,
+    "levels": [
+     {
+      "difficulty": "semplice",
+      "count": 2,
+      "party": "3-5 player"
+     },
+     {
+      "difficulty": "medio",
+      "count": 1,
+      "party": "3-5 player faticano, un party livellato ce la fa"
+     },
+     {
+      "difficulty": "difficile",
+      "count": 1,
+      "risk": "permadeath"
+     },
+     {
+      "difficulty": "arduo",
+      "count": 1,
+      "risk": "permadeath elevatissimo"
+     }
+    ]
+   }
+  },
+  "note": "Il Discord dice che combattimenti e battaglie andranno regolamentati."
+ }
+}

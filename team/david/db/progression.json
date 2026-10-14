@@ -1,0 +1,50 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-14",
+  "author": "david",
+  "status": "bozza di Shoonish, senza conferma",
+  "description": "Sistema di esperienza e livelli al posto della crescita delle singole abilità.",
+  "sources": [
+   "Discord #skill-tree"
+  ],
+  "note": "In SkyMP la crescita di skill e livelli è spenta (DisableSkillAdvanceService): il sistema va scritto nel gamemode."
+ },
+ "rules": {
+  "skill_growth_by_use": false,
+  "xp_source": "azioni specifiche (quali e quanta exp: non indicato)",
+  "on_level_up": {
+   "choose_one_attribute": [
+    "health",
+    "magicka",
+    "stamina"
+   ],
+   "skill_points_to_distribute": "esempio nel Discord: +10 punti da spendere nelle abilità",
+   "perk_points": 1
+  },
+  "mage_extra": "lo skill tree dei maghi permette di prendere incantesimi extra"
+ },
+ "example_from_discord": {
+  "character": "Duran, orco guerriero, livello 1 -> 2",
+  "attribute_choice": {
+   "health": {
+    "from": 100,
+    "to": 110
+   }
+  },
+  "skill_points_spent": {
+   "one_handed": {
+    "from": 20,
+    "to": 30
+   }
+  },
+  "perk_point_gained": 1
+ },
+ "open": [
+  "exp per livello",
+  "azioni che danno exp",
+  "elenco dei perk",
+  "valore di aumento di magicka e stamina",
+  "se i punti abilità sono sempre 10"
+ ]
+}

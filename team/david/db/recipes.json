@@ -1,0 +1,4051 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-14",
+  "author": "david",
+  "description": "Ricette di alchimia possibili con gli ingredienti presenti nei feudi (calcolate da ingredients.json).",
+  "scenarios": {
+   "feudi": [
+    "both",
+    "eastmarch",
+    "present",
+    "rift"
+   ],
+   "rift": [
+    "both",
+    "present",
+    "rift"
+   ],
+   "eastmarch": [
+    "both",
+    "eastmarch",
+    "present"
+   ]
+  }
+ },
+ "feudi": {
+  "ingredients_available": 41,
+  "pairs_with_effect": 228,
+  "effects": {
+   "Cure Disease": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "mudcrab_chitin"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Alteration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "river_betty"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Barter": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Block": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Carry Weight": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "creep_cluster",
+     "hawk_beak",
+     "river_betty",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "hawk_beak"
+     ],
+     [
+      "creep_cluster",
+      "river_betty"
+     ],
+     [
+      "hawk_beak",
+      "river_betty"
+     ],
+     [
+      "hawk_beak",
+      "scaly_pholiota"
+     ],
+     [
+      "river_betty",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Conjuration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blue_mountain_flower"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Destruction": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "nightshade"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "nightshade"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Enchanting": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "snowberries"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower",
+     "glowing_mushroom",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "glowing_mushroom"
+     ],
+     [
+      "bear_claws",
+      "wheat"
+     ],
+     [
+      "blue_mountain_flower",
+      "glowing_mushroom"
+     ],
+     [
+      "glowing_mushroom",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 4,
+    "pure_triples_examples": []
+   },
+   "Fortify Heavy Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "ice_wraith_teeth",
+     "sabre_cat_tooth",
+     "slaughterfish_scales",
+     "thistle_branch"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "ice_wraith_teeth",
+      "sabre_cat_tooth"
+     ],
+     [
+      "ice_wraith_teeth",
+      "slaughterfish_scales"
+     ],
+     [
+      "ice_wraith_teeth",
+      "thistle_branch"
+     ],
+     [
+      "sabre_cat_tooth",
+      "slaughterfish_scales"
+     ],
+     [
+      "sabre_cat_tooth",
+      "thistle_branch"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Illusion": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "mora_tapinella",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "mora_tapinella"
+     ],
+     [
+      "dragons_tongue",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Light Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Lockpicking": {
+    "kind": "pozione",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "jazbay_grapes",
+     "red_mountain_flower",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "jazbay_grapes"
+     ],
+     [
+      "histcarp",
+      "red_mountain_flower"
+     ],
+     [
+      "jazbay_grapes",
+      "red_mountain_flower"
+     ],
+     [
+      "red_mountain_flower",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 4,
+    "pure_triples_examples": []
+   },
+   "Fortify Marksman": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "canis_root",
+     "elves_ear"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "canis_root",
+      "elves_ear"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify One-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "canis_root",
+     "hawk_feathers"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "canis_root"
+     ],
+     [
+      "bear_claws",
+      "hawk_feathers"
+     ],
+     [
+      "canis_root",
+      "hawk_feathers"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Pickpocket": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "nordic_barnacle",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "nordic_barnacle",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Restoration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "cyrodilic_spadetail",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Smithing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blisterwort",
+     "glowing_mushroom",
+     "sabre_cat_tooth"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "glowing_mushroom"
+     ],
+     [
+      "blisterwort",
+      "sabre_cat_tooth"
+     ],
+     [
+      "glowing_mushroom",
+      "sabre_cat_tooth"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Sneak": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "frost_mirriam",
+     "hawk_feathers",
+     "purple_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "frost_mirriam"
+     ],
+     [
+      "abecean_longfin",
+      "hawk_feathers"
+     ],
+     [
+      "abecean_longfin",
+      "purple_mountain_flower"
+     ],
+     [
+      "frost_mirriam",
+      "hawk_feathers"
+     ],
+     [
+      "hawk_feathers",
+      "purple_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "large_antlers",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "garlic",
+      "large_antlers"
+     ],
+     [
+      "large_antlers",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Two-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Invisibility": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "ice_wraith_teeth",
+     "nirnroot"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "ice_wraith_teeth",
+      "nirnroot"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Regenerate Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "garlic",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Regenerate Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "jazbay_grapes",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "garlic",
+      "jazbay_grapes"
+     ],
+     [
+      "garlic",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Regenerate Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "fly_amanita",
+     "mora_tapinella",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "fly_amanita",
+      "mora_tapinella"
+     ],
+     [
+      "fly_amanita",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Resist Fire": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "elves_ear",
+     "fly_amanita",
+     "mudcrab_chitin",
+     "snowberries"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "elves_ear"
+     ],
+     [
+      "dragons_tongue",
+      "mudcrab_chitin"
+     ],
+     [
+      "dragons_tongue",
+      "snowberries"
+     ],
+     [
+      "elves_ear",
+      "fly_amanita"
+     ],
+     [
+      "elves_ear",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 9,
+    "pure_triples_examples": []
+   },
+   "Resist Frost": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "frost_mirriam",
+     "hawk_beak",
+     "purple_mountain_flower",
+     "silverside_perch",
+     "slaughterfish_scales",
+     "snowberries",
+     "thistle_branch"
+    ],
+    "craftable": true,
+    "pairs_total": 21,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "hawk_beak"
+     ],
+     [
+      "frost_mirriam",
+      "slaughterfish_scales"
+     ],
+     [
+      "frost_mirriam",
+      "snowberries"
+     ],
+     [
+      "frost_mirriam",
+      "thistle_branch"
+     ],
+     [
+      "hawk_beak",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 14,
+    "pure_triples_examples": []
+   },
+   "Resist Magic": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown",
+     "nirnroot"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "nirnroot"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Resist Poison": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "mudcrab_chitin",
+     "slaughterfish_egg",
+     "thistle_branch",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "garlic",
+      "mudcrab_chitin"
+     ],
+     [
+      "garlic",
+      "thistle_branch"
+     ],
+     [
+      "garlic",
+      "troll_fat"
+     ],
+     [
+      "mudcrab_chitin",
+      "slaughterfish_egg"
+     ],
+     [
+      "mudcrab_chitin",
+      "thistle_branch"
+     ]
+    ],
+    "pure_pairs_count": 9,
+    "pure_triples_examples": []
+   },
+   "Resist Shock": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "hawk_beak",
+     "snowberries"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "hawk_beak"
+     ],
+     [
+      "glowing_mushroom",
+      "snowberries"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Restore Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blisterwort",
+     "blue_mountain_flower",
+     "eye_of_sabre_cat",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "blue_mountain_flower"
+     ],
+     [
+      "blisterwort",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "blisterwort",
+      "wheat"
+     ],
+     [
+      "blue_mountain_flower",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "eye_of_sabre_cat",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Restore Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "creep_cluster",
+     "elves_ear",
+     "mora_tapinella",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "elves_ear"
+     ],
+     [
+      "creep_cluster",
+      "mora_tapinella"
+     ],
+     [
+      "creep_cluster",
+      "red_mountain_flower"
+     ],
+     [
+      "elves_ear",
+      "mora_tapinella"
+     ],
+     [
+      "elves_ear",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 6,
+    "pure_triples_examples": []
+   },
+   "Restore Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "eye_of_sabre_cat",
+     "hawk_beak",
+     "histcarp",
+     "large_antlers",
+     "mudcrab_chitin",
+     "purple_mountain_flower",
+     "sabre_cat_tooth",
+     "salmon_roe",
+     "silverside_perch"
+    ],
+    "craftable": true,
+    "pairs_total": 45,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "bear_claws",
+      "hawk_beak"
+     ],
+     [
+      "bear_claws",
+      "histcarp"
+     ],
+     [
+      "bear_claws",
+      "large_antlers"
+     ],
+     [
+      "bear_claws",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 37,
+    "pure_triples_examples": []
+   },
+   "Waterbreathing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "nordic_barnacle",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "nordic_barnacle"
+     ],
+     [
+      "nordic_barnacle",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "nightshade",
+     "nirnroot",
+     "red_mountain_flower",
+     "river_betty",
+     "skeever_tail",
+     "small_antlers",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 21,
+    "pure_pairs": [
+     [
+      "nightshade",
+      "nirnroot"
+     ],
+     [
+      "nightshade",
+      "red_mountain_flower"
+     ],
+     [
+      "nightshade",
+      "river_betty"
+     ],
+     [
+      "nightshade",
+      "skeever_tail"
+     ],
+     [
+      "nightshade",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 20,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "eye_of_sabre_cat",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "eye_of_sabre_cat",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower",
+     "nightshade"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "nightshade"
+     ],
+     [
+      "blue_mountain_flower",
+      "nightshade"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "blisterwort",
+     "canis_root",
+     "cyrodilic_spadetail",
+     "nirnroot"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "canis_root"
+     ],
+     [
+      "blisterwort",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "blisterwort",
+      "nirnroot"
+     ],
+     [
+      "canis_root",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "canis_root",
+      "nirnroot"
+     ]
+    ],
+    "pure_pairs_count": 6,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "creep_cluster",
+     "frost_mirriam",
+     "histcarp",
+     "large_antlers",
+     "silverside_perch",
+     "skeever_tail",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 21,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "frost_mirriam"
+     ],
+     [
+      "creep_cluster",
+      "histcarp"
+     ],
+     [
+      "creep_cluster",
+      "large_antlers"
+     ],
+     [
+      "creep_cluster",
+      "silverside_perch"
+     ],
+     [
+      "creep_cluster",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 16,
+    "pure_triples_examples": []
+   },
+   "Fear": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Frenzy": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "blisterwort",
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "fly_amanita"
+     ],
+     [
+      "blisterwort",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "mora_tapinella",
+     "slaughterfish_egg",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "mora_tapinella",
+      "slaughterfish_egg"
+     ],
+     [
+      "mora_tapinella",
+      "slaughterfish_scales"
+     ],
+     [
+      "slaughterfish_egg",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "purple_mountain_flower",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "purple_mountain_flower",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "nightshade",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Paralysis": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "canis_root"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Ravage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail",
+     "eye_of_sabre_cat",
+     "jazbay_grapes",
+     "silverside_perch",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "cyrodilic_spadetail",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "jazbay_grapes"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "silverside_perch"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "skeever_tail"
+     ],
+     [
+      "eye_of_sabre_cat",
+      "jazbay_grapes"
+     ]
+    ],
+    "pure_pairs_count": 8,
+    "pure_triples_examples": []
+   },
+   "Ravage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "frost_mirriam",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Ravage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "thistle_branch"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Slow": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "large_antlers",
+     "river_betty"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "large_antlers",
+      "river_betty"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Fire": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bleeding_crown",
+     "ice_wraith_teeth"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "ice_wraith_teeth"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Frost": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "elves_ear",
+     "ice_wraith_teeth"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "elves_ear"
+     ],
+     [
+      "abecean_longfin",
+      "ice_wraith_teeth"
+     ],
+     [
+      "elves_ear",
+      "ice_wraith_teeth"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Weakness to Magic": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "creep_cluster",
+     "jazbay_grapes",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "jazbay_grapes"
+     ],
+     [
+      "jazbay_grapes",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Weakness to Poison": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "bleeding_crown",
+     "sabre_cat_tooth",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "bleeding_crown"
+     ],
+     [
+      "abecean_longfin",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "small_antlers"
+     ],
+     [
+      "sabre_cat_tooth",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Weakness to Shock": {
+    "kind": "veleno",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   }
+  },
+  "ingredients_without_partner": []
+ },
+ "rift": {
+  "ingredients_available": 33,
+  "pairs_with_effect": 152,
+  "effects": {
+   "Cure Disease": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "mudcrab_chitin"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Alteration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "river_betty"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Barter": {
+    "kind": "pozione",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Block": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Carry Weight": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_beak",
+     "river_betty",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "hawk_beak",
+      "river_betty"
+     ],
+     [
+      "hawk_beak",
+      "scaly_pholiota"
+     ],
+     [
+      "river_betty",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Conjuration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blue_mountain_flower"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Destruction": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Enchanting": {
+    "kind": "pozione",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower",
+     "glowing_mushroom"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "glowing_mushroom"
+     ],
+     [
+      "blue_mountain_flower",
+      "glowing_mushroom"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Heavy Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "sabre_cat_tooth",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "sabre_cat_tooth",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Illusion": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "mora_tapinella",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Light Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Lockpicking": {
+    "kind": "pozione",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "red_mountain_flower",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "red_mountain_flower"
+     ],
+     [
+      "red_mountain_flower",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Marksman": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "canis_root",
+     "elves_ear"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "canis_root",
+      "elves_ear"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify One-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "canis_root",
+     "hawk_feathers"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "canis_root"
+     ],
+     [
+      "bear_claws",
+      "hawk_feathers"
+     ],
+     [
+      "canis_root",
+      "hawk_feathers"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Pickpocket": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "nordic_barnacle",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "nordic_barnacle",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Restoration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "cyrodilic_spadetail",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Smithing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blisterwort",
+     "glowing_mushroom",
+     "sabre_cat_tooth"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "glowing_mushroom"
+     ],
+     [
+      "blisterwort",
+      "sabre_cat_tooth"
+     ],
+     [
+      "glowing_mushroom",
+      "sabre_cat_tooth"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Sneak": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "frost_mirriam",
+     "hawk_feathers",
+     "purple_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "frost_mirriam"
+     ],
+     [
+      "abecean_longfin",
+      "hawk_feathers"
+     ],
+     [
+      "abecean_longfin",
+      "purple_mountain_flower"
+     ],
+     [
+      "frost_mirriam",
+      "hawk_feathers"
+     ],
+     [
+      "hawk_feathers",
+      "purple_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "large_antlers",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "garlic",
+      "large_antlers"
+     ],
+     [
+      "large_antlers",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Two-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Invisibility": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "nirnroot"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Regenerate Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "garlic",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Regenerate Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "garlic",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Regenerate Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "fly_amanita",
+     "mora_tapinella",
+     "scaly_pholiota"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "fly_amanita",
+      "mora_tapinella"
+     ],
+     [
+      "fly_amanita",
+      "scaly_pholiota"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Resist Fire": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "elves_ear",
+     "fly_amanita",
+     "mudcrab_chitin"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "elves_ear",
+      "fly_amanita"
+     ],
+     [
+      "elves_ear",
+      "mudcrab_chitin"
+     ],
+     [
+      "fly_amanita",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Resist Frost": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "frost_mirriam",
+     "hawk_beak",
+     "purple_mountain_flower",
+     "silverside_perch",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "hawk_beak"
+     ],
+     [
+      "frost_mirriam",
+      "slaughterfish_scales"
+     ],
+     [
+      "hawk_beak",
+      "slaughterfish_scales"
+     ],
+     [
+      "purple_mountain_flower",
+      "slaughterfish_scales"
+     ],
+     [
+      "silverside_perch",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Resist Magic": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown",
+     "nirnroot"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "nirnroot"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Resist Poison": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "mudcrab_chitin",
+     "slaughterfish_egg",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "garlic",
+      "mudcrab_chitin"
+     ],
+     [
+      "garlic",
+      "troll_fat"
+     ],
+     [
+      "mudcrab_chitin",
+      "slaughterfish_egg"
+     ],
+     [
+      "mudcrab_chitin",
+      "troll_fat"
+     ],
+     [
+      "slaughterfish_egg",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Resist Shock": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "hawk_beak"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "hawk_beak"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Restore Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blisterwort",
+     "blue_mountain_flower",
+     "eye_of_sabre_cat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "blue_mountain_flower"
+     ],
+     [
+      "blisterwort",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "blue_mountain_flower",
+      "eye_of_sabre_cat"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Restore Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "elves_ear",
+     "mora_tapinella",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "elves_ear",
+      "mora_tapinella"
+     ],
+     [
+      "elves_ear",
+      "red_mountain_flower"
+     ],
+     [
+      "mora_tapinella",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Restore Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "eye_of_sabre_cat",
+     "hawk_beak",
+     "histcarp",
+     "large_antlers",
+     "mudcrab_chitin",
+     "purple_mountain_flower",
+     "sabre_cat_tooth",
+     "salmon_roe",
+     "silverside_perch"
+    ],
+    "craftable": true,
+    "pairs_total": 45,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "bear_claws",
+      "hawk_beak"
+     ],
+     [
+      "bear_claws",
+      "histcarp"
+     ],
+     [
+      "bear_claws",
+      "large_antlers"
+     ],
+     [
+      "bear_claws",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 37,
+    "pure_triples_examples": []
+   },
+   "Waterbreathing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "nordic_barnacle",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "nordic_barnacle"
+     ],
+     [
+      "nordic_barnacle",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "nirnroot",
+     "red_mountain_flower",
+     "river_betty",
+     "skeever_tail",
+     "small_antlers",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 15,
+    "pure_pairs": [
+     [
+      "nirnroot",
+      "red_mountain_flower"
+     ],
+     [
+      "nirnroot",
+      "river_betty"
+     ],
+     [
+      "nirnroot",
+      "skeever_tail"
+     ],
+     [
+      "nirnroot",
+      "small_antlers"
+     ],
+     [
+      "nirnroot",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 15,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "eye_of_sabre_cat",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "eye_of_sabre_cat",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "blisterwort",
+     "canis_root",
+     "cyrodilic_spadetail",
+     "nirnroot"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "canis_root"
+     ],
+     [
+      "blisterwort",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "blisterwort",
+      "nirnroot"
+     ],
+     [
+      "canis_root",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "canis_root",
+      "nirnroot"
+     ]
+    ],
+    "pure_pairs_count": 6,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "frost_mirriam",
+     "histcarp",
+     "large_antlers",
+     "silverside_perch",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "histcarp"
+     ],
+     [
+      "frost_mirriam",
+      "large_antlers"
+     ],
+     [
+      "frost_mirriam",
+      "skeever_tail"
+     ],
+     [
+      "histcarp",
+      "skeever_tail"
+     ],
+     [
+      "large_antlers",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fear": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Frenzy": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "blisterwort",
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blisterwort",
+      "fly_amanita"
+     ],
+     [
+      "blisterwort",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "mora_tapinella",
+     "slaughterfish_egg",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "mora_tapinella",
+      "slaughterfish_egg"
+     ],
+     [
+      "mora_tapinella",
+      "slaughterfish_scales"
+     ],
+     [
+      "slaughterfish_egg",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "purple_mountain_flower"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "small_antlers"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Paralysis": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "canis_root"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Ravage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail",
+     "eye_of_sabre_cat",
+     "silverside_perch",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "cyrodilic_spadetail",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "silverside_perch"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "skeever_tail"
+     ],
+     [
+      "eye_of_sabre_cat",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 4,
+    "pure_triples_examples": []
+   },
+   "Ravage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "frost_mirriam",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Ravage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Slow": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "large_antlers",
+     "river_betty"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "large_antlers",
+      "river_betty"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Fire": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bleeding_crown"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Weakness to Frost": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "elves_ear"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "elves_ear"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Magic": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "scaly_pholiota"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Weakness to Poison": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "bleeding_crown",
+     "sabre_cat_tooth",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "bleeding_crown"
+     ],
+     [
+      "abecean_longfin",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "small_antlers"
+     ],
+     [
+      "sabre_cat_tooth",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Weakness to Shock": {
+    "kind": "veleno",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   }
+  },
+  "ingredients_without_partner": []
+ },
+ "eastmarch": {
+  "ingredients_available": 37,
+  "pairs_with_effect": 197,
+  "effects": {
+   "Cure Disease": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "mudcrab_chitin"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Alteration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "river_betty"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Barter": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Block": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Carry Weight": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "creep_cluster",
+     "hawk_beak",
+     "river_betty"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "hawk_beak"
+     ],
+     [
+      "creep_cluster",
+      "river_betty"
+     ],
+     [
+      "hawk_beak",
+      "river_betty"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Fortify Conjuration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blue_mountain_flower"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Destruction": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "nightshade"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "nightshade"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Enchanting": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "snowberries"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower",
+     "glowing_mushroom",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "glowing_mushroom"
+     ],
+     [
+      "bear_claws",
+      "wheat"
+     ],
+     [
+      "blue_mountain_flower",
+      "glowing_mushroom"
+     ],
+     [
+      "glowing_mushroom",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 4,
+    "pure_triples_examples": []
+   },
+   "Fortify Heavy Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "ice_wraith_teeth",
+     "sabre_cat_tooth",
+     "slaughterfish_scales",
+     "thistle_branch"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "ice_wraith_teeth",
+      "sabre_cat_tooth"
+     ],
+     [
+      "ice_wraith_teeth",
+      "slaughterfish_scales"
+     ],
+     [
+      "ice_wraith_teeth",
+      "thistle_branch"
+     ],
+     [
+      "sabre_cat_tooth",
+      "slaughterfish_scales"
+     ],
+     [
+      "sabre_cat_tooth",
+      "thistle_branch"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Illusion": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "mora_tapinella"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "mora_tapinella"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Light Armor": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "hawk_feathers",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "hawk_feathers",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Lockpicking": {
+    "kind": "pozione",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "jazbay_grapes",
+     "red_mountain_flower",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "jazbay_grapes"
+     ],
+     [
+      "histcarp",
+      "red_mountain_flower"
+     ],
+     [
+      "jazbay_grapes",
+      "red_mountain_flower"
+     ],
+     [
+      "red_mountain_flower",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 4,
+    "pure_triples_examples": []
+   },
+   "Fortify Marksman": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "elves_ear"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Fortify One-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "hawk_feathers"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "hawk_feathers"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Pickpocket": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "nordic_barnacle",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "nordic_barnacle",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Restoration": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "cyrodilic_spadetail",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "cyrodilic_spadetail"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Smithing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "sabre_cat_tooth"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "sabre_cat_tooth"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Fortify Sneak": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "abecean_longfin",
+     "frost_mirriam",
+     "hawk_feathers",
+     "purple_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "frost_mirriam"
+     ],
+     [
+      "abecean_longfin",
+      "hawk_feathers"
+     ],
+     [
+      "abecean_longfin",
+      "purple_mountain_flower"
+     ],
+     [
+      "frost_mirriam",
+      "hawk_feathers"
+     ],
+     [
+      "hawk_feathers",
+      "purple_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Fortify Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "large_antlers",
+     "slaughterfish_egg"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "garlic",
+      "large_antlers"
+     ],
+     [
+      "large_antlers",
+      "slaughterfish_egg"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Fortify Two-handed": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "troll_fat"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Invisibility": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "ice_wraith_teeth"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Regenerate Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "garlic",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Regenerate Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "jazbay_grapes",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "garlic",
+      "jazbay_grapes"
+     ],
+     [
+      "garlic",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Regenerate Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "fly_amanita",
+     "mora_tapinella"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "fly_amanita",
+      "mora_tapinella"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Resist Fire": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "dragons_tongue",
+     "elves_ear",
+     "fly_amanita",
+     "mudcrab_chitin",
+     "snowberries"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "dragons_tongue",
+      "elves_ear"
+     ],
+     [
+      "dragons_tongue",
+      "mudcrab_chitin"
+     ],
+     [
+      "dragons_tongue",
+      "snowberries"
+     ],
+     [
+      "elves_ear",
+      "fly_amanita"
+     ],
+     [
+      "elves_ear",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 9,
+    "pure_triples_examples": []
+   },
+   "Resist Frost": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "frost_mirriam",
+     "hawk_beak",
+     "purple_mountain_flower",
+     "silverside_perch",
+     "slaughterfish_scales",
+     "snowberries",
+     "thistle_branch"
+    ],
+    "craftable": true,
+    "pairs_total": 21,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "hawk_beak"
+     ],
+     [
+      "frost_mirriam",
+      "slaughterfish_scales"
+     ],
+     [
+      "frost_mirriam",
+      "snowberries"
+     ],
+     [
+      "frost_mirriam",
+      "thistle_branch"
+     ],
+     [
+      "hawk_beak",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 14,
+    "pure_triples_examples": []
+   },
+   "Resist Magic": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bleeding_crown"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Resist Poison": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "garlic",
+     "mudcrab_chitin",
+     "slaughterfish_egg",
+     "thistle_branch",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "garlic",
+      "mudcrab_chitin"
+     ],
+     [
+      "garlic",
+      "thistle_branch"
+     ],
+     [
+      "garlic",
+      "troll_fat"
+     ],
+     [
+      "mudcrab_chitin",
+      "slaughterfish_egg"
+     ],
+     [
+      "mudcrab_chitin",
+      "thistle_branch"
+     ]
+    ],
+    "pure_pairs_count": 9,
+    "pure_triples_examples": []
+   },
+   "Resist Shock": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "glowing_mushroom",
+     "hawk_beak",
+     "snowberries"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "glowing_mushroom",
+      "hawk_beak"
+     ],
+     [
+      "glowing_mushroom",
+      "snowberries"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Restore Health": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "blue_mountain_flower",
+     "eye_of_sabre_cat",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "blue_mountain_flower",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "eye_of_sabre_cat",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Restore Magicka": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "creep_cluster",
+     "elves_ear",
+     "mora_tapinella",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "elves_ear"
+     ],
+     [
+      "creep_cluster",
+      "mora_tapinella"
+     ],
+     [
+      "creep_cluster",
+      "red_mountain_flower"
+     ],
+     [
+      "elves_ear",
+      "mora_tapinella"
+     ],
+     [
+      "elves_ear",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 6,
+    "pure_triples_examples": []
+   },
+   "Restore Stamina": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "bear_claws",
+     "eye_of_sabre_cat",
+     "hawk_beak",
+     "histcarp",
+     "large_antlers",
+     "mudcrab_chitin",
+     "purple_mountain_flower",
+     "sabre_cat_tooth",
+     "salmon_roe",
+     "silverside_perch"
+    ],
+    "craftable": true,
+    "pairs_total": 45,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "bear_claws",
+      "hawk_beak"
+     ],
+     [
+      "bear_claws",
+      "histcarp"
+     ],
+     [
+      "bear_claws",
+      "large_antlers"
+     ],
+     [
+      "bear_claws",
+      "mudcrab_chitin"
+     ]
+    ],
+    "pure_pairs_count": 37,
+    "pure_triples_examples": []
+   },
+   "Waterbreathing": {
+    "kind": "pozione",
+    "ingredients_available": [
+     "histcarp",
+     "nordic_barnacle",
+     "salmon_roe"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "histcarp",
+      "nordic_barnacle"
+     ],
+     [
+      "nordic_barnacle",
+      "salmon_roe"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "nightshade",
+     "red_mountain_flower",
+     "river_betty",
+     "skeever_tail",
+     "small_antlers",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 15,
+    "pure_pairs": [
+     [
+      "nightshade",
+      "red_mountain_flower"
+     ],
+     [
+      "nightshade",
+      "river_betty"
+     ],
+     [
+      "nightshade",
+      "skeever_tail"
+     ],
+     [
+      "nightshade",
+      "troll_fat"
+     ],
+     [
+      "red_mountain_flower",
+      "river_betty"
+     ]
+    ],
+    "pure_pairs_count": 14,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "eye_of_sabre_cat",
+     "nordic_barnacle"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "eye_of_sabre_cat",
+      "nordic_barnacle"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Damage Magicka Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bear_claws",
+     "blue_mountain_flower",
+     "nightshade"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "bear_claws",
+      "nightshade"
+     ],
+     [
+      "blue_mountain_flower",
+      "nightshade"
+     ]
+    ],
+    "pure_pairs_count": 2,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Damage Stamina Regen": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "creep_cluster",
+     "frost_mirriam",
+     "histcarp",
+     "large_antlers",
+     "silverside_perch",
+     "skeever_tail",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 21,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "frost_mirriam"
+     ],
+     [
+      "creep_cluster",
+      "histcarp"
+     ],
+     [
+      "creep_cluster",
+      "large_antlers"
+     ],
+     [
+      "creep_cluster",
+      "silverside_perch"
+     ],
+     [
+      "creep_cluster",
+      "skeever_tail"
+     ]
+    ],
+    "pure_pairs_count": 16,
+    "pure_triples_examples": []
+   },
+   "Fear": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Frenzy": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "fly_amanita",
+     "troll_fat"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "mora_tapinella",
+     "slaughterfish_egg",
+     "slaughterfish_scales"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "mora_tapinella",
+      "slaughterfish_egg"
+     ],
+     [
+      "mora_tapinella",
+      "slaughterfish_scales"
+     ],
+     [
+      "slaughterfish_egg",
+      "slaughterfish_scales"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "purple_mountain_flower",
+     "wheat"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "purple_mountain_flower",
+      "wheat"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Lingering Damage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "nightshade",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Paralysis": {
+    "kind": "veleno",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Ravage Health": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "cyrodilic_spadetail",
+     "eye_of_sabre_cat",
+     "jazbay_grapes",
+     "silverside_perch",
+     "skeever_tail"
+    ],
+    "craftable": true,
+    "pairs_total": 10,
+    "pure_pairs": [
+     [
+      "cyrodilic_spadetail",
+      "eye_of_sabre_cat"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "jazbay_grapes"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "silverside_perch"
+     ],
+     [
+      "cyrodilic_spadetail",
+      "skeever_tail"
+     ],
+     [
+      "eye_of_sabre_cat",
+      "jazbay_grapes"
+     ]
+    ],
+    "pure_pairs_count": 8,
+    "pure_triples_examples": []
+   },
+   "Ravage Magicka": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "frost_mirriam",
+     "red_mountain_flower"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "frost_mirriam",
+      "red_mountain_flower"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Ravage Stamina": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "thistle_branch"
+    ],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   },
+   "Slow": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "large_antlers",
+     "river_betty"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "large_antlers",
+      "river_betty"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Fire": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "bleeding_crown",
+     "ice_wraith_teeth"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "bleeding_crown",
+      "ice_wraith_teeth"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Frost": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "elves_ear",
+     "ice_wraith_teeth"
+    ],
+    "craftable": true,
+    "pairs_total": 3,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "elves_ear"
+     ],
+     [
+      "abecean_longfin",
+      "ice_wraith_teeth"
+     ],
+     [
+      "elves_ear",
+      "ice_wraith_teeth"
+     ]
+    ],
+    "pure_pairs_count": 3,
+    "pure_triples_examples": []
+   },
+   "Weakness to Magic": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "creep_cluster",
+     "jazbay_grapes"
+    ],
+    "craftable": true,
+    "pairs_total": 1,
+    "pure_pairs": [
+     [
+      "creep_cluster",
+      "jazbay_grapes"
+     ]
+    ],
+    "pure_pairs_count": 1,
+    "pure_triples_examples": []
+   },
+   "Weakness to Poison": {
+    "kind": "veleno",
+    "ingredients_available": [
+     "abecean_longfin",
+     "bleeding_crown",
+     "sabre_cat_tooth",
+     "small_antlers"
+    ],
+    "craftable": true,
+    "pairs_total": 6,
+    "pure_pairs": [
+     [
+      "abecean_longfin",
+      "bleeding_crown"
+     ],
+     [
+      "abecean_longfin",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "sabre_cat_tooth"
+     ],
+     [
+      "bleeding_crown",
+      "small_antlers"
+     ],
+     [
+      "sabre_cat_tooth",
+      "small_antlers"
+     ]
+    ],
+    "pure_pairs_count": 5,
+    "pure_triples_examples": []
+   },
+   "Weakness to Shock": {
+    "kind": "veleno",
+    "ingredients_available": [],
+    "craftable": false,
+    "pairs_total": 0,
+    "pure_pairs": [],
+    "pure_pairs_count": 0,
+    "pure_triples_examples": []
+   }
+  },
+  "ingredients_without_partner": []
+ },
+ "discord_min_recipes_check": [
+  {
+   "effect": "Cure Disease",
+   "recipe": [
+    "hawk_feathers",
+    "mudcrab_chitin"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Cure Disease"
+   ]
+  },
+  {
+   "effect": "Fortify Block",
+   "recipe": [
+    "bleeding_crown",
+    "slaughterfish_scales"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Block"
+   ]
+  },
+  {
+   "effect": "Fortify Carry Weight",
+   "recipe": [
+    "creep_cluster",
+    "hawk_beak"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Carry Weight"
+   ]
+  },
+  {
+   "effect": "Fortify Destruction",
+   "recipe": [
+    "nightshade",
+    "glowing_mushroom"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Destruction"
+   ]
+  },
+  {
+   "effect": "Fortify Health",
+   "recipe": [
+    "blue_mountain_flower",
+    "wheat"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Health",
+    "Restore Health"
+   ]
+  },
+  {
+   "effect": "Fortify Heavy Armor",
+   "recipe": [
+    "thistle_branch",
+    "ice_wraith_teeth"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Heavy Armor"
+   ]
+  },
+  {
+   "effect": "Fortify Illusion",
+   "recipe": [
+    "dragons_tongue",
+    "mora_tapinella"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Illusion"
+   ]
+  },
+  {
+   "effect": "Fortify Light Armor",
+   "recipe": [
+    "hawk_feathers",
+    "skeever_tail"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Light Armor"
+   ]
+  },
+  {
+   "effect": "Fortify Magicka",
+   "recipe": [
+    "jazbay_grapes",
+    "red_mountain_flower"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Magicka"
+   ]
+  },
+  {
+   "effect": "Fortify Marksman",
+   "recipe": [
+    "canis_root",
+    "elves_ear"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Marksman"
+   ]
+  },
+  {
+   "effect": "Fortify One-handed",
+   "recipe": [
+    "canis_root",
+    "bear_claws"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify One-handed"
+   ]
+  },
+  {
+   "effect": "Fortify Pickpocket",
+   "recipe": [
+    "nordic_barnacle",
+    "slaughterfish_egg"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Pickpocket"
+   ]
+  },
+  {
+   "effect": "Fortify Restoration",
+   "recipe": [
+    "abecean_longfin",
+    "cyrodilic_spadetail"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Restoration"
+   ]
+  },
+  {
+   "effect": "Fortify Smithing",
+   "recipe": [
+    "blisterwort",
+    "glowing_mushroom"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Smithing"
+   ]
+  },
+  {
+   "effect": "Fortify Sneak",
+   "recipe": [
+    "frost_mirriam",
+    "purple_mountain_flower"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Sneak",
+    "Resist Frost"
+   ]
+  },
+  {
+   "effect": "Fortify Stamina",
+   "recipe": [
+    "garlic",
+    "large_antlers"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Stamina"
+   ]
+  },
+  {
+   "effect": "Fortify Two-handed",
+   "recipe": [
+    "dragons_tongue",
+    "fly_amanita"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Two-handed",
+    "Resist Fire"
+   ]
+  },
+  {
+   "effect": "Invisibility",
+   "recipe": [
+    "nirnroot",
+    "ice_wraith_teeth"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Invisibility"
+   ]
+  },
+  {
+   "effect": "Regenerate Health",
+   "recipe": [
+    "garlic",
+    "nordic_barnacle"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Regenerate Health"
+   ]
+  },
+  {
+   "effect": "Regenerate Magicka",
+   "recipe": [
+    "garlic",
+    "jazbay_grapes"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Regenerate Magicka"
+   ]
+  },
+  {
+   "effect": "Regenerate Stamina",
+   "recipe": [
+    "fly_amanita",
+    "mora_tapinella"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Regenerate Stamina"
+   ]
+  },
+  {
+   "effect": "Resist Fire",
+   "recipe": [
+    "dragons_tongue",
+    "elves_ear"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Resist Fire"
+   ]
+  },
+  {
+   "effect": "Resist Frost",
+   "recipe": [
+    "frost_mirriam",
+    "purple_mountain_flower"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Sneak",
+    "Resist Frost"
+   ]
+  },
+  {
+   "effect": "Resist Magic",
+   "recipe": [
+    "nirnroot",
+    "bleeding_crown"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Resist Magic"
+   ]
+  },
+  {
+   "effect": "Resist Poison",
+   "recipe": [
+    "garlic",
+    "thistle_branch"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Resist Poison"
+   ]
+  },
+  {
+   "effect": "Resist Shock",
+   "recipe": [
+    "snowberries",
+    "glowing_mushroom"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Resist Shock"
+   ]
+  },
+  {
+   "effect": "Restore Health",
+   "recipe": [
+    "blue_mountain_flower",
+    "wheat"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Fortify Health",
+    "Restore Health"
+   ]
+  },
+  {
+   "effect": "Restore Magicka",
+   "recipe": [
+    "creep_cluster",
+    "elves_ear"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Restore Magicka"
+   ]
+  },
+  {
+   "effect": "Restore Stamina",
+   "recipe": [
+    "purple_mountain_flower",
+    "bear_claws"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Restore Stamina"
+   ]
+  },
+  {
+   "effect": "Waterbreathing",
+   "recipe": [
+    "histcarp",
+    "nordic_barnacle"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Waterbreathing"
+   ]
+  },
+  {
+   "effect": "Damage Health",
+   "recipe": [
+    "nightshade",
+    "nirnroot"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Health"
+   ]
+  },
+  {
+   "effect": "Damage Magicka",
+   "recipe": [
+    "eye_of_sabre_cat",
+    "nordic_barnacle"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Magicka"
+   ]
+  },
+  {
+   "effect": "Damage Magicka Regen",
+   "recipe": [
+    "blue_mountain_flower",
+    "nightshade"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Magicka Regen"
+   ]
+  },
+  {
+   "effect": "Damage Stamina",
+   "recipe": [
+    "canis_root",
+    "nirnroot"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Stamina"
+   ]
+  },
+  {
+   "effect": "Damage Stamina Regen",
+   "recipe": [
+    "creep_cluster",
+    "frost_mirriam"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Stamina Regen"
+   ]
+  },
+  {
+   "effect": "Frenzy",
+   "recipe": [
+    "blisterwort",
+    "fly_amanita"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Frenzy"
+   ]
+  },
+  {
+   "effect": "Lingering Damage Health",
+   "recipe": [
+    "mora_tapinella",
+    "slaughterfish_egg"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Lingering Damage Health"
+   ]
+  },
+  {
+   "effect": "Lingering Damage Magicka",
+   "recipe": [
+    "purple_mountain_flower",
+    "wheat"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Lingering Damage Magicka"
+   ]
+  },
+  {
+   "effect": "Lingering Damage Stamina",
+   "recipe": [
+    "nightshade",
+    "small_antlers"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Damage Health",
+    "Lingering Damage Stamina"
+   ]
+  },
+  {
+   "effect": "Ravage Health",
+   "recipe": [
+    "jazbay_grapes",
+    "cyrodilic_spadetail"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Ravage Health"
+   ]
+  },
+  {
+   "effect": "Ravage Magicka",
+   "recipe": [
+    "frost_mirriam",
+    "red_mountain_flower"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Ravage Magicka"
+   ]
+  },
+  {
+   "effect": "Slow",
+   "recipe": [
+    "large_antlers",
+    "river_betty"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Slow"
+   ]
+  },
+  {
+   "effect": "Weakness to Fire",
+   "recipe": [
+    "bleeding_crown",
+    "ice_wraith_teeth"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Weakness to Fire"
+   ]
+  },
+  {
+   "effect": "Weakness to Frost",
+   "recipe": [
+    "elves_ear",
+    "abecean_longfin"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Weakness to Frost"
+   ]
+  },
+  {
+   "effect": "Weakness to Magic",
+   "recipe": [
+    "creep_cluster",
+    "jazbay_grapes"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Weakness to Magic"
+   ]
+  },
+  {
+   "effect": "Weakness to Poison",
+   "recipe": [
+    "abecean_longfin",
+    "bleeding_crown"
+   ],
+   "activates_effect": true,
+   "all_effects_of_recipe": [
+    "Weakness to Poison"
+   ]
+  }
+ ]
+}

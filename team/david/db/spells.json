@@ -1,0 +1,633 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-14",
+  "author": "david",
+  "status": "provvisorio: Shoonish ha chiesto conferma a Jack e Dave_St sulla parte finale (da 'Scaccia Non Morto' in poi)",
+  "description": "Incantesimi vanilla: allowed = permesso, banned = vietato, restricted = solo con quest/evento/staff/fazione/dungeon/shop.",
+  "sources": [
+   "Discord #bilanciamento-incantesimi"
+  ],
+  "note": "I nomi sono quelli italiani del Discord (alcuni raggruppano più incantesimi). Servirà una tabella nome -> ID di Skyrim. Le scuole (Alterazione, Distruzione, Cura, Evocazione, Illusione) sono solo intestazioni nel Discord: non assegnate. In SkyMP gli effetti magici 'a durata' sono ancora da fare."
+ },
+ "items": [
+  {
+   "id": "adunata",
+   "name_it": "Adunata",
+   "status": "restricted",
+   "acquisition": [],
+   "notes": "Dà buff a Salute e Vigore ad area."
+  },
+  {
+   "id": "armonia",
+   "name_it": "Armonia",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "attenuazione",
+   "name_it": "Attenuazione",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "aura_di_stendarr",
+   "name_it": "Aura di Stendarr",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "bandisci_daedra",
+   "name_it": "Bandisci Daedra",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "evento"
+   ],
+   "notes": null
+  },
+  {
+   "id": "bufera",
+   "name_it": "Bufera",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "calma",
+   "name_it": "Calma",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "carne",
+   "name_it": "Carne",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Permesso su tutto, tranne Drago e d'Ebano (solo via quest)."
+  },
+  {
+   "id": "catena_di_fulmini",
+   "name_it": "Catena di Fulmini",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "cerchio_di_protezione",
+   "name_it": "Cerchio di Protezione",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "cerchio_guardiano",
+   "name_it": "Cerchio Guardiano",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "chiamata_alle_armi",
+   "name_it": "Chiamata alle Armi",
+   "status": "restricted",
+   "acquisition": [],
+   "notes": "Rendere target validi anche i pg giocanti."
+  },
+  {
+   "id": "controllo_daedra",
+   "name_it": "Controllo Daedra",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "evento"
+   ],
+   "notes": null
+  },
+  {
+   "id": "convenzione_di_arniel",
+   "name_it": "Convenzione di Arniel",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "coraggio",
+   "name_it": "Coraggio",
+   "status": "restricted",
+   "acquisition": [],
+   "notes": "Da ribilanciare per il primo livello."
+  },
+  {
+   "id": "corazza_di_cenere",
+   "name_it": "Corazza di Cenere",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "cura",
+   "name_it": "Cura",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "cura_negromantica",
+   "name_it": "Cura Negromantica",
+   "status": "restricted",
+   "acquisition": [],
+   "notes": "Cambiare nome e renderla applicabile agli alleati oltre che ai non morti."
+  },
+  {
+   "id": "cura_non_morto",
+   "name_it": "Cura Non-Morto",
+   "status": "restricted",
+   "acquisition": [],
+   "notes": "Cambiare nome e renderla applicabile agli alleati oltre che ai non morti."
+  },
+  {
+   "id": "cura_suprema",
+   "name_it": "Cura Suprema",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "dardo_di_fuoco",
+   "name_it": "Dardo di Fuoco",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "dardo_elettrico",
+   "name_it": "Dardo Elettrico",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "difesa_maggiore_minore_risoluta",
+   "name_it": "Difesa Maggiore, Minore, Risoluta",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di tre incantesimi."
+  },
+  {
+   "id": "equilibrium",
+   "name_it": "Equilibrium",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "evento",
+    "fazione"
+   ],
+   "notes": null
+  },
+  {
+   "id": "espelli_daedra",
+   "name_it": "Espelli Daedra",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "evento"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_arvak",
+   "name_it": "Evoca Arvak",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "evento",
+    "costo alto"
+   ],
+   "notes": "Considerabile per pacchetti a pagamento."
+  },
+  {
+   "id": "evoca_armi_e_evoca_atronach",
+   "name_it": "Evoca Armi e Evoca Atronach",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di incantesimi."
+  },
+  {
+   "id": "evoca_cercatore",
+   "name_it": "Evoca Cercatore",
+   "status": "restricted",
+   "acquisition": [
+    "dungeon permadeath",
+    "staffer"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_dremora_non_vincolato",
+   "name_it": "Evoca Dremora Non Vincolato",
+   "status": "restricted",
+   "acquisition": [
+    "quest"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_essere_d_ira",
+   "name_it": "Evoca Essere d'Ira",
+   "status": "restricted",
+   "acquisition": [
+    "staffer",
+    "dungeon"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_essere_d_ossa",
+   "name_it": "Evoca Essere d'Ossa",
+   "status": "restricted",
+   "acquisition": [
+    "shop",
+    "dungeon"
+   ],
+   "notes": null
+  },
+  {
+   "id": "essere_di_nebbia",
+   "name_it": "Essere di Nebbia",
+   "status": "restricted",
+   "acquisition": [
+    "shop",
+    "staffer"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_famiglio",
+   "name_it": "Evoca Famiglio",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "evoca_guardiano_di_cenere",
+   "name_it": "Evoca Guardiano di Cenere",
+   "status": "restricted",
+   "acquisition": [
+    "quest",
+    "fazione"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_ombra_di_arniel",
+   "name_it": "Evoca Ombra di Arniel",
+   "status": "banned",
+   "acquisition": [],
+   "notes": "Nel Discord scritto 'Armiel'."
+  },
+  {
+   "id": "evoca_progenie_di_cenere",
+   "name_it": "Evoca Progenie di Cenere",
+   "status": "restricted",
+   "acquisition": [
+    "dungeon",
+    "quest"
+   ],
+   "notes": null
+  },
+  {
+   "id": "evoca_signore_dremora",
+   "name_it": "Evoca Signore Dremora",
+   "status": "restricted",
+   "acquisition": [
+    "staffer"
+   ],
+   "notes": null
+  },
+  {
+   "id": "famiglio_delle_fiamme",
+   "name_it": "Famiglio delle Fiamme",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "fiamma_e_folgore",
+   "name_it": "Fiamma e Folgore",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "frenesia",
+   "name_it": "Frenesia",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "fuoco_solare",
+   "name_it": "Fuoco Solare",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "furia",
+   "name_it": "Furia",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "gelo",
+   "name_it": "Gelo",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "imposizione_delle_mani",
+   "name_it": "Imposizione delle Mani",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "incendio",
+   "name_it": "Incendio",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "incenerimento",
+   "name_it": "Incenerimento",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "individua_non_morto",
+   "name_it": "Individua Non Morto",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "individua_vita",
+   "name_it": "Individua Vita",
+   "status": "restricted",
+   "acquisition": [
+    "dungeon",
+    "negoziante"
+   ],
+   "notes": "Cambiare il target sui pg giocanti."
+  },
+  {
+   "id": "invisibilita",
+   "name_it": "Invisibilità",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "isteria",
+   "name_it": "Isteria",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "luci",
+   "name_it": "Luci",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "mani_curative",
+   "name_it": "Mani Curative",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "mantello_turbinante",
+   "name_it": "Mantello Turbinante",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "manto_elettrico_manto_gelido_manto_infuocato_e_morsa_gelida",
+   "name_it": "Manto Elettrico, Manto Gelido, Manto Infuocato e Morsa Gelida",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di incantesimi."
+  },
+  {
+   "id": "muro_di_fiamme_fulmini_e_ghiaccio",
+   "name_it": "Muro di Fiamme, Fulmini e Ghiaccio",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di incantesimi."
+  },
+  {
+   "id": "pacificazione",
+   "name_it": "Pacificazione",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "palla_di_fuoco",
+   "name_it": "Palla di Fuoco",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "paralisi",
+   "name_it": "Paralisi",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "paralisi_di_massa",
+   "name_it": "Paralisi di Massa",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "paura",
+   "name_it": "Paura",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "punta_di_ghiaccio",
+   "name_it": "Punta di Ghiaccio",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "respingi_non_morto_respingi_non_morto_minore",
+   "name_it": "Respingi Non Morto, Respingi Non Morto Minore",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di due incantesimi."
+  },
+  {
+   "id": "respirare_sott_acqua",
+   "name_it": "Respirare Sott'Acqua",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "revenant",
+   "name_it": "Revenant",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "rianima_cadavere",
+   "name_it": "Rianima Cadavere",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "rimargina_ferite",
+   "name_it": "Rimargina Ferite",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "risucchio_vampirico",
+   "name_it": "Risucchio Vampirico",
+   "status": "restricted",
+   "acquisition": [
+    "fazione"
+   ],
+   "notes": null
+  },
+  {
+   "id": "rune",
+   "name_it": "Rune",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "runa_frenesia",
+   "name_it": "Runa Frenesia",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "sbaragliare",
+   "name_it": "Sbaragliare",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "scaccia_non_morto",
+   "name_it": "Scaccia Non Morto",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "scintille",
+   "name_it": "Scintille",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "servo_del_gelo_fiamma_tempesta_non_morto",
+   "name_it": "Servo del Gelo/Fiamma/Tempesta/Non Morto",
+   "status": "restricted",
+   "acquisition": [
+    "staffer",
+    "quest permanente"
+   ],
+   "notes": "Solo staff o quest permanente."
+  },
+  {
+   "id": "sventura_del_non_morto",
+   "name_it": "Sventura del Non Morto",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "sventura_del_vampiro",
+   "name_it": "Sventura del Vampiro",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "telecinesi",
+   "name_it": "Telecinesi",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "tempesta_di_fuoco_ghiaccio_fulmini",
+   "name_it": "Tempesta di Fuoco/Ghiaccio/Fulmini",
+   "status": "allowed",
+   "acquisition": [],
+   "notes": "Gruppo di incantesimi."
+  },
+  {
+   "id": "trappola_dell_anima",
+   "name_it": "Trappola dell'Anima",
+   "status": "restricted",
+   "acquisition": [
+    "quest"
+   ],
+   "notes": "Solo quest."
+  },
+  {
+   "id": "trasmuta",
+   "name_it": "Trasmuta",
+   "status": "banned",
+   "acquisition": [],
+   "notes": "Potrebbe rompere l'economia in due secondi."
+  },
+  {
+   "id": "violenza",
+   "name_it": "Violenza",
+   "status": "banned",
+   "acquisition": [],
+   "notes": null
+  },
+  {
+   "id": "visione_del_decimo_occhio",
+   "name_it": "Visione del Decimo Occhio",
+   "status": "restricted",
+   "acquisition": [
+    "quest"
+   ],
+   "notes": "Solo quest."
+  }
+ ]
+}

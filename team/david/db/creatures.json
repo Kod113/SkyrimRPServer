@@ -1,0 +1,591 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-10-14",
+    "author": "david",
+    "status": "bozza: da incrociare con i drop reali del gioco",
+    "description": "Creature, habitat, comportamento e drop (percentuali 0-1; null = non indicato nel Discord).",
+    "sources": [
+      "Discord #creature-spawm",
+      "Discord #loot-implicazioni-alchemiche"
+    ]
+  },
+  "_unread": [
+    "row after Goat in the left forest table (cut off in the image, probably Wolf)"
+  ],
+  "items": [
+    {
+      "id": "abecean_longfin",
+      "name_en": "Abecean Longfin",
+      "name_it": "Pinna lunga di Abecea",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "lake",
+        "cold_water"
+      ],
+      "notes": "cold waters and temperate lakes",
+      "drops": [
+        {
+          "item": "Abecean Longfin",
+          "chance": 1.0,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "cyrodilic_spadetail",
+      "name_en": "Cyrodilic Spadetail",
+      "name_it": "Coda a vanga cyrodiliana",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "lake"
+      ],
+      "notes": "temperate lakes",
+      "drops": [
+        {
+          "item": "Cyrodilic Spadetail",
+          "chance": 1.0,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "histcarp",
+      "name_en": "Histcarp",
+      "name_it": "Carpa di Hist",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "river"
+      ],
+      "notes": "torrents, Darkwater Crossing, Riften",
+      "drops": [
+        {
+          "item": "Histcarp",
+          "chance": 1.0,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "river_betty",
+      "name_en": "River Betty",
+      "name_it": "Betta di fiume",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "river"
+      ],
+      "notes": "torrents",
+      "drops": [
+        {
+          "item": "River Betty",
+          "chance": 1.0,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "silverside_perch",
+      "name_en": "Silverside Perch",
+      "name_it": "Persico argentato",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "lake"
+      ],
+      "notes": "temperate lakes, Riften harbour",
+      "drops": [
+        {
+          "item": "Silverside Perch",
+          "chance": 1.0,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "salmon",
+      "name_en": "Salmon",
+      "name_it": "Salmone",
+      "group": "fish",
+      "behavior": "passive",
+      "habitat": [
+        "river",
+        "sea"
+      ],
+      "notes": "rivers and seas",
+      "drops": [
+        {
+          "item": "Salmon Meat",
+          "chance": 1.0,
+          "use": "cooking"
+        }
+      ]
+    },
+    {
+      "id": "slaughterfish",
+      "name_en": "Slaughterfish",
+      "name_it": "Pesce macellaio",
+      "group": "fish",
+      "behavior": "hostile",
+      "habitat": [
+        "river",
+        "lake",
+        "cave"
+      ],
+      "notes": "any water",
+      "drops": [
+        {
+          "item": "Slaughterfish Scales",
+          "chance": null,
+          "use": "alchemy"
+        },
+        {
+          "item": "Slaughterfish Egg",
+          "chance": null,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "deer",
+      "name_en": "Deer",
+      "name_it": "Cervo",
+      "group": "forest",
+      "behavior": "flees",
+      "habitat": [
+        "forest",
+        "plain"
+      ],
+      "notes": "everywhere, more in Rift forests, Lake Honrich, Ivarstead",
+      "drops": [
+        {
+          "item": "Venison",
+          "chance": 1.0
+        },
+        {
+          "item": "Deer Hide",
+          "chance": 1.0
+        },
+        {
+          "item": "Large Antlers",
+          "chance": 0.5
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "elk",
+      "name_en": "Elk",
+      "name_it": "Alce",
+      "group": "forest",
+      "behavior": "flees",
+      "habitat": [
+        "forest",
+        "plain"
+      ],
+      "notes": "like deer; antlers large (male) or small (female)",
+      "drops": [
+        {
+          "item": "Venison",
+          "chance": 1.0
+        },
+        {
+          "item": "Deer Hide",
+          "chance": 1.0
+        },
+        {
+          "item": "Antlers",
+          "chance": 0.5
+        }
+      ]
+    },
+    {
+      "id": "fox",
+      "name_en": "Fox",
+      "name_it": "Volpe",
+      "group": "forest",
+      "behavior": "flees",
+      "habitat": [
+        "forest",
+        "plain"
+      ],
+      "notes": "wild zones",
+      "drops": [
+        {
+          "item": "Fox Pelt",
+          "chance": null
+        }
+      ]
+    },
+    {
+      "id": "snow_fox",
+      "name_en": "Snow Fox",
+      "name_it": "Volpe delle nevi",
+      "group": "mountain",
+      "behavior": "flees",
+      "habitat": [
+        "snow",
+        "mountain"
+      ],
+      "notes": "wild zones",
+      "drops": [
+        {
+          "item": "Snow Fox Pelt",
+          "chance": null
+        }
+      ]
+    },
+    {
+      "id": "rabbit",
+      "name_en": "Rabbit",
+      "name_it": "Coniglio",
+      "group": "forest",
+      "behavior": "flees",
+      "habitat": [
+        "forest",
+        "plain"
+      ],
+      "notes": "wild zones",
+      "drops": [
+        {
+          "item": "Raw Rabbit Leg",
+          "chance": null
+        }
+      ]
+    },
+    {
+      "id": "goat",
+      "name_en": "Goat",
+      "name_it": "Capra selvatica",
+      "group": "mountain",
+      "behavior": "passive",
+      "habitat": [
+        "mountain"
+      ],
+      "notes": "mountain slopes, Reach, Falkreath mountains",
+      "drops": [
+        {
+          "item": "Goat Hide",
+          "chance": 1.0
+        },
+        {
+          "item": "Leg of Goat",
+          "chance": 1.0
+        },
+        {
+          "item": "Goat Horns",
+          "chance": 0.5,
+          "value": 5,
+          "weight": 1,
+          "use": "no alchemy effect; Hearthfire decor/trophy"
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        },
+        {
+          "item": "Small treasure x2",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "ice_wolf",
+      "name_en": "Ice Wolf",
+      "name_it": "Lupo dei ghiacci",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "snow",
+        "mountain"
+      ],
+      "notes": "wild cold zones",
+      "drops": [
+        {
+          "item": "Ice Wolf Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "cave_bear",
+      "name_en": "Cave Bear",
+      "name_it": "Orso delle caverne",
+      "group": "forest",
+      "behavior": "hostile",
+      "habitat": [
+        "forest",
+        "cave"
+      ],
+      "notes": "dens and wild; roars first",
+      "drops": [
+        {
+          "item": "Bear Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Bear Claws",
+          "chance": 1.0
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "snow_bear",
+      "name_en": "Snow Bear",
+      "name_it": "Orso delle nevi",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "snow",
+        "mountain"
+      ],
+      "notes": "mountains and snow",
+      "drops": [
+        {
+          "item": "Snow Bear Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Bear Claws",
+          "chance": 1.0
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "sabre_cat",
+      "name_en": "Sabre Cat",
+      "name_it": "Gatto dai denti a sciabola",
+      "group": "forest",
+      "behavior": "hostile",
+      "habitat": [
+        "forest",
+        "plain",
+        "mountain"
+      ],
+      "notes": "wild zones everywhere",
+      "drops": [
+        {
+          "item": "Sabre Cat Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Sabre Cat Tooth OR Eye",
+          "chance": 0.5
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "snowy_sabre_cat",
+      "name_en": "Snowy Sabre Cat",
+      "name_it": "Gatto delle nevi",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "snow",
+        "mountain"
+      ],
+      "notes": "stronger; Pale and Winterhold heights",
+      "drops": [
+        {
+          "item": "Snowy Sabre Cat Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Sabre Cat Tooth OR Eye",
+          "chance": 0.5
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "mammoth",
+      "name_en": "Mammoth",
+      "name_it": "Mammut",
+      "group": "mountain",
+      "behavior": "dangerous",
+      "habitat": [
+        "tundra"
+      ],
+      "notes": "tundra near giants; drops not verified",
+      "drops": [
+        {
+          "item": "Mammoth Tusk",
+          "chance": null,
+          "value": 150,
+          "weight": 5,
+          "use": "no alchemy effect; UESP lists no loot for the mammoth"
+        }
+      ]
+    },
+    {
+      "id": "skeever",
+      "name_en": "Skeever",
+      "name_it": "Skeever",
+      "group": "forest",
+      "behavior": "hostile",
+      "habitat": [
+        "cave",
+        "forest"
+      ],
+      "notes": "caves and dark places, also wild",
+      "drops": [
+        {
+          "item": "Skeever Tail",
+          "chance": null,
+          "value": 3,
+          "weight": 0.2,
+          "use": "alchemy"
+        }
+      ]
+    },
+    {
+      "id": "hawk",
+      "name_en": "Hawk",
+      "name_it": "Falco",
+      "group": "sky",
+      "behavior": "passive",
+      "habitat": [
+        "sky"
+      ],
+      "notes": "67 nests in 17 places; drops only if shot",
+      "drops": [
+        {
+          "item": "Hawk Feather",
+          "chance": null,
+          "qty": 3,
+          "per_kill": 3
+        },
+        {
+          "item": "Hawk Beak",
+          "chance": null,
+          "qty": 1,
+          "per_kill": 1
+        }
+      ]
+    },
+    {
+      "id": "ice_wraith",
+      "name_en": "Ice Wraith",
+      "name_it": "Spettro di ghiaccio",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "snow"
+      ],
+      "notes": "Winterhold, The Pale, east of Windhelm",
+      "drops": [
+        {
+          "item": "Ice Wraith Teeth",
+          "chance": 1.0,
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "frostbite_spider",
+      "name_en": "Frostbite Spider",
+      "name_it": "Ragno del gelo",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "cave",
+        "mountain"
+      ],
+      "notes": "caves and wild; white-blue version in the north",
+      "drops": [
+        {
+          "item": "Frostbite Venom",
+          "chance": null,
+          "value": 21,
+          "weight": 0.5,
+          "use": "poison applied to a weapon or arrow: 5 dmg/s health+stamina for 4 s"
+        }
+      ]
+    },
+    {
+      "id": "frost_troll",
+      "name_en": "Frost Troll",
+      "name_it": "Troll del gelo",
+      "group": "mountain",
+      "behavior": "hostile",
+      "habitat": [
+        "snow",
+        "mountain"
+      ],
+      "notes": "UESP: north Eastmarch; also normal trolls drop Troll Fat",
+      "drops": [
+        {
+          "item": "Troll Fat",
+          "chance": 1.0,
+          "use": "alchemy"
+        },
+        {
+          "item": "Troll Fat",
+          "chance": null
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    },
+    {
+      "id": "wolf",
+      "name_en": "Wolf",
+      "name_it": "Lupo",
+      "group": "forest",
+      "behavior": "hostile",
+      "habitat": [
+        "forest",
+        "plain",
+        "mountain"
+      ],
+      "notes": "riga letta dal loot del Discord; habitat da confermare",
+      "drops": [
+        {
+          "item": "Wolf Pelt",
+          "chance": 1.0
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
+        }
+      ]
+    }
+  ]
+}

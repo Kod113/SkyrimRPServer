@@ -1,0 +1,410 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-14",
+  "author": "david",
+  "status": "provvisorio: molti valori segnati 'da cambiare' nel Discord",
+  "description": "Le 10 razze di Skyrim con bonus alle abilità, potere giornaliero, passive e ruoli ideali. Le altre abilità partono da 15.",
+  "sources": [
+   "Discord #perk-e-abilità-di-razza"
+  ],
+  "note": "Sono incrementi che esentano dal background. 'proposals' = alternative proposte da Dave_St e Shoonish, non ancora decise."
+ },
+ "skills": {
+  "Due Mani": "two_handed",
+  "Una Mano": "one_handed",
+  "Blocco": "block",
+  "Armatura Leggera": "light_armor",
+  "Armatura Pesante": "heavy_armor",
+  "Forgiatura": "smithing",
+  "Recupero": "restoration",
+  "Distruzione": "destruction",
+  "Incantamento": "enchanting",
+  "Evocazione": "conjuration",
+  "Alterazione": "alteration",
+  "Illusione": "illusion",
+  "Alchimia": "alchemy",
+  "Arceria": "archery",
+  "Furtività": "sneak",
+  "Scassinare": "lockpicking"
+ },
+ "items": [
+  {
+   "id": "nord",
+   "name_it": "Nord",
+   "skill_bonus": {
+    "two_handed": 25,
+    "block": 20,
+    "one_handed": 20,
+    "light_armor": 20,
+    "smithing": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Ira della Battaglia",
+    "description_it": "I nemici vicini fuggono.",
+    "uses": "1 al giorno",
+    "duration_s": 30
+   },
+   "passives": [
+    {
+     "name_it": "Resistenza al Gelo",
+     "description_it": "50% resistenza al gelo."
+    }
+   ],
+   "ideal_roles": [
+    "Guerriero",
+    "Mercenario",
+    "Guardia",
+    "Clan Nordici",
+    "Soldato"
+   ],
+   "status": "provisional",
+   "notes": "Potere segnato 'Da cambiare' nel Discord. Dave_St: passiva da rivedere.",
+   "proposals": [
+    {
+     "by": "Dave_St",
+     "passives": [
+      "+25% resistenza gelo",
+      "+10 salute"
+     ]
+    },
+    {
+     "by": "Shoonish",
+     "power": "Ira del Nord: armatura di 50 hp per 30 secondi"
+    }
+   ]
+  },
+  {
+   "id": "imperial",
+   "name_it": "Imperiali",
+   "skill_bonus": {
+    "restoration": 20,
+    "destruction": 20,
+    "one_handed": 25,
+    "block": 20,
+    "enchanting": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Voce dell'Imperatore",
+    "description_it": "Calma tutti gli umanoidi vicini.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Fortuna Imperiale",
+     "description_it": "Maggiore quantità di oro trovata."
+    }
+   ],
+   "ideal_roles": [
+    "Mercanti",
+    "Nobili",
+    "Politici",
+    "Diplomatici",
+    "Ufficiali"
+   ],
+   "status": "provisional",
+   "notes": "Potere e passiva segnati 'da cambiare'. Una Mano 25 'da modificare per script'.",
+   "proposals": [
+    {
+     "by": "Shoonish",
+     "power": "Stratega navigato: per 30 secondi gli attacchi ignorano il 50% dell'armatura del bersaglio",
+     "passives": [
+      "Muro della legione: gli attacchi bloccati con scudo o arma costano il 20% in meno di stamina"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "breton",
+   "name_it": "Bretoni",
+   "skill_bonus": {
+    "conjuration": 25,
+    "restoration": 20,
+    "alteration": 20,
+    "illusion": 20,
+    "alchemy": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Pelle del Drago",
+    "description_it": "Assorbe il 50% della Magicka dei nemici.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Resistenza Magica",
+     "description_it": "25% resistenza alla magia."
+    }
+   ],
+   "ideal_roles": [
+    "Guaritori",
+    "Studiosi",
+    "Maghi",
+    "Alchimisti",
+    "Sacerdoti"
+   ],
+   "status": "provisional",
+   "notes": null,
+   "proposals": [
+    {
+     "by": "Dave_St",
+     "passives": [
+      "+15% resistenza magia",
+      "+10 Magicka"
+     ],
+     "power": "Pelle del Drago"
+    }
+   ]
+  },
+  {
+   "id": "redguard",
+   "name_it": "Redguard",
+   "skill_bonus": {
+    "one_handed": 25,
+    "destruction": 20,
+    "alteration": 20,
+    "archery": 20,
+    "block": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Adrenalina",
+    "description_it": "Rigenerazione della stamina 10 volte più veloce.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [],
+   "ideal_roles": [],
+   "status": "provisional",
+   "notes": "Nessuna passiva permanente: la razza è costruita attorno al potere. Ruoli ideali non indicati.",
+   "proposals": [
+    {
+     "by": "Dave_St",
+     "passives": [
+      "+15 stamina",
+      "+10% rigenerazione stamina"
+     ],
+     "power": "Adrenalina"
+    }
+   ]
+  },
+  {
+   "id": "altmer",
+   "name_it": "Alti Elfi",
+   "skill_bonus": {
+    "illusion": 25,
+    "alteration": 20,
+    "conjuration": 20,
+    "destruction": 20,
+    "restoration": 20,
+    "enchanting": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Alta Discendenza",
+    "description_it": "Rigenerazione della Magicka estremamente accelerata.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Magicka Elevata",
+     "description_it": "+50 Magicka permanenti (da modificare a 30)."
+    }
+   ],
+   "ideal_roles": [
+    "Maghi puri",
+    "Studiosi",
+    "Incantatori",
+    "Alchimisti",
+    "Arcimaghi"
+   ],
+   "status": "provisional",
+   "notes": "Passiva: nel Discord +50 Magicka, 'da modificare a 30'.",
+   "proposals": []
+  },
+  {
+   "id": "dunmer",
+   "name_it": "Dunmer (Elfi Oscuri)",
+   "skill_bonus": {
+    "destruction": 25,
+    "light_armor": 20,
+    "alchemy": 20,
+    "illusion": 20,
+    "one_handed": 20,
+    "sneak": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Ira dell'Antenato",
+    "description_it": "I nemici che colpiscono il Dunmer subiscono danni da fuoco.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Resistenza al Fuoco",
+     "description_it": "50% resistenza al fuoco (da modificare come per i Nord)."
+    }
+   ],
+   "ideal_roles": [
+    "Spadaccini magici",
+    "Assassini",
+    "Guerrieri arcani",
+    "Esploratori"
+   ],
+   "status": "provisional",
+   "notes": null,
+   "proposals": []
+  },
+  {
+   "id": "bosmer",
+   "name_it": "Elfi dei Boschi",
+   "skill_bonus": {
+    "archery": 25,
+    "sneak": 20,
+    "alchemy": 20,
+    "light_armor": 25,
+    "lockpicking": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Controllo animale",
+    "description_it": "Permette di controllare un animale (lista degli animali controllabili da fare).",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Resistenza a Veleni e Malattie",
+     "description_it": "50% resistenza a veleni e malattie."
+    }
+   ],
+   "ideal_roles": [
+    "Ranger",
+    "Cacciatori",
+    "Esploratori",
+    "Assassini",
+    "Scout"
+   ],
+   "status": "provisional",
+   "notes": "Nome del potere non indicato nel Discord (qui descritto).",
+   "proposals": [
+    {
+     "by": "Shoonish",
+     "power": "Evocare un famiglio animale (come il lupo dell'evocatore), senza dover cercare un animale"
+    }
+   ]
+  },
+  {
+   "id": "khajiit",
+   "name_it": "Khajiit",
+   "skill_bonus": {
+    "sneak": 25,
+    "alchemy": 25,
+    "light_armor": 20,
+    "lockpicking": 20,
+    "archery": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Occhio della Notte",
+    "description_it": "Permette di vedere al buio.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Artigli",
+     "description_it": "Gli attacchi senz'armi infliggono 12 danni aggiuntivi (potremmo buffare)."
+    },
+    {
+     "name_it": "Visione Notturna",
+     "description_it": "Visione migliorata nell'oscurità."
+    }
+   ],
+   "ideal_roles": [
+    "Ladri",
+    "Assassini",
+    "Mercanti",
+    "Contrabbandieri",
+    "Esploratori"
+   ],
+   "status": "provisional",
+   "notes": null,
+   "proposals": []
+  },
+  {
+   "id": "argonian",
+   "name_it": "Argoniani",
+   "skill_bonus": {
+    "lockpicking": 25,
+    "alteration": 20,
+    "light_armor": 20,
+    "restoration": 25,
+    "sneak": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Pelle d'Hists",
+    "description_it": "Rigenerazione della salute 10 volte più veloce.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [
+    {
+     "name_it": "Respirazione Acquatica",
+     "description_it": "Permanente, senza limiti."
+    },
+    {
+     "name_it": "Resistenza alle Malattie",
+     "description_it": "50%."
+    }
+   ],
+   "ideal_roles": [
+    "Guaritori",
+    "Alchimisti",
+    "Esploratori",
+    "Marinai",
+    "Ranger"
+   ],
+   "status": "provisional",
+   "notes": null,
+   "proposals": []
+  },
+  {
+   "id": "orc",
+   "name_it": "Orsimer (Orchi)",
+   "skill_bonus": {
+    "heavy_armor": 25,
+    "smithing": 20,
+    "block": 20,
+    "one_handed": 20,
+    "two_handed": 20,
+    "enchanting": 20
+   },
+   "other_skills": 15,
+   "power": {
+    "name_it": "Furia Berserker",
+    "description_it": "Infligge danni doppi e subisce metà dei danni.",
+    "uses": "1 al giorno",
+    "duration_s": 60
+   },
+   "passives": [],
+   "ideal_roles": [
+    "Berserker",
+    "Guerrieri",
+    "Guardie",
+    "Fabbri",
+    "Campioni"
+   ],
+   "status": "provisional",
+   "notes": "Nessuna passiva permanente: la razza ruota attorno al potere.",
+   "proposals": []
+  }
+ ]
+}
