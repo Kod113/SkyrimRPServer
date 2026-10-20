@@ -1,6 +1,6 @@
 # MODLIST UFFICIALE — Server SkyrimRPServer
 
-> **Cosa contiene:** la lista delle mod (terze e custom) che compongono la modlist del server, con stato di compatibilità Skyrim Together Reborn e ruolo nella distribuzione.
+> **Cosa contiene:** la lista delle mod (terze e custom) che compongono la modlist del server, con stato di compatibilità e ruolo nella distribuzione.
 >
 > **Come si aggiorna:** ogni volta che si aggiunge, rimuove, o si cambia versione di una mod, si aggiorna la riga corrispondente. Le decisioni importanti vanno anche in `DECISIONS.md`.
 >
@@ -15,13 +15,15 @@ Manterremo **due modlist distinte**:
 
 La colonna **Profilo** sotto indica per ognuna a quale modlist appartiene.
 
-## Stato di compatibilità STR
+## Stato di compatibilità
 
-Legenda della colonna *Stato STR*:
+> **20 ott 2026:** Skyrim Together Reborn non si usa più (D-019). Gli stati qui sotto erano pensati per STR: **vanno ricontrollati su SkyMP**.
 
-- ✅ **Verificato** — testato in STR multiplayer, funziona senza desync significativi
-- ⚠️ **Da testare** — installato, da provare in scenario STR
-- ❓ **Incerto** — funziona in singleplayer, comportamento STR non noto
+Legenda della colonna *Stato*:
+
+- ✅ **Verificato** — testato in multiplayer, funziona senza desync significativi
+- ⚠️ **Da testare** — installato, da provare in multiplayer
+- ❓ **Incerto** — funziona in singleplayer, comportamento in multiplayer non noto
 - ❌ **Incompatibile** — testato e crea problemi (desync, crash, comportamento errato)
 - 🚫 **Esclusa** — decisa l'esclusione dalla modlist per design (vedi `DECISIONS.md`)
 
@@ -48,16 +50,15 @@ Legenda della colonna *Install*:
 | 5 | ConsoleUtilSSE NG | [76649](https://www.nexusmods.com/skyrimspecialedition/mods/76649) |
 | 6 | SkyUI | [12604](https://www.nexusmods.com/skyrimspecialedition/mods/12604) |
 | 7 | EngineFixes | [17230](https://www.nexusmods.com/skyrimspecialedition/mods/17230) |
-| 8 | Skyrim Together Reborn | [69993](https://www.nexusmods.com/skyrimspecialedition/mods/69993) |
-| 9 | RaceMenu | [19080](https://www.nexusmods.com/skyrimspecialedition/mods/19080) |
-| 10 | Blended Roads | [8834](https://www.nexusmods.com/skyrimspecialedition/mods/8834) |
-| 11 | Obsidian Weathers and Seasons | [12125](https://www.nexusmods.com/skyrimspecialedition/mods/12125) |
-| 12 | Bandolier - Bags and Pouches Classic | [2417](https://www.nexusmods.com/skyrimspecialedition/mods/2417) |
-| 13 | A Quality World Map | [5804](https://www.nexusmods.com/skyrimspecialedition/mods/5804) |
-| 14 | Better Jumping SE | [18967](https://www.nexusmods.com/skyrimspecialedition/mods/18967) |
-| 15 | Relighting Skyrim SE | [8586](https://www.nexusmods.com/skyrimspecialedition/mods/8586) |
-| 16 | Luminosity Lighting Overhaul - The Cathedral Concept | [16830](https://www.nexusmods.com/skyrimspecialedition/mods/16830) |
-| 17 | Alternate Start - Live Another Life - SSE | [272](https://www.nexusmods.com/skyrimspecialedition/mods/272) |
+| 8 | RaceMenu | [19080](https://www.nexusmods.com/skyrimspecialedition/mods/19080) |
+| 9 | Blended Roads | [8834](https://www.nexusmods.com/skyrimspecialedition/mods/8834) |
+| 10 | Obsidian Weathers and Seasons | [12125](https://www.nexusmods.com/skyrimspecialedition/mods/12125) |
+| 11 | Bandolier - Bags and Pouches Classic | [2417](https://www.nexusmods.com/skyrimspecialedition/mods/2417) |
+| 12 | A Quality World Map | [5804](https://www.nexusmods.com/skyrimspecialedition/mods/5804) |
+| 13 | Better Jumping SE | [18967](https://www.nexusmods.com/skyrimspecialedition/mods/18967) |
+| 14 | Relighting Skyrim SE | [8586](https://www.nexusmods.com/skyrimspecialedition/mods/8586) |
+| 15 | Luminosity Lighting Overhaul - The Cathedral Concept | [16830](https://www.nexusmods.com/skyrimspecialedition/mods/16830) |
+| 16 | Alternate Start - Live Another Life - SSE | [272](https://www.nexusmods.com/skyrimspecialedition/mods/272) |
 
 ---
 
@@ -71,7 +72,7 @@ Legenda della colonna *Install*:
 | HearthFires | DLC | Player + Staff | Richiesto |
 | Dragonborn | DLC | Player + Staff | Richiesto |
 | Dawnguard | DLC | Player + Staff | Richiesto |
-| ccQDRSSE001-SurvivalMode | Creation Club | Player + Staff | **Disattivato — non funzionante su STR allo stato attuale**: STR blocca wait/sleep (sync del tempo), ma in Survival il sonno è obbligatorio per smaltire l'exhaustion e per il level-up → debuff perenne e niente livelli. Fame/freddo invece funzionerebbero. Integrabile in futuro con patch nostra (azzerare exhaustion gain + rimuovere requisito sonno per level-up) |
+| ccQDRSSE001-SurvivalMode | Creation Club | Player + Staff | **Disattivato — non funzionava su Skyrim Together (non più usato), da ricontrollare su SkyMP**: Skyrim Together bloccava wait/sleep (sync del tempo), ma in Survival il sonno è obbligatorio per smaltire l'exhaustion e per il level-up → debuff perenne e niente livelli. Fame/freddo invece funzionerebbero. Integrabile in futuro con patch nostra (azzerare exhaustion gain + rimuovere requisito sonno per level-up) |
 | ccBGSSSE037-Curios | Creation Club | Player + Staff | Resource Pack assets |
 | ccBGSSSE025-AdvDSGS | Creation Club | Player + Staff | Advanced Daedric / armatura |
 | ccBGSSSE001-Fish | Creation Club | Player + Staff | Sistema pesca AE |
@@ -94,9 +95,8 @@ Legenda della colonna *Install*:
 
 ## Mod tecniche / librerie (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
-| Skyrim Together Reborn | Player + Staff | 📥 Installata | ✅ Core | — | È **la base**, non è una mod tra le altre |
 | Address Library for SKSE Plugins | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/32444) | Versione matched a SSE 1.6.1170 |
 | PapyrusUtil SE — Modders Scripting Utility Functions | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/13048) | Necessaria per framework RP |
 | SSE Engine Fixes (EngineFixes) | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/17230) | Verificare che la Part 2 (DLL) sia installata |
@@ -108,13 +108,13 @@ Legenda della colonna *Install*:
 | SSE Display Tweaks | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/34705) | Uncap FPS, fix vsync, fondamentale |
 | Spell Perk Item Distributor (SPID) | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/36869) | Framework distribuzione perk/item via INI |
 | VR Address Library for SKSEVR | — | 📥 Installata | ❓ Incerto | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/58101) | ⚠️ Mod per VR — probabilmente installata per errore o come dipendenza automatica. Da verificare se necessaria |
-| Open Cities Skyrim | — | 🚫 Esclusa | ❌ Incompatibile | — | Incompatibilità nota con STR |
+| Open Cities Skyrim | — | 🚫 Esclusa | ❌ Incompatibile | — | Era incompatibile con Skyrim Together (non più usato): da ricontrollare su SkyMP |
 
 ---
 
 ## Fix vanilla (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | Hide Quest Items in Container Menu | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/51243) | QoL puro, nessun rischio |
 | High Gate Ruins Puzzle Reset Fix | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/53643) | Fix vanilla |
@@ -127,7 +127,7 @@ Legenda della colonna *Install*:
 
 ## Interfaccia & QoL (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | SkyUI | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/12604) | Richiede SKSE — essenziale |
 | A Quality World Map | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/5804) | Variante: Vivid with Stone Roads |
@@ -139,7 +139,7 @@ Legenda della colonna *Install*:
 
 ## Visual (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | Obsidian Weathers and Seasons | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/12125) | |
 | Luminosity Lighting Overhaul | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/16830) | Usare insieme a Relighting Skyrim |
@@ -153,7 +153,7 @@ Legenda della colonna *Install*:
 
 ## Audio & Ambience (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | FSS – Better Bards | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus LE](https://www.nexusmods.com/skyrim/mods/6496) | ⚠️ Verificare port SSE compatibile |
 | The Northerner Diaries – Immersive Edition | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/28108) | |
@@ -163,7 +163,7 @@ Legenda della colonna *Install*:
 
 ## Gameplay (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | Alternate Start – Live Another Life | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/272) | Obbligatoria — tutti devono scegliere la stessa origine |
 | Attack Speed Framework | Player + Staff | ⬜ Non installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/45541) | Framework tecnico |
@@ -175,7 +175,7 @@ Legenda della colonna *Install*:
 
 ## Personaggio (modlist Player + Staff)
 
-| Mod | Profilo | Install | Stato STR | Link | Note |
+| Mod | Profilo | Install | Stato | Link | Note |
 |---|---|---|---|---|---|
 | RaceMenu SE | Player + Staff | 📥 Installata | ⚠️ Da testare | [Nexus](https://www.nexusmods.com/skyrimspecialedition/mods/19080) | Richiede SKSE — essenziale per identità visiva RP |
 
@@ -183,10 +183,9 @@ Legenda della colonna *Install*:
 
 ## Mod gameplay candidate (da valutare per inclusione)
 
-| Mod | Profilo | Stato STR | Decisione | Note |
+| Mod | Profilo | Stato | Decisione | Note |
 |---|---|---|---|---|
 | Skyrim Unbound Reborn | Player + Staff | ⚠️ Da testare | 📌 Da decidere | Disabilita main quest e Dovahkiin. Nel profilo attivo oggi c'è **Alternate Start – LAL** al suo posto: scelta tra le due ancora da registrare (STEP_0 P6, D-018) |
-| STR Script Patch Hub | Player + Staff | ⚠️ Da testare | 📌 Da integrare (prima di perk overhaul) | [Nexus #84335](https://www.nexusmods.com/skyrimspecialedition/mods/84335) — obbligatorio con Adamant/Mysticism |
 | Static Skill Leveling Rewritten | — | — | 🚫 Esclusa | Troppe dipendenze, da rivalutare in futuro |
 | Trade and Barter | — | — | 🚫 Esclusa | Senza NPC mercanti non ha senso (D-004) |
 | Skyrim Reputation | — | — | 🚫 Esclusa | Da reinterpretare nel framework RP custom (D-005) |
@@ -210,23 +209,12 @@ Legenda della colonna *Install*:
 2. USSEP
 3. SSE Engine Fixes (parte plugin)
 4. Skyrim Project Optimization SE (ESM/ESL)
-5. Skyrim Together Reborn (e suoi master)
-6. Mod tecniche / librerie
-7. Fix vanilla
-8. Mod gameplay (Alternate Start, Inconvenient Dungeons, ecc.)
-9. Mod custom server (EmptyWorld, future mod RP)
-10. (Solo Staff) StaffTools + tool di sviluppo
-11. Patch di compatibilità
+5. Mod tecniche / librerie
+6. Fix vanilla
+7. Mod gameplay (Alternate Start, Inconvenient Dungeons, ecc.)
+8. Mod custom server (EmptyWorld, future mod RP)
+9. (Solo Staff) StaffTools + tool di sviluppo
+10. Patch di compatibilità
 
 ---
 
-## Note sulla compatibilità con STR
-
-Skyrim Together Reborn ha sincronizzazione **parziale**. Conseguenze pratiche:
-
-- Mod che modificano AI degli NPC: spesso non sincronizzate. Per noi meno rilevante (niente NPC).
-- Mod che toccano skill/perk: sync imperfetto. Va testato caso per caso.
-- Mod con UI custom (menu, HUD): non sincronizzate, ogni player ha la sua. Va bene.
-- Mod che spawnano oggetti nel mondo via script: ogni player vede oggetti suoi. **Attenzione** se vogliamo oggetti condivisi.
-
-Per ogni nuova mod: **due dev devono testarla in STR insieme** prima di metterla in modlist Player.

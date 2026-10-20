@@ -38,7 +38,7 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 
 ### Priorità 2 — Versione di Skyrim fissata
 
-**Cosa significa:** decidere la build esatta di Skyrim Special Edition supportata da Skyrim Together Reborn ora, e bloccarla su ogni macchina del team.
+**Cosa significa:** decidere la build esatta di Skyrim Special Edition supportata da SkyMP ora, e bloccarla su ogni macchina del team.
 
 **Criterio di completamento:**
 - [x] Versione SSE scelta e documentata in `DEV_SETUP.md` (1.6.1170 + SKSE 2.2.6)
@@ -108,7 +108,7 @@ Tutto ciò che assomiglia a un "sistema complesso" (economia, reputazione, backg
 
 **Criterio di completamento (residuo):**
 - [ ] Scelta tra Alternate Start – LAL e Skyrim Unbound Reborn, registrata in `DECISIONS.md`
-- [ ] Alternate start scelto testato in STR
+- [ ] Alternate start scelto testato in SkyMP
 - [ ] Verifica: con EmptyWorld v0.5 + alternate start, le quest vanilla restano inerti (o non creano problemi) in un mondo senza NPC
 - [ ] Se non restano inerti: decisione su dove reintrodurre la disattivazione delle quest (EmptyWorld o mod separata)
 

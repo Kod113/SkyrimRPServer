@@ -6,7 +6,7 @@ Status:   Bozza — in discussione col team
 Versione: 0.1.0
 Data:     2026-07-08
 Autore:   Lead dev + Claude
-Dipende:  STR, PapyrusUtil (già in modlist), SKSE64
+Dipende:  SkyMP, PapyrusUtil (già in modlist), SKSE64
 ```
 
 ---
@@ -22,14 +22,11 @@ Il sistema di mapping deve fornire:
 5. **Accesso rapido** in-game: consultare la mappa senza passare da inventario → cerca → apri.
 6. Comunicazione **bidirezionale gioco ↔ sistema esterno** (a regime; le prime fasi sono manuali — vedi §7).
 
-## 2. Vincolo architetturale fondamentale (STR)
+## 2. Vincolo architetturale (da rivedere per SkyMP)
 
-Prima di tutto va capito cosa STR permette, perché condiziona ogni scelta:
-
-- **Il server STR non ha scripting API server-side.** Il server sincronizza solo posizioni, aspetto, combat, ecc. Non possiamo far girare logica custom "sul server STR". Era nei piani dei dev STR ma non è mai stato rilasciato.
-- **Tutta la logica custom gira client-side** (Papyrus/SKSE sul client di ogni player) e **NON è sincronizzata**: uno script che gira sul client di un player non parla con i client degli altri.
-- **Conseguenza:** qualsiasi stato condiviso (la mappa master, le scoperte, le proprietà) deve vivere **fuori dal gioco**, in un backend nostro. Il gioco è solo il punto di *lettura* (dove sono?) e di *interazione* (leggo una mappa, costruisco una fattoria). Questo è coerente con la direzione già presa dal progetto (economia/reputazione esterne).
-- **Bonus utile:** in STR ogni player ha il *proprio* save → i map marker scoperti sulla mappa vanilla sono già per-giocatore, gratis.
+> **20 ott 2026:** questa sezione era scritta per Skyrim Together Reborn (nessuna logica sul server, tutto sul client) e non vale più.
+> Con SkyMP la logica condivisa può girare nel **gamemode sul server**, ma gli **script Papyrus del client sono bloccati** (vedi `specs/platform/skymp_funzionalita.md`).
+> Le fasi 2-4 qui sotto (script `AddToMap`, quest Papyrus client-side, PapyrusUtil) vanno ripensate su questa base.
 
 ## 3. Sistema di riferimento
 
@@ -105,7 +102,7 @@ Tre componenti, indipendenti tra loro (dettaglio in §5 e §6): mappa fisica com
 
 ### 5.1 Oggetto mappa
 
-- Base: [Equip-able Maps SE](https://www.nexusmods.com/skyrimspecialedition/mods/16373) — mappe di carta equipaggiabili, tenute in mano. Compatibilità STR da testare (è roba semplice: item + texture, buone probabilità).
+- Base: [Equip-able Maps SE](https://www.nexusmods.com/skyrimspecialedition/mods/16373) — mappe di carta equipaggiabili, tenute in mano. Compatibilità con SkyMP da testare (è roba semplice: item + texture, buone probabilità).
 - Estetica opzionale: [Helps To Have a Map — Hold Map Idle](https://www.nexusmods.com/skyrimspecialedition/mods/121577) (animazione che mostra la mappa nelle mani; richiede IED+OAR, da valutare contro il criterio stabilità).
 - In alternativa/complemento, mappe regionali custom nostre: item "libro" con texture della regione — un player che apre "Mappa del Rift" vede il disegno della regione. Facile da produrre con i tile generati per la mappa web.
 
@@ -152,20 +149,20 @@ Nota: il fast travel va comunque disabilitato (probabilmente già previsto altro
 - Viewer Leaflet: vista admin (tutto + editing) e vista player (login + regola visibilità). Scoperte gestite a mano dagli admin (il player dice "sono stato a Falkreath", o lo si vede in eventi RP).
 
 ### Fase 2 — Mappe fisiche in-game
-- Test Equip-able Maps su STR; item mappe regionali custom; script `AddToMap` per regione; power "Consulta mappa".
+- Test Equip-able Maps su SkyMP; item mappe regionali custom; script `AddToMap` per regione; power "Consulta mappa".
 - Vendita tramite cartografi player; riscatto sblocco web manuale/via codice.
 
 ### Fase 3 — Ponte automatico gioco → backend
 - Quest Papyrus client-side che campiona posizione ogni N secondi → celle/zone visitate → `PapyrusUtil` scrive JSON su disco (PapyrusUtil è **già in modlist**).
-- Upload: (a) il **launcher** del client pack legge il JSON e lo manda al backend (più robusto, già abbiamo un launcher), oppure (b) [Papyrus HTTP Utils](https://www.nexusmods.com/skyrimspecialedition/mods/172953) per POST diretti dal gioco (da testare con STR).
+- Upload: (a) il **launcher** del client pack legge il JSON e lo manda al backend (più robusto, già abbiamo un launcher), oppure (b) [Papyrus HTTP Utils](https://www.nexusmods.com/skyrimspecialedition/mods/172953) per POST diretti dal gioco (da testare con SkyMP).
 - Da qui: fog of war automatico, posizione live sulla mappa master (admin), acquisto mappe auto-registrato.
 
 ### Fase 4 — Costruzioni player
-- Il player "costruisce la fattoria" in RP → admin la registrano nel DB (visibile subito sulla mappa web di tutti secondo visibilità) → la struttura fisica entra nel mondo con il successivo **world update** (release del nostro .esp distribuita via modlist). Limite STR: non si possono materializzare edifici a runtime in modo sincronizzato; il doppio binario "subito su mappa, al prossimo update nel mondo" è il compromesso onesto.
+- Il player "costruisce la fattoria" in RP → admin la registrano nel DB (visibile subito sulla mappa web di tutti secondo visibilità) → la struttura fisica entra nel mondo con il successivo **world update** (release del nostro .esp distribuita via modlist). Limite che c'era con Skyrim Together (da ricontrollare con SkyMP): non si possono materializzare edifici a runtime in modo sincronizzato; il doppio binario "subito su mappa, al prossimo update nel mondo" è il compromesso onesto.
 
 ## 8. Rischi e questioni aperte
 
-- **Compatibilità STR** di Equip-able Maps, Papyrus HTTP Utils, ed eventuali mod di idle: ogni aggiunta va testata sul profilo Admin prima di entrare in modlist ([Script Patch Hub](https://www.nexusmods.com/skyrimspecialedition/mods/84335) come riferimento per i pattern di patch).
+- **Compatibilità con SkyMP** di Equip-able Maps, Papyrus HTTP Utils, ed eventuali mod di idle: ogni aggiunta va testata sul profilo Admin prima di entrare in modlist.
 - **Identità player ↔ account web**: serve un collegamento personaggio → account (probabilmente via Discord OAuth, coerente con D-002). Da specificare.
 - **Tile del worldspace moddato**: gli script UESP vanno fatti girare su una macchina con CK/strumenti — effort da stimare.
 - **Anti-cheat "morbido"**: la mappa web player mostra solo ciò che è concesso, ma nulla impedisce a un player di guardare la UESP pubblica. Il valore delle nostre mappe è *cosa c'è nel nostro mondo* (POI custom, spawn, proprietà), non la geografia — ed è per questo che il fog sulla geografia vanilla (opzione B in §6) rende meno di quanto costa.
@@ -176,4 +173,3 @@ Nota: il fast travel va comunque disabilitato (probabilmente già previsto altro
 - [UESP gamemap (viewer Leaflet, open source)](https://github.com/uesp/uesp-gamemap) · [script generazione tile Skyrim](https://github.com/uesp/skyrimmaps-scripts)
 - [Equip-able Maps SE](https://www.nexusmods.com/skyrimspecialedition/mods/16373) · [Hold Map Idle](https://www.nexusmods.com/skyrimspecialedition/mods/121577)
 - [Papyrus HTTP Utils](https://www.nexusmods.com/skyrimspecialedition/mods/172953) · [PapyrusUtil SE](https://www.nexusmods.com/skyrimspecialedition/mods/13048)
-- [Skyrim Together Reborn](https://www.nexusmods.com/skyrimspecialedition/mods/69993)
