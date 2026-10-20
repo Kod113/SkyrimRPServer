@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-10-20
+- `[doc]` Rimosso tutto ciò che riguardava solo Skyrim Together Reborn e non si può usare con SkyMP: launcher `client_pack/Launcher/`, guide per i giocatori (`INSTALL_GUIDE`, `FIRST_LOGIN`, `FAQ`, `TROUBLESHOOTING`, due guide di setup) e `fahdon_modlist_analisi.md` (valutazioni pensate per STR). Convertiti a SkyMP i riferimenti in `README.md`, `DEV_SETUP.md` (client SkyMP al posto di STR), `MODLIST.md` (tolte le righe STR, stati da ricontrollare su SkyMP), `VISION.md`, `MANIFEST_TEMPLATE.md`, `configs/README.md`, `STEP_0.md`, `docs_for_players/README.md`, `specs/systems/mapping_system.md` (§2 da rivedere per SkyMP). Restano come storia `DECISIONS.md`, `IMPLEMENTED.md`, `specs/platform/` e la mod archiviata EmptyWorld. I file rimossi restano recuperabili dalla storia di git. — david
+- `[doc]` `TASKS.md`: T-002 e T-004 (ricognizioni dei server concorrenti) chiuse, fatte da David (`team/david/ricerca_top2_server_skymp.md`). — david
+
 ## 2026-10-13
 - `[decision]` **D-019**: la piattaforma è SkyMP, STR esce dal progetto. **D-021**: `RPServer_EmptyWorld` archiviata, il mondo vuoto lo fa già SkyMP (`npcEnabled: false`); gli animali per caccia e crafting verranno da un nostro sistema di spawn. Aggiornati `STEP_0.md` (P0 chiusa, P3 → SkyMP, P5 archiviata, nota su P6), `ROADMAP.md`, `README.md`, `TASKS.md`, `specs/platform/README.md`, `skymp_spike.md` §4, `custom_mods/README.md` e `MANIFEST.md` di EmptyWorld. — david
 - `[doc]` Ricerca sui due server SkyMP più grandi (Keizaal Online, SKY MP Brasil): client, server, login, caricamenti, crafting, level up, magie. In `team/david/ricerca_top2_server_skymp.md`. — david

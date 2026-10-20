@@ -47,7 +47,7 @@ Il ruolo di ogni "abitante del mondo" sarà coperto da:
 
 La prima fase **NON sarà creare sistemi complessi**. La priorità è costruire fondamenta stabili. In ordine:
 
-1. **Multiplayer stabile** — la connessione su Skyrim Together Reborn deve essere affidabile tra i player del team
+1. **Multiplayer stabile** — la connessione su SkyMP deve essere affidabile tra i player del team
 2. **Mondo alleggerito** — niente carico inutile sul motore
 3. **Rimozione NPC vanilla** — il mondo è vuoto, pronto per essere riempito dai player
 4. **Disattivazione main quest e side quest** — niente narrativa precostruita che intralcia l'RP
@@ -62,7 +62,7 @@ Dettagli operativi e criteri di completamento di ogni punto sono in `STEP_0.md`.
 Il progetto è composto da tre macro-blocchi:
 
 ### 1. Server multiplayer
-Basato su **Skyrim Together Reborn**. Tutti i player devono avere modlist, load order e versione del gioco **identici**.
+Basato su **SkyMP** (D-019). Tutti i player devono avere modlist, load order e versione del gioco **identici**.
 
 ### 2. Mod Framework RP custom
 Sviluppato tramite:
@@ -80,7 +80,7 @@ Pacchetto unico distribuito a tutti i player. Stessa modlist, stesso load order,
 Esplicitati per non rincorrerli per sbaglio:
 
 ❌ Grafica ultra-moddata (texture 4K, ENB pesanti, ecc.) — non è la priorità
-❌ 500 mod stratificate — instabilità garantita su STR
+❌ 500 mod stratificate — instabilità garantita in multiplayer
 ❌ Esperienza single-player potenziata — questo progetto è multiplayer-first
 ❌ Replica di MMO esistenti — vogliamo qualcosa di nuovo, non un clone
 
@@ -88,4 +88,4 @@ Esplicitati per non rincorrerli per sbaglio:
 
 **Stabilità multiplayer + qualità del gameplay RP > tutto il resto.**
 
-Ogni decisione tecnica si confronta con questo criterio. Una mod che migliora la grafica ma rompe la sincronia su STR si scarta. Una mod brutta visivamente ma che abilita un meccanismo RP profondo si tiene.
+Ogni decisione tecnica si confronta con questo criterio. Una mod che migliora la grafica ma rompe la sincronia in multiplayer si scarta. Una mod brutta visivamente ma che abilita un meccanismo RP profondo si tiene.

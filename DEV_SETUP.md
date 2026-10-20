@@ -31,15 +31,15 @@ Su Steam: tasto destro su *Skyrim Special Edition* → *Properties* → *Updates
 
 ### 3. SKSE64 — Script Extender
 **Cosa fa:** espande le funzioni interne di Skyrim. Necessario per la maggior parte delle mod moderne, scripting avanzato, sistemi RP custom.
-**Perché obbligatorio:** Skyrim Together Reborn richiede SKSE; il framework RP custom dipende da SKSE.
+**Perché obbligatorio:** il client SkyMP richiede SKSE; il framework RP custom dipende da SKSE.
 **Fonte:** [skse.silverlock.org](https://skse.silverlock.org/)
 **Note:** scaricare la build **esattamente corrispondente** alla versione di Skyrim fissata sopra.
 
-### 4. Skyrim Together Reborn
-**Cosa fa:** aggiunge il multiplayer online a Skyrim.
+### 4. Client SkyMP
+**Cosa fa:** aggiunge il multiplayer online a Skyrim (piattaforma scelta con D-019).
 **Perché obbligatorio:** è la base dell'intero server RP.
-**Fonte:** [skyrim-together.com](https://skyrim-together.com/)
-**Note:** seguire la guida ufficiale di installazione alla lettera. Verifica della versione del gioco è cruciale.
+**Fonte:** launcher di [skymp.net](https://skymp.net) (serve solo per installare e aggiornare).
+**Note:** procedura passo per passo in `client_pack/SkyMP/test_online_ospite.md`; per giocare si usa `client_pack/SkyMP/avvia_skymp.bat`. La versione del gioco deve essere la 1.6.1170.
 
 ### 5. Creation Kit
 **Cosa fa:** editor ufficiale Bethesda. Serve per creare mod, modificare città, creare dungeon, rimuovere NPC, creare quest, scrivere Papyrus.

@@ -28,8 +28,7 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | `TASKS.md` | Task settimanali del team (aggiornato alla riunione del venerdì) |
 | `comms/` | Messaggio settimanale + promemoria riunione (Discord automatico, WhatsApp con un clic) |
 | `DEV_SETUP.md` | Tool e mod obbligatori per il reparto dev |
-| `MODLIST.md` | Lista mod unica: profilo MO2 attivo + tutte le mod con stato di compatibilità STR |
-| `fahdon_modlist_analisi.md` | Analisi della modlist Fahdon come riferimento per scegliere le mod |
+| `MODLIST.md` | Lista mod unica: profilo MO2 attivo + tutte le mod con stato di compatibilità (da ricontrollare su SkyMP) |
 | `DECISIONS.md` | Log delle decisioni di design (perché abbiamo scelto così) |
 | `IMPLEMENTED.md` | Changelog: cosa è stato fatto, in che versione, quando |
 | `MANIFEST_TEMPLATE.md` | Template che ogni mod custom deve compilare |
@@ -48,7 +47,7 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 
 **Quando apri una sessione con Claude (Cowork)**: chiedigli di leggere `CLAUDE.md`, `README.md`, `IMPLEMENTED.md`, `DECISIONS.md` come prima cosa, così ha tutto il contesto del progetto.
 
-**Quando una sessione con Claude produce informazioni utili ai giocatori** (domande su installazione, comandi, problemi tecnici, regole di gioco): aggiorna il file corrispondente in `docs_for_players/` prima di chiudere la sessione. Regola pratica:
+**Quando una sessione con Claude produce informazioni utili ai giocatori** (domande su installazione, comandi, problemi tecnici, regole di gioco): aggiorna il file corrispondente in `docs_for_players/` prima di chiudere la sessione (se non esiste ancora, crealo: le vecchie guide per Skyrim Together sono state rimosse il 20 ottobre 2026). Regola pratica:
 
 | Tipo di contenuto | File da aggiornare |
 |---|---|
