@@ -395,8 +395,9 @@ def meta(desc, status, sources):
 
 dump("creatures.json", {
     "_meta": meta("Creature, habitat, comportamento e drop (percentuali 0-1; null = non indicato nel Discord).",
-                  "bozza: da incrociare con i drop reali del gioco",
-                  ["Discord #creature-spawm", "Discord #loot-implicazioni-alchemiche"]),
+                  "bozza: percentuali aggiornate il 20 ott 2026 (loot completo in loot.json)",
+                  ["Discord #creature-spawm", "Discord #loot-implicazioni-alchemiche",
+                   "Discord #animali-e-loot (18 ott 2026)"]),
     "_unread": UNREAD_CREATURES,
     "items": CREATURES})
 
@@ -413,8 +414,6 @@ dump("zones.json", {
     "icons": {"north_total": 55, "south_total": 44,
               "items": [dict(id=i, name_it=n, north=a, south=b) for i, n, a, b in ICONS]}})
 
-dump("spawn_rules.json", {"_meta": {"version": "0.0.1", "date": DATA_DATE, "author": "david",
-    "status": "scheletro vuoto",
-    "description": "Regole di spawn zona -> risorsa. DA COMPILARE dopo lo spike sullo spawn."}, "items": []})
+# spawn_rules.json e loot.json: li genera build_loot_spawn.py (dati del Discord del 18 ott 2026)
 
 print("Generati i file in", OUT)

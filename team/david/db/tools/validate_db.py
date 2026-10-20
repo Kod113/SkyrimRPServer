@@ -162,6 +162,35 @@ if os.path.exists(os.path.join(DIR, "races.json")):
           f"(ok {sum(1 for x in sp if x['status']=='allowed')}, vietati {sum(1 for x in sp if x['status']=='banned')}, "
           f"limitati {sum(1 for x in sp if x['status']=='restricted')})")
 
+# ----- loot e spawn (da Discord, 18 ottobre; aggiunto il 20 ottobre)
+if os.path.exists(os.path.join(DIR, "loot.json")):
+    lt = load("loot.json")["items"]
+    lt_ids = [c["id"] for c in lt]
+    for dup, n in Counter(lt_ids).items():
+        if n > 1:
+            errors.append(f"Loot duplicato: {dup}")
+    cre_ids = {c["id"] for c in cre}
+    for c in lt:
+        if c["creature_id"] and c["creature_id"] not in cre_ids:
+            errors.append(f"Loot {c['id']}: creature_id sconosciuto '{c['creature_id']}'")
+        for d in c["drops"] + [x for d in c["drops"] for x in d.get("examples", [])]:
+            if not 0 < d["chance"] <= 1:
+                errors.append(f"Loot {c['id']}: chance fuori da 0-1 ({d})")
+    sr = load("spawn_rules.json")
+    for t in sr["terrain_species"]:
+        if t["terrain"] not in terr | {"giant_camp"}:
+            errors.append(f"Spawn: terreno sconosciuto '{t['terrain']}'")
+        for s in t["species"]:
+            if s not in lt_ids:
+                errors.append(f"Spawn {t['terrain']}: specie senza loot '{s}'")
+    for g in sr["groups"]:
+        if g["species"] not in lt_ids:
+            errors.append(f"Gruppo {g['id']}: specie senza loot '{g['species']}'")
+    if sr["orc_forts"]["loot_id"] not in lt_ids:
+        errors.append("Forti degli orchi: loot_id sconosciuto")
+    print(f"Loot: {len(lt)} creature | Terreni con spawn: {len(sr['terrain_species'])} | "
+          f"Accampamenti: {len(sr['giant_camps']['items'])} | Forti: {len(sr['orc_forts']['items'])}")
+
 # ----- report
 print(f"Ingredienti: {len(ing)} | Effetti: {len(eff)} | Job: {len(jobs['items'])}")
 state = Counter(i["feudi"]["availability"] for i in ing)

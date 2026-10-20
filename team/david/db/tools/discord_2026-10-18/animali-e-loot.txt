@@ -1,0 +1,48 @@
+# Discord Atronach RP, #animali-e-loot (Dave_St, 18 ottobre 2026, 03:31-03:32)
+# Copia del testo letto il 20 ottobre 2026. Righe "id: oggetto %, oggetto %". Dove non c'e' % l'oggetto e' sicuro (100%).
+# Le righe che iniziano con "## " sono i titoli di sezione del canale.
+
+## Foresta e pianura
+cervo: Carne di Cervide 100%, Pelle di cervo 100%, Piccolo tesoro (oro/gemma/anello) 10%, Corna grandi 50%
+alce: Carne di Cervide 100%, Pelle di alce 100%, Piccolo tesoro (oro/gemma/anello) 10%, Corna grandi 50%
+alce_femmina: Carne di Cervide 100%, Pelle di alce 100%, Piccolo tesoro (oro/gemma/anello) 10%, Piccole corna 50%
+capra: Pelle di capra 100%, Cosciotto di capra 100%, Piccolo tesoro (oro/gemma/anello) 19%, Corna di capra 50%
+capra_domestica: Pelle di capra 100%, Cosciotto di capra 100%, Piccolo tesoro (oro/gemma/anello) 19%, Corna di capra 50%
+coniglio: Coscia di coniglio cruda 100%
+lepre: Coscia di coniglio cruda 100%
+volpe: Pelliccia di volpe 100%
+volpe_artica: Pelliccia di volpe delle nevi 100%
+lupo: Pelliccia di lupo 100%, Piccolo tesoro (oro/gemma/anello) 10%
+lupo_di_ghiaccio: Pelliccia di lupo dei ghiacci 100%, Piccolo tesoro (oro/gemma/anello) 10%
+lupo_rosso: Pelliccia di lupo 100%, Piccolo tesoro (oro/gemma/anello) 10%
+orso: Pelliccia di orso 100%, Piccolo tesoro (oro/gemma/anello) 10%, Artigli di orso 100%
+orso_delle_caverne: Pelliccia di orso delle caverne 100%, Piccolo tesoro (oro/gemma/anello) 10%, Artigli di orso 100%
+orso_delle_nevi: Pelliccia di orso delle nevi 100%, Piccolo tesoro (oro/gemma/anello) 10%, Artigli di orso 100%
+gatto_dai_denti_a_sciabola: Pelliccia di tigre dai denti a sciabola 100%, Piccolo tesoro (oro/gemma/anello) 10%, Occhio di tigre dai denti a sciabola 50%, Dente di tigre dai denti a sciabola 50%
+gatto_dai_denti_a_sciabola_delle_nevi: Pelliccia di tigre dai denti a sciabola delle nevi 100%, Piccolo tesoro (oro/gemma/anello) 10%, Occhio di tigre dai denti a sciabola 50%, Dente di tigre dai denti a sciabola 50%
+skeever: Coda di skeever 100%, Piccolo tesoro (oro/gemma/anello) 10%
+
+## Acqua e neve
+granchio_di_fango: Chitina di granchio del fango 100%, Piccolo tesoro (oro/gemma/anello) 10%, Zampe di granchio del fango 100%
+granchio_di_fango_grande: Chitina di granchio del fango 100%, Piccolo tesoro (oro/gemma/anello) 10%, Zampe di granchio del fango 100%
+granchio_di_fango_gigante: Chitina di granchio del fango 100%, Piccolo tesoro (oro/gemma/anello) 10%, Zampe di granchio del fango 100%
+pesce_macellaio: Squame di pesce macellaio 100%, Piccolo tesoro (oro/gemma/anello) 10%
+horker: Carne di horker 100%, Zanna di horker 100%, Piccolo tesoro (oro/gemma/anello) 10%
+mammut: Proboscide di mammut 100%, Zanna di mammut 100%, Piccolo tesoro (oro/gemma/anello) 10%
+ragno_del_gelo: Veleno congelante 100%, Piccolo tesoro (oro/gemma/anello) 10%
+ragno_del_gelo_grande: Veleno congelante 100%, Piccolo tesoro (oro/gemma/anello) 10%
+ragno_del_gelo_gigante: Veleno congelante 100%, Piccolo tesoro (oro/gemma/anello) 10%
+
+## Fattoria
+cavallo: Carne di cavallo 33.3%, Pelle di cavallo 33.3%, Piccolo tesoro (oro/gemma/anello) 3.3%
+cavallo_nero: Carne di cavallo 33.3%, Pelle di cavallo 33.3%, Piccolo tesoro (oro/gemma/anello) 3.3%
+cavallo_grigio: Carne di cavallo 33.3%, Pelle di cavallo 33.3%, Piccolo tesoro (oro/gemma/anello) 3.3%
+mucca: Carne cruda 100%, Pelle di mucca 100%, Piccolo tesoro (oro/gemma/anello) 10%
+gallina: Petto di pollo 100%
+cane: Carne di cane 50%, Piccolo tesoro (oro/gemma/anello) 5%
+
+## Note (testo del canale)
+# - Il "piccolo tesoro" (10%) contiene oro (1-9), una gemma o un anello d'argento normale
+# - Il cervo mostra pelle, carne, palchi (50%), come in vanilla
+# - Due oggetti sono "non giocabili" nel gioco originale e restano nascosti: Scudo spriggan e un oggetto dei ragni del gelo
+# - Cavalli e cane: i loro oggetti dipendono dal caso, a volte il cadavere e' vuoto (normale)

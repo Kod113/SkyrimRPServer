@@ -176,3 +176,30 @@ ITEM_STATS = {
     "Nordic Barnacle": (5, 0.2, "alchemy only"),
     "Pearl": (2, 0.1, None),
 }
+
+
+# ---- aggiornamento 20 ott 2026: percentuali da #animali-e-loot e #mob-mostri-e-loot (Discord, 18 ott 2026)
+# Si riempiono solo i drop che erano None e si aggiungono i drop scritti nel Discord per creature gia' presenti.
+# Il loot completo (86 creature) e' in loot.json, generato da build_loot_spawn.py.
+FILL_20OCT = {  # creatura -> {oggetto: percentuale}
+    "fox": {"Fox Pelt": 1.0}, "snow_fox": {"Snow Fox Pelt": 1.0}, "rabbit": {"Raw Rabbit Leg": 1.0},
+    "skeever": {"Skeever Tail": 1.0}, "slaughterfish": {"Slaughterfish Scales": 1.0},
+    "mammoth": {"Mammoth Tusk": 1.0}, "frostbite_spider": {"Frostbite Venom": 1.0},
+    "ice_wraith": {"Ice Wraith Teeth": 1.0}}
+ADD_20OCT = {  # creatura -> drop nuovi
+    "elk": [dict(item="Small loot (gold, ring or gem)", chance=0.10, use="loot")],
+    "skeever": [dict(item="Small loot (gold, ring or gem)", chance=0.10, use="loot")],
+    "slaughterfish": [dict(item="Small loot (gold, ring or gem)", chance=0.10, use="loot")],
+    "frostbite_spider": [dict(item="Small loot (gold, ring or gem)", chance=0.10, use="loot")],
+    "mammoth": [dict(item="Mammoth Snout", chance=1.0, use="alchemy"),
+                dict(item="Small loot (gold, ring or gem)", chance=0.10, use="loot")],
+    "ice_wraith": [dict(item="Ice Wraith Essence", chance=1.0, use="alchemy")]}
+for _c in CREATURES:
+    for _d in _c["drops"]:
+        if _d["chance"] is None and _d["item"] in FILL_20OCT.get(_c["id"], {}):
+            _d["chance"] = FILL_20OCT[_c["id"]][_d["item"]]
+    _c["drops"] += ADD_20OCT.get(_c["id"], [])
+# frost_troll aveva "Troll Fat" due volte (1.0 e None): il Discord dice 100%, si toglie il doppione
+for _c in CREATURES:
+    if _c["id"] == "frost_troll":
+        _c["drops"] = [d for d in _c["drops"] if not (d["item"] == "Troll Fat" and d["chance"] is None)]

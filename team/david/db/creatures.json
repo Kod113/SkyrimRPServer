@@ -3,11 +3,12 @@
     "version": "0.1.0",
     "date": "2026-10-14",
     "author": "david",
-    "status": "bozza: da incrociare con i drop reali del gioco",
+    "status": "bozza: percentuali aggiornate il 20 ott 2026 (loot completo in loot.json)",
     "description": "Creature, habitat, comportamento e drop (percentuali 0-1; null = non indicato nel Discord).",
     "sources": [
       "Discord #creature-spawm",
-      "Discord #loot-implicazioni-alchemiche"
+      "Discord #loot-implicazioni-alchemiche",
+      "Discord #animali-e-loot (18 ott 2026)"
     ]
   },
   "_unread": [
@@ -139,13 +140,18 @@
       "drops": [
         {
           "item": "Slaughterfish Scales",
-          "chance": null,
+          "chance": 1.0,
           "use": "alchemy"
         },
         {
           "item": "Slaughterfish Egg",
           "chance": null,
           "use": "alchemy"
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
         }
       ]
     },
@@ -203,6 +209,11 @@
         {
           "item": "Antlers",
           "chance": 0.5
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
         }
       ]
     },
@@ -220,7 +231,7 @@
       "drops": [
         {
           "item": "Fox Pelt",
-          "chance": null
+          "chance": 1.0
         }
       ]
     },
@@ -238,7 +249,7 @@
       "drops": [
         {
           "item": "Snow Fox Pelt",
-          "chance": null
+          "chance": 1.0
         }
       ]
     },
@@ -256,7 +267,7 @@
       "drops": [
         {
           "item": "Raw Rabbit Leg",
-          "chance": null
+          "chance": 1.0
         }
       ]
     },
@@ -443,10 +454,20 @@
       "drops": [
         {
           "item": "Mammoth Tusk",
-          "chance": null,
+          "chance": 1.0,
           "value": 150,
           "weight": 5,
           "use": "no alchemy effect; UESP lists no loot for the mammoth"
+        },
+        {
+          "item": "Mammoth Snout",
+          "chance": 1.0,
+          "use": "alchemy"
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
         }
       ]
     },
@@ -464,10 +485,15 @@
       "drops": [
         {
           "item": "Skeever Tail",
-          "chance": null,
+          "chance": 1.0,
           "value": 3,
           "weight": 0.2,
           "use": "alchemy"
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
         }
       ]
     },
@@ -511,6 +537,11 @@
           "item": "Ice Wraith Teeth",
           "chance": 1.0,
           "qty": 1
+        },
+        {
+          "item": "Ice Wraith Essence",
+          "chance": 1.0,
+          "use": "alchemy"
         }
       ]
     },
@@ -528,10 +559,15 @@
       "drops": [
         {
           "item": "Frostbite Venom",
-          "chance": null,
+          "chance": 1.0,
           "value": 21,
           "weight": 0.5,
           "use": "poison applied to a weapon or arrow: 5 dmg/s health+stamina for 4 s"
+        },
+        {
+          "item": "Small loot (gold, ring or gem)",
+          "chance": 0.1,
+          "use": "loot"
         }
       ]
     },
@@ -551,10 +587,6 @@
           "item": "Troll Fat",
           "chance": 1.0,
           "use": "alchemy"
-        },
-        {
-          "item": "Troll Fat",
-          "chance": null
         },
         {
           "item": "Small loot (gold, ring or gem)",

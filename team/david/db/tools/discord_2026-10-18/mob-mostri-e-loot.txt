@@ -1,0 +1,80 @@
+# Discord Atronach RP, #mob-mostri-e-loot (Dave_St, 18 ottobre 2026, 03:33-03:37)
+# Copia del testo letto il 20 ottobre 2026. Righe "id (liv. N): parte · parte · ...".
+# Il blocco "Creature fantastiche (gia' pronte)" nel canale compare due volte, identico: qui una volta sola.
+# Percentuali calcolate da Dave_St dai dati ufficiali per un personaggio di livello ~30 (vedi #come-leggere-le-percentuali).
+
+## Draugr e scheletri
+draugr (liv. 1): Oro 29% (fino a 10) · Armi 87% (es. Ascia draugr affilata 49%, Antica spada nord affilata 49%) · Armature e abiti 76% (es. Scudo di ferro 75%, Collana d'oro ingioiellata 0.1%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+draugr_inquieto (liv. 6): Oro 29% (fino a 10) · Armi 87% (es. Ascia draugr affilata 49%, Antica spada nord affilata 49%) · Armature e abiti 51% (es. Scudo di ferro 50%, Collana d'oro ingioiellata 0.1%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+draugr_spettrale (liv. 13): Oro 29% (fino a 10) · Armi 87% (es. Ascia draugr affilata 49%, Antica spada nord affilata 49%) · Armature e abiti 51% (es. Scudo di ferro 50%, Collana d'oro ingioiellata 0.1%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+draugr_fustigatore (liv. 21): Oro 29% (fino a 10) · Armi 95% (es. Antico spadone nord affilato 49%, Antica ascia da guerra nord affilata 49%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+signore_della_morte_draugr (liv. 30): Oro 29% (fino a 10) · Armi 98% (es. Spada d'ebano 75%, Ascia d'ebano 75%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+scheletro (liv. 1): Armi 64% (es. Ascia draugr affilata 29%, Antica spada nord affilata 29%) · Armature e abiti 51% (es. Scudo di ferro 50%, Collana d'oro ingioiellata 0.1%) · Pozioni, veleni e cibo 3% (es. Soluzione della forza 0.1%, Pozione della forza 0.1%) · Gemme 7.2% · Farina d'ossa 25%
+
+## Banditi
+bandito_fuorilegge (liv. 5): Oro 53% (fino a 10) · Armi 94% (es. Spada di ferro 24%, Spada d'acciaio 24%) · Armature e abiti 8.4% (es. Collana d'oro ingioiellata 0.4%, Collana d'oro con rubino 0.4%) · Pozioni, veleni e cibo 63% (es. Idromele nord 17%, Birra 17%) · Gemme 20% · lingotti e minerali 10% · Grimaldello 71% · Indossa: Scarpe di pelliccia, Stivali a scaglie, Bracciali di pelliccia
+bandito_picchiatore (liv. 9): Oro 53% (fino a 10) · Armi 94% (es. Spada di ferro 24%, Spada d'acciaio 24%) · Armature e abiti 8.4% (es. Collana d'oro ingioiellata 0.4%, Collana d'oro con rubino 0.4%) · Pozioni, veleni e cibo 63% (es. Idromele nord 17%, Birra 17%) · Gemme 20% · lingotti e minerali 10% · Grimaldello 71% · Indossa: Scarpe di pelliccia, Stivali a scaglie, Bracciali di pelliccia
+bandito_predatore (liv. 19): Oro 98% (fino a 125) · Armi 94% (es. Spada di ferro 24%, Spada d'acciaio 24%) · Armature e abiti 8.4% (es. Collana d'oro ingioiellata 0.4%, Collana d'oro con rubino 0.4%) · Pozioni, veleni e cibo 63% (es. Idromele nord 17%, Birra 17%) · Gemme 20% · lingotti e minerali 10% · Grimaldello 84% · Indossa: Scarpe di pelliccia, Stivali a scaglie, Bracciali di pelliccia
+capo_banditi (liv. 21): Oro x250 100% · Pugnale elfico 100% · Armi 98% (es. Spada di ferro 24%, Spada d'acciaio 24%) · Armature e abiti 8.4% (es. Collana d'oro ingioiellata 0.4%, Collana d'oro con rubino 0.4%) · Pozioni, veleni e cibo 63% (es. Idromele nord 17%, Birra 17%) · Gemme 20% · lingotti e minerali 10% · Grimaldello 84% · Indossa: Stivali di ferro, Stivali a piastre, Corazza laminata
+bandito_mago (liv. 9): Pugnale d'acciaio 100% · Oro 53% (fino a 9) · Armi 61% (es. Spadone di ferro 5.3%, Spadone d'acciaio 5.3%) · Armature e abiti 15% (es. Collana d'oro ingioiellata 0.7%, Collana d'oro con rubino 0.7%) · Pozioni, veleni e cibo 57% (es. Idromele nord 6.1%, Birra 6.1%) · Gemme 7.2% · Grimaldello 75% · Libri e ricette 8.1% · Indossa: Scarpe di pelliccia, Corazza di pelliccia, Corazza di pelliccia
+
+## Maghi
+mago_del_fuoco_principiante (liv. 1): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+mago_del_fuoco (liv. 19): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+arcipiromante (liv. 46): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+mago_del_ghiaccio_principiante (liv. 1): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+mago_del_ghiaccio (liv. 19): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+criomante_supremo (liv. 50): Oro 74% (fino a 50) · Armi 98% (es. Pugnale di ferro 65%, Pugnale d'acciaio 65%) · Pozioni, veleni e cibo 36% (es. Soluzione di magicka extra 3.4%, Pozione di magicka extra 3.4%) · Uovo di tordo 3.7%, Uovo di pesce macellaio 3.7%, Spadino cyrodiilico 3.7% · Libri e ricette 12% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+mago_della_tempesta_principiante (liv. 1): Oro 49% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 23% (es. Soluzione di magicka extra 2%, Pozione di magicka extra 2%) · Libri e ricette 6.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+mago_della_tempesta (liv. 19): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+elettromante_supremo (liv. 46): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+
+## Negromanti
+negromante_principiante (liv. 1): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+negromante_specialista (liv. 12): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+maestro_negromante (liv. 36): Oro 64% (fino a 50) · Armi 95% (es. Pugnale di ferro 54%, Pugnale d'acciaio 54%) · Pozioni, veleni e cibo 30% (es. Soluzione di magicka extra 2.7%, Pozione di magicka extra 2.7%) · Libri e ricette 9.5% · Indossa: Stivali, Vesti nere, Vesti nere con cappuccio
+
+## Rinnegati
+rinnegato (liv. 1): Oro 47% (fino a 125) · Spada dei Rinnegati 88%, Ascia dei Rinnegati 88% · Pozioni, veleni e cibo 47% (es. Carne di Cervide 13%, Cosciotto di capra 9%) · Gemme 31% · Libri e ricette 6.7% · Indossa: Stivali dei Rinnegati, Corazza dei Rinnegati, Guanti dei Rinnegati
+ladro_rinnegato (liv. 14): Oro 47% (fino a 125) · Spada dei Rinnegati 88%, Ascia dei Rinnegati 88% · Pozioni, veleni e cibo 47% (es. Carne di Cervide 13%, Cosciotto di capra 9%) · Gemme 31% · Libri e ricette 6.7% · Indossa: Stivali dei Rinnegati, Corazza dei Rinnegati, Guanti dei Rinnegati
+saccheggiatore_rinnegato (liv. 24): Oro 47% (fino a 125) · Spada dei Rinnegati 88%, Ascia dei Rinnegati 88% · Pozioni, veleni e cibo 47% (es. Carne di Cervide 13%, Cosciotto di capra 9%) · Gemme 31% · Libri e ricette 6.7% · Indossa: Stivali dei Rinnegati, Corazza dei Rinnegati, Guanti dei Rinnegati
+sciamano_rinnegato (liv. 1): Oro 22% (fino a 10) · Armi 97% (es. Pugnale orchesco 50%, Pugnale di ferro 50%) · Pozioni, veleni e cibo 24% (es. Pozione di ristoro minore 1.2%, Pozione di ristoro energica 1.2%) · Indossa: Stivali dei Rinnegati, Corazza dei Rinnegati, Guanti dei Rinnegati
+signore_della_guerra_rinnegato (liv. 46): Oro 47% (fino a 125) · Spada dei Rinnegati 88%, Ascia dei Rinnegati 88% · Pozioni, veleni e cibo 47% (es. Carne di Cervide 13%, Cosciotto di capra 9%) · Gemme 31% · Libri e ricette 6.7% · Indossa: Stivali dei Rinnegati, Corazza dei Rinnegati, Guanti dei Rinnegati
+
+## Vampiri
+vampiro_insanguinato (liv. 12): Polvere di vampiro 100% · Oro 95% (fino a 9) · Armi 94% (es. Spada di ferro 40%, Spada d'acciaio 40%) · Armature e abiti 32% (es. Collana d'oro ingioiellata 1.6%, Collana d'oro con rubino 1.6%) · Pozioni, veleni e cibo 35% (es. Pozione di ristoro minore 1.8%, Pozione di ristoro energica 1.8%) · Gemme 54% · Grimaldello 62% x3 · Libri e ricette 13% · Indossa: Stivali del vampiro, Vesti del vampiro, Vesti del vampiro
+vampiro_camminatore_della_nebbia (liv. 20): Polvere di vampiro 100% · Oro 95% (fino a 9) · Armi 94% (es. Spada di ferro 40%, Spada d'acciaio 40%) · Armature e abiti 32% (es. Collana d'oro ingioiellata 1.6%, Collana d'oro con rubino 1.6%) · Pozioni, veleni e cibo 35% (es. Pozione di ristoro minore 1.8%, Pozione di ristoro energica 1.8%) · Gemme 54% · Grimaldello 62% x3 · Libri e ricette 13% · Indossa: Stivali del vampiro, Vesti del vampiro, Vesti del vampiro
+vampiro_errante_della_notte (liv. 28): Polvere di vampiro 100% · Oro 95% (fino a 9) · Armi 94% (es. Spada di ferro 40%, Spada d'acciaio 40%) · Armature e abiti 32% (es. Collana d'oro ingioiellata 1.6%, Collana d'oro con rubino 1.6%) · Pozioni, veleni e cibo 35% (es. Pozione di ristoro minore 1.8%, Pozione di ristoro energica 1.8%) · Gemme 54% · Grimaldello 62% x3 · Libri e ricette 13% · Indossa: Stivali del vampiro, Vesti del vampiro, Vesti del vampiro
+antico_vampiro (liv. 38): Polvere di vampiro 100% · Oro 95% (fino a 9) · Armi 94% (es. Spada di ferro 40%, Spada d'acciaio 40%) · Armature e abiti 32% (es. Collana d'oro ingioiellata 1.6%, Collana d'oro con rubino 1.6%) · Pozioni, veleni e cibo 35% (es. Pozione di ristoro minore 1.8%, Pozione di ristoro energica 1.8%) · Gemme 54% · Grimaldello 62% x3 · Libri e ricette 13% · Indossa: Stivali del vampiro, Vesti del vampiro, Vesti del vampiro
+
+## Licantropi
+lupo_mannaro_selvaggio (liv. 6): Pelliccia di lupo 100% · Carne umana 100% · Oro 3% (fino a 9) · Indossa: Pantaloni logori
+lupo_mannaro_mutaforma (liv. 20): Pelliccia di lupo 100% · Carne umana 100% · Oro 3% (fino a 9) · Indossa: Pantaloni logori
+capobestia_lupo_mannaro (liv. 28): Pelliccia di lupo 100% · Carne umana 100% · Oro 3% (fino a 9) · Indossa: Pantaloni logori
+
+## Falmer e chaurus
+falmer (liv. 9): Scudo di Falmer 100% · Oro 53% (fino a 50) · Armi 65% (es. Spada Falmer affilata 29%, Ascia Falmer affilata 29%) · Pozioni, veleni e cibo 26% (es. Veleno potente 4.4%, Veleno persistente potente 4.4%) · Gemme 5.1% · Orecchio di Falmer 62% · lingotti e minerali 5.5%
+falmer_emissario_oscuro (liv. 22): Scudo di Falmer 100% · Oro 53% (fino a 50) · Armi 65% (es. Spada Falmer affilata 29%, Ascia Falmer affilata 29%) · Pozioni, veleni e cibo 54% (es. Pozione di cura vigorosa 11%, Pozione di cura minore 11%) · Gemme 5.1% · Orecchio di Falmer 62% · lingotti e minerali 5.5% · Indossa: Elmo di Falmer
+falmer_signore_delle_ombre (liv. 38): Scudo di Falmer 100% · Oro 53% (fino a 50) · Armi 65% (es. Spada Falmer affilata 29%, Ascia Falmer affilata 29%) · Pozioni, veleni e cibo 74% (es. Pozione di cura vigorosa 23%, Pozione di cura minore 23%) · Gemme 5.1% · Orecchio di Falmer 62% · lingotti e minerali 5.5% · Indossa: Elmo di Falmer
+chaurus (liv. 12): Chitina di chaurus 100% · Oro 3% (fino a 9) · Uova di chaurus 25%
+chaurus_mietitore (liv. 20): Chitina di chaurus 100% · Oro 3% (fino a 9) · Uova di chaurus 25%
+chaurus_cacciatore (liv. 32): Chitina di chaurus 100% · Antenne di chaurus cacciatore 100% · Oro 3% (fino a 9) · Uova di chaurus 25%
+
+## Thalmor
+soldato_thalmor (liv. 28): Oro 68% (fino a 9) · Armi 100% (es. Pugnale elfico 50%, Pugnale di vetro 50%) · Pozioni, veleni e cibo 50% (es. Vino Alto 8.3%, Vino 8.3%) · Gemme 22% · Indossa: Stivali elfici, Guanti elfici, Elmo elfico
+stregone_thalmor (liv. 28): Oro 68% (fino a 9) · Armi 88% (es. Pugnale elfico 50%, Pugnale di vetro 50%) · Pozioni, veleni e cibo 21% (es. Soluzione di magicka extra 1.8%, Pozione di magicka extra 1.8%) · Gemme 22% · Indossa: Vesti nere con cappuccio, Stivali Thalmor, Guanti Thalmor
+
+## Creature fantastiche
+mammut (liv. 38): Proboscide di mammut 100% · Zanna di mammut 100% · Oro 3% (fino a 9)
+gigante (liv. 32): Dito di gigante 100% · Mazza gigante 100% · Oro 86% (fino a 300) · Armi 34% (es. Ascia da guerra di ferro 1.7%, Ascia da guerra d'acciaio 1.7%) · Armature e abiti 37% (es. Scudo di cuoio 3%, Stivali di pelle 1.7%) · Gemme 22% · Zanna di mammut 5.6% x3, Zanna di horker 5.6% x3, Pelliccia di tigre dai denti a sciabola delle nevi 5.6% x3
+gigante_del_gelo (liv. 50): Dito di gigante 100% · Oro 86% (fino a 300) · Armi 34% (es. Ascia da guerra di ferro 1.7%, Ascia da guerra d'acciaio 1.7%) · Armature e abiti 37% (es. Scudo di cuoio 3%, Stivali di pelle 1.7%) · Gemme 22% · Pelle di tigre dai denti a sciabola di valle 25%, Pelle di cervo di valle 25%
+troll (liv. 14): Grasso di troll 100% · Oro 3% (fino a 9)
+troll_del_gelo (liv. 22): Grasso di troll 100% · Oro 3% (fino a 9)
+spettro_di_ghiaccio (liv. 9): Dente di spettro del ghiaccio 100% · Essenza di spettro del ghiaccio 100%
+spriggan (liv. 8): Fittone 100% · Scudo spriggan 100%
+megera (liv. 20): Piume di hagraven 100% · Artiglio di hagraven 26%
+ragno_del_gelo_gigante (liv. 14): Veleno congelante x2 100% · Oro 3% (fino a 9) · Indossa: MAGArmor Spider Spit 01
+cinghiale (liv. 7): Oro 22% (fino a 10) · Pozioni, veleni e cibo 51% (es. Carne di cinghiale 45%, Pozione di ristoro minore 0.5%) · Zanna di cinghiale 45% x2, Ranuncolo 8.3%, Miceto di Namira 8.3%
+
+## Draghi (solo evento staff)
+drago (liv. 10): Osso di drago x2 100% · Scaglie di drago x2 100% · Oro 87% (fino a 300) · Armi 21% (es. Mazza di ferro 1.4%, Mazza d'acciaio 1.4%) · Armature e abiti 21% (es. Scudo di cuoio 1.5%, Scudo elfico 0.9%) · Gemme 22%
