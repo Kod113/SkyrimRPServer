@@ -191,6 +191,26 @@ if os.path.exists(os.path.join(DIR, "loot.json")):
     print(f"Loot: {len(lt)} creature | Terreni con spawn: {len(sr['terrain_species'])} | "
           f"Accampamenti: {len(sr['giant_camps']['items'])} | Forti: {len(sr['orc_forts']['items'])}")
 
+# ----- ricette di forgia (dai file di gioco, aggiunto il 20 ottobre)
+if os.path.exists(os.path.join(DIR, "crafting.json")):
+    cr = load("crafting.json")
+    for r in cr["recipes"]:
+        for ref in [r["output"]] + [x["item"] for x in r["inputs"]]:
+            if ref not in cr["items"]:
+                errors.append(f"Ricetta {r['id']}: oggetto sconosciuto '{ref}'")
+        if r["bench"] not in cr["benches"]:
+            errors.append(f"Ricetta {r['id']}: banco sconosciuto '{r['bench']}'")
+        for p in r["perks"]:
+            if p not in cr["perks"]:
+                errors.append(f"Ricetta {r['id']}: perk sconosciuto '{p}'")
+    for c in cr["catalog"]:
+        if c["item"] and c["item"] not in cr["items"]:
+            errors.append(f"Lista armi: '{c['discord_name']}' punta a un oggetto assente")
+        if not c["craftable"] and not c.get("note"):
+            warnings.append(f"Lista armi: '{c['discord_name']}' non ha ricetta e nessuna nota")
+    print(f"Ricette di forgia: {len(cr['recipes'])} | Lista armi e corazze: {len(cr['catalog'])} "
+          f"({sum(c['craftable'] for c in cr['catalog'])} costruibili)")
+
 # ----- report
 print(f"Ingredienti: {len(ing)} | Effetti: {len(eff)} | Job: {len(jobs['items'])}")
 state = Counter(i["feudi"]["availability"] for i in ing)

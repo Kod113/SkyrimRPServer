@@ -13,6 +13,7 @@
 | `jobs.json` | ✅ completo (tranne `allowed_actions`) | Catena economica dei job, bacheca, ruolo di partenza proposto |
 | `creatures.json` | 🟨 bozza | 25 creature (pesci, boschi, montagna, lupo incluso) con habitat, comportamento, drop e piccolo bottino 10%. Percentuali completate il 20 ott 2026 con #animali-e-loot; restano `null` solo Falco e Uovo di pesce macellaio |
 | `loot.json` | 🟨 bozza (20 ott) | Loot di 86 creature dal Discord del 18 ott: 33 animali e 53 mostri (draugr, banditi, maghi, negromanti, Rinnegati, vampiri, licantropi, Falmer, chaurus, Thalmor, giganti, troll, drago, orchi). Regola "niente oggetti magici" in `rules` |
+| `crafting.json` | ✅ dati del gioco (20 ott) | Ricette per costruire le 50 voci di #lista-armi-e-armature (armi, frecce, balestre, corazze: solo il busto), con fonderia e conceria. 47 costruibili, 77 ricette, nomi italiani dal gioco. Si interroga con `tools/query_crafting.py` |
 | `world_summary.json`, `world_refs.csv` | ✅ dati reali | Piante, alberi e animali piazzati in Eastmarch e Rift (coordinate, tipo, bioma), letti da `Skyrim.esm` |
 | `zones.json` | 🟨 bozza | % di terreno per feudo, 10 luoghi, confine, conteggio icone. Mancano i poligoni veri (solo schema a mano) |
 | `spawn_rules.json` | 🟨 bozza (20 ott) | Regole generali (respawn ogni ora, niente spawn nei luoghi sicuri), terreno → specie, schema dei gruppi (gruppi veri da decidere in gioco), 5 accampamenti di giganti con forzieri, 2 forti degli orchi |
@@ -129,3 +130,44 @@ Nuove sezioni "SPAWN e CODICI DI SPAWN" e "MAPPA DI GIOCO", scritte da Dave_St. 
 - Capra: piccolo tesoro 19% (equivale ai due 10% già presenti: 1 − 0,9 × 0,9 ≈ 0,19).
 - In `#lore-e-spawn-giganti-e-mammut` le sezioni "Alchimia: ingredienti avanzati", "Respawn" e "Cosa è fatto e cosa no" sono nell'indice ma non ancora scritte.
 - Gli animali nuovi (lepre, alce femmina, capra domestica, lupo rosso, orso, granchi, horker, cavalli, mucca, gallina, cane, cinghiale) sono solo in `loot.json`, non in `creatures.json` (che ha habitat e comportamento).
+
+## Ricette di forgia e interrogazione (20 ottobre 2026)
+
+`tools/xedit/build_crafting.py` legge le ricette (record COBJ) da `Skyrim.esm`, `Update.esm`, `Dawnguard.esm`, `HearthFires.esm` e `Dragonborn.esm`, cioè gli stessi file che carica il server del repo (`configs/skymp/server-settings.json`). I nomi italiani li prende dai file Strings dentro `Skyrim - Interface.bsa`. Tiene solo gli oggetti di #lista-armi-e-armature e tutto ciò che serve per costruirli. Le ricette per migliorare gli oggetti (banco da lavoro, mola) non sono incluse.
+
+**Interrogare una ricetta** (dalla cartella `tools/`; su Windows il comando può essere `py` invece di `python`):
+
+```
+python query_crafting.py "armatura d'acciaio"
+python query_crafting.py "spada elfica" --quanti 5
+python query_crafting.py --lista
+python query_crafting.py "arco nanico" --md prospetto.md
+```
+
+- `query_crafting.py`: lo script che stampa il prospetto.
+- `"armatura d'acciaio"`: il nome dell'oggetto, tra virgolette perché contiene spazi. Va bene il nome del Discord, quello del gioco o una parte del nome (se ci sono più risultati, li elenca).
+- `--quanti 5`: calcola per 5 pezzi (lavorazioni e avanzi compresi).
+- `--lista`: elenca tutto ciò che si può interrogare (● costruibile, ○ senza ricetta).
+- `--md prospetto.md`: salva il prospetto anche nel file indicato, da incollare su Discord o GitHub.
+- `--no-colori`: stampa senza colori.
+
+Il prospetto ha tre parti: **come si costruisce** (banco, perk, job, materiali), **componenti base** (lingotti e strisce, con quante lavorazioni servono e cosa avanza) e **risorse totali** (minerali e pelli grezze, con miniere, animali e job da `zones.json`, `loot.json`, `spawn_rules.json`, `jobs.json`). Quando una risorsa si ottiene in più modi (la Pelle da 16 pelli diverse, il metallo nanico da 6 rottami Dwemer) le alternative sono raggruppate per resa.
+
+**Rigenerare `crafting.json`** (serve una volta sola, o se cambiano i file del gioco):
+
+```
+pip install lz4
+python xedit/build_crafting.py .. "C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data"
+```
+
+- `pip install lz4`: installa la libreria che decomprime l'archivio `.bsa` dei nomi italiani.
+- `xedit/build_crafting.py`: lo script che legge i file di gioco.
+- `..`: dove scrivere `crafting.json` (la cartella `db/`).
+- l'ultimo argomento: la cartella `Data` di Skyrim.
+
+**Cose emerse:**
+- **Pietra lunare e mercurio non hanno miniere nei due feudi** (nel database). Servono per tutte le armi elfiche e di vetro e per le corazze elfica e di vetro: senza una fonte non si possono costruire con risorse locali.
+- Senza ricetta nel gioco base: Arco lungo, Arco da caccia, Corazza di pelliccia (si trovano o si comprano).
+- "Armatura di cuoio" del Discord = **Corazza di cuoio** del gioco (Hide). La Corazza di pelle (Leather) non è nella lista.
+- Le frecce si fanno a 24 per volta alla Forgia: 1 legna + 1 lingotto (ferro, acciaio, metallo nanico o pietra lunare). Le ricette vengono da Dawnguard.
+- **`CombatSettings.esp` cambia tutto il crafting.** È nella cartella `Data` del PC di David ma non nel server del repo. Contiene circa 4.100 ricette nuove e sostituisce quelle base: per esempio la Corazza d'acciaio non si fa più alla Forgia con 4 lingotti, ma al banco "ArmorTableB" con un semilavorato ("Steel Cuirass Carcase") fatto di piastre e imbottiture, più pelli conciate, lacci e pelliccia. I nomi dei nuovi oggetti sono in inglese e alcuni passaggi (lingotti "roventi") non sono ricette ma script. Se il server userà quel plugin, `crafting.json` va rifatto su quei dati: lo script è già pronto ad aggiungerlo all'ordine di caricamento, ma l'albero è molto più lungo.
