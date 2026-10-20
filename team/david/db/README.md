@@ -11,15 +11,16 @@
 | `effects.json` | ✅ completo | 55 effetti (35 pozioni, 20 veleni), ingredienti per effetto, ricetta minima nei feudi |
 | `prices.json` | ✅ completo | Fasce di prezzo, regole di equilibrio, guadagni e stipendi |
 | `jobs.json` | ✅ completo (tranne `allowed_actions`) | Catena economica dei job, bacheca, ruolo di partenza proposto |
-| `creatures.json` | 🟨 bozza | 25 creature (pesci, boschi, montagna, lupo incluso) con habitat, comportamento, drop e piccolo bottino 10%. Mancano le % di alcuni drop (non indicate nel Discord) |
+| `creatures.json` | 🟨 bozza | 25 creature (pesci, boschi, montagna, lupo incluso) con habitat, comportamento, drop e piccolo bottino 10%. Percentuali completate il 20 ott 2026 con #animali-e-loot; restano `null` solo Falco e Uovo di pesce macellaio |
+| `loot.json` | 🟨 bozza (20 ott) | Loot di 86 creature dal Discord del 18 ott: 33 animali e 53 mostri (draugr, banditi, maghi, negromanti, Rinnegati, vampiri, licantropi, Falmer, chaurus, Thalmor, giganti, troll, drago, orchi). Regola "niente oggetti magici" in `rules` |
 | `world_summary.json`, `world_refs.csv` | ✅ dati reali | Piante, alberi e animali piazzati in Eastmarch e Rift (coordinate, tipo, bioma), letti da `Skyrim.esm` |
 | `zones.json` | 🟨 bozza | % di terreno per feudo, 10 luoghi, confine, conteggio icone. Mancano i poligoni veri (solo schema a mano) |
-| `spawn_rules.json` | ⬜ scheletro | Si compila dopo lo spike sullo spawn |
+| `spawn_rules.json` | 🟨 bozza (20 ott) | Regole generali (respawn ogni ora, niente spawn nei luoghi sicuri), terreno → specie, schema dei gruppi (gruppi veri da decidere in gioco), 5 accampamenti di giganti con forzieri, 2 forti degli orchi |
 | `races.json` | 🟨 provvisorio | 10 razze: bonus abilità, potere giornaliero, passive, ruoli ideali, proposte alternative (molti valori 'da cambiare' nel Discord) |
 | `spells.json` | 🟨 provvisorio | 81 voci di incantesimi: permessi (44), vietati (14), limitati a quest/evento/staff/fazione/dungeon/shop (23) |
 | `progression.json` | 🟨 bozza | Sistema exp e livelli di Shoonish; mancano exp per livello, azioni e perk |
 | `world_rules.json` | 🟨 bozza | Ciclo giorno/notte e struttura di una città (tetto 70 player da rivalutare su SkyMP) |
-| `tools/` | | `build_db.py` (genera i JSON), `data_ingredients.py` e `data_world.py` (dati grezzi), `build_discord.py` (razze, incantesimi, progressione, regole di mondo), `validate_db.py` (controlli) |
+| `tools/` | | `build_loot_spawn.py` (genera `loot.json` e `spawn_rules.json` dai testi in `discord_2026-10-18/`), `build_db.py` (genera i JSON), `data_ingredients.py` e `data_world.py` (dati grezzi), `build_discord.py` (razze, incantesimi, progressione, regole di mondo), `validate_db.py` (controlli) |
 
 ## Formato comune
 
@@ -63,11 +64,12 @@ Dalla cartella `tools/`:
 
 ```
 python3 build_db.py ..
+python3 build_loot_spawn.py ..
 python3 validate_db.py ..
 ```
 
 - `python3`: l'interprete Python.
-- `build_db.py` / `validate_db.py`: lo script che genera i JSON e quello che li controlla.
+- `build_db.py` / `build_loot_spawn.py` / `validate_db.py`: i due script che generano i JSON e quello che li controlla.
 - `..`: la cartella dove scrivere (o da cui leggere) i JSON, cioè quella sopra `tools/` (`team/david/db/`).
 
 I dati vanno modificati in `data_ingredients.py`, `data_world.py` e `build_db.py`, poi si rigenera. Non si modificano a mano i JSON generati.
@@ -110,3 +112,20 @@ Decisione di David: nessuna voce nuova, solo più informazioni per le voci già 
 - **Canali di maggio** (lista ingredienti, crafting, dove reperire): bozze superate. Di 19 ricette con nome solo 4 attivano l'effetto dichiarato con gli effetti reali (Pozione Curativa Base, Magicka Base, Resistenza al Gelo, Veleno Paralizzante). La divisione per categorie può servire a rifinire `type`. Non importati.
 
 Resoconto e decisioni aperte della giornata: `team/david/sessione_2026-10-14.md`.
+
+## Canali Discord del 18 ottobre 2026 (letti il 20 ottobre)
+
+Nuove sezioni "SPAWN e CODICI DI SPAWN" e "MAPPA DI GIOCO", scritte da Dave_St. Testo copiato in `tools/discord_2026-10-18/` (fonte di `build_loot_spawn.py`).
+
+- **#animali-e-loot, #mob-mostri-e-loot, #come-leggere-le-percentuali** → `loot.json`. Le % sono la probabilità di trovare almeno uno di quell'oggetto, per un personaggio di livello ~30. Mammut e ragno del gelo gigante compaiono in entrambi i canali: si tiene la riga degli animali, l'altra è in `alt_listing`.
+- **#funzione-e-info-generali** → `loot.json` → `rules`: niente oggetti magici o incantati nel loot (sostituiti con la versione normale o tolti; via bastoni, pergamene, tomi, gemme dell'anima). Descrive come **già funzionanti sul server** i comandi `evoca_…`, il loot con E/R, il file `magic-swap.json` e un `CombatSettings.esp` corretto: **nessuno di questi è nel repo**.
+- **#spawn-linee-generali, #lore-e-spawn-giganti-e-mammut, #forti-degli-orchi** → `spawn_rules.json`.
+- **#mappa-che-vedranno-i-player** → `spawn_rules.json` → `general.safe_place_kinds` (capitale, paesi, miniere, baracche = luoghi sicuri).
+- #mappa-di-gioco e #comandi-spawn: solo immagini o vuoti.
+
+**Differenze con il database del 14 ottobre (da decidere, non cambiate):**
+- Alce: il Discord ora dice "Pelle di alce", `creatures.json` dice `Deer Hide`.
+- Gatto dai denti a sciabola: ora Occhio 50% **e** Dente 50% separati; `creatures.json` ha "Tooth OR Eye" 50%.
+- Capra: piccolo tesoro 19% (equivale ai due 10% già presenti: 1 − 0,9 × 0,9 ≈ 0,19).
+- In `#lore-e-spawn-giganti-e-mammut` le sezioni "Alchimia: ingredienti avanzati", "Respawn" e "Cosa è fatto e cosa no" sono nell'indice ma non ancora scritte.
+- Gli animali nuovi (lepre, alce femmina, capra domestica, lupo rosso, orso, granchi, horker, cavalli, mucca, gallina, cane, cinghiale) sono solo in `loot.json`, non in `creatures.json` (che ha habitat e comportamento).

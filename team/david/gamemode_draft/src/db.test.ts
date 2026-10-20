@@ -49,11 +49,13 @@ test("drop del cervo: rng basso = tutto, rng alto = solo i drop al 100%", () => 
 });
 
 test("drop con percentuale non nota non vengono assegnati", () => {
-  const fox = db.creatures.get("fox")!;
-  assert.deepEqual(rollDrops(fox, () => 0), []);
+  // il falco ha ancora le percentuali null (la volpe e' stata completata il 20 ott 2026)
+  const hawk = db.creatures.get("hawk")!;
+  assert.deepEqual(rollDrops(hawk, () => 0), []);
 });
 
-test("permessi dei job: non ancora definiti", () => {
-  assert.equal(jobCan(db, "miner", "mine"), undefined);
+test("permessi dei job (provvisori dal 14 ott 2026)", () => {
+  assert.equal(jobCan(db, "miner", "gather_ore"), true);
+  assert.equal(jobCan(db, "miner", "brew"), false);
   assert.throws(() => jobCan(db, "inesistente", "mine"));
 });

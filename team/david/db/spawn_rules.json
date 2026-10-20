@@ -1,10 +1,335 @@
 {
-  "_meta": {
-    "version": "0.0.1",
-    "date": "2026-10-14",
-    "author": "david",
-    "status": "scheletro vuoto",
-    "description": "Regole di spawn zona -> risorsa. DA COMPILARE dopo lo spike sullo spawn."
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-20",
+  "author": "david",
+  "status": "bozza: prima proposta del Discord, numeri da confermare in gioco",
+  "description": "Regole di spawn degli animali (zone, gruppi, respawn), accampamenti dei giganti e forti degli orchi. Coordinate in unita' di Skyrim (z da leggere in gioco). Specie = id di loot.json, terreni = id di zones.json.",
+  "sources": [
+   "Discord #spawn-linee-generali",
+   "Discord #lore-e-spawn-giganti-e-mammut",
+   "Discord #forti-degli-orchi",
+   "Discord #funzione-e-info-generali",
+   "Discord #mappa-che-vedranno-i-player"
+  ]
+ },
+ "general": {
+  "respawn_check_s": 3600,
+  "respawn_rule": "ogni ora rinascono solo gli animali morti del gruppo, ne' prima ne' di piu'",
+  "spawn_all_on_server_start": true,
+  "reset_on_restart": true,
+  "no_spawn_in_safe_places": true,
+  "safe_place_kinds": [
+   "capital",
+   "settlement",
+   "mine",
+   "shack"
+  ],
+  "wait_if_player_near": true,
+  "player_near_distance": null,
+  "corpse_despawn_s": 30,
+  "staff_summon": {
+   "min": 1,
+   "max": 10,
+   "command_prefix": "evoca_",
+   "cleanup_command": "evoca_pulisci_1",
+   "despawn_on_restart": true,
+   "humans_hostile_to_summoner": true
+  }
+ },
+ "terrain_species": [
+  {
+   "terrain": "mountain",
+   "species": [
+    "capra",
+    "lupo",
+    "orso",
+    "gatto_dai_denti_a_sciabola"
+   ],
+   "note": "gatti dai denti a sciabola: pochi"
   },
-  "items": []
+  {
+   "terrain": "plain",
+   "species": [
+    "cervo",
+    "coniglio",
+    "volpe",
+    "lupo"
+   ],
+   "note": "lupi: qualcuno"
+  },
+  {
+   "terrain": "snow",
+   "species": [
+    "lupo_di_ghiaccio",
+    "volpe_artica",
+    "orso_delle_nevi"
+   ],
+   "note": null
+  },
+  {
+   "terrain": "poplar_forest",
+   "species": [
+    "cervo",
+    "alce",
+    "coniglio",
+    "orso",
+    "lupo_rosso"
+   ],
+   "note": null
+  },
+  {
+   "terrain": "pine_forest",
+   "species": [
+    "cervo",
+    "alce",
+    "volpe",
+    "lupo",
+    "orso"
+   ],
+   "note": null
+  },
+  {
+   "terrain": "sulfur",
+   "species": [
+    "capra",
+    "gatto_dai_denti_a_sciabola"
+   ],
+   "note": "zona povera, poco cibo; gatti: qualcuno"
+  },
+  {
+   "terrain": "lake",
+   "species": [
+    "granchio_di_fango",
+    "pesce_macellaio"
+   ],
+   "note": null
+  },
+  {
+   "terrain": "sea",
+   "species": [
+    "horker"
+   ],
+   "note": "lungo la costa"
+  },
+  {
+   "terrain": "giant_camp",
+   "species": [
+    "mammut"
+   ],
+   "note": "vedi giant_camps"
+  }
+ ],
+ "group_schema": {
+  "id": "nome del gruppo, es. cervi_pianura_nord",
+  "species": "id di loot.json",
+  "count": "quanti, es. 8",
+  "x": "centro",
+  "y": "centro",
+  "radius": "raggio della zona del gruppo"
+ },
+ "groups": [],
+ "groups_note": "i gruppi veri (posizioni e numeri) si decidono camminando nelle zone",
+ "giant_camps": {
+  "per_hold": 2,
+  "camp": {
+   "giants": 3,
+   "mammoths_grazing": 5,
+   "mammoth_spawn_points": 2,
+   "mammoths_per_point_per_hour": 2,
+   "perimeter_radius": 8500,
+   "keep_mammoths_inside": true
+  },
+  "chests": {
+   "status": "proposta, quantita' e nomi da verificare in gioco",
+   "per_camp": 2,
+   "items": [
+    {
+     "id": "fire_chest",
+     "name_it": "Forziere del fuoco (cibo e materiali)",
+     "always": [
+      {
+       "item_it": "Ciotola di formaggio di mammut",
+       "qty": 3
+      },
+      {
+       "item_it": "Zanna di mammut",
+       "qty": 2
+      },
+      {
+       "item_it": "Dito di gigante",
+       "qty": 2
+      },
+      {
+       "kind": "gold",
+       "qty": 250
+      }
+     ],
+     "chance": [
+      {
+       "item_it": "Pozione di cura",
+       "qty": 2,
+       "chance": 0.45
+      },
+      {
+       "item_it": "Carne cruda/cotta",
+       "qty": 3,
+       "chance": 0.6
+      },
+      {
+       "item_it": "Pelli (cervo, lupo)",
+       "qty": 2,
+       "chance": 0.4
+      }
+     ]
+    },
+    {
+     "id": "treasure_chest",
+     "name_it": "Forziere del tesoro (ricompensa)",
+     "always": [
+      {
+       "kind": "gold",
+       "qty": 400
+      },
+      {
+       "item_it": "gemma",
+       "qty": 1
+      }
+     ],
+     "chance": [
+      {
+       "item_it": "seconda gemma",
+       "qty": 1,
+       "chance": 0.5
+      },
+      {
+       "item_it": "Diamante",
+       "qty": 1,
+       "chance": 0.1
+      },
+      {
+       "item_it": "Lingotto d'acciaio",
+       "qty": 3,
+       "chance": 0.4
+      },
+      {
+       "item_it": "Anello d'argento",
+       "qty": 1,
+       "chance": 0.15
+      },
+      {
+       "item_it": "Pozione di resistenza al freddo",
+       "qty": 1,
+       "chance": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  "items": [
+   {
+    "id": "windhelm_1",
+    "hold": "eastmarch",
+    "name_it": "Windhelm 1 (pianura a ovest)",
+    "x": 92400,
+    "y": -5400,
+    "active": true,
+    "origin": "vanilla",
+    "z": null,
+    "verified_in_game": false
+   },
+   {
+    "id": "windhelm_2",
+    "hold": "eastmarch",
+    "name_it": "Windhelm 2 (pozze di zolfo)",
+    "x": 143500,
+    "y": -10000,
+    "active": true,
+    "origin": "vanilla",
+    "z": null,
+    "verified_in_game": false
+   },
+   {
+    "id": "windhelm_reserve",
+    "hold": "eastmarch",
+    "name_it": "Windhelm (riserva)",
+    "x": 111700,
+    "y": -14300,
+    "active": false,
+    "origin": "vanilla",
+    "z": null,
+    "verified_in_game": false
+   },
+   {
+    "id": "riften_1",
+    "hold": "rift",
+    "name_it": "Riften 1 (pianura a est, ai piedi dei monti)",
+    "x": 178600,
+    "y": -72300,
+    "active": true,
+    "origin": "nuovo",
+    "z": null,
+    "verified_in_game": false
+   },
+   {
+    "id": "riften_2",
+    "hold": "rift",
+    "name_it": "Riften 2 (pianura a ovest)",
+    "x": 99800,
+    "y": -85100,
+    "active": true,
+    "origin": "nuovo",
+    "z": null,
+    "verified_in_game": false
+   }
+  ]
+ },
+ "orc_forts": {
+  "lore_it": "La guerra degli orchi: dopo 400 anni di pace gli orchi, schiavizzati per ricostruire i regni, si ribellano guidati da Ugrosh gro-Barzul 'lo Spezzacatene'. Un forte per regno.",
+  "inside_alive": 10,
+  "inside_alive_alternative": 15,
+  "inside_respawn_s": [
+   3,
+   5
+  ],
+  "inside_radius": 2400,
+  "patrol_radius": 11000,
+  "patrol_respawn_s": 3600,
+  "aggression": "attaccano i player a vista; le creature solo se ostili o se vengono attaccati",
+  "conquest": "uccidere tutti i difensori; poi il forte appartiene a chi l'ha preso e tutti gli spawn si spengono (sentinelle comprese)",
+  "sentinel_alert": "quando muore una sentinella, messaggio in gioco a chi ha il ruolo admin; la sentinella rinasce dopo circa un'ora",
+  "loot_id": "orco",
+  "staff_command": "evoca_orco (varianti normale, guerriero, capo: da scegliere)",
+  "items": [
+   {
+    "id": "windhelm",
+    "hold": "eastmarch",
+    "name_it": "Forte di Windhelm (nord)",
+    "x": 158100,
+    "y": 10000,
+    "z": null,
+    "defenders": 100,
+    "orichalcum_veins": "gia' presenti"
+   },
+   {
+    "id": "riften",
+    "hold": "rift",
+    "name_it": "Forte di Riften (sud)",
+    "x": 135300,
+    "y": -110600,
+    "z": null,
+    "defenders": 50,
+    "orichalcum_veins": "da mettere: 4 vene sulla parete rocciosa dentro il forte"
+   }
+  ],
+  "to_verify": [
+   "z delle posizioni",
+   "lo scavo dell'oricalco funziona sul server",
+   "loot dei capi"
+  ]
+ },
+ "staff_only": [
+  "drago",
+  "gigante_del_gelo"
+ ]
 }

@@ -1,0 +1,4649 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-20",
+  "author": "david",
+  "status": "bozza: dati del Discord",
+  "description": "Loot di animali e mostri. chance = probabilita' di trovare almeno uno di quell'oggetto (0-1), calcolata da Dave_St dai dati ufficiali di Skyrim per un personaggio di livello ~30. kind: item | gold | category (categoria di oggetti, con gli esempi piu' probabili).",
+  "sources": [
+   "Discord #animali-e-loot",
+   "Discord #mob-mostri-e-loot",
+   "Discord #come-leggere-le-percentuali",
+   "Discord #funzione-e-info-generali",
+   "Discord #forti-degli-orchi"
+  ]
+ },
+ "rules": {
+  "no_magic_items": true,
+  "no_magic_items_note": "Scelta voluta: oggetti magici e incantati li da' lo staff con le quest. Un oggetto incantato diventa la sua versione normale; se non esiste, sparisce. Le pozioni restano.",
+  "removed_it": [
+   "bastoni",
+   "pergamene",
+   "tomi di incantesimi",
+   "gemme dell'anima (tutte)",
+   "mazza del gigante del gelo"
+  ],
+  "swap_examples_it": [
+   [
+    "Antico spadone nord del ghiaccio",
+    "Antico spadone nord"
+   ],
+   [
+    "Vesti del vampiro di Distruzione",
+    "Vesti del vampiro"
+   ],
+   [
+    "Vesti nere del mago (incantate)",
+    "Vesti nere"
+   ]
+  ],
+  "swap_table": "magic-swap.json (nella cartella del server di chi l'ha scritto; non e' ancora nel repo)",
+  "swap_check_on": [
+   "spawn",
+   "death",
+   "loot_open"
+  ],
+  "reference_level": 30,
+  "worn_items_lootable": true,
+  "hidden_non_playable_it": [
+   "capelli e barba dei draugr",
+   "Elmo nord antico",
+   "Scudo spriggan",
+   "un oggetto dei ragni del gelo"
+  ],
+  "small_treasure_it": "oro (1-9), una gemma o un anello d'argento normale",
+  "keep_human_flesh": true,
+  "client_requirement": "tutti i giocatori devono avere il CombatSettings.esp aggiornato (pellicce visibili)"
+ },
+ "items": [
+  {
+   "id": "cervo",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "deer",
+   "drops": [
+    {
+     "item_it": "Carne di Cervide",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di cervo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Corna grandi",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "alce",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "elk",
+   "drops": [
+    {
+     "item_it": "Carne di Cervide",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di alce",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Corna grandi",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "alce_femmina",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di Cervide",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di alce",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Piccole corna",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "capra",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "goat",
+   "drops": [
+    {
+     "item_it": "Pelle di capra",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Cosciotto di capra",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.19,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Corna di capra",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "capra_domestica",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelle di capra",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Cosciotto di capra",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.19,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Corna di capra",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "coniglio",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "rabbit",
+   "drops": [
+    {
+     "item_it": "Coscia di coniglio cruda",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "lepre",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Coscia di coniglio cruda",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "volpe",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "fox",
+   "drops": [
+    {
+     "item_it": "Pelliccia di volpe",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "volpe_artica",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "snow_fox",
+   "drops": [
+    {
+     "item_it": "Pelliccia di volpe delle nevi",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "lupo",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "wolf",
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "lupo_di_ghiaccio",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "ice_wolf",
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo dei ghiacci",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "lupo_rosso",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "orso",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelliccia di orso",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Artigli di orso",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "orso_delle_caverne",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "cave_bear",
+   "drops": [
+    {
+     "item_it": "Pelliccia di orso delle caverne",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Artigli di orso",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "orso_delle_nevi",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "snow_bear",
+   "drops": [
+    {
+     "item_it": "Pelliccia di orso delle nevi",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Artigli di orso",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "gatto_dai_denti_a_sciabola",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "sabre_cat",
+   "drops": [
+    {
+     "item_it": "Pelliccia di tigre dai denti a sciabola",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Occhio di tigre dai denti a sciabola",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Dente di tigre dai denti a sciabola",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "gatto_dai_denti_a_sciabola_delle_nevi",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "snowy_sabre_cat",
+   "drops": [
+    {
+     "item_it": "Pelliccia di tigre dai denti a sciabola delle nevi",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Occhio di tigre dai denti a sciabola",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Dente di tigre dai denti a sciabola",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "skeever",
+   "type": "animal",
+   "section_it": "Foresta e pianura",
+   "level": null,
+   "creature_id": "skeever",
+   "drops": [
+    {
+     "item_it": "Coda di skeever",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "granchio_di_fango",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Zampe di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "granchio_di_fango_grande",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Zampe di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "granchio_di_fango_gigante",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    },
+    {
+     "item_it": "Zampe di granchio del fango",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "pesce_macellaio",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": "slaughterfish",
+   "drops": [
+    {
+     "item_it": "Squame di pesce macellaio",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "horker",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di horker",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Zanna di horker",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "mammut",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": 38,
+   "creature_id": "mammoth",
+   "drops": [
+    {
+     "item_it": "Proboscide di mammut",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Zanna di mammut",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": [],
+   "alt_listing": {
+    "source": "#mob-mostri-e-loot",
+    "level": 38,
+    "drops": [
+     {
+      "item_it": "Proboscide di mammut",
+      "chance": 1.0,
+      "qty": 1,
+      "kind": "item"
+     },
+     {
+      "item_it": "Zanna di mammut",
+      "chance": 1.0,
+      "qty": 1,
+      "kind": "item"
+     },
+     {
+      "chance": 0.03,
+      "qty": null,
+      "kind": "gold",
+      "qty_max": 9
+     }
+    ],
+    "wears_it": []
+   }
+  },
+  {
+   "id": "ragno_del_gelo",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": "frostbite_spider",
+   "drops": [
+    {
+     "item_it": "Veleno congelante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "ragno_del_gelo_grande",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Veleno congelante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "ragno_del_gelo_gigante",
+   "type": "animal",
+   "section_it": "Acqua e neve",
+   "level": 14,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Veleno congelante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": [],
+   "alt_listing": {
+    "source": "#mob-mostri-e-loot",
+    "level": 14,
+    "drops": [
+     {
+      "item_it": "Veleno congelante",
+      "chance": 1.0,
+      "qty": 2,
+      "kind": "item"
+     },
+     {
+      "chance": 0.03,
+      "qty": null,
+      "kind": "gold",
+      "qty_max": 9
+     }
+    ],
+    "wears_it": [
+     "MAGArmor Spider Spit 01"
+    ]
+   }
+  },
+  {
+   "id": "cavallo",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.033,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "cavallo_nero",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.033,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "cavallo_grigio",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di cavallo",
+     "chance": 0.333,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.033,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "mucca",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne cruda",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di mucca",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "gallina",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Petto di pollo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "cane",
+   "type": "animal",
+   "section_it": "Fattoria",
+   "level": null,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Carne di cane",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Piccolo tesoro (oro/gemma/anello)",
+     "chance": 0.05,
+     "qty": 1,
+     "kind": "category",
+     "category": "small_treasure"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "draugr",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.29,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.87,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia draugr affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Antica spada nord affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.76,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di ferro",
+       "chance": 0.75,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "draugr_inquieto",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 6,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.29,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.87,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia draugr affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Antica spada nord affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.51,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di ferro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "draugr_spettrale",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 13,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.29,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.87,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia draugr affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Antica spada nord affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.51,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di ferro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "draugr_fustigatore",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 21,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.29,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Antico spadone nord affilato",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Antica ascia da guerra nord affilata",
+       "chance": 0.49,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "signore_della_morte_draugr",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 30,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.29,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.98,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada d'ebano",
+       "chance": 0.75,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia d'ebano",
+       "chance": 0.75,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "scheletro",
+   "type": "monster",
+   "section_it": "Draugr e scheletri",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Armi",
+     "chance": 0.64,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia draugr affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Antica spada nord affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.51,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di ferro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.03,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione della forza",
+       "chance": 0.001,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Farina d'ossa",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "bandito_fuorilegge",
+   "type": "monster",
+   "section_it": "Banditi",
+   "level": 5,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.084,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.63,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Idromele nord",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Birra",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.2,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.71,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": [
+    "Scarpe di pelliccia",
+    "Stivali a scaglie",
+    "Bracciali di pelliccia"
+   ]
+  },
+  {
+   "id": "bandito_picchiatore",
+   "type": "monster",
+   "section_it": "Banditi",
+   "level": 9,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.084,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.63,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Idromele nord",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Birra",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.2,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.71,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": [
+    "Scarpe di pelliccia",
+    "Stivali a scaglie",
+    "Bracciali di pelliccia"
+   ]
+  },
+  {
+   "id": "bandito_predatore",
+   "type": "monster",
+   "section_it": "Banditi",
+   "level": 19,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.98,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 125
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.084,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.63,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Idromele nord",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Birra",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.2,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.84,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": [
+    "Scarpe di pelliccia",
+    "Stivali a scaglie",
+    "Bracciali di pelliccia"
+   ]
+  },
+  {
+   "id": "capo_banditi",
+   "type": "monster",
+   "section_it": "Banditi",
+   "level": 21,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 1.0,
+     "qty": 250,
+     "kind": "gold"
+    },
+    {
+     "item_it": "Pugnale elfico",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.98,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.24,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.084,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.004,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.63,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Idromele nord",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Birra",
+       "chance": 0.17,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.2,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.1,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.84,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": [
+    "Stivali di ferro",
+    "Stivali a piastre",
+    "Corazza laminata"
+   ]
+  },
+  {
+   "id": "bandito_mago",
+   "type": "monster",
+   "section_it": "Banditi",
+   "level": 9,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pugnale d'acciaio",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.61,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spadone di ferro",
+       "chance": 0.053,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spadone d'acciaio",
+       "chance": 0.053,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.15,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.007,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.007,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.57,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Idromele nord",
+       "chance": 0.061,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Birra",
+       "chance": 0.061,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.072,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.75,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.081,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Scarpe di pelliccia",
+    "Corazza di pelliccia",
+    "Corazza di pelliccia"
+   ]
+  },
+  {
+   "id": "mago_del_fuoco_principiante",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "mago_del_fuoco",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 19,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "arcipiromante",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 46,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "mago_del_ghiaccio_principiante",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "mago_del_ghiaccio",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 19,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "criomante_supremo",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 50,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.74,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.98,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.65,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.65,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.36,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.034,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.034,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Uovo di tordo",
+     "chance": 0.037,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Uovo di pesce macellaio",
+     "chance": 0.037,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Spadino cyrodiilico",
+     "chance": 0.037,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.12,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "mago_della_tempesta_principiante",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.49,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.23,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.02,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.02,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.065,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "mago_della_tempesta",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 19,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "elettromante_supremo",
+   "type": "monster",
+   "section_it": "Maghi",
+   "level": 46,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "negromante_principiante",
+   "type": "monster",
+   "section_it": "Negromanti",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "negromante_specialista",
+   "type": "monster",
+   "section_it": "Negromanti",
+   "level": 12,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "maestro_negromante",
+   "type": "monster",
+   "section_it": "Negromanti",
+   "level": 36,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.64,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.95,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale d'acciaio",
+       "chance": 0.54,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.3,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.027,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.095,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali",
+    "Vesti nere",
+    "Vesti nere con cappuccio"
+   ]
+  },
+  {
+   "id": "rinnegato",
+   "type": "monster",
+   "section_it": "Rinnegati",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.47,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 125
+    },
+    {
+     "item_it": "Spada dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Ascia dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.47,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Carne di Cervide",
+       "chance": 0.13,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Cosciotto di capra",
+       "chance": 0.09,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.31,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.067,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali dei Rinnegati",
+    "Corazza dei Rinnegati",
+    "Guanti dei Rinnegati"
+   ]
+  },
+  {
+   "id": "ladro_rinnegato",
+   "type": "monster",
+   "section_it": "Rinnegati",
+   "level": 14,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.47,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 125
+    },
+    {
+     "item_it": "Spada dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Ascia dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.47,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Carne di Cervide",
+       "chance": 0.13,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Cosciotto di capra",
+       "chance": 0.09,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.31,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.067,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali dei Rinnegati",
+    "Corazza dei Rinnegati",
+    "Guanti dei Rinnegati"
+   ]
+  },
+  {
+   "id": "saccheggiatore_rinnegato",
+   "type": "monster",
+   "section_it": "Rinnegati",
+   "level": 24,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.47,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 125
+    },
+    {
+     "item_it": "Spada dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Ascia dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.47,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Carne di Cervide",
+       "chance": 0.13,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Cosciotto di capra",
+       "chance": 0.09,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.31,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.067,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali dei Rinnegati",
+    "Corazza dei Rinnegati",
+    "Guanti dei Rinnegati"
+   ]
+  },
+  {
+   "id": "sciamano_rinnegato",
+   "type": "monster",
+   "section_it": "Rinnegati",
+   "level": 1,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.22,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.97,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale orchesco",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale di ferro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.24,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.012,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro energica",
+       "chance": 0.012,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    }
+   ],
+   "wears_it": [
+    "Stivali dei Rinnegati",
+    "Corazza dei Rinnegati",
+    "Guanti dei Rinnegati"
+   ]
+  },
+  {
+   "id": "signore_della_guerra_rinnegato",
+   "type": "monster",
+   "section_it": "Rinnegati",
+   "level": 46,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.47,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 125
+    },
+    {
+     "item_it": "Spada dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Ascia dei Rinnegati",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.47,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Carne di Cervide",
+       "chance": 0.13,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Cosciotto di capra",
+       "chance": 0.09,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.31,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.067,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali dei Rinnegati",
+    "Corazza dei Rinnegati",
+    "Guanti dei Rinnegati"
+   ]
+  },
+  {
+   "id": "vampiro_insanguinato",
+   "type": "monster",
+   "section_it": "Vampiri",
+   "level": 12,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Polvere di vampiro",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.95,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.32,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.35,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro energica",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.54,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.62,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.13,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali del vampiro",
+    "Vesti del vampiro",
+    "Vesti del vampiro"
+   ]
+  },
+  {
+   "id": "vampiro_camminatore_della_nebbia",
+   "type": "monster",
+   "section_it": "Vampiri",
+   "level": 20,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Polvere di vampiro",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.95,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.32,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.35,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro energica",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.54,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.62,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.13,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali del vampiro",
+    "Vesti del vampiro",
+    "Vesti del vampiro"
+   ]
+  },
+  {
+   "id": "vampiro_errante_della_notte",
+   "type": "monster",
+   "section_it": "Vampiri",
+   "level": 28,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Polvere di vampiro",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.95,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.32,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.35,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro energica",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.54,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.62,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.13,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali del vampiro",
+    "Vesti del vampiro",
+    "Vesti del vampiro"
+   ]
+  },
+  {
+   "id": "antico_vampiro",
+   "type": "monster",
+   "section_it": "Vampiri",
+   "level": 38,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Polvere di vampiro",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.95,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.94,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada di ferro",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Spada d'acciaio",
+       "chance": 0.4,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.32,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Collana d'oro ingioiellata",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Collana d'oro con rubino",
+       "chance": 0.016,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.35,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro energica",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.54,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Grimaldello",
+     "chance": 0.62,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Libri e ricette",
+     "chance": 0.13,
+     "qty": 1,
+     "kind": "category",
+     "category": "books"
+    }
+   ],
+   "wears_it": [
+    "Stivali del vampiro",
+    "Vesti del vampiro",
+    "Vesti del vampiro"
+   ]
+  },
+  {
+   "id": "lupo_mannaro_selvaggio",
+   "type": "monster",
+   "section_it": "Licantropi",
+   "level": 6,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Carne umana",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    }
+   ],
+   "wears_it": [
+    "Pantaloni logori"
+   ]
+  },
+  {
+   "id": "lupo_mannaro_mutaforma",
+   "type": "monster",
+   "section_it": "Licantropi",
+   "level": 20,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Carne umana",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    }
+   ],
+   "wears_it": [
+    "Pantaloni logori"
+   ]
+  },
+  {
+   "id": "capobestia_lupo_mannaro",
+   "type": "monster",
+   "section_it": "Licantropi",
+   "level": 28,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Pelliccia di lupo",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Carne umana",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    }
+   ],
+   "wears_it": [
+    "Pantaloni logori"
+   ]
+  },
+  {
+   "id": "falmer",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 9,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Scudo di Falmer",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.65,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.26,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Veleno potente",
+       "chance": 0.044,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Veleno persistente potente",
+       "chance": 0.044,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.051,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Orecchio di Falmer",
+     "chance": 0.62,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.055,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "falmer_emissario_oscuro",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 22,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Scudo di Falmer",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.65,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.54,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di cura vigorosa",
+       "chance": 0.11,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di cura minore",
+       "chance": 0.11,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.051,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Orecchio di Falmer",
+     "chance": 0.62,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.055,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    }
+   ],
+   "wears_it": [
+    "Elmo di Falmer"
+   ]
+  },
+  {
+   "id": "falmer_signore_delle_ombre",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 38,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Scudo di Falmer",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.53,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 50
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.65,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Spada Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia Falmer affilata",
+       "chance": 0.29,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.74,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Pozione di cura vigorosa",
+       "chance": 0.23,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di cura minore",
+       "chance": 0.23,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.051,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Orecchio di Falmer",
+     "chance": 0.62,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "lingotti e minerali",
+     "chance": 0.055,
+     "qty": 1,
+     "kind": "category",
+     "category": "ingots_ores"
+    }
+   ],
+   "wears_it": [
+    "Elmo di Falmer"
+   ]
+  },
+  {
+   "id": "chaurus",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 12,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di chaurus",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Uova di chaurus",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "chaurus_mietitore",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 20,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di chaurus",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Uova di chaurus",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "chaurus_cacciatore",
+   "type": "monster",
+   "section_it": "Falmer e chaurus",
+   "level": 32,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Chitina di chaurus",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Antenne di chaurus cacciatore",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Uova di chaurus",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "soldato_thalmor",
+   "type": "monster",
+   "section_it": "Thalmor",
+   "level": 28,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.68,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale elfico",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale di vetro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.5,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Vino Alto",
+       "chance": 0.083,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Vino",
+       "chance": 0.083,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.22,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    }
+   ],
+   "wears_it": [
+    "Stivali elfici",
+    "Guanti elfici",
+    "Elmo elfico"
+   ]
+  },
+  {
+   "id": "stregone_thalmor",
+   "type": "monster",
+   "section_it": "Thalmor",
+   "level": 28,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.68,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.88,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Pugnale elfico",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pugnale di vetro",
+       "chance": 0.5,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.21,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Soluzione di magicka extra",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di magicka extra",
+       "chance": 0.018,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.22,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    }
+   ],
+   "wears_it": [
+    "Vesti nere con cappuccio",
+    "Stivali Thalmor",
+    "Guanti Thalmor"
+   ]
+  },
+  {
+   "id": "gigante",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 32,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Dito di gigante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Mazza gigante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.86,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 300
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.34,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia da guerra di ferro",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia da guerra d'acciaio",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.37,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di cuoio",
+       "chance": 0.03,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Stivali di pelle",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.22,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Zanna di mammut",
+     "chance": 0.056,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Zanna di horker",
+     "chance": 0.056,
+     "qty": 3,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelliccia di tigre dai denti a sciabola delle nevi",
+     "chance": 0.056,
+     "qty": 3,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "gigante_del_gelo",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 50,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Dito di gigante",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.86,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 300
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.34,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Ascia da guerra di ferro",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Ascia da guerra d'acciaio",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.37,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di cuoio",
+       "chance": 0.03,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Stivali di pelle",
+       "chance": 0.017,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.22,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    },
+    {
+     "item_it": "Pelle di tigre dai denti a sciabola di valle",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Pelle di cervo di valle",
+     "chance": 0.25,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": [],
+   "staff_only": "solo creatura evocata dallo staff (la sua mazza era incantata: tolta)"
+  },
+  {
+   "id": "troll",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 14,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Grasso di troll",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "troll_del_gelo",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 22,
+   "creature_id": "frost_troll",
+   "drops": [
+    {
+     "item_it": "Grasso di troll",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "chance": 0.03,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 9
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "spettro_di_ghiaccio",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 9,
+   "creature_id": "ice_wraith",
+   "drops": [
+    {
+     "item_it": "Dente di spettro del ghiaccio",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Essenza di spettro del ghiaccio",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "spriggan",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 8,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Fittone",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Scudo spriggan",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "megera",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 20,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Piume di hagraven",
+     "chance": 1.0,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Artiglio di hagraven",
+     "chance": 0.26,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "cinghiale",
+   "type": "monster",
+   "section_it": "Creature fantastiche",
+   "level": 7,
+   "creature_id": null,
+   "drops": [
+    {
+     "chance": 0.22,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 10
+    },
+    {
+     "item_it": "Pozioni, veleni e cibo",
+     "chance": 0.51,
+     "qty": 1,
+     "kind": "category",
+     "category": "consumables",
+     "examples": [
+      {
+       "item_it": "Carne di cinghiale",
+       "chance": 0.45,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Pozione di ristoro minore",
+       "chance": 0.005,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Zanna di cinghiale",
+     "chance": 0.45,
+     "qty": 2,
+     "kind": "item"
+    },
+    {
+     "item_it": "Ranuncolo",
+     "chance": 0.083,
+     "qty": 1,
+     "kind": "item"
+    },
+    {
+     "item_it": "Miceto di Namira",
+     "chance": 0.083,
+     "qty": 1,
+     "kind": "item"
+    }
+   ],
+   "wears_it": []
+  },
+  {
+   "id": "drago",
+   "type": "monster",
+   "section_it": "Draghi (solo evento staff)",
+   "level": 10,
+   "creature_id": null,
+   "drops": [
+    {
+     "item_it": "Osso di drago",
+     "chance": 1.0,
+     "qty": 2,
+     "kind": "item"
+    },
+    {
+     "item_it": "Scaglie di drago",
+     "chance": 1.0,
+     "qty": 2,
+     "kind": "item"
+    },
+    {
+     "chance": 0.87,
+     "qty": null,
+     "kind": "gold",
+     "qty_max": 300
+    },
+    {
+     "item_it": "Armi",
+     "chance": 0.21,
+     "qty": 1,
+     "kind": "category",
+     "category": "weapons",
+     "examples": [
+      {
+       "item_it": "Mazza di ferro",
+       "chance": 0.014,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Mazza d'acciaio",
+       "chance": 0.014,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Armature e abiti",
+     "chance": 0.21,
+     "qty": 1,
+     "kind": "category",
+     "category": "apparel",
+     "examples": [
+      {
+       "item_it": "Scudo di cuoio",
+       "chance": 0.015,
+       "qty": 1,
+       "kind": "item"
+      },
+      {
+       "item_it": "Scudo elfico",
+       "chance": 0.009,
+       "qty": 1,
+       "kind": "item"
+      }
+     ]
+    },
+    {
+     "item_it": "Gemme",
+     "chance": 0.22,
+     "qty": 1,
+     "kind": "category",
+     "category": "gems"
+    }
+   ],
+   "wears_it": [],
+   "staff_only": "solo evento dello staff, nessuno spawn automatico"
+  },
+  {
+   "id": "orco",
+   "type": "monster",
+   "section_it": "Orchi (forti degli orchi)",
+   "level": null,
+   "creature_id": null,
+   "wears_it": [],
+   "drops": [
+    {
+     "kind": "item",
+     "item_it": "Oricalco grezzo",
+     "chance": 0.45,
+     "qty": null,
+     "qty_min": 1,
+     "qty_max": 3
+    },
+    {
+     "kind": "item",
+     "item_it": "Lingotto di oricalco",
+     "chance": 0.1,
+     "qty": 1
+    }
+   ],
+   "notes": "niente armi ne' armature orchesche (motivi economici); i capi hanno un loot a parte, da definire"
+  }
+ ]
+}

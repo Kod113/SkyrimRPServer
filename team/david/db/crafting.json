@@ -1,0 +1,2917 @@
+{
+ "_meta": {
+  "version": "0.1.0",
+  "date": "2026-10-20",
+  "author": "david",
+  "status": "dati del gioco base (stesso ordine di caricamento del server nel repo)",
+  "description": "Ricette per costruire le armi e le corazze (solo busto) della lista Discord, con tutti i passaggi intermedi (fonderia, conceria). Nomi italiani dai file del gioco.",
+  "sources": [
+   "Skyrim.esm, Update.esm, Dawnguard.esm, HearthFires.esm, Dragonborn.esm (record COBJ)",
+   "Skyrim - Interface.bsa (Strings italiani)",
+   "Discord #lista-armi-e-armature"
+  ],
+  "load_order": [
+   "Skyrim.esm",
+   "Update.esm",
+   "Dawnguard.esm",
+   "HearthFires.esm",
+   "Dragonborn.esm"
+  ],
+  "not_included": "CombatSettings.esp (riscrive il crafting) non e' caricato dal server nel repo"
+ },
+ "benches": {
+  "CraftingSmithingForge": "Forgia",
+  "CraftingSmelter": "Fonderia",
+  "CraftingTanningRack": "Rastrelliera per conciare",
+  "DLC1CraftingDawnguard": "Forgia della Guardia dell'Alba",
+  "CraftingSmithingSkyforge": "Forgia del Cielo"
+ },
+ "perks": {
+  "DwarvenSmithing": "Forgiatura nanica",
+  "ElvenSmithing": "Forgiatura elfica",
+  "GlassSmithing": "Forgiatura del vetro",
+  "OrcishSmithing": "Forgiatura orchesca",
+  "SteelSmithing": "Forgiatura dell'acciaio"
+ },
+ "catalog": [
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada di ferro",
+   "item": "IronSword",
+   "game_name_it": "Spada di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada d'acciaio",
+   "item": "SteelSword",
+   "game_name_it": "Spada d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada orchesca",
+   "item": "OrcishSword",
+   "game_name_it": "Spada orchesca",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada nanica",
+   "item": "DwarvenSword",
+   "game_name_it": "Spada nanica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada elfica",
+   "item": "ElvenSword",
+   "game_name_it": "Spada elfica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Spade",
+   "discord_name": "Spada di vetro",
+   "item": "GlassSword",
+   "game_name_it": "Spada di vetro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Asce",
+   "discord_name": "Ascia di ferro",
+   "item": "IronWarAxe",
+   "game_name_it": "Ascia di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Asce",
+   "discord_name": "Ascia d'acciaio",
+   "item": "SteelWarAxe",
+   "game_name_it": "Ascia d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Asce",
+   "discord_name": "Ascia orchesca",
+   "item": "OrcishWarAxe",
+   "game_name_it": "Ascia orchesca",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Asce",
+   "discord_name": "Ascia nanica",
+   "item": "DwarvenWarAxe",
+   "game_name_it": "Ascia nanica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Asce",
+   "discord_name": "Ascia elfica",
+   "item": "ElvenWarAxe",
+   "game_name_it": "Ascia elfica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Mazze",
+   "discord_name": "Mazza di ferro",
+   "item": "IronMace",
+   "game_name_it": "Mazza di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Mazze",
+   "discord_name": "Mazza d'acciaio",
+   "item": "SteelMace",
+   "game_name_it": "Mazza d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Mazze",
+   "discord_name": "Mazza orchesca",
+   "item": "OrcishMace",
+   "game_name_it": "Mazza orchesca",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Mazze",
+   "discord_name": "Mazza nanica",
+   "item": "DwarvenMace",
+   "game_name_it": "Mazza nanica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Una mano",
+   "group_it": "Mazze",
+   "discord_name": "Mazza elfica",
+   "item": "ElvenMace",
+   "game_name_it": "Mazza elfica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Spadoni",
+   "discord_name": "Spadone di ferro",
+   "item": "IronGreatsword",
+   "game_name_it": "Spadone di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Spadoni",
+   "discord_name": "Spadone d'acciaio",
+   "item": "SteelGreatsword",
+   "game_name_it": "Spadone d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Spadoni",
+   "discord_name": "Spadone orchesco",
+   "item": "OrcishGreatsword",
+   "game_name_it": "Spadone orchesco",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Spadoni",
+   "discord_name": "Spadone nanico",
+   "item": "DwarvenGreatsword",
+   "game_name_it": "Spadone nanico",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Spadoni",
+   "discord_name": "Spadone elfico",
+   "item": "ElvenGreatsword",
+   "game_name_it": "Spadone elfico",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Asce da guerra",
+   "discord_name": "Ascia bipenne di ferro",
+   "item": "IronBattleaxe",
+   "game_name_it": "Ascia da guerra di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Asce da guerra",
+   "discord_name": "Ascia bipenne d'acciaio",
+   "item": "SteelBattleaxe",
+   "game_name_it": "Ascia da guerra d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Asce da guerra",
+   "discord_name": "Ascia orchesca",
+   "item": "OrcishBattleaxe",
+   "game_name_it": "Ascia da guerra orchesca",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Asce da guerra",
+   "discord_name": "Ascia nanica",
+   "item": "DwarvenBattleaxe",
+   "game_name_it": "Ascia da guerra nanica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Martelli",
+   "discord_name": "Martello da guerra di ferro",
+   "item": "IronWarhammer",
+   "game_name_it": "Martello di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Martelli",
+   "discord_name": "Martello d'acciaio",
+   "item": "SteelWarhammer",
+   "game_name_it": "Martello d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Martelli",
+   "discord_name": "Martello orchesco",
+   "item": "OrcishWarhammer",
+   "game_name_it": "Martello orchesco",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Due mani",
+   "group_it": "Martelli",
+   "discord_name": "Martello nanico",
+   "item": "DwarvenWarhammer",
+   "game_name_it": "Martello nanico",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco lungo",
+   "item": "LongBow",
+   "game_name_it": "Arco lungo",
+   "craftable": false,
+   "note": "nel gioco base non ha ricetta: si trova o si compra"
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco di caccia",
+   "item": "HuntingBow",
+   "game_name_it": "Arco da caccia",
+   "craftable": false,
+   "note": "nel gioco base non ha ricetta: si trova o si compra"
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco orchesco",
+   "item": "OrcishBow",
+   "game_name_it": "Arco orchesco",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco nanico",
+   "item": "DwarvenBow",
+   "game_name_it": "Arco nanico",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco elfico",
+   "item": "ElvenBow",
+   "game_name_it": "Arco elfico",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Archi",
+   "discord_name": "Arco di vetro",
+   "item": "GlassBow",
+   "game_name_it": "Arco di vetro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Balestre",
+   "discord_name": "Balestra base",
+   "item": "DLC1CrossBow",
+   "game_name_it": "Balestra",
+   "craftable": true,
+   "note": "Discord: ottenibile solo con quest (dungeon permadeath, unica fucina)"
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Balestre",
+   "discord_name": "Balestra potenziata",
+   "item": "DLC1CrossBowEnhanced",
+   "game_name_it": "Balestra migliorata",
+   "craftable": true,
+   "note": "Discord: ottenibile solo con quest (dungeon permadeath, unica fucina)"
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Frecce",
+   "discord_name": "Frecce di ferro",
+   "item": "IronArrow",
+   "game_name_it": "Frecce di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Frecce",
+   "discord_name": "Frecce d'acciaio",
+   "item": "SteelArrow",
+   "game_name_it": "Frecce di acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Frecce",
+   "discord_name": "Frecce naniche",
+   "item": "DwarvenArrow",
+   "game_name_it": "Frecce naniche",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "A distanza",
+   "group_it": "Frecce",
+   "discord_name": "Frecce elfiche",
+   "item": "ElvenArrow",
+   "game_name_it": "Frecce elfiche",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature leggere",
+   "group_it": "Busto",
+   "discord_name": "Armatura di cuoio",
+   "item": "ArmorHideCuirass",
+   "game_name_it": "Corazza di cuoio",
+   "craftable": true,
+   "note": "nel gioco italiano 'Corazza di cuoio' e' l'armatura Hide; la 'Corazza di pelle' (Leather) non e' nella lista Discord"
+  },
+  {
+   "section_it": "Armature leggere",
+   "group_it": "Busto",
+   "discord_name": "Armatura borchiata",
+   "item": "ArmorStuddedCuirass",
+   "game_name_it": "Corazza borchiata",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature leggere",
+   "group_it": "Busto",
+   "discord_name": "Armatura di pelliccia",
+   "item": "ArmorBanditCuirass",
+   "game_name_it": "Corazza di pelliccia",
+   "craftable": false,
+   "note": "l'armatura di pelliccia non ha ricetta nel gioco base: si trova o si compra"
+  },
+  {
+   "section_it": "Armature leggere",
+   "group_it": "Busto",
+   "discord_name": "Armatura elfica",
+   "item": "ArmorElvenCuirass",
+   "game_name_it": "Corazza elfica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature leggere",
+   "group_it": "Busto",
+   "discord_name": "Armatura di vetro",
+   "item": "ArmorGlassCuirass",
+   "game_name_it": "Corazza di vetro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature pesanti",
+   "group_it": "Busto",
+   "discord_name": "Armatura di ferro",
+   "item": "ArmorIronCuirass",
+   "game_name_it": "Corazza di ferro",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature pesanti",
+   "group_it": "Busto",
+   "discord_name": "Armatura d'acciaio",
+   "item": "ArmorSteelCuirassA",
+   "game_name_it": "Corazza d'acciaio",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature pesanti",
+   "group_it": "Busto",
+   "discord_name": "Armatura nanica",
+   "item": "ArmorDwarvenCuirass",
+   "game_name_it": "Corazza nanica",
+   "craftable": true,
+   "note": null
+  },
+  {
+   "section_it": "Armature pesanti",
+   "group_it": "Busto",
+   "discord_name": "Armatura orchesca",
+   "item": "ArmorOrcishCuirass",
+   "game_name_it": "Corazza orchesca",
+   "craftable": true,
+   "note": null
+  }
+ ],
+ "items": {
+  "HuntingBow": {
+   "id": "HuntingBow",
+   "name_it": "Arco da caccia",
+   "name_en": "Hunting Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013985",
+   "value": 50,
+   "weight": 7.0,
+   "damage": 7,
+   "weapon_type": "arco"
+  },
+  "GlassBow": {
+   "id": "GlassBow",
+   "name_it": "Arco di vetro",
+   "name_en": "Glass Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "0139A5",
+   "value": 820,
+   "weight": 14.0,
+   "damage": 15,
+   "weapon_type": "arco"
+  },
+  "ElvenBow": {
+   "id": "ElvenBow",
+   "name_it": "Arco elfico",
+   "name_en": "Elven Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01399D",
+   "value": 470,
+   "weight": 12.0,
+   "damage": 13,
+   "weapon_type": "arco"
+  },
+  "LongBow": {
+   "id": "LongBow",
+   "name_it": "Arco lungo",
+   "name_en": "Long Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "03B562",
+   "value": 30,
+   "weight": 5.0,
+   "damage": 6,
+   "weapon_type": "arco"
+  },
+  "DwarvenBow": {
+   "id": "DwarvenBow",
+   "name_it": "Arco nanico",
+   "name_en": "Dwarven Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013995",
+   "value": 270,
+   "weight": 10.0,
+   "damage": 12,
+   "weapon_type": "arco"
+  },
+  "OrcishBow": {
+   "id": "OrcishBow",
+   "name_it": "Arco orchesco",
+   "name_en": "Orcish Bow",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01398D",
+   "value": 150,
+   "weight": 9.0,
+   "damage": 10,
+   "weapon_type": "arco"
+  },
+  "SteelWarAxe": {
+   "id": "SteelWarAxe",
+   "name_it": "Ascia d'acciaio",
+   "name_en": "Steel War Axe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013983",
+   "value": 55,
+   "weight": 12.0,
+   "damage": 9,
+   "weapon_type": "ascia"
+  },
+  "SteelBattleaxe": {
+   "id": "SteelBattleaxe",
+   "name_it": "Ascia da guerra d'acciaio",
+   "name_en": "Steel Battleaxe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013984",
+   "value": 100,
+   "weight": 21.0,
+   "damage": 18,
+   "weapon_type": "ascia da guerra"
+  },
+  "IronBattleaxe": {
+   "id": "IronBattleaxe",
+   "name_it": "Ascia da guerra di ferro",
+   "name_en": "Iron Battleaxe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013980",
+   "value": 55,
+   "weight": 20.0,
+   "damage": 16,
+   "weapon_type": "ascia da guerra"
+  },
+  "DwarvenBattleaxe": {
+   "id": "DwarvenBattleaxe",
+   "name_it": "Ascia da guerra nanica",
+   "name_en": "Dwarven Battleaxe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013994",
+   "value": 300,
+   "weight": 23.0,
+   "damage": 20,
+   "weapon_type": "ascia da guerra"
+  },
+  "OrcishBattleaxe": {
+   "id": "OrcishBattleaxe",
+   "name_it": "Ascia da guerra orchesca",
+   "name_en": "Orcish Battleaxe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01398C",
+   "value": 165,
+   "weight": 25.0,
+   "damage": 19,
+   "weapon_type": "ascia da guerra"
+  },
+  "IronWarAxe": {
+   "id": "IronWarAxe",
+   "name_it": "Ascia di ferro",
+   "name_en": "Iron War Axe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013790",
+   "value": 30,
+   "weight": 11.0,
+   "damage": 8,
+   "weapon_type": "ascia"
+  },
+  "ElvenWarAxe": {
+   "id": "ElvenWarAxe",
+   "name_it": "Ascia elfica",
+   "name_en": "Elven War Axe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01399B",
+   "value": 280,
+   "weight": 15.0,
+   "damage": 12,
+   "weapon_type": "ascia"
+  },
+  "DwarvenWarAxe": {
+   "id": "DwarvenWarAxe",
+   "name_it": "Ascia nanica",
+   "name_en": "Dwarven War Axe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013993",
+   "value": 165,
+   "weight": 14.0,
+   "damage": 11,
+   "weapon_type": "ascia"
+  },
+  "OrcishWarAxe": {
+   "id": "OrcishWarAxe",
+   "name_it": "Ascia orchesca",
+   "name_en": "Orcish War Axe",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01398B",
+   "value": 90,
+   "weight": 13.0,
+   "damage": 10,
+   "weapon_type": "ascia"
+  },
+  "DLC1CrossBow": {
+   "id": "DLC1CrossBow",
+   "name_it": "Balestra",
+   "name_en": "Crossbow",
+   "kind": "weapon",
+   "plugin": "Dawnguard.esm",
+   "form_id": "000801",
+   "value": 120,
+   "weight": 14.0,
+   "damage": 19,
+   "weapon_type": "arco"
+  },
+  "DLC1CrossBowEnhanced": {
+   "id": "DLC1CrossBowEnhanced",
+   "name_it": "Balestra migliorata",
+   "name_en": "Enhanced Crossbow",
+   "kind": "weapon",
+   "plugin": "Dawnguard.esm",
+   "form_id": "00F19E",
+   "value": 200,
+   "weight": 15.0,
+   "damage": 19,
+   "weapon_type": "arco"
+  },
+  "ArmorStuddedCuirass": {
+   "id": "ArmorStuddedCuirass",
+   "name_it": "Corazza borchiata",
+   "name_en": "Studded Armor",
+   "kind": "armor",
+   "plugin": "Skyrim.esm",
+   "form_id": "01B3A2",
+   "value": 75,
+   "weight": 6.0,
+   "armor_class": "leggera",
+   "armor_rating": 23.0
+  },
+  "ArmorSteelCuirassA": {
+   "id": "ArmorSteelCuirassA",
+   "name_it": "Corazza d'acciaio",
+   "name_en": "Steel Armor",
+   "kind": "armor",
+   "plugin": "Update.esm",
+   "form_id": "013952",
+   "value": 275,
+   "weight": 35.0,
+   "armor_class": "pesante",
+   "armor_rating": 31.0
+  },
+  "ArmorHideCuirass": {
+   "id": "ArmorHideCuirass",
+   "name_it": "Corazza di cuoio",
+   "name_en": "Hide Armor",
+   "kind": "armor",
+   "plugin": "Skyrim.esm",
+   "form_id": "013911",
+   "value": 50,
+   "weight": 5.0,
+   "armor_class": "leggera",
+   "armor_rating": 20.0
+  },
+  "ArmorIronCuirass": {
+   "id": "ArmorIronCuirass",
+   "name_it": "Corazza di ferro",
+   "name_en": "Iron Armor",
+   "kind": "armor",
+   "plugin": "Skyrim.esm",
+   "form_id": "012E49",
+   "value": 125,
+   "weight": 30.0,
+   "armor_class": "pesante",
+   "armor_rating": 25.0
+  },
+  "ArmorBanditCuirass": {
+   "id": "ArmorBanditCuirass",
+   "name_it": "Corazza di pelliccia",
+   "name_en": "Fur Armor",
+   "kind": "armor",
+   "plugin": "Update.esm",
+   "form_id": "06F393",
+   "value": 50,
+   "weight": 6.0,
+   "armor_class": "leggera",
+   "armor_rating": 23.0
+  },
+  "ArmorGlassCuirass": {
+   "id": "ArmorGlassCuirass",
+   "name_it": "Corazza di vetro",
+   "name_en": "Glass Armor",
+   "kind": "armor",
+   "plugin": "Update.esm",
+   "form_id": "013939",
+   "value": 900,
+   "weight": 7.0,
+   "armor_class": "leggera",
+   "armor_rating": 38.0
+  },
+  "ArmorElvenCuirass": {
+   "id": "ArmorElvenCuirass",
+   "name_it": "Corazza elfica",
+   "name_en": "Elven Armor",
+   "kind": "armor",
+   "plugin": "Skyrim.esm",
+   "form_id": "0896A3",
+   "value": 225,
+   "weight": 4.0,
+   "armor_class": "leggera",
+   "armor_rating": 29.0
+  },
+  "ArmorDwarvenCuirass": {
+   "id": "ArmorDwarvenCuirass",
+   "name_it": "Corazza nanica",
+   "name_en": "Dwarven Armor",
+   "kind": "armor",
+   "plugin": "Skyrim.esm",
+   "form_id": "01394D",
+   "value": 400,
+   "weight": 45.0,
+   "armor_class": "pesante",
+   "armor_rating": 34.0
+  },
+  "ArmorOrcishCuirass": {
+   "id": "ArmorOrcishCuirass",
+   "name_it": "Corazza orchesca",
+   "name_en": "Orcish Armor",
+   "kind": "armor",
+   "plugin": "Update.esm",
+   "form_id": "013957",
+   "value": 1000,
+   "weight": 35.0,
+   "armor_class": "pesante",
+   "armor_rating": 40.0
+  },
+  "OreCorundum": {
+   "id": "OreCorundum",
+   "name_it": "Corundum grezzo",
+   "name_en": "Corundum Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACDB",
+   "value": 20,
+   "weight": 1.0
+  },
+  "OreIron": {
+   "id": "OreIron",
+   "name_it": "Ferro grezzo",
+   "name_en": "Iron Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "071CF3",
+   "value": 2,
+   "weight": 1.0
+  },
+  "SteelArrow": {
+   "id": "SteelArrow",
+   "name_it": "Frecce di acciaio",
+   "name_en": "Steel Arrow",
+   "kind": "ammo",
+   "plugin": "Dawnguard.esm",
+   "form_id": "01397F",
+   "value": 2,
+   "weight": 0.1,
+   "damage": 10.0,
+   "weapon_type": "freccia"
+  },
+  "IronArrow": {
+   "id": "IronArrow",
+   "name_it": "Frecce di ferro",
+   "name_en": "Iron Arrow",
+   "kind": "ammo",
+   "plugin": "Dawnguard.esm",
+   "form_id": "01397D",
+   "value": 1,
+   "weight": 0.1,
+   "damage": 8.0,
+   "weapon_type": "freccia"
+  },
+  "ElvenArrow": {
+   "id": "ElvenArrow",
+   "name_it": "Frecce elfiche",
+   "name_en": "Elven Arrow",
+   "kind": "ammo",
+   "plugin": "Dawnguard.esm",
+   "form_id": "0139BD",
+   "value": 5,
+   "weight": 0.1,
+   "damage": 16.0,
+   "weapon_type": "freccia"
+  },
+  "DwarvenArrow": {
+   "id": "DwarvenArrow",
+   "name_it": "Frecce naniche",
+   "name_en": "Dwarven Arrow",
+   "kind": "ammo",
+   "plugin": "Dawnguard.esm",
+   "form_id": "0139BC",
+   "value": 4,
+   "weight": 0.1,
+   "damage": 14.0,
+   "weapon_type": "freccia"
+  },
+  "DwarvenLargeScrap": {
+   "id": "DwarvenLargeScrap",
+   "name_it": "Grande asta Dwemer",
+   "name_en": "Large Dwemer Strut",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C8872",
+   "value": 15,
+   "weight": 20.0
+  },
+  "DwarvenLargeScrap3": {
+   "id": "DwarvenLargeScrap3",
+   "name_it": "Grande asta decorativa Dwemer",
+   "name_en": "Large Decorative Dwemer Strut",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C8878",
+   "value": 10,
+   "weight": 15.0
+  },
+  "DwarvenPlateMetalLarge": {
+   "id": "DwarvenPlateMetalLarge",
+   "name_it": "Grande piastra di metallo Dwemer",
+   "name_en": "Large Dwemer Plate Metal",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C8864",
+   "value": 15,
+   "weight": 2.0
+  },
+  "Firewood01": {
+   "id": "Firewood01",
+   "name_it": "Legna da ardere",
+   "name_en": "Firewood",
+   "kind": "material",
+   "plugin": "Skyrim.esm",
+   "form_id": "06F993",
+   "value": 5,
+   "weight": 5.0
+  },
+  "IngotSteel": {
+   "id": "IngotSteel",
+   "name_it": "Lingotto d'acciaio",
+   "name_en": "Steel Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACE5",
+   "value": 20,
+   "weight": 1.0
+  },
+  "IngotCorundum": {
+   "id": "IngotCorundum",
+   "name_it": "Lingotto di corundum",
+   "name_en": "Corundum Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05AD93",
+   "value": 40,
+   "weight": 1.0
+  },
+  "IngotIron": {
+   "id": "IngotIron",
+   "name_it": "Lingotto di ferro",
+   "name_en": "Iron Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACE4",
+   "value": 7,
+   "weight": 1.0
+  },
+  "IngotQuicksilver": {
+   "id": "IngotQuicksilver",
+   "name_it": "Lingotto di mercurio",
+   "name_en": "Quicksilver Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ADA0",
+   "value": 60,
+   "weight": 1.0
+  },
+  "IngotDwarven": {
+   "id": "IngotDwarven",
+   "name_it": "Lingotto di metallo nanico",
+   "name_en": "Dwarven Metal Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "0DB8A2",
+   "value": 30,
+   "weight": 1.0
+  },
+  "IngotOrichalcum": {
+   "id": "IngotOrichalcum",
+   "name_it": "Lingotto di oricalco",
+   "name_en": "Orichalcum Ingot",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05AD99",
+   "value": 45,
+   "weight": 1.0
+  },
+  "OreMalachite": {
+   "id": "OreMalachite",
+   "name_it": "Malachite grezza",
+   "name_en": "Malachite Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACE1",
+   "value": 30,
+   "weight": 1.0
+  },
+  "IngotMalachite": {
+   "id": "IngotMalachite",
+   "name_it": "Malachite raffinata",
+   "name_en": "Refined Malachite",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ADA1",
+   "value": 100,
+   "weight": 1.0
+  },
+  "SteelWarhammer": {
+   "id": "SteelWarhammer",
+   "name_it": "Martello d'acciaio",
+   "name_en": "Steel Warhammer",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01398A",
+   "value": 110,
+   "weight": 25.0,
+   "damage": 20,
+   "weapon_type": "martello da guerra"
+  },
+  "IronWarhammer": {
+   "id": "IronWarhammer",
+   "name_it": "Martello di ferro",
+   "name_en": "Iron Warhammer",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013981",
+   "value": 60,
+   "weight": 24.0,
+   "damage": 18,
+   "weapon_type": "martello da guerra"
+  },
+  "DwarvenWarhammer": {
+   "id": "DwarvenWarhammer",
+   "name_it": "Martello nanico",
+   "name_en": "Dwarven Warhammer",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01399A",
+   "value": 325,
+   "weight": 27.0,
+   "damage": 22,
+   "weapon_type": "martello da guerra"
+  },
+  "OrcishWarhammer": {
+   "id": "OrcishWarhammer",
+   "name_it": "Martello orchesco",
+   "name_en": "Orcish Warhammer",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013992",
+   "value": 180,
+   "weight": 26.0,
+   "damage": 21,
+   "weapon_type": "martello da guerra"
+  },
+  "SteelMace": {
+   "id": "SteelMace",
+   "name_it": "Mazza d'acciaio",
+   "name_en": "Steel Mace",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013988",
+   "value": 65,
+   "weight": 14.0,
+   "damage": 10,
+   "weapon_type": "mazza"
+  },
+  "IronMace": {
+   "id": "IronMace",
+   "name_it": "Mazza di ferro",
+   "name_en": "Iron Mace",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013982",
+   "value": 35,
+   "weight": 13.0,
+   "damage": 9,
+   "weapon_type": "mazza"
+  },
+  "ElvenMace": {
+   "id": "ElvenMace",
+   "name_it": "Mazza elfica",
+   "name_en": "Elven Mace",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "0139A0",
+   "value": 330,
+   "weight": 17.0,
+   "damage": 13,
+   "weapon_type": "mazza"
+  },
+  "DwarvenMace": {
+   "id": "DwarvenMace",
+   "name_it": "Mazza nanica",
+   "name_en": "Dwarven Mace",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013998",
+   "value": 190,
+   "weight": 16.0,
+   "damage": 12,
+   "weapon_type": "mazza"
+  },
+  "OrcishMace": {
+   "id": "OrcishMace",
+   "name_it": "Mazza orchesca",
+   "name_en": "Orcish Mace",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013990",
+   "value": 105,
+   "weight": 15.0,
+   "damage": 11,
+   "weapon_type": "mazza"
+  },
+  "OreQuicksilver": {
+   "id": "OreQuicksilver",
+   "name_it": "Mercurio grezzo",
+   "name_en": "Quicksilver Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACE2",
+   "value": 25,
+   "weight": 1.0
+  },
+  "DwarvenLargeScrap2": {
+   "id": "DwarvenLargeScrap2",
+   "name_it": "Metallo Dwemer",
+   "name_en": "Solid Dwemer Metal",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C8874",
+   "value": 25,
+   "weight": 25.0
+  },
+  "OreOrichalcum": {
+   "id": "OreOrichalcum",
+   "name_it": "Oricalco grezzo",
+   "name_en": "Orichalcum Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACDD",
+   "value": 20,
+   "weight": 1.0
+  },
+  "Leather01": {
+   "id": "Leather01",
+   "name_it": "Pelle",
+   "name_en": "Leather",
+   "kind": "leather",
+   "plugin": "Skyrim.esm",
+   "form_id": "0DB5D2",
+   "value": 10,
+   "weight": 2.0
+  },
+  "DeerHide": {
+   "id": "DeerHide",
+   "name_it": "Pelle di alce",
+   "name_en": "Deer Hide",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD90",
+   "value": 10,
+   "weight": 2.0
+  },
+  "GoatHide": {
+   "id": "GoatHide",
+   "name_it": "Pelle di capra",
+   "name_en": "Goat Hide",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD8E",
+   "value": 5,
+   "weight": 1.0
+  },
+  "HorseHide": {
+   "id": "HorseHide",
+   "name_it": "Pelle di cavallo",
+   "name_en": "Horse Hide",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD93",
+   "value": 15,
+   "weight": 2.0
+  },
+  "DeerHide02": {
+   "id": "DeerHide02",
+   "name_it": "Pelle di cervo",
+   "name_en": "Deer Hide",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "0D284D",
+   "value": 10,
+   "weight": 2.0
+  },
+  "DLC1DeerHide": {
+   "id": "DLC1DeerHide",
+   "name_it": "Pelle di cervo di valle",
+   "name_en": "Vale Deer Hide",
+   "kind": "pelt",
+   "plugin": "Dawnguard.esm",
+   "form_id": "011999",
+   "value": 10,
+   "weight": 2.0
+  },
+  "CowHide": {
+   "id": "CowHide",
+   "name_it": "Pelle di mucca",
+   "name_en": "Cow Hide",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD8F",
+   "value": 10,
+   "weight": 2.0
+  },
+  "DLC1SabreCatHide": {
+   "id": "DLC1SabreCatHide",
+   "name_it": "Pelle di tigre dai denti a sciabola di valle",
+   "name_en": "Vale Sabre Cat Hide",
+   "kind": "pelt",
+   "plugin": "Dawnguard.esm",
+   "form_id": "01199A",
+   "value": 10,
+   "weight": 2.0
+  },
+  "WolfPelt": {
+   "id": "WolfPelt",
+   "name_it": "Pelliccia di lupo",
+   "name_en": "Wolf Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD74",
+   "value": 10,
+   "weight": 1.0
+  },
+  "WolfIcePelt": {
+   "id": "WolfIcePelt",
+   "name_it": "Pelliccia di lupo dei ghiacci",
+   "name_en": "Ice Wolf Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD75",
+   "value": 15,
+   "weight": 1.0
+  },
+  "BearPelt": {
+   "id": "BearPelt",
+   "name_it": "Pelliccia di orso",
+   "name_en": "Bear Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD52",
+   "value": 50,
+   "weight": 3.0
+  },
+  "BearCavePelt": {
+   "id": "BearCavePelt",
+   "name_it": "Pelliccia di orso delle caverne",
+   "name_en": "Cave Bear Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD53",
+   "value": 60,
+   "weight": 3.0
+  },
+  "BearSnowPelt": {
+   "id": "BearSnowPelt",
+   "name_it": "Pelliccia di orso delle nevi",
+   "name_en": "Snow Bear Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD54",
+   "value": 75,
+   "weight": 3.0
+  },
+  "SabreCatPelt": {
+   "id": "SabreCatPelt",
+   "name_it": "Pelliccia di tigre dai denti a sciabola",
+   "name_en": "Sabre Cat Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD6D",
+   "value": 25,
+   "weight": 2.0
+  },
+  "SabreCatSnowPelt": {
+   "id": "SabreCatSnowPelt",
+   "name_it": "Pelliccia di tigre dai denti a sciabola delle nevi",
+   "name_en": "Sabre Cat Snow Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "03AD6E",
+   "value": 40,
+   "weight": 2.0
+  },
+  "FoxPelt": {
+   "id": "FoxPelt",
+   "name_it": "Pelliccia di volpe",
+   "name_en": "Fox Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "0D4B35",
+   "value": 5,
+   "weight": 0.5
+  },
+  "FoxPeltSnow": {
+   "id": "FoxPeltSnow",
+   "name_it": "Pelliccia di volpe delle nevi",
+   "name_en": "Snow Fox Pelt",
+   "kind": "pelt",
+   "plugin": "Skyrim.esm",
+   "form_id": "0D4BE7",
+   "value": 7,
+   "weight": 0.5
+  },
+  "DwarvenPlateMetalSmall": {
+   "id": "DwarvenPlateMetalSmall",
+   "name_it": "Piccola piastra di metallo Dwemer",
+   "name_en": "Small Dwemer Plate Metal",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C8866",
+   "value": 15,
+   "weight": 2.0
+  },
+  "OreMoonstone": {
+   "id": "OreMoonstone",
+   "name_it": "Pietra lunare",
+   "name_en": "Moonstone Ore",
+   "kind": "ore",
+   "plugin": "Skyrim.esm",
+   "form_id": "05ACE0",
+   "value": 30,
+   "weight": 1.0
+  },
+  "IngotIMoonstone": {
+   "id": "IngotIMoonstone",
+   "name_it": "Pietra lunare raffinata",
+   "name_en": "Refined Moonstone",
+   "kind": "ingot",
+   "plugin": "Skyrim.esm",
+   "form_id": "05AD9F",
+   "value": 75,
+   "weight": 1.0
+  },
+  "DwarvenScrapBent": {
+   "id": "DwarvenScrapBent",
+   "name_it": "Rottame Dwemer",
+   "name_en": "Bent Dwemer Scrap Metal",
+   "kind": "scrap",
+   "plugin": "Skyrim.esm",
+   "form_id": "0C886C",
+   "value": 15,
+   "weight": 2.0
+  },
+  "SteelSword": {
+   "id": "SteelSword",
+   "name_it": "Spada d'acciaio",
+   "name_en": "Steel Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013989",
+   "value": 45,
+   "weight": 10.0,
+   "damage": 8,
+   "weapon_type": "spada"
+  },
+  "IronSword": {
+   "id": "IronSword",
+   "name_it": "Spada di ferro",
+   "name_en": "Iron Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "012EB7",
+   "value": 25,
+   "weight": 9.0,
+   "damage": 7,
+   "weapon_type": "spada"
+  },
+  "GlassSword": {
+   "id": "GlassSword",
+   "name_it": "Spada di vetro",
+   "name_en": "Glass Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "0139A9",
+   "value": 410,
+   "weight": 14.0,
+   "damage": 12,
+   "weapon_type": "spada"
+  },
+  "ElvenSword": {
+   "id": "ElvenSword",
+   "name_it": "Spada elfica",
+   "name_en": "Elven Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "0139A1",
+   "value": 235,
+   "weight": 13.0,
+   "damage": 11,
+   "weapon_type": "spada"
+  },
+  "DwarvenSword": {
+   "id": "DwarvenSword",
+   "name_it": "Spada nanica",
+   "name_en": "Dwarven Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013999",
+   "value": 135,
+   "weight": 12.0,
+   "damage": 10,
+   "weapon_type": "spada"
+  },
+  "OrcishSword": {
+   "id": "OrcishSword",
+   "name_it": "Spada orchesca",
+   "name_en": "Orcish Sword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013991",
+   "value": 75,
+   "weight": 11.0,
+   "damage": 9,
+   "weapon_type": "spada"
+  },
+  "SteelGreatsword": {
+   "id": "SteelGreatsword",
+   "name_it": "Spadone d'acciaio",
+   "name_en": "Steel Greatsword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013987",
+   "value": 90,
+   "weight": 17.0,
+   "damage": 17,
+   "weapon_type": "spadone"
+  },
+  "IronGreatsword": {
+   "id": "IronGreatsword",
+   "name_it": "Spadone di ferro",
+   "name_en": "Iron Greatsword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01359D",
+   "value": 50,
+   "weight": 16.0,
+   "damage": 15,
+   "weapon_type": "spadone"
+  },
+  "ElvenGreatsword": {
+   "id": "ElvenGreatsword",
+   "name_it": "Spadone elfico",
+   "name_en": "Elven Greatsword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01399F",
+   "value": 470,
+   "weight": 20.0,
+   "damage": 20,
+   "weapon_type": "spadone"
+  },
+  "DwarvenGreatsword": {
+   "id": "DwarvenGreatsword",
+   "name_it": "Spadone nanico",
+   "name_en": "Dwarven Greatsword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "013997",
+   "value": 270,
+   "weight": 19.0,
+   "damage": 19,
+   "weapon_type": "spadone"
+  },
+  "OrcishGreatsword": {
+   "id": "OrcishGreatsword",
+   "name_it": "Spadone orchesco",
+   "name_en": "Orcish Greatsword",
+   "kind": "weapon",
+   "plugin": "Skyrim.esm",
+   "form_id": "01398F",
+   "value": 75,
+   "weight": 18.0,
+   "damage": 18,
+   "weapon_type": "spadone"
+  },
+  "LeatherStrips": {
+   "id": "LeatherStrips",
+   "name_it": "Strisce di pelle",
+   "name_en": "Leather Strips",
+   "kind": "leather",
+   "plugin": "Skyrim.esm",
+   "form_id": "0800E4",
+   "value": 3,
+   "weight": 0.1
+  }
+ },
+ "recipes": [
+  {
+   "id": "RecipeArmorDwarvenCuirass",
+   "output": "ArmorDwarvenCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 3
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorElvenCuirass",
+   "output": "ArmorElvenCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "Leather01",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 4
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorGlassCuirass",
+   "output": "ArmorGlassCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "GlassSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "Leather01",
+     "qty": 1
+    },
+    {
+     "item": "IngotMalachite",
+     "qty": 4
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorHideCuirass",
+   "output": "ArmorHideCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "Leather01",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorIronCuirass",
+   "output": "ArmorIronCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotIron",
+     "qty": 5
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorOrcishCuirass",
+   "output": "ArmorOrcishCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotOrichalcum",
+     "qty": 4
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorSteelCuirassA",
+   "output": "ArmorSteelCuirassA",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 4
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeArmorStuddedCuirass",
+   "output": "ArmorStuddedCuirass",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "Leather01",
+     "qty": 4
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeTechSteelCrossbow",
+   "output": "DLC1CrossBow",
+   "qty": 1,
+   "bench": "DLC1CraftingDawnguard",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 3
+    },
+    {
+     "item": "Firewood01",
+     "qty": 3
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeTechSteelCrossbowEnhanced",
+   "output": "DLC1CrossBowEnhanced",
+   "qty": 1,
+   "bench": "DLC1CraftingDawnguard",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "DLC1CrossBow",
+     "qty": 1
+    },
+    {
+     "item": "IngotCorundum",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeArrowDwarven",
+   "output": "DwarvenArrow",
+   "qty": 24,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "Firewood01",
+     "qty": 1
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenBattleAxe",
+   "output": "DwarvenBattleaxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenBow",
+   "output": "DwarvenBow",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenGreatsword",
+   "output": "DwarvenGreatsword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotDwarven",
+     "qty": 2
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotIron",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenMace",
+   "output": "DwarvenMace",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 1
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenSword",
+   "output": "DwarvenSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 1
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenWarAxe",
+   "output": "DwarvenWarAxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 1
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponDwarvenWarhammer",
+   "output": "DwarvenWarhammer",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "DwarvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotDwarven",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeArrowElven",
+   "output": "ElvenArrow",
+   "qty": 24,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "Firewood01",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponElvenBow",
+   "output": "ElvenBow",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotQuicksilver",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponElvenGreatsword",
+   "output": "ElvenGreatsword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIMoonstone",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotQuicksilver",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponElvenMace",
+   "output": "ElvenMace",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotQuicksilver",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponElvenSword",
+   "output": "ElvenSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotQuicksilver",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponElvenWarAxe",
+   "output": "ElvenWarAxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "ElvenSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotIMoonstone",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotQuicksilver",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponGlassBow",
+   "output": "GlassBow",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "GlassSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIMoonstone",
+     "qty": 1
+    },
+    {
+     "item": "IngotMalachite",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponGlassSword",
+   "output": "GlassSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "GlassSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIMoonstone",
+     "qty": 1
+    },
+    {
+     "item": "IngotMalachite",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotCorundum",
+   "output": "IngotCorundum",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreCorundum",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapBent",
+   "output": "IngotDwarven",
+   "qty": 3,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenScrapBent",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapLarge",
+   "output": "IngotDwarven",
+   "qty": 3,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenLargeScrap",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapLarge02",
+   "output": "IngotDwarven",
+   "qty": 5,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenLargeScrap2",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapLarge03",
+   "output": "IngotDwarven",
+   "qty": 2,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenLargeScrap3",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapPlateMetalLarge",
+   "output": "IngotDwarven",
+   "qty": 3,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenPlateMetalLarge",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotDwarvenScrapPlateMetalSmall",
+   "output": "IngotDwarven",
+   "qty": 3,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DwarvenPlateMetalSmall",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotMoonstone",
+   "output": "IngotIMoonstone",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreMoonstone",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotIron",
+   "output": "IngotIron",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotMalachite",
+   "output": "IngotMalachite",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreMalachite",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotOrichalcum",
+   "output": "IngotOrichalcum",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreOrichalcum",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotQuicksilver",
+   "output": "IngotQuicksilver",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreQuicksilver",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeIngotSteel",
+   "output": "IngotSteel",
+   "qty": 1,
+   "bench": "CraftingSmelter",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "OreCorundum",
+     "qty": 1
+    },
+    {
+     "item": "OreIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeArrowIron",
+   "output": "IronArrow",
+   "qty": 24,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "Firewood01",
+     "qty": 1
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronBattleAxe",
+   "output": "IronBattleaxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 4
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronGreatsword",
+   "output": "IronGreatsword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 4
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronMace",
+   "output": "IronMace",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 3
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronSword",
+   "output": "IronSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronWarAxe",
+   "output": "IronWarAxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponIronWarhammer",
+   "output": "IronWarhammer",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 4
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeLeatherValeDeerHide",
+   "output": "Leather01",
+   "qty": 2,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DLC1DeerHide",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeLeatherValeSabreCatHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DLC1SabreCatHide",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherBearCaveHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "BearCavePelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherBearHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "BearPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherBearSnowHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "BearSnowPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherCowHide",
+   "output": "Leather01",
+   "qty": 3,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "CowHide",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherDeerHide",
+   "output": "Leather01",
+   "qty": 2,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DeerHide",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherDeerHide02",
+   "output": "Leather01",
+   "qty": 2,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "DeerHide02",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherFoxHide",
+   "output": "Leather01",
+   "qty": 1,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "FoxPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherFoxSnowHide",
+   "output": "Leather01",
+   "qty": 1,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "FoxPeltSnow",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherGoatHide",
+   "output": "Leather01",
+   "qty": 1,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "GoatHide",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherHorseHide",
+   "output": "Leather01",
+   "qty": 3,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "HorseHide",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherIceWolfHide",
+   "output": "Leather01",
+   "qty": 1,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "WolfIcePelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherSabrecatHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "SabreCatPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherSabrecatSnowHide",
+   "output": "Leather01",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "SabreCatSnowPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherWolfHide",
+   "output": "Leather01",
+   "qty": 1,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "WolfPelt",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeLeatherStrips",
+   "output": "LeatherStrips",
+   "qty": 4,
+   "bench": "CraftingTanningRack",
+   "perks": [],
+   "inputs": [
+    {
+     "item": "Leather01",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishBattleAxe",
+   "output": "OrcishBattleaxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotOrichalcum",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishBow",
+   "output": "OrcishBow",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "IngotOrichalcum",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishGreatsword",
+   "output": "OrcishGreatsword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotOrichalcum",
+     "qty": 4
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotIron",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishMace",
+   "output": "OrcishMace",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotOrichalcum",
+     "qty": 3
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishSword",
+   "output": "OrcishSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotOrichalcum",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishWarAxe",
+   "output": "OrcishWarAxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotOrichalcum",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponOrcishWarhammer",
+   "output": "OrcishWarhammer",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "OrcishSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotOrichalcum",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "DLC1RecipeArrowSteel",
+   "output": "SteelArrow",
+   "qty": 24,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "Firewood01",
+     "qty": 1
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelBattleAxe",
+   "output": "SteelBattleaxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelGreatsword",
+   "output": "SteelGreatsword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 4
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelMace",
+   "output": "SteelMace",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 3
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelSword",
+   "output": "SteelSword",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 1
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 2
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelWarAxe",
+   "output": "SteelWarAxe",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotSteel",
+     "qty": 2
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 2
+    },
+    {
+     "item": "IngotIron",
+     "qty": 1
+    }
+   ]
+  },
+  {
+   "id": "RecipeWeaponSteelWarhammer",
+   "output": "SteelWarhammer",
+   "qty": 1,
+   "bench": "CraftingSmithingForge",
+   "perks": [
+    "SteelSmithing"
+   ],
+   "inputs": [
+    {
+     "item": "IngotIron",
+     "qty": 1
+    },
+    {
+     "item": "LeatherStrips",
+     "qty": 3
+    },
+    {
+     "item": "IngotSteel",
+     "qty": 4
+    }
+   ]
+  }
+ ]
+}
