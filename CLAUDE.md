@@ -16,6 +16,7 @@ Ogni persona ha un **nome breve**: minuscolo, senza spazi né accenti. Lo stesso
 |---|---|---|
 | `david` | David | Responsabile dev |
 | `davide` | Davide | Team dev |
+| `alessio` | Alessio | Team dev (job) |
 
 **Quando entra qualcuno nuovo:** aggiungi una riga qui e crea `team/<nome>/README.md` (copiando quello di un altro).
 
