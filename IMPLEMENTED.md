@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-10-21
+- `[setup]` Controlli automatici con GitHub Actions: `controllo_regole.yml` (+ `.github/scripts/controllo_regole.py`) verifica a ogni push su `main` e a ogni PR le regole di `CLAUDE.md` (identità git, solo `team/<nome>/` su `main`, branch `<nome>/<argomento>`, cartelle degli altri); `controllo_database.yml` lancia `validate_db.py` e i test del gamemode quando cambiano `team/david/db/` o `team/david/gamemode_draft/`. Descritti in `CLAUDE.md` §5. — david
+- `[doc]` `CLAUDE.md`: aggiunto `giacomo` alla tabella Membri; per ora Alessio e Giacomo non hanno un ruolo. — david
+
 ## 2026-10-13
 - `[decision]` **D-019**: la piattaforma è SkyMP, STR esce dal progetto. **D-021**: `RPServer_EmptyWorld` archiviata, il mondo vuoto lo fa già SkyMP (`npcEnabled: false`); gli animali per caccia e crafting verranno da un nostro sistema di spawn. Aggiornati `STEP_0.md` (P0 chiusa, P3 → SkyMP, P5 archiviata, nota su P6), `ROADMAP.md`, `README.md`, `TASKS.md`, `specs/platform/README.md`, `skymp_spike.md` §4, `custom_mods/README.md` e `MANIFEST.md` di EmptyWorld. — david
 - `[doc]` Ricerca sui due server SkyMP più grandi (Keizaal Online, SKY MP Brasil): client, server, login, caricamenti, crafting, level up, magie. In `team/david/ricerca_top2_server_skymp.md`. — david
