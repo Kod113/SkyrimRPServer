@@ -14,7 +14,7 @@ Ogni persona ha un **nome breve**: minuscolo, senza spazi né accenti. Lo stesso
 
 | Nome breve | `git config user.name` | Ruolo |
 |---|---|---|
-| `david` | David | Responsabile dev |
+| `david` | David, Kod113 | Responsabile dev |
 | `davide` | Davide | Team dev |
 | `alessio` | Alessio | — |
 | `giacomo` | Giacomo | — |
@@ -32,7 +32,7 @@ git config user.name "Davide"
 git config user.email "email@esempio.it"
 ```
 
-- Il nome deve essere quello della colonna `git config user.name` della tabella: così ogni commit dice chi l'ha fatto.
+- Il nome deve essere uno di quelli della colonna `git config user.name` della tabella: così ogni commit dice chi l'ha fatto. Se una persona usa più nomi (es. un PC con il nome dell'account GitHub), si scrivono tutti nella sua riga, separati da virgola.
 - Non si committa mai con l'identità di un'altra persona.
 
 ## 2. Cartella personale: `team/<nome>/`

@@ -27,9 +27,10 @@ def exists(sha, path):
 
 
 def members():
-    """Tabella Membri di CLAUDE.md: nome per git -> nome breve."""
+    """Tabella Membri di CLAUDE.md: nome per git -> nome breve.
+    Una persona può avere più nomi git, separati da virgola (es. "David, Kod113")."""
     rows = re.findall(r"^\|\s*`([a-z0-9_-]+)`\s*\|\s*([^|]+?)\s*\|", open("CLAUDE.md", encoding="utf-8").read(), re.M)
-    return {git_name: short for short, git_name in rows}
+    return {name.strip(): short for short, names in rows for name in names.split(",")}
 
 
 def commits(base, head, first_parent=False):
