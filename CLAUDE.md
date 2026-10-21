@@ -16,7 +16,8 @@ Ogni persona ha un **nome breve**: minuscolo, senza spazi né accenti. Lo stesso
 |---|---|---|
 | `david` | David | Responsabile dev |
 | `davide` | Davide | Team dev |
-| `alessio` | Alessio | Team dev (job) |
+| `alessio` | Alessio | — |
+| `giacomo` | Giacomo | — |
 
 **Quando entra qualcuno nuovo:** aggiungi una riga qui e crea `team/<nome>/README.md` (copiando quello di un altro).
 
@@ -64,6 +65,15 @@ Regole: non si committa sui branch con il prefisso di un'altra persona; non si c
 - **`TASKS.md`**: si usa già la colonna "Chi".
 - **Mod in `custom_mods/`**: il campo *Autore/i* del `MANIFEST.md` dice di chi è la mod. Per cambiare la mod di un altro, avvisalo prima.
 - Le voci già esistenti non si toccano: sono tutte di `david`.
+
+## 5. Controlli automatici (GitHub Actions)
+
+A ogni push su `main` e a ogni pull request GitHub fa due controlli. Se uno fallisce, la PR o il commit diventano rossi e il motivo si legge in italiano nella scheda **Actions** (o in fondo alla PR).
+
+- **Regole** (`controllo_regole.yml`): verifica i punti 1–3. Il nome git deve essere in tabella; su `main` si tocca solo la propria `team/<nome>/`; il branch si chiama `<nome>/<argomento>` e contiene solo commit di `<nome>`; le cartelle `team/` degli altri non si modificano. Creare la cartella di un nuovo membro è permesso.
+- **Database** (`controllo_database.yml`): quando cambia `team/david/db/` o `team/david/gamemode_draft/`, lancia `validate_db.py` e i test del gamemode.
+
+Una PR rossa non va unita: si corregge sul branch e il controllo riparte da solo.
 
 ---
 

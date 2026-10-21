@@ -1,0 +1,36 @@
+# Quando cambia il database dei dati (team/david/db) o il gamemode che lo legge,
+# controlla che i JSON siano coerenti e che i test del gamemode passino.
+# Se fallisce, la PR diventa rossa prima del merge.
+name: Controllo database
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "team/david/db/**"
+      - "team/david/gamemode_draft/**"
+  pull_request:
+    paths:
+      - "team/david/db/**"
+      - "team/david/gamemode_draft/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validazione dei JSON
+        run: python team/david/db/tools/validate_db.py team/david/db
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test del gamemode
+        working-directory: team/david/gamemode_draft
+        run: npm test
