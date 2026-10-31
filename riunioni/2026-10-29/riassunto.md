@@ -24,7 +24,8 @@ Durata: circa 1 ora · Trascrizione completa: [trascrizione.md](trascrizione.md)
 
 | Chi | Cosa | Entro |
 |---|---|---|
-| Alessio | **Alchimia e pozioni:** selezione delle pozioni da tenere nel gioco, divise per rarità, poi gli ingredienti necessari. La pubblica sul Discord per avere i pareri degli altri. | prossima riunione |
+| Alessio | **Alchimia e pozioni:** selezione delle pozioni da tenere nel gioco, divise per rarità, poi gli ingredienti necessari. La pubblica sul Discord per avere i pareri degli altri. Lavora insieme a Giacomo. | prossima riunione |
+| Giacomo | **Ingredienti:** selezione degli ingredienti da tenere, insieme ad Alessio per la parte di pozioni e alchimia. *(Deciso dopo la riunione.)* | prossima riunione |
 | David | **Armi e armature:** partendo dai mob e dalle miniere già selezionati da Davide, decidere quali armi e armature si possono costruire. Le domande sulle miniere le fa a Davide in settimana. | prossima riunione |
 | Davide | **Crafting:** si dedica alla parte di crafting e spiega a David come ha pensato miniere e lingotti. | in settimana |
 | Davide | **Comando main lore:** invertire il valore, così `1` = attivo e `0` = disattivo (oggi è al contrario). Non è prioritario. | quando c'è tempo |
@@ -57,12 +58,11 @@ Tutto il materiale presentato è **funzionante sul suo PC**, ma **non è ancora 
 ## ❓ Questioni aperte
 
 - **Cambio di job:** se un giocatore vuole cambiare job dopo la scelta iniziale (es. da contadino a cacciatore), oggi non è possibile. David se l'è segnato. Giacomo propone di non assegnare il job all'inizio, ma quando il giocatore sceglie una strada.
-- **Giacomo:** per questa settimana non ha un'area assegnata.
-- **Ingredienti e loot:** non è ancora stato deciso chi se ne occupa. Davide proponeva una persona per gli ingredienti e una per il loot.
+- **Loot:** non è ancora stato deciso chi se ne occupa. Gli ingredienti, invece, dopo la riunione sono stati assegnati a Giacomo.
 - **Codice di Davide nel repo:** tutto quello presentato sopra è ancora solo sul suo PC.
 
 ## 🔗 Impatto sul repo
 
 - Risponde a due punti aperti del 20 ottobre: il **vetro** (oggetto dei campioni dell'arena) e la **pietra lunare/mercurio** (non c'è nella lista dei minerali). Gli altri punti di quella lista non sono stati discussi.
-- Le task della settimana sono aggiunte in `TASKS.md` (T-005, T-006).
+- Le task della settimana sono aggiunte in `TASKS.md` (T-005, T-006, T-007).
 - Quando le decisioni 3 e 4 saranno confermate per iscritto, possono diventare voci di `DECISIONS.md`.
