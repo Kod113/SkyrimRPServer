@@ -42,11 +42,11 @@ Riassunto e trascrizione: `riunioni/2026-10-29/`. Priorità: **crafting prima de
 
 ### Prossime task già individuate (non ancora assegnate)
 - ~~Bozza della decisione **D-019** (piattaforma)~~: registrata il 13/10 (SkyMP), insieme a D-021 (EmptyWorld archiviata).
-- **Sistema di spawn delle creature** (animali per caccia e crafting): specifica in `specs/systems/` (D-021).
+- **Sistema di spawn delle creature** (animali per caccia e crafting): specifica in `specs/systems/` (D-021). → **Fatto da Davide** (43 spawn con ricomparsa ogni ora, riunione del 29/10): da pubblicare nel repo.
 - **Rivedere `DEV_SETUP.md` e `MODLIST.md`** per SkyMP (D-019).
-- **Politica di versione di SkyMP:** possiamo restare sulla 1.6.1170, o a ogni aggiornamento di Skyrim bisogna aspettare una release di SkyMP? (chiedere sul Discord di SkyMP + storia del repo)
-- **Bloccare la versione di Skyrim** in modo affidabile su tutti i PC: procedura testata (il 30/09 Steam ha aggiornato da solo Skyrim alla 1.7.104 durante lo spike)
-- **Guide per i giocatori:** sezione di downgrade alla 1.6.1170 in `TROUBLESHOOTING.md` e passo per bloccare gli aggiornamenti nella guida di installazione
+- ~~**Politica di versione di SkyMP**~~: chiusa il 1/11 con **D-022** (si resta sulla 1.6.1170 finché SkyMP non supporta la 1.7.x).
+- **Bloccare la versione di Skyrim** in modo affidabile su tutti i PC: procedura testata (il 30/09 Steam ha aggiornato da solo Skyrim alla 1.7.104 durante lo spike). → In corso: il launcher Atronach RP (PR #8) controlla e sistema l'impostazione di Steam; resta da testare su Windows.
+- ~~**Guide per i giocatori**~~: fatte il 1/11 (`docs_for_players/`, PR #7). Il downgrade vero e proprio passa al launcher (D-022).
 
 ---
 
