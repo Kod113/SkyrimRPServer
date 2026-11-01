@@ -1,0 +1,10 @@
+{
+  "nome": "Atronach RP",
+  "server_ip": "127.0.0.1",
+  "server_port": 7777,
+  "usa_profile_id": true,
+  "versione_skyrim": "1.6.1170",
+  "sito_skymp": "https://skymp.net",
+  "guida_url": "https://github.com/Kod113/SkyrimRPServer/blob/main/docs_for_players/INSTALL_GUIDE.md",
+  "discord_url": ""
+}
