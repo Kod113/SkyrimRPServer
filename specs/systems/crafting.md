@@ -75,6 +75,8 @@ Base: `ingredients.json` (110 ingredienti, con la disponibilità nei due feudi g
 | `id` (da ingredients.json) | Nome | Tenere? | Rarità (comune / non comune / raro) | Dove si trova (feudo, luogo o animale) | Note |
 |---|---|---|---|---|---|
 
+> **Proposta pronta da confrontare:** `team/david/alchimia_proposta.md` (22 pozioni, 6 veleni, rarità dei 41 ingredienti), generata e controllata da `team/david/db/tools/build_alchimia_proposta.py`. Serve da confronto per le liste di Alessio e Giacomo, che restano le loro.
+
 ### Alessio: pozioni (T-005)
 Si parte **dalle pozioni** e poi si scelgono gli ingredienti (proposta di Davide). Base: `effects.json` (55 effetti) e `recipes.json` (ricette possibili con gli ingredienti dei feudi).
 
@@ -103,7 +105,7 @@ Da `prices.json`: un oggetto lavorato vale **circa 2–3 volte i materiali** (`c
 
 | # | Domanda | Chi | Note |
 |---|---|---|---|
-| 1 | Ricette del **gioco base** (ridotte) o quelle di **CombatSettings.esp** (circa 4.100, con semilavorati)? | Davide + David | La riunione ha detto "less is better" e "niente semilavorati": questo spinge verso il gioco base. Va confermato |
+| 1 | ~~Ricette del gioco base o di CombatSettings.esp?~~ | David | ✅ **Deciso il 1/11: contenuti del gioco base.** CombatSettings.esp non si usa per il crafting. Da registrare come decisione in `DECISIONS.md` |
 | 2 | **Alchimia come ricette fisse** su un banco alchemico | Davide | Proposta del §1, punto 2 |
 | 3 | **Come si limitano i livelli** per job: condizioni nelle ricette o controllo del gamemode? | Davide | Dipende dal test del §7 |
 | 4 | Le 6 domande della T-006 (acciaio nel Rift, nanico, mercurio, voci senza ricetta…) | Davide | `team/david/armi_armature.md` |
