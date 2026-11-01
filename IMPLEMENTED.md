@@ -17,6 +17,9 @@
 
 ---
 
+## 2026-11-01
+- `[doc]` Guide giocatori per SkyMP in `docs_for_players/`: `INSTALL_GUIDE.md` (provvisoria, per i test: versione 1.6.1170, launcher solo per installare, niente amministratore, collegamento al server), `TROUBLESHOOTING.md` (problemi incontrati nello spike, report di `skymp_check`/`skymp_net_check`) e `FAQ.md`. Aggiornato `docs_for_players/README.md`. `FIRST_LOGIN.md` rimandata a quando ci saranno creazione del personaggio e job. — david
+
 ## 2026-10-21
 - `[setup]` Controlli automatici con GitHub Actions: `controllo_regole.yml` (+ `.github/scripts/controllo_regole.py`) verifica a ogni push su `main` e a ogni PR le regole di `CLAUDE.md` (identità git, solo `team/<nome>/` su `main`, branch `<nome>/<argomento>`, cartelle degli altri); `controllo_database.yml` lancia `validate_db.py` e i test del gamemode quando cambiano `team/david/db/` o `team/david/gamemode_draft/`. Descritti in `CLAUDE.md` §5. — david
 - `[doc]` `CLAUDE.md`: aggiunto `giacomo` alla tabella Membri; per ora Alessio e Giacomo non hanno un ruolo. — david
