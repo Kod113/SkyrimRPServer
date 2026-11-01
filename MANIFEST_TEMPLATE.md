@@ -61,11 +61,11 @@
 | `NPC_` | 0 | Non tocchiamo le definizioni base |
 | `QUST` | 0 | Le quest non vengono modificate qui |
 
-## Compatibilità con Skyrim Together Reborn
+## Compatibilità con SkyMP
 
 - **Sincronizzazione side-effects:** *descrivi se le azioni della mod sono lato client o sincronizzate*
-- **Test in STR multiplayer:** *eseguito sì/no, con chi, con che esito*
-- **Edge case noti in STR:** *eventuali comportamenti diversi tra client*
+- **Test in multiplayer (SkyMP):** *eseguito sì/no, con chi, con che esito*
+- **Edge case noti in SkyMP:** *eventuali comportamenti diversi tra client*
 
 ## Whitelist / Eccezioni
 
@@ -90,7 +90,7 @@
 | Data | Test | Esito | Note |
 |---|---|---|---|
 | 2026-05-15 | Singleplayer Whiterun | ✅ | Mondo vuoto come atteso |
-| 2026-05-16 | STR 2 player | ✅ | Coerenza tra i due |
+| 2026-05-16 | SkyMP 2 player | ✅ | Coerenza tra i due |
 
 ## Note di rilascio (per i giocatori)
 
