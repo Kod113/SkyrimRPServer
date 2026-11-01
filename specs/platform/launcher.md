@@ -55,7 +55,18 @@ Poi ci sono questi pulsanti:
 ## Rischi
 
 - **Avviso di Windows "Windows ha protetto il PC"** per i programmi senza firma digitale. Le soluzioni sono un certificato di firma (a pagamento, ogni anno) oppure un'immagine nella guida che mostra "Ulteriori informazioni → Esegui comunque".
-- **Downgrade alla 1.6.1170:** è il passaggio più difficile. I patcher su Nexus non si possono ridistribuire senza il permesso dell'autore. Da tenere d'occhio: se SkyMP passa alla 1.7.x, il problema sparisce.
+- **Downgrade alla 1.6.1170:** è il passaggio più difficile. I patcher su Nexus non si possono ridistribuire senza il permesso dell'autore. Verifica del 1/11/2026 (vedi sotto): SkyMP non supporta la 1.7.x, e non risultano lavori in corso per farlo.
+
+## Verifica del 1/11/2026: SkyMP e la 1.7.104
+
+- **Skyrim 1.7.104** è uscita su Steam il 27/08/2026. SKSE (2.3.1) e Address Library (v13) sono stati aggiornati lo stesso giorno: il resto del mondo del modding l'ha già adottata.
+- **SkyMP:** la fork che usiamo per il server (`jqntn-2026-10-05`) dice esplicitamente *"Version 1.7.x does not work"*: il client supporta solo fino alla 1.6.1170 e vuole SKSE 2.2.6. Su `skyrim-multiplayer/skymp` l'ultima release è una pre-release di Skyrim Platform 2.6 (aprile). Tra le issue aperte non ce n'è nessuna sulla 1.7.104, e la più recente (26/10) è un crash di SkyrimPlatform 2.9.0 su AE.
+- **Conclusione:** per i prossimi mesi il downgrade resta **obbligatorio**. Conviene investire per renderlo semplice invece di aspettare.
+
+**Strade per renderlo semplice, dalla più semplice alla più complessa:**
+1. **Patcher incluso nel launcher**, con il permesso scritto dell'autore: diventa un pulsante "Sistema" come gli altri. È la migliore per il giocatore, e bisogna solo chiedere.
+2. **Console di Steam (`download_depot`):** è una funzione ufficiale di Steam che usa l'account del giocatore, quindi non c'è niente da ridistribuire. Il launcher apre la console, copia il comando negli appunti (il giocatore fa solo Ctrl+V e Invio), aspetta il download e copia da solo i file nella cartella di Skyrim. Bisogna verificare i numeri esatti dei depot e dei manifest della 1.6.1170.
+3. **Downgrade guidato dallo staff** in chiamata Discord: è la soluzione di oggi e funziona, ma non regge con molti giocatori.
 - **Aggiornamenti di SkyMP:** se il client ufficiale cambia versione (password diversa), il collegamento al nostro server smette di funzionare finché non aggiorniamo anche il server.
 
 ## Decisioni aperte
@@ -63,6 +74,6 @@ Poi ci sono questi pulsanti:
 | Decisione | Priorità | Note |
 |---|---|---|
 | **Pacchetto delle mod per i giocatori** (oltre a quello di SkyMP) | 🟢 bassa | 1/11/2026: per ora i giocatori usano solo il pacchetto di SkyMP. Le alternative sono il launcher che scarica le nostre mod, Wabbajack o MO2; si decide più avanti |
-| **Come fare il downgrade** | 🟡 media | Le alternative sono: guidato dallo staff, chiedere il permesso all'autore di un patcher per includerlo, oppure aspettare SkyMP 1.7.x |
+| **Come fare il downgrade** | 🔴 alta | SkyMP non supporta la 1.7.x (verifica 1/11), quindi il downgrade serve a tutti i giocatori. Si sceglie fra le strade 1, 2 e 3 descritte sopra |
 | **Tecnologia della v1** (.NET, Tauri o Electron) | 🟡 media | Dopo il test del prototipo |
 | **Firma digitale** | 🟢 bassa | Prima dell'apertura al pubblico |
