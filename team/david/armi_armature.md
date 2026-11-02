@@ -129,6 +129,21 @@ Legenda materiali: **Fe** lingotto di ferro · **Ac** lingotto d'acciaio · **Or
 
 **Problema di equilibrio:** oggi ferro e corindone (quindi anche l'acciaio) esistono solo nell'Eastmarch, mentre nel Rift c'è solo una miniera d'oro (Lost Prospect). Questo va contro la regola "stessa quantità di ferro e acciaio in ogni regno". Davide dovrà mettere le vene nel Rift (domanda 1).
 
+## Aggiornamento 2 novembre
+
+Informazioni nuove da David:
+
+- **Armi elfiche e naniche:** si costruiscono con gli **oggetti conquistabili**. Di questa parte **si occupa Davide**.
+- **Lingotti:** con la **pietra lunare** si fa la **malachite raffinata**, che serve per le armi e armature elfiche e naniche.
+
+Da chiarire:
+
+- Nel gioco base la pietra lunare dà la *pietra lunare raffinata* (elfico) e la malachite dà la *malachite raffinata* (vetro). Qui invece la pietra lunare darebbe la malachite raffinata. Va cambiata la ricetta della fonderia, o è solo un modo diverso di chiamare lo stesso lingotto?
+- Se la malachite raffinata serve anche per il nanico, sostituisce il lingotto nanico nelle ricette, o si usano tutti e due?
+- Gli "oggetti conquistabili" sono la fonte della pietra lunare (al posto della miniera), oppure sono gli oggetti da cui si costruiscono direttamente le armi?
+
+Le domande 2 e 3 qui sotto restano aperte finché non arrivano queste risposte.
+
 ## Domande per Davide
 
 1. **Acciaio e ferro nel Rift:** quando dici "acciaio", intendi una miniera di corindone (in fonderia ferro + corindone = acciaio, come nel gioco base) o un minerale d'acciaio unico? Inoltre, in quale miniera del Rift mettiamo ferro e acciaio per pareggiare l'Eastmarch?
