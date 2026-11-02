@@ -133,14 +133,14 @@ Legenda materiali: **Fe** lingotto di ferro · **Ac** lingotto d'acciaio · **Or
 
 Informazioni nuove da David:
 
-- **Armi elfiche e naniche:** si costruiscono con gli **oggetti conquistabili**. Di questa parte **si occupa Davide**.
+- **Armi elfiche e naniche:** si costruiscono con gli **oggetti conquistabili**: oggetti speciali, inseriti da noi, che si ottengono da boss o dungeon specifici. Di questa parte **si occupa Davide**.
 - **Lingotti:** con la **pietra lunare** si fa la **malachite raffinata**, che serve per le armi e armature elfiche e naniche.
 
 Da chiarire:
 
 - Nel gioco base la pietra lunare dà la *pietra lunare raffinata* (elfico) e la malachite dà la *malachite raffinata* (vetro). Qui invece la pietra lunare darebbe la malachite raffinata. Va cambiata la ricetta della fonderia, o è solo un modo diverso di chiamare lo stesso lingotto?
 - Se la malachite raffinata serve anche per il nanico, sostituisce il lingotto nanico nelle ricette, o si usano tutti e due?
-- Gli "oggetti conquistabili" sono la fonte della pietra lunare (al posto della miniera), oppure sono gli oggetti da cui si costruiscono direttamente le armi?
+- Gli oggetti conquistabili (da boss o dungeon) sono solo per le armi elfiche e naniche? Quali sono, e da quali boss o dungeon arrivano? (Lo decide Davide.)
 
 Le domande 2 e 3 qui sotto restano aperte finché non arrivano queste risposte.
 
