@@ -47,6 +47,11 @@ Riassunto e trascrizione: `riunioni/2026-10-29/`. Priorità: **crafting prima de
 - ~~**Politica di versione di SkyMP**~~: chiusa il 1/11 con **D-022** (si resta sulla 1.6.1170 finché SkyMP non supporta la 1.7.x).
 - **Bloccare la versione di Skyrim** in modo affidabile su tutti i PC: procedura testata (il 30/09 Steam ha aggiornato da solo Skyrim alla 1.7.104 durante lo spike). → In corso: il launcher Atronach RP (PR #8) controlla e sistema l'impostazione di Steam; resta da testare su Windows.
 - ~~**Guide per i giocatori**~~: fatte il 1/11 (`docs_for_players/`, PR #7). Il downgrade vero e proprio passa al launcher (D-022).
+- 🟡 **Media** (probabili task della prossima settimana, aggiunte il 2/11 da david):
+  - **Skill tree:** tutto quello che riguarda l'albero delle abilità.
+  - **Abilità:** come si acquisiscono e come si ottengono.
+  - **Cibo e produzione:** tutto quello che riguarda il cibo e la sua produzione.
+  - **Crafting di oggetti** che non sono armi o armature (es. tiare e anelli).
 
 ---
 
