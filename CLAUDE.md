@@ -14,9 +14,10 @@ Ogni persona ha un **nome breve**: minuscolo, senza spazi né accenti. Lo stesso
 
 | Nome breve | `git config user.name` | Ruolo |
 |---|---|---|
-| `david` | David | Responsabile dev |
+| `david` | David, Kod113 | Responsabile dev |
 | `davide` | Davide | Team dev |
-| `alessio` | Alessio | Team dev (job) |
+| `alessio` | Alessio | — |
+| `giacomo` | Giacomo | — |
 
 **Quando entra qualcuno nuovo:** aggiungi una riga qui e crea `team/<nome>/README.md` (copiando quello di un altro).
 
@@ -31,7 +32,7 @@ git config user.name "Davide"
 git config user.email "email@esempio.it"
 ```
 
-- Il nome deve essere quello della colonna `git config user.name` della tabella: così ogni commit dice chi l'ha fatto.
+- Il nome deve essere uno di quelli della colonna `git config user.name` della tabella: così ogni commit dice chi l'ha fatto. Se una persona usa più nomi (es. un PC con il nome dell'account GitHub), si scrivono tutti nella sua riga, separati da virgola.
 - Non si committa mai con l'identità di un'altra persona.
 
 ## 2. Cartella personale: `team/<nome>/`
@@ -64,6 +65,15 @@ Regole: non si committa sui branch con il prefisso di un'altra persona; non si c
 - **`TASKS.md`**: si usa già la colonna "Chi".
 - **Mod in `custom_mods/`**: il campo *Autore/i* del `MANIFEST.md` dice di chi è la mod. Per cambiare la mod di un altro, avvisalo prima.
 - Le voci già esistenti non si toccano: sono tutte di `david`.
+
+## 5. Controlli automatici (GitHub Actions)
+
+A ogni push su `main` e a ogni pull request GitHub fa due controlli. Se uno fallisce, la PR o il commit diventano rossi e il motivo si legge in italiano nella scheda **Actions** (o in fondo alla PR).
+
+- **Regole** (`controllo_regole.yml`): verifica i punti 1–3. Il nome git deve essere in tabella; su `main` si tocca solo la propria `team/<nome>/`; il branch si chiama `<nome>/<argomento>` e contiene solo commit di `<nome>`; le cartelle `team/` degli altri non si modificano. Creare la cartella di un nuovo membro è permesso.
+- **Database** (`controllo_database.yml`): quando cambia `team/david/db/` o `team/david/gamemode_draft/`, lancia `validate_db.py` e i test del gamemode.
+
+Una PR rossa non va unita: si corregge sul branch e il controllo riparte da solo.
 
 ---
 

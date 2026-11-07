@@ -1,0 +1,31 @@
+# Controlla le regole di collaborazione di CLAUDE.md (punti 1-3, decisione D-020)
+# a ogni push su main e a ogni pull request. Il motivo di un errore è scritto
+# nel riepilogo della corsa (scheda Actions) e in fondo alla PR.
+name: Controllo regole
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  regole:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python .github/scripts/controllo_regole.py
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          BRANCH: ${{ github.head_ref }}

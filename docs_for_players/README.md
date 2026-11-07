@@ -16,11 +16,11 @@ Tutto ciò che è meta-progettuale (visione, decisioni, modlist tecnica) resta n
 
 | File | Cosa è |
 |---|---|
-| `INSTALL_GUIDE.md` | Come installare il client del server, passo per passo |
-| `FIRST_LOGIN.md` | Cosa fare al primo accesso (creazione personaggio, primi minuti di gioco) |
+| `INSTALL_GUIDE.md` | Come installare SkyMP e collegarsi al server, passo per passo *(provvisoria, per i test)* |
+| `FIRST_LOGIN.md` | Cosa fare al primo accesso (creazione personaggio, primi minuti di gioco) *(da scrivere per SkyMP)* |
 | `SERVER_RULES.md` | Regole del server (versione official, sincronizzata col canale Discord) |
 | `RP_GUIDE.md` | Guida all'interpretazione del personaggio (etichetta RP, do's and don'ts) |
-| `TROUBLESHOOTING.md` | Risoluzione dei problemi più comuni (crash all'avvio, errori di connessione STR, ecc.) |
+| `TROUBLESHOOTING.md` | Risoluzione dei problemi più comuni (avvio, collegamento, report per lo staff) |
 | `FAQ.md` | Domande frequenti |
 | `CONTACTS.md` | Come contattare lo staff per problemi |
 
@@ -34,5 +34,9 @@ Quando aggiorni una regola del server qui, ricordati di:
 3. Aggiornare il pin del canale al nuovo documento
 
 ## Status
+
+> **20 ott 2026:** rimosse le guide scritte per Skyrim Together Reborn (installazione, primo accesso, FAQ, problemi, due guide di setup): con SkyMP la procedura è diversa. 
+>
+> **1 nov 2026:** scritte per SkyMP `INSTALL_GUIDE.md` (provvisoria: indirizzo del server e pacchetto Wabbajack cambieranno), `TROUBLESHOOTING.md` e `FAQ.md`. Manca ancora `FIRST_LOGIN.md`, che si scrive quando sono pronti creazione del personaggio e scelta del job. Per i test del team resta valida anche `client_pack/SkyMP/test_online_ospite.md`.
 
 🔴 **Vuota.** Sarà popolata nella fase di distribuzione (Step 5 della roadmap). Per ora non serve perché i "giocatori" sono solo il team dev, che lavora direttamente sulla documentazione tecnica.

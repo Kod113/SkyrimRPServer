@@ -296,14 +296,39 @@ Restano attivi (criterio "animale"):
 
 ---
 
+## D-013 — I due feudi del server: Rift (Riften) ed Eastmarch (Windhelm)
+
+**Data:** 2026-11-01
+**Autore:** david
+**Contesto:** Il segnaposto di D-013 proponeva come prime città Whiterun e Riverwood. Nel frattempo tutto il lavoro del team è stato fatto su **due feudi**, il Rift e l'Eastmarch: la selezione dei dati sul Discord "Atronach RP" (ingredienti, animali, miniere), il database in `team/david/db/` (disponibilità per feudo, `zones.json`) e il lavoro di Davide presentato nella riunione del 29/10 (dungeon di Riften fatti, Windhelm da fare, prezzi diversi tra Riften e Windhelm).
+**Decisione:** Il mondo di gioco è formato dal **Rift** (capitale **Riften**) e dall'**Eastmarch** (capitale **Windhelm**).
+**Motivazione:** È già la base di tutto il lavoro fatto: registrarla evita di riaprire una scelta superata.
+**Conseguenze:** La proposta Whiterun + Riverwood è superata. Le risorse vanno bilanciate tra i due feudi (per esempio ferro e acciaio in quantità uguale, riunione del 29/10).
+
+---
+
+## D-014 — Composizione del reparto dev
+
+**Data:** 2026-11-01
+**Autore:** david
+**Contesto:** Il segnaposto chiedeva se il reparto dev fosse solo il lead o anche altri, e se gli altri fossero programmatori. D-020 ha già introdotto la tabella Membri in `CLAUDE.md`.
+**Decisione:** Il reparto dev è quello della tabella Membri di `CLAUDE.md`: **david** (responsabile dev) e **davide** (team dev, gamemode e strumenti staff). **alessio** e **giacomo** contribuiscono a job, alchimia e ingredienti senza un ruolo dev formale. Per aggiungere qualcuno basta una riga nella tabella.
+**Motivazione:** È la situazione reale, e D-020 dà già le regole per lavorare in più persone.
+**Conseguenze:** I file condivisi vanno scritti in modo comprensibile anche a chi non programma. Gli strumenti restano quelli di D-020 (GitHub Desktop, branch e PR, controlli automatici).
+
+---
+
+## D-022 — Restiamo sulla 1.6.1170 finché SkyMP non supporta la 1.7.x
+
+**Data:** 2026-11-01
+**Autore:** david
+**Contesto:** Il 27/08/2026 Steam ha distribuito Skyrim 1.7.104. Si chiedeva se potessimo restare sulla 1.6.1170 (D-009) o se convenisse seguire gli aggiornamenti. Verifica del 1/11: la build di SkyMP che usiamo dichiara *"Version 1.7.x does not work"* (supporta solo fino alla 1.6.1170, con SKSE 2.2.6), e nel progetto SkyMP non ci sono lavori in corso per la 1.7.x (`specs/platform/launcher.md`).
+**Decisione:** Si resta sulla **1.6.1170 + SKSE 2.2.6** (conferma D-009). Ogni giocatore deve fare il downgrade e bloccare gli aggiornamenti di Steam; il launcher Atronach RP lo guida e lo controlla. La versione si ricontrolla a ogni nuova release di SkyMP.
+**Motivazione:** Senza la 1.6.1170 SkyMP non parte, quindi non c'è alternativa.
+**Conseguenze:** Il downgrade diventa una decisione ad alta priorità del launcher (`specs/platform/launcher.md`, *Decisioni aperte*). Quando SkyMP supporterà la 1.7.x, una nuova decisione supererà questa e D-009.
+
+---
+
 ## Decisioni in attesa (placeholder)
 
-Le seguenti decisioni sono **previste ma non ancora prese**. Verranno compilate quando il fondatore risponde alle domande bloccanti.
-
-### D-013 — Prime città RP dello Step 0
-**Status:** in attesa.
-Proposta da discutere: Whiterun (centrale, grande) + Riverwood (intimo, di partenza). Da confermare con il fondatore.
-
-### D-014 — Composizione reparto dev
-**Status:** in attesa.
-Solo lead dev (David) o anche altri? Gli altri sono programmatori o no? Impatta sulla scelta di tool collaborativi e sulla soglia tecnica della documentazione.
+Nessuna al momento: D-013 e D-014 sono state compilate il 2026-11-01.
