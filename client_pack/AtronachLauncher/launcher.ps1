@@ -257,22 +257,69 @@ $Checks = @(
 
 # ------------------------------------------------------------------ avvio del gioco e report
 
+# Steam e' pronto solo se: steam.exe e' aperto, il PID che Steam ha scritto nel registro e' proprio il suo
+# (altrimenti il valore e' rimasto da una sessione vecchia), c'e' un utente collegato e l'interfaccia
+# (steamwebhelper) e' partita. Mentre Steam si aggiorna da solo queste condizioni non sono vere.
+function Test-SteamReady {
+  $s = Get-SteamProcess
+  if (-not $s) { return $false }
+  $ap = Get-ItemProperty 'HKCU:\Software\Valve\Steam\ActiveProcess' -ErrorAction SilentlyContinue
+  if (-not $ap) { return $false }
+  if (($ap.pid -as [int]) -ne $s.Id) { return $false }
+  if (($ap.ActiveUser -as [int]) -eq 0) { return $false }
+  return [bool](Get-Process -Name steamwebhelper -ErrorAction SilentlyContinue)
+}
+
+function Wait-Seconds($sec) {
+  for ($i = 0; $i -lt ($sec * 2); $i++) { Start-Sleep -Milliseconds 500; [System.Windows.Forms.Application]::DoEvents() }
+}
+
+# SkyMP e' caricato se nel processo di Skyrim c'e' la DLL di SKSE (skse64_1_6_1170.dll)
+function Test-SkseLoaded {
+  $p = Get-Process -Name SkyrimSE -ErrorAction SilentlyContinue | Select-Object -First 1
+  if (-not $p) { return $null }
+  try { return [bool]($p.Modules | Where-Object { $_.ModuleName -like 'skse64_*.dll' }) } catch { return $null }
+}
+
 function Start-Game {
   $loader = Join-Path $script:Skyrim 'skse64_loader.exe'
-  if (-not (Get-SteamProcess)) { Set-Status 'Apro Steam...'; Start-Process 'steam://open/main' }
-  # Se Skyrim parte prima che Steam abbia fatto l'accesso, Steam lo riavvia senza SKSE (quindi senza SkyMP)
-  $t = 0
-  while ((((Get-ItemProperty 'HKCU:\Software\Valve\Steam\ActiveProcess' -ErrorAction SilentlyContinue).ActiveUser -as [int]) -eq 0) -and $t -lt 120) {
-    Set-Status 'Aspetto che Steam finisca l''accesso...'
-    Start-Sleep -Milliseconds 500; [System.Windows.Forms.Application]::DoEvents(); $t += 0.5
-  }
-  if ($t -ge 120) { Show-Info 'Steam non ha fatto l''accesso. Apri Steam, entra con il tuo account e riprova.'; return }
-  if ($t -gt 0) { Start-Sleep -Seconds 5 }
-  Set-Status 'Avvio il gioco... buon divertimento!'
-  Write-Log 'Avvio skse64_loader'
-  Start-Process -FilePath $loader -WorkingDirectory $script:Skyrim
-  Start-Sleep -Seconds 4
-  $Form.Close()
+  $play.Enabled = $false
+  try {
+    if (Get-Process -Name SkyrimSE -ErrorAction SilentlyContinue) { Show-Info 'Skyrim e'' gia'' aperto. Chiudilo e premi di nuovo GIOCA.'; return }
+    if (-not (Get-SteamProcess)) { Set-Status 'Apro Steam...'; Start-Process 'steam://open/main' }
+
+    # Se Skyrim parte prima che Steam sia pronto, Steam lo riavvia senza SKSE (quindi senza SkyMP).
+    # Steam deve risultare pronto per 5 secondi di fila (durante un suo aggiornamento si riavvia).
+    $t = 0; $ok = 0
+    while ($ok -lt 5 -and $t -lt 300) {
+      if (Test-SteamReady) { $ok++ } else { $ok = 0 }
+      if ($ok -eq 0) { Set-Status "Aspetto che Steam sia pronto (aggiornamento o accesso)... $t s" }
+      Wait-Seconds 1; $t++
+    }
+    if ($ok -lt 5) { Write-Log 'Steam non pronto entro 5 minuti'; Show-Info 'Steam non e'' pronto. Apri Steam, entra con il tuo account (e aspetta che finisca di aggiornarsi), poi riprova.'; return }
+    Write-Log "Steam pronto dopo $t s"
+
+    Set-Status 'Avvio il gioco...'
+    Write-Log 'Avvio skse64_loader'
+    Start-Process -FilePath $loader -WorkingDirectory $script:Skyrim
+
+    # Controllo che il gioco sia partito con SKSE: aspetto Skyrim, poi 20 secondi (se Steam lo riavvia, succede qui)
+    $t = 0
+    while (-not (Get-Process -Name SkyrimSE -ErrorAction SilentlyContinue) -and $t -lt 90) { Set-Status "Aspetto che il gioco si apra... $t s"; Wait-Seconds 1; $t++ }
+    if ($t -ge 90) { Write-Log 'SkyrimSE non partito'; Show-Info "Il gioco non si e' aperto. Premi 'Report per lo staff' e mandalo sul Discord."; return }
+    Set-Status 'Controllo che SkyMP sia attivo...'
+    Wait-Seconds 20
+    $skse = Test-SkseLoaded
+    if ($skse -eq $false) {
+      Write-Log 'SkyrimSE aperto SENZA SKSE'
+      Show-Info "Steam ha riavviato il gioco senza SkyMP.`n`nChiudi Skyrim e premi di nuovo GIOCA. Se succede ancora, premi 'Report per lo staff'."
+      return
+    }
+    Write-Log $(if ($skse) { 'SKSE caricato: avvio riuscito' } else { 'Controllo SKSE non riuscito (gioco chiuso o accesso negato)' })
+    Set-Status 'SkyMP attivo. Buon divertimento!'
+    Wait-Seconds 2
+    $Form.Close()
+  } finally { $play.Enabled = $true }
 }
 
 function New-Report {

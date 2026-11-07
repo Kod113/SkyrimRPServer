@@ -37,7 +37,7 @@ Una finestra con 6 controlli. Ognuno è **verde** o **rosso**, e quando è rosso
 6. **Collegato al nostro server:** scrive indirizzo e porta nelle impostazioni del client, chiede una volta sola il numero di giocatore e salva una copia delle impostazioni originali.
 
 Poi ci sono questi pulsanti:
-- **GIOCA:** si attiva solo quando è tutto verde. Apre Steam se serve, aspetta che abbia fatto l'accesso e avvia il gioco con SKSE (quindi con SkyMP), senza permessi di amministratore.
+- **GIOCA:** si attiva solo quando è tutto verde. Apre Steam se serve, aspetta che sia davvero pronto (accesso fatto e nessun aggiornamento di Steam in corso: non basta il valore nel registro, che può essere rimasto da una sessione vecchia) e avvia il gioco con SKSE (quindi con SkyMP), senza permessi di amministratore. Dopo l'avvio controlla che nel gioco sia caricato SKSE: se Steam l'ha riavviato senza, lo dice al giocatore invece di chiudersi.
 - **Report per lo staff:** crea sul Desktop uno zip con l'esito dei controlli, il log del launcher, le impostazioni del client e i log del gioco.
 - **Ricontrolla** e **Aiuto** (apre il Discord o la guida).
 
