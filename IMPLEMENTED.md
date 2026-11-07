@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-11-07
+
+- `[doc]` Collegamento online al server locale fatto da Claude su tutti e due i PC: `client_pack/SkyMP/collegamento_online_claude.md` (passi dell'host e dell'ospite, chi fa cosa tra Claude e persona, firewall Node.js con un comando, prova della porta, problemi). `client_profilo.bat locale <ip> <profileId>` imposta da solo indirizzo e profileId nella cartella di Skyrim: l'ospite non modifica più file a mano. Aggiornate `test_online_ospite.md` e `test_online_host.md`. — david
+
 ## 2026-11-01
 - `[decision]` Chiuse le decisioni in sospeso: **D-013** (feudi: Rift ed Eastmarch), **D-014** (composizione del reparto dev, da tabella Membri), nuova **D-022** (si resta sulla 1.6.1170 finché SkyMP non supporta la 1.7.x). `TASKS.md`: aggiornate le prossime task (politica di versione e guide chiuse, spawn già fatto da Davide). — david
 - `[doc]` Guide giocatori per SkyMP in `docs_for_players/`: `INSTALL_GUIDE.md` (provvisoria, per i test: versione 1.6.1170, launcher solo per installare, niente amministratore, collegamento al server), `TROUBLESHOOTING.md` (problemi incontrati nello spike, report di `skymp_check`/`skymp_net_check`) e `FAQ.md`. Aggiornato `docs_for_players/README.md`. `FIRST_LOGIN.md` rimandata a quando ci saranno creazione del personaggio e job. — david

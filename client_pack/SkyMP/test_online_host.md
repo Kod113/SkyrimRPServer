@@ -1,7 +1,7 @@
 # Test online SkyMP — guida per chi ospita il server (David)
 
 > **Scopo:** far entrare Davide nel mondo del server SkyMP locale che gira sul PC di David, per vedere se la prima connessione online funziona.
-> La guida per Davide è `test_online_ospite.md` (stessa cartella).
+> La guida per Davide è `test_online_ospite.md` (stessa cartella). Per farlo fare a Claude su tutti e due i PC: `collegamento_online_claude.md`.
 
 ```
 Server:   fork jqntn/skymp (tag jqntn-2026-10-05), offline mode, in _locale/skymp-server
@@ -69,12 +69,6 @@ Annota i risultati in `specs/platform/skymp_spike.md` (sezioni 2 e 6).
 | Davide vede "A new update is available" | Password del client diversa dalla tua | Confrontare i due file `Data\Platform\Distribution\password` (devono dire entrambi `1c3b345`) |
 | Davide resta fermo su "Connecting to 100.…" | Firewall o Tailscale | Firewall Node.js su **Pubblica** (punto 2) + Davide rifà la prova con `Test-NetConnection` |
 | Schermata di caricamento con la musica, non va avanti | Gioco avviato come amministratore (CEF codice 38) | `client_pack\Diagnostica\skymp_fix.bat` con Steam chiuso |
-| Davide entra con il tuo personaggio | Nel suo file è rimasto `profileId` 2 | Cambiarlo a 1 nel file **della cartella di Skyrim** (non quello del repo) |
+| Davide entra con il tuo personaggio | Nel suo file è rimasto `profileId` 2 | Rifà `client_profilo.bat locale 100.x.y.z 1` |
 | Errore di versione all'avvio | Steam ha aggiornato Skyrim alla 1.7.x | `Skyrim_1_7_104_to_1_6_1170_patcher.exe` nella cartella di Skyrim |
 | La finestra del server si chiude subito | Errore nella configurazione | Riaprila e leggi il messaggio `ERRORE:` (di solito un file del `loadOrder` non trovato) |
-
----
-
-## Da sistemare dopo il test
-
-- `configs/skymp/skymp5-client-settings.locale.txt` è nel repo ed è uguale per tutti (`127.0.0.1` + `profileId` 2). Per questo test Davide lo corregge a mano sul suo PC; poi serve un file personale ignorato da git che `client_profilo.bat` legga al posto dei valori fissi.

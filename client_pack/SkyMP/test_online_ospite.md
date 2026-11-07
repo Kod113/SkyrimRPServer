@@ -2,6 +2,7 @@
 
 > **Scopo:** entrare nel mondo del server SkyMP che gira sul PC di David, per provare la prima connessione online.
 > Il server lo accende David: tu devi solo preparare il tuo PC e collegarti.
+> Se lavori con Claude, fagli seguire `collegamento_online_claude.md` (stessa cartella): fa lui i passaggi e ti lascia solo gli accessi e le conferme.
 
 ```
 Il tuo profileId:   1   (David è il 2: con lo stesso numero entreresti con il suo personaggio)
@@ -45,15 +46,18 @@ Se il tuo è altrove, apri con il Blocco note `client_pack\SkyMP\avvia_skymp.ps1
 2. Apri il link di condivisione che ti manda David e accetta: da quel momento vedi il suo PC.
 
 ### 8. Imposta il client sul server di David
-1. Doppio clic su `client_pack\SkyMP\client_profilo.bat locale`.
-   → Copia le impostazioni "server locale" nella tua cartella di Skyrim (e salva una copia di quelle del server ufficiale).
-2. Apri con il Blocco note **il file nella cartella di Skyrim**:
-   `...\Skyrim Special Edition\Data\Platform\Plugins\skymp5-client-settings.txt`
-   ⚠️ **Non** quello in `configs\skymp\` del repo: se modifichi quello, la modifica finisce su git e cambia le impostazioni anche a David.
-3. Cambia due valori e salva:
+Dalla cartella del repo, in PowerShell o dal Prompt dei comandi:
+```
+client_pack\SkyMP\client_profilo.bat locale 100.x.y.z 1
+```
+- `client_pack\SkyMP\client_profilo.bat` → lo script che sceglie a quale server si collega il client SkyMP
+- `locale` → profilo "server locale" (salva anche una copia di quello ufficiale)
+- `100.x.y.z` → l'indirizzo Tailscale di David
+- `1` → il tuo profileId
 
-   | Prima | Dopo |
-   |---|---|
+Scrive solo nella cartella di Skyrim: nessun file del repo cambia, quindi niente finisce su git.
+
+---|---|
    | `"server-ip": "127.0.0.1"` | `"server-ip": "100.x.y.z"` ← l'indirizzo di David |
    | `"profileId": 2` | `"profileId": 1` |
 
@@ -84,7 +88,7 @@ Se il tuo è altrove, apri con il Blocco note `client_pack\SkyMP\avvia_skymp.ps1
 | "A new update is available" | La tua password del client è diversa da quella di David | Controlla il punto 4 e scrivi a David il valore che trovi |
 | Fermo su "Connecting to 100.…" | Firewall di David o Tailscale | Tailscale acceso su entrambi? Rifai la prova con `Test-NetConnection` |
 | Schermata di caricamento con la musica, non va avanti | Gioco avviato come amministratore | Chiudi tutto, Steam compreso → `skymp_fix.bat` → riprova |
-| Entri con il personaggio di David | `profileId` è rimasto 2 | Correggilo a 1 nel file **della cartella di Skyrim** (punto 8) |
+| Entri con il personaggio di David | `profileId` è rimasto 2 | Rifai il punto 8 con `1` alla fine |
 | `avvia_skymp.bat` dice che Skyrim è alla versione sbagliata | Steam l'ha aggiornato | Patcher della 1.6.1170 (punto 2) |
 | `avvia_skymp.bat` dice che non trova `skse64_loader.exe` | Skyrim è in un'altra cartella | Punto 6 |
 

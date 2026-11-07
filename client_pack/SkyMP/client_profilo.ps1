@@ -2,8 +2,11 @@
 #   locale    -> server locale (configs\skymp\skymp5-client-settings.locale.txt)
 #   ufficiale -> server ufficiale (copia salvata al primo passaggio a "locale")
 #   (niente)  -> mostra il profilo attuale
+# Con "locale" si possono aggiungere indirizzo del server e profileId, per collegarsi al server di un altro:
+#   client_profilo.bat locale 100.x.y.z 1   -> server su 100.x.y.z, profileId 1
+# Cosi' non si modifica a mano nessun file (e niente finisce su git).
 
-param([string]$Profilo)
+param([string]$Profilo, [string]$Ip, [int]$ProfileId)
 
 # Cartella di Skyrim: cambiarla qui se e' installata altrove (stessa di avvia_skymp.ps1)
 $Skyrim = 'C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition'
@@ -31,6 +34,13 @@ switch ($Profilo.ToLower()) {
       Write-Host "Salvata copia del profilo ufficiale in $Backup"
     }
     try { Copy-Item $Locale $Target -Force -ErrorAction Stop } catch { Stop-WithError "non posso scrivere in $Target ($($_.Exception.Message))" }
+    if ($Ip -or $ProfileId) {
+      $c = Get-Content $Target -Raw | ConvertFrom-Json
+      if ($Ip) { $c.'server-ip' = $Ip }
+      if ($ProfileId) { $c.gameData.profileId = $ProfileId }
+      # Scrittura senza BOM, come il file originale
+      [IO.File]::WriteAllText($Target, ($c | ConvertTo-Json -Depth 5), (New-Object Text.UTF8Encoding($false)))
+    }
   }
   'ufficiale' {
     if (-not (Test-Path $Backup)) { Stop-WithError "manca la copia del profilo ufficiale ($Backup). Reinstalla/aggiorna con il launcher SkyMP." }
