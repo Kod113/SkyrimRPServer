@@ -19,6 +19,19 @@ $LogPath = Join-Path $AppDir 'launcher.log'
 
 function Write-Log($msg) { Add-Content -Path $LogPath -Value "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')  $msg" -Encoding UTF8 }
 
+# Server personale (facoltativo): %APPDATA%\AtronachRP\server.json, scritto da "Imposta server.bat".
+# Serve a chi si collega al server di un altro PC (es. via Tailscale) senza modificare config.json del repo.
+$ServerPath = Join-Path $AppDir 'server.json'
+$ServerPersonale = $false
+if (Test-Path $ServerPath) {
+  try {
+    $sp = Get-Content $ServerPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($sp.server_ip) { $Cfg.server_ip = [string]$sp.server_ip; $ServerPersonale = $true }
+    if ($sp.server_port) { $Cfg.server_port = [int]$sp.server_port }
+    if ($ServerPersonale) { Write-Log "Server personale da server.json: $($Cfg.server_ip):$($Cfg.server_port)" }
+  } catch { Write-Log "server.json illeggibile, uso config.json ($($_.Exception.Message))" }
+}
+
 $State = $null
 if (Test-Path $StatePath) { try { $State = Get-Content $StatePath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $State = $null } }
 if (-not $State) { $State = New-Object PSObject }
@@ -229,7 +242,7 @@ $Checks = @(
       if (-not $script:Skyrim -or -not (Test-Path (Get-SettingsPath))) { return (New-Result $false 'Prima serve SkyMP.') }
       $s = Get-Content (Get-SettingsPath) -Raw -Encoding UTF8 | ConvertFrom-Json
       $okIp = ($s.'server-ip' -eq $Cfg.server_ip) -and ([int]$s.'server-port' -eq [int]$Cfg.server_port)
-      $okId = (-not $Cfg.usa_profile_id) -or ($s.gameData -and $s.gameData.profileId)
+      $okId = (-not $Cfg.usa_profile_id) -or ($s.gameData -and $s.gameData.profileId -and -not $s.master)
       if ($okIp -and $okId) { New-Result $true "$($Cfg.server_ip):$($Cfg.server_port)" } else { New-Result $false 'Il gioco non e'' ancora impostato sul nostro server.' }
     }
     Button = 'Imposta'
@@ -246,6 +259,9 @@ $Checks = @(
       $s | Add-Member -Force -NotePropertyName 'server-ip' -NotePropertyValue $Cfg.server_ip
       $s | Add-Member -Force -NotePropertyName 'server-port' -NotePropertyValue ([int]$Cfg.server_port)
       if ($Cfg.usa_profile_id) {
+        # Modalita' senza login (offline mode): niente master server, si entra con il numero di giocatore
+        $s | Add-Member -Force -NotePropertyName 'master' -NotePropertyValue ''
+        $s | Add-Member -Force -NotePropertyName 'server-master-key' -NotePropertyValue $null
         if (-not $s.gameData) { $s | Add-Member -Force -NotePropertyName 'gameData' -NotePropertyValue (New-Object PSObject) }
         $s.gameData | Add-Member -Force -NotePropertyName 'profileId' -NotePropertyValue ([int]$State.profileId)
       }

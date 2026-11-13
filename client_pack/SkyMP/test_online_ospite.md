@@ -2,7 +2,7 @@
 
 > **Scopo:** entrare nel mondo del server SkyMP che gira sul PC di David, per provare la prima connessione online.
 > Il server lo accende David: tu devi solo preparare il tuo PC e collegarti.
-> Se lavori con Claude, fagli seguire `collegamento_online_claude.md` (stessa cartella): fa lui i passaggi e ti lascia solo gli accessi e le conferme.
+> Si entra con il **launcher Atronach RP**. Se lavori con Claude, fagli seguire `collegamento_online_claude.md` (stessa cartella): fa lui i passaggi e ti lascia solo gli accessi e le conferme.
 
 ```
 Il tuo profileId:   1   (David è il 2: con lo stesso numero entreresti con il suo personaggio)
@@ -45,21 +45,18 @@ Se il tuo è altrove, apri con il Blocco note `client_pack\SkyMP\avvia_skymp.ps1
 1. Installa Tailscale da https://tailscale.com/download e fai l'accesso con **il tuo** account.
 2. Apri il link di condivisione che ti manda David e accetta: da quel momento vedi il suo PC.
 
-### 8. Imposta il client sul server di David
-Dalla cartella del repo, in PowerShell o dal Prompt dei comandi:
+### 8. Imposta il launcher sul server di David
+Doppio clic su `client_pack\AtronachLauncher\Imposta server.bat` e scrivi l'indirizzo Tailscale di David (forma `100.x.y.z`).
+Oppure, da PowerShell nella cartella del repo:
 ```
-client_pack\SkyMP\client_profilo.bat locale 100.x.y.z 1
+& "client_pack\AtronachLauncher\Imposta server.bat" 100.x.y.z
 ```
-- `client_pack\SkyMP\client_profilo.bat` → lo script che sceglie a quale server si collega il client SkyMP
-- `locale` → profilo "server locale" (salva anche una copia di quello ufficiale)
-- `100.x.y.z` → l'indirizzo Tailscale di David
-- `1` → il tuo profileId
+- `&` → in PowerShell serve per eseguire un file il cui percorso è tra virgolette (il nome contiene uno spazio)
+- `client_pack\AtronachLauncher\Imposta server.bat` → lo script che sceglie il server del launcher **solo sul tuo PC**
+- `100.x.y.z` → l'indirizzo Tailscale di David (la porta è 7777 se non ne scrivi un'altra)
 
-Scrive solo nella cartella di Skyrim: nessun file del repo cambia, quindi niente finisce su git.
-
----|---|
-   | `"server-ip": "127.0.0.1"` | `"server-ip": "100.x.y.z"` ← l'indirizzo di David |
-   | `"profileId": 2` | `"profileId": 1` |
+Scrive solo `%APPDATA%\AtronachRP\server.json`: nessun file del repo cambia, quindi niente finisce su git.
+Per tornare al server normale: `Imposta server.bat nessuno`.
 
 ---
 
@@ -76,8 +73,11 @@ Scrive solo nella cartella di Skyrim: nessun file del repo cambia, quindi niente
    - `-Port 3000` → la "porta" da provare: sulla 3000 il server di David manda al client l'interfaccia del gioco
 
    Se compare `TcpTestSucceeded : True` la strada è aperta. Se compare `False`, dillo a David prima di avviare il gioco (di solito è il suo firewall).
-4. Doppio clic su `client_pack\SkyMP\avvia_skymp.bat` (doppio clic normale, **non** "Esegui come amministratore").
-5. Se tutto va bene arrivi alla **creazione del personaggio**.
+4. Doppio clic su `client_pack\AtronachLauncher\Avvia Atronach RP.bat` (doppio clic normale, **non** "Esegui come amministratore").
+5. Sistema i punti rossi con i pulsanti. Su **"Collegato al server"** premi **Imposta**: alla domanda sul numero di giocatore scrivi **1**. Deve comparire l'indirizzo di David.
+6. Premi **GIOCA**. Se tutto va bene arrivi alla **creazione del personaggio**.
+
+> Se il launcher non parte, la strada di riserva è quella vecchia: `client_pack\SkyMP\client_profilo.bat locale 100.x.y.z 1` e poi `client_pack\SkyMP\avvia_skymp.bat`.
 
 ---
 
@@ -88,11 +88,12 @@ Scrive solo nella cartella di Skyrim: nessun file del repo cambia, quindi niente
 | "A new update is available" | La tua password del client è diversa da quella di David | Controlla il punto 4 e scrivi a David il valore che trovi |
 | Fermo su "Connecting to 100.…" | Firewall di David o Tailscale | Tailscale acceso su entrambi? Rifai la prova con `Test-NetConnection` |
 | Schermata di caricamento con la musica, non va avanti | Gioco avviato come amministratore | Chiudi tutto, Steam compreso → `skymp_fix.bat` → riprova |
-| Entri con il personaggio di David | `profileId` è rimasto 2 | Rifai il punto 8 con `1` alla fine |
+| Entri con il personaggio di David | Numero di giocatore sbagliato | Chiudi il launcher, apri `%APPDATA%\AtronachRP\impostazioni.json`, metti `"profileId": 1`, poi nel launcher premi **Imposta** su "Collegato al server" |
 | `avvia_skymp.bat` dice che Skyrim è alla versione sbagliata | Steam l'ha aggiornato | Patcher della 1.6.1170 (punto 2) |
 | `avvia_skymp.bat` dice che non trova `skse64_loader.exe` | Skyrim è in un'altra cartella | Punto 6 |
 
 ---
 
 ## Per tornare al server ufficiale
-Doppio clic su `client_pack\SkyMP\client_profilo.bat ufficiale`.
+1. `client_pack\AtronachLauncher\Imposta server.bat nessuno`
+2. Doppio clic su `client_pack\SkyMP\client_profilo.bat ufficiale` (oppure ricopia `%APPDATA%\AtronachRP\skymp5-client-settings.originale.txt` nella cartella `Data\Platform\Plugins\` di Skyrim con il nome `skymp5-client-settings.txt`).

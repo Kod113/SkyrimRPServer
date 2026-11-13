@@ -45,6 +45,8 @@ Poi ci sono questi pulsanti:
 
 **Configurazione:** `config.json` accanto al launcher contiene nome, indirizzo e porta del server, versione richiesta, link della guida e del Discord. Quando cambia il server, si cambia solo questo file.
 
+**Server personale (per i test del team):** `Imposta server.bat` scrive `%APPDATA%\AtronachRP\server.json` con indirizzo e porta, che hanno la precedenza su `config.json` solo su quel PC. Così chi entra nel server di un altro (es. Davide su quello di David via Tailscale) usa il launcher senza modificare file del repo. Con `usa_profile_id` il launcher imposta anche la modalità senza login (`master` vuoto).
+
 ## Versione per i giocatori (v1, dopo il prototipo)
 
 - **Un solo file `.exe`**, con installazione nel menu Start e un'icona sul Desktop, che si **aggiorna da solo**. Il prototipo è in PowerShell solo per provarlo in fretta, riusando gli script dello spike.
