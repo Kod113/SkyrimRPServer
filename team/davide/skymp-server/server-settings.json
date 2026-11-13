@@ -1,0 +1,21 @@
+{
+  "dataDir" : "data",
+  "loadOrder" : 
+  [
+    "C:\\Users\\39320\\Desktop\\Skyrim Special Edition 1.7.104 BACKUP\\Data\\Skyrim.esm",
+    "C:\\Users\\39320\\Desktop\\Skyrim Special Edition 1.7.104 BACKUP\\Data\\Update.esm",
+    "C:\\Users\\39320\\Desktop\\Skyrim Special Edition 1.7.104 BACKUP\\Data\\Dawnguard.esm",
+    "C:\\Users\\39320\\Desktop\\Skyrim Special Edition 1.7.104 BACKUP\\Data\\HearthFires.esm",
+    "C:\\Users\\39320\\Desktop\\Skyrim Special Edition 1.7.104 BACKUP\\Data\\Dragonborn.esm"
+  ],
+  "master": "",
+  "masterKey": "local-dev-key",
+  "maxPlayers" : 100,
+  "name" : "My Server",
+  "npcEnabled" : false,
+  "npcSettings" : {},
+  "offlineMode" : true,
+  "port" : 7777,
+"damageMultFormulaSettings": { "multiplier": 1 },
+"enableConsoleCommandsForAll": true
+}

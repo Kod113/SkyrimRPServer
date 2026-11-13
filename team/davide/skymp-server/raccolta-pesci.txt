@@ -1,0 +1,102 @@
+NPC_ eb2 dunTransmogrifyMudcrab
+NPC_ 136c1 BassianusAxius
+FLOR 176b2 DeadSalmon02
+FLOR 176cd DeadSalmon01
+NPC_ 21875 EncMudcrabGiant
+NPC_ 23ab8 EncSlaughterfish
+ACTI 26d75 FishSpawner
+MISC 3ad57 ChaurusChitin
+INGR 3ad70 SlaughterfishScales valore=3 peso=0.1 | effetti: AlchResistFrost(3/60s) ; AlchDamageHealthDuration(1/10s) ; AlchFortifyHeavyArmor(2/60s) ; AlchFortifyBlock(4/60s)
+MISC 3ada3 DragonScales
+NPC_ 3e8a1 AudioTemplateMudcrab
+ACTI 4dac6 PuzzleDoorKeyHole01Glass
+MISC 5ace5 IngotSteel
+ALCH 64b3b FoodSalmonCooked01
+ALCH 64b3c FoodSlaughterfishCooked
+ALCH 65c9f FoodSalmon
+INGR 6bc00 MudcrabChitin valore=2 peso=0.25 | effetti: AlchRestoreStamina(5/0s) ; AlchCureDisease(5/0s) ; AlchResistPoison(4/60s) ; AlchResistFire(3/60s)
+MISC 7c260 dunForelhostGlassClaw
+INGR 7e8c5 SlaughterfishEgg01 valore=3 peso=0.2 | effetti: AlchResistPoison(4/60s) ; AlchFortifyPickpocket(4/60s) ; AlchDamageHealthDuration(1/10s) ; AlchFortifyStamina(4/60s)
+FLOR 7e8c6 SlaughterfishEggNest01
+NPC_ 7f692 dunPOISlaughterFisherman01
+NPC_ 7f699 dunPOISlaughterFisherman02
+INGR 854fe Pearl valore=2 peso=0.1 | effetti: AlchRestoreStamina(5/0s) ; AlchFortifyBlock(4/60s) ; AlchRestoreMagicka(5/0s) ; AlchResistShock(3/60s)
+INGR 85500 PearlSmall valore=2 peso=0.1 | effetti: AlchRestoreStamina(5/0s) ; AlchFortifyOneHanded(4/60s) ; AlchFortifyRestoration(4/60s) ; AlchResistFrost(3/60s)
+FLOR 85f80 Clam01
+FLOR 85f82 ClamThin01
+FLOR 85f83 ClamLarge01
+NPC_ 8cacc LvlMudcrab
+CONT 94384 MerchantMarkarthSilverFishInnChest
+NPC_ 97976 LvlFisherman
+NPC_ 9d761 dunHagsEnd_DBAssassin
+CONT a6c0e MerchantSolitudeFishAddvar
+NPC_ a6d67 ThalmorEmbassyGuardDayShift01
+NPC_ a6d68 ThalmorEmbassyGuardDayShift02
+NPC_ a6d69 ThalmorEmbassyGuardDayShift03
+NPC_ a6d6a ThalmorEmbassyGuardDayShift04
+NPC_ a6d6b ThalmorEmbassyGuardNightShift01
+NPC_ a6d6c ThalmorEmbassyGuardNightShift02
+NPC_ a6d6d ThalmorEmbassyGuardNightShift03
+NPC_ a6d6e ThalmorEmbassyGuardNightShift04
+ACTI ad0cc CritterSalmon02
+MISC d0756 MGRDragonHeartScales
+ACTI d337f CritterSalmon01
+NPC_ e4010 EncMudcrabMedium
+NPC_ e4011 EncMudcrabLarge
+NPC_ e662b dunHunterMudcrab
+ALCH eba03 FoodClamMeat
+FLOR f5eca DeadSalmon01NoNail
+FLOR f5ecb DeadSalmon02NoNail
+ACTI f8489 dunLabyrinthianBustTriggerSteel
+ACTI 10638e critterSpawnPond_Deep_FishOnly
+ACTI 106d28 CritterPondFish01
+ACTI 106d29 CritterPondFish02
+ACTI 106d2a CritterPondFish03
+ACTI 106d2b CritterPondFish04
+ACTI 106d2c CritterPondFish05
+INGR 106e18 CritterPondFish05Ingredient valore=6 peso=0.25 | effetti: AlchRestoreStamina(5/0s) ; AlchFortifyMagicka(4/60s) ; AlchDamageStaminaRate(100/5s) ; AlchWaterbreathing(0/5s)
+INGR 106e19 CritterPondFish04Ingredient valore=15 peso=0.25 | effetti: AlchDamageStamina(3/0s) ; AlchFortifyRestoration(4/60s) ; AlchInfluenceConfDown(1/30s) ; AlchDamageHealthRavage(2/10s)
+INGR 106e1a CritterPondFish03Ingredient valore=15 peso=0.25 | effetti: AlchDamageHealth(5/0s) ; AlchFortifyAlteration(4/60s) ; AlchDamageSpeed(50/5s) ; AlchFortifyCarryWeight(4/300s)
+INGR 106e1b CritterPondFish02Ingredient valore=15 peso=0.5 | effetti: AlchWeaknessFrost(3/30s) ; AlchFortifySneak(4/60s) ; AlchWeaknessPoison(2/30s) ; AlchFortifyRestoration(4/60s)
+INGR 106e1c CritterPondFish01Ingredient valore=15 peso=0.25 | effetti: AlchRestoreStamina(5/0s) ; AlchDamageStaminaRate(100/5s) ; AlchDamageHealthRavage(2/10s) ; AlchResistFrost(3/60s)
+FLOR 108e35 FXAmbWaterSalmon02B
+FLOR 108e36 FXAmbWaterSalmon02A
+FLOR 108e37 FXAmbWaterSalmon01B
+FLOR 108e38 FXAmbWaterSalmon01A
+ACTI 10b035 FCAmbWaterfallSalmon01
+FLOR 10c3b4 DeadFXSalmon01
+FLOR 10c3b5 DeadFXSalmon02
+ACTI 10c3ba FCAmbWaterfallSalmon02
+CONT 10cd5b BarrelFish01
+FLOR 100306b ccBGS_RootRotScale
+INGR 100306d ccBGS_RootRotScaleIngredient valore=20 peso=0.1 | effetti: AlchDamageSpeed(5/30s) ; AlchDamageHealthDuration(1/30s) ; AlchInfluenceConfDown(1/5s) ; AlchParalysis(0/1s)
+ACTI 100308c ccBGS_RootRotScaleActivator
+MISC 10030c9 CCHorseArmorMiscArmorSteel
+MISC 20195aa DLC1ShellbugChitin
+MISC 30008ca BYOHHouseExteriorPart09FishHatchery
+ACTI 30008ce BYOHFishHatchery01
+NPC_ 30008e6 BYOHHouseTameSlaughterfish
+NPC_ 30008e9 BYOHHouseTameMudcrab
+NPC_ 300090d BYOHFishHatcheryNPC
+ALCH 300353e BYOHFoodClamChowder
+ALCH 300353f BYOHFoodMudcrabLegsCooked
+ALCH 3003540 BYOHFoodMudcrabLegs
+ALCH 3003541 BYOHFoodSalmonCooked02
+INGR 3003545 BYOHSalmonRoe01 valore=5 peso=0.2 | effetti: AlchRestoreStamina(2/0s) ; AlchWaterbreathing(0/60s) ; AlchFortifyMagicka(50/5s) ; AlchFortifyMagickaRate(5/300s)
+MISC 3005a52 BYOHHouseInteriorPart068MountedMudcrab01
+MISC 3005a53 BYOHHouseInteriorPart069MountedSlaughterfish01
+MISC 3005a54 BYOHHouseInteriorPart070MountedSlaughterfish02
+MISC 3005a69 BYOHMaterialGlass
+MISC 3009b88 BYOHHouseInteriorPart092MountedSlaughterfishFireplace
+MISC 300a344 BYOHHouseTrophyPart23Mudcrab
+MISC 300a346 BYOHHouseTrophyPart25Slaughterfish
+CONT 300d90d BYOHHouseBarrelFish01_NoRespawn
+MISC 300dd66 BYOHHouseInteriorPart159MountedMudcrab02
+NPC_ 3013818 BYOHRelationshipAdoptionCritter_Mudcrab
+NPC_ 401d77a DLC2dunNorthshoreLandingCrabBoss
+NPC_ 4025ae4 DLC2EncMudcrabSolstheim
+MISC 402b04e DLC2ChitinPlate
+ACTI 403401a DLC2Book01ScaledAmbushTrigger
+FLOR 403828c DLC2PearlOysterLarge01
+FLOR 403828d DLC2PearlOysterThin01
+CONT 403c366 BarrelFish01_NoRespawn
