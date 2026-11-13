@@ -17,6 +17,10 @@
 
 ---
 
+## 2026-11-13
+
+- `[setup]` Launcher Atronach RP anche per chi entra nel server di un altro PC: `client_pack/AtronachLauncher/Imposta server.bat` salva indirizzo e porta in `%APPDATA%\AtronachRP\server.json`, che ha la precedenza su `config.json` solo su quel PC (nessun file del repo cambia). Il controllo "Collegato al server" imposta anche la modalità senza login (`master` vuoto). Aggiornate `test_online_ospite.md`, `collegamento_online_claude.md`, il README del launcher e `specs/platform/launcher.md`. — david
+
 ## 2026-11-07
 
 - `[doc]` Collegamento online al server locale fatto da Claude su tutti e due i PC: `client_pack/SkyMP/collegamento_online_claude.md` (passi dell'host e dell'ospite, chi fa cosa tra Claude e persona, firewall Node.js con un comando, prova della porta, problemi). `client_profilo.bat locale <ip> <profileId>` imposta da solo indirizzo e profileId nella cartella di Skyrim: l'ospite non modifica più file a mano. Aggiornate `test_online_ospite.md` e `test_online_host.md`. — david

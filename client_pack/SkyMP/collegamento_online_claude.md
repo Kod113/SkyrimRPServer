@@ -64,22 +64,23 @@ Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-Command',"New-
 | O3 | Tailscale installato | Claude | `winget install Tailscale.Tailscale` → **l'utente** conferma |
 | O4 | Accesso a Tailscale | **Persona** | Con il **proprio** account (non quello dell'host) |
 | O5 | Accettare la condivisione | **Persona** | Apre il link ricevuto dall'host e accetta |
-| O6 | Client impostato sul server dell'host | Claude | Comando sotto |
+| O6 | Launcher impostato sul server dell'host | Claude | Comando sotto |
 
-Comando per O6 (dalla cartella del repo):
+Comando per O6 (dalla cartella del repo, in PowerShell):
 
 ```
-client_pack\SkyMP\client_profilo.bat locale 100.x.y.z 1
+& "client_pack\AtronachLauncher\Imposta server.bat" 100.x.y.z
 ```
 
-- `client_pack\SkyMP\client_profilo.bat` → lo script che sceglie a quale server si collega il client SkyMP
-- `locale` → profilo "server locale" (offline mode, senza login Discord). La prima volta salva una copia di quello ufficiale in `_locale\`
-- `100.x.y.z` → l'indirizzo Tailscale dell'host
-- `1` → il profileId dell'ospite
+- `&` → esegue un file il cui percorso è tra virgolette (il nome contiene uno spazio)
+- `client_pack\AtronachLauncher\Imposta server.bat` → sceglie il server del launcher **solo su questo PC**
+- `100.x.y.z` → l'indirizzo Tailscale dell'host (porta 7777 se non se ne scrive un'altra come secondo valore)
 
-Lo script scrive solo nella cartella di Skyrim: **nessun file del repo cambia**. Per tornare al server ufficiale: `client_profilo.bat ufficiale`.
+Scrive solo `%APPDATA%\AtronachRP\server.json` (che ha la precedenza su `config.json`): **nessun file del repo cambia**. Per tornare indietro: `Imposta server.bat nessuno`.
 
-> Il launcher Atronach RP per ora **non** va usato dall'ospite: l'indirizzo del server sta in `config.json`, che è un file del repo.
+Il numero di giocatore (profileId `1`) lo chiede il launcher la prima volta che si preme **Imposta** su "Collegato al server": lo scrive **la persona** (o Claude, se controlla lo schermo).
+
+> Strada di riserva senza launcher: `client_pack\SkyMP\client_profilo.bat locale 100.x.y.z 1` e poi `client_pack\SkyMP\avvia_skymp.bat`.
 
 ---
 
@@ -91,7 +92,7 @@ Lo script scrive solo nella cartella di Skyrim: **nessun file del repo cambia**.
 | 2 | Avvia `client_pack\SkyMP\server_locale.bat`. La finestra **resta aperta** (chiusa = server spento). Deve comparire `Server resources folder is listening on 3000` | — |
 | 3 | **La persona** dice all'ospite che il server è acceso | — |
 | 4 | — | Prova la strada (comando sotto). Deve uscire `TcpTestSucceeded : True`. Se `False` → fermati: di solito è il firewall dell'host (H5) |
-| 5 | Avvia il proprio gioco con `avvia_skymp.bat` (o il launcher Atronach RP): resta su `127.0.0.1` | Avvia il gioco con `client_pack\SkyMP\avvia_skymp.bat` (doppio clic normale, **non** come amministratore) |
+| 5 | Avvia il proprio gioco con `avvia_skymp.bat` (o il launcher Atronach RP): resta su `127.0.0.1` | Apre `client_pack\AtronachLauncher\Avvia Atronach RP.bat` (doppio clic normale, **non** come amministratore), sistema i punti rossi e preme **GIOCA** |
 | 6 | Nella finestra del server cerca `Connecting a user ...` con un indirizzo `100.…` | In gioco, in alto a sinistra: `connection: ON` |
 
 Comando per il passo 4 (PowerShell):
@@ -115,7 +116,7 @@ Per la porta del gioco (UDP 7777) c'è `client_pack\Diagnostica\skymp_net_check.
 | "A new update is available" | Ospite | Password diverse: rifai O2 |
 | Fermo su "Connecting to 100.…" | Ospite → Host | Tailscale acceso su tutti e due? Rifai il passo 4; se `False`, sull'host rifai H5 |
 | Schermata di caricamento con la musica | Chi la vede | Gioco come amministratore: chiudi tutto (Steam compreso) e lancia `client_pack\Diagnostica\skymp_fix.bat` |
-| L'ospite entra con il personaggio dell'host | Ospite | profileId sbagliato: rifai O6 con `1` |
+| L'ospite entra con il personaggio dell'host | Ospite | profileId sbagliato: in `%APPDATA%\AtronachRP\impostazioni.json` metti `"profileId": 1`, poi nel launcher **Imposta** su "Collegato al server" |
 | Versione di Skyrim sbagliata | Chi la vede | Steam l'ha aggiornato: vedi `docs_for_players/INSTALL_GUIDE.md` |
 | La finestra del server si chiude subito | Host | Riaprila e leggi la riga `ERRORE:` |
 

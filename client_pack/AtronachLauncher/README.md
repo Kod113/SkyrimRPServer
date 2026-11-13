@@ -7,11 +7,13 @@ Specifica completa: `specs/platform/launcher.md`.
 | `Avvia Atronach RP.bat` | Il file su cui fa doppio clic il giocatore |
 | `launcher.ps1` | La finestra del launcher (controlli, pulsanti, avvio del gioco) |
 | `config.json` | Nome, indirizzo e porta del server, versione di Skyrim, link di guida e Discord |
+| `Imposta server.bat` + `imposta_server.ps1` | Sceglie un server diverso **solo su questo PC** (es. quello di David via Tailscale), senza toccare `config.json` |
 
 ## Come provarlo (team)
 
 1. Fai **Pull** del repo.
-2. In `config.json` metti l'indirizzo del server su cui provi (per il server locale: `127.0.0.1`, porta `7777`).
+2. Server sul tuo PC: va bene `config.json` così com'è (`127.0.0.1`, porta `7777`).
+   Server su un altro PC: doppio clic su `Imposta server.bat` e scrivi il suo indirizzo (es. `100.x.y.z` di Tailscale). Si salva in `%APPDATA%\AtronachRP\server.json`, che ha la precedenza su `config.json`; `Imposta server.bat nessuno` lo toglie.
 3. Doppio clic su `client_pack\AtronachLauncher\Avvia Atronach RP.bat` (**non** come amministratore).
 4. Sistema i punti rossi con i pulsanti, poi premi **GIOCA**.
 
