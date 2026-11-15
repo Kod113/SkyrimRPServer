@@ -1300,6 +1300,44 @@ function runAutotest(cmd) {
     });
     return;
   }
+  if (what === "verifica") {   // [gm_v27] verifica marcatori: posizione/tipo di TUTTI i marcatori della mappa (da Skyrim.esm e DLC) -> verifica-marcatori.json ; verifica loot: nome/tipo veri degli oggetti del loot fauna -> verifica-loot.json
+    if (parts[1] === "id") {   // verifica id 6bc00,6bc01 : tipo e nome interno dei record
+      const out = {}; String(parts[2] || "").split(",").forEach(function (h) { try { const rr = mp.lookupEspmRecordById(parseInt(h, 16)); const r = rr && rr.record; out[h] = r ? (String(r.type) + " " + String(r.editorId || "")) : "NON TROVATO"; } catch (e) { out[h] = "errore"; } });
+      atOut("VERIFICA id: " + JSON.stringify(out)); return;
+    }
+    if (parts[1] === "loot") {
+      const out = {}; const ids = {};
+      Object.keys(FAUNA).forEach(function (b) { FAUNA[b].loot.forEach(function (l) { ids[l[0]] = 1; }); ids[Number(b)] = 1; });
+      [SCAGLIE, PESCE_BASE].forEach(function (x) { ids[x] = 1; });
+      Object.keys(ids).forEach(function (k) { try { const rr = mp.lookupEspmRecordById(Number(k)); const r = rr && rr.record; out[Number(k).toString(16)] = r ? (String(r.type) + " " + String(r.editorId || "")) : "NON TROVATO"; } catch (e) { out[Number(k).toString(16)] = "errore " + e; } });
+      try { _fs.writeFileSync("verifica-loot.json", JSON.stringify(out, null, 1)); } catch (e) { }
+      atOut("VERIFICA loot: " + Object.keys(out).length + " oggetti (verifica-loot.json)"); return;
+    }
+    const starts = [0x0, 0x1000000, 0x2000000, 0x3000000, 0x4000000]; let si = 0, id = 0; const out = []; const t0 = Date.now();
+    atOut("VERIFICA marcatori: inizio");
+    const tick = function () {
+      const lim = Math.min(id + 25000, 0x180000);
+      for (; id < lim; id++) {
+        try {
+          const gid = starts[si] + id; const rr = mp.lookupEspmRecordById(gid); const rec = rr && rr.record; if (!rec || rec.type !== "REFR" || !rec.fields) continue;
+          const nf = rec.fields.find(function (f) { return f.type === "NAME"; }); if (!nf) continue;
+          const base = ((nf.data[0] | (nf.data[1] << 8) | (nf.data[2] << 16) | (nf.data[3] << 24)) >>> 0); if (base !== 0x10) continue;
+          const df = rec.fields.find(function (f) { return f.type === "DATA"; }); if (!df) continue;
+          const dv = new DataView(new ArrayBuffer(12)); for (let i = 0; i < 12; i++) dv.setUint8(i, df.data[i]);
+          const fx = dv.getFloat32(0, true), fy = dv.getFloat32(4, true), fz = dv.getFloat32(8, true);
+          const tn = rec.fields.find(function (f) { return f.type === "TNAM"; });
+          out.push({ id: gid, ed: String(rec.editorId || ""), t: tn && tn.data ? tn.data[0] : -1, x: Math.round(fx), y: Math.round(fy), z: Math.round(fz) });
+        } catch (e) { }
+      }
+      if (id >= 0x180000) { si++; id = 0; }
+      if (si >= starts.length) {
+        try { _fs.writeFileSync("verifica-marcatori.json", JSON.stringify(out)); } catch (e) { atOut("VERIFICA: scrittura fallita " + e); }
+        atOut("VERIFICA marcatori finito in " + Math.round((Date.now() - t0) / 1000) + " s: " + out.length + " marcatori (verifica-marcatori.json)"); return;
+      }
+      setTimeout(tick, 30);
+    };
+    tick(); return;
+  }
   if (what === "fauna") { try { global.__rbFaunaCmd(parts); } catch (e) { atOut("fauna errore " + e); } return; }
   if (what === "macellaio") { try { global.__rbPesciCmd(parts); } catch (e) { atOut("macellaio errore " + e); } return; }
   if (what === "raccolta") {   // raccolta <riferimento in esadecimale>: dice cosa e' e se verrebbe bloccato; raccolta scan: elenca le basi di piante/ingredienti/miniere
@@ -1839,7 +1877,12 @@ const PESCI_ZONE = {
   MFc: { nome: "Mare dei Fantasmi (vicino a riva)", cap: 5 }, MFl: { nome: "Mare dei Fantasmi (al largo)", cap: 5 },
 };
 global.__rbPesci = global.__rbPesci || { fish: {}, nasciti: 0, morti: 0, cicli: 0 };
+if (global.__rbPesci.ver !== 2) {   // [gm_v27] punti nuovi: via i pesci nati sui punti vecchi, il ciclo li rifa'
+  Object.keys(global.__rbPesci.fish).forEach(function (sid) { try { mpDestroy(Number(sid)); } catch (e) { } });
+  global.__rbPesci.fish = {}; global.__rbPesci.ver = 2;
+}
 function pesciPunti() {
+  try { return JSON.parse(_fs.readFileSync("pesci-punti-v2.json", "utf8")); } catch (e) { }   // [gm_v27] v2: tolti doppioni e punti vicini a luoghi sicuri / zona di guerra di Largashbur
   try { return JSON.parse(_fs.readFileSync("pesci-punti.json", "utf8")); } catch (e) { }
   try { return JSON.parse(_fs.readFileSync("pesci-candidati.json", "utf8")); } catch (e) { log("[PESCI] nessun file punti: " + e); return {}; }
 }
@@ -2017,28 +2060,33 @@ const FAUNA = {
   0x000CF89D: { nome: "Cervo", loot: [[0x669A2, 1], [0xD284D, 1], [0x6BC0A, 1]] },
   0x00023A91: { nome: "Alce", loot: [[0x669A2, 1], [0x3AD90, 1], [0x6BC0A, 1]] },
   0x000ABEDF: { nome: "Alce femmina", loot: [[0x669A2, 1], [0x3AD90, 1], [0x6BC0B, 1]] },
-  0x0002EBE2: { nome: "Capra", loot: [[0x3AD8E, 1], [0x65C9A, 1]] },
+  0x0002EBE2: { nome: "Capra", loot: [[0x3AD8E, 1], [0x65C9A, 1]] },   // [gm_v27] verificato su Skyrim.esm (DeathItemGoat): solo pelle e carne, le corna di capra in Skyrim non esistono
   0x0004359C: { nome: "Capra domestica", loot: [[0x3AD8E, 1], [0x65C9A, 1]] },
   0x000829B3: { nome: "Volpe", loot: [[0xD4B35, 1]] },
   0x000829B6: { nome: "Volpe artica", loot: [[0xD4BE7, 1]] },
   0x00023ABE: { nome: "Lupo", loot: [[0x3AD74, 1]] },
   0x00023ABF: { nome: "Lupo di ghiaccio", loot: [[0x3AD75, 1]] },
-  0x00023AB5: { nome: "Gatto dai denti a sciabola", loot: [[0x3AD6D, 1], [0x6BC07, 1], [0x6BC04, 1]] },
-  0x00023AB6: { nome: "Gatto dai denti a sciabola delle nevi", loot: [[0x3AD6E, 1], [0x6BC07, 1], [0x6BC04, 1]] },
+  0x00023AB5: { nome: "Gatto dai denti a sciabola", loot: [[0x3AD6D, 1], [0x6BC07, 1, "uno"], [0x6BC04, 1, "uno"]] },   // [gm_v27] come in Skyrim (LootSabrecatBodyParts): sempre UNO tra occhio e dente, 50% ciascuno
+  0x00023AB6: { nome: "Gatto dai denti a sciabola delle nevi", loot: [[0x3AD6E, 1], [0x6BC07, 1, "uno"], [0x6BC04, 1, "uno"]] },
   0x0010FE05: { nome: "Lupo rosso", loot: [[0x3AD74, 1]] },
   0x00023A8A: { nome: "Orso", loot: [[0x3AD52, 1], [0x6BC02, 1]] },
   0x00023A8B: { nome: "Orso delle caverne", loot: [[0x3AD53, 1], [0x6BC02, 1]] },
   0x00023A8C: { nome: "Orso delle nevi", loot: [[0x3AD54, 1], [0x6BC02, 1]] },
 };
 Object.keys(CREATURES).forEach(function (k) { const f = FAUNA[CREATURES[k]]; if (f) TITLES[k] = f.nome; });
+function faunaTiraLoot(f) {   // [gm_v27] voci fisse sempre; voci "uno" = ne esce una sola a caso (come le liste di Skyrim); voci con numero = probabilita'
+  const uno = f.loot.filter(function (l) { return l[2] === "uno"; }); const scelta = uno.length ? uno[Math.floor(Math.random() * uno.length)] : null;
+  return f.loot.filter(function (l) { if (l.length < 3) return true; if (l[2] === "uno") return l === scelta; return Math.random() < l[2]; }).map(function (l) { return { baseId: l[0], count: l[1] }; });
+}
 global.__rbFaunaDeath = function (actorId) {
   let base = 0; try { base = mp.get(actorId, "private.rbFauna") || 0; } catch (e) { }
   if (!base) { try { base = mp.get(actorId, "baseId") || 0; } catch (e) { } }
   const f = FAUNA[base]; if (!f) return false;
   setTimeout(function () {
     try {
-      mpSet(actorId, "inventory", { entries: f.loot.map(function (l) { return { baseId: l[0], count: l[1] }; }) });
-      log("[FAUNA] morto " + actorId.toString(16) + " (" + f.nome + "): loot " + JSON.stringify(f.loot.map(function (l) { return l[0].toString(16) + "x" + l[1]; })));
+      const ent = faunaTiraLoot(f);
+      mpSet(actorId, "inventory", { entries: ent });
+      log("[FAUNA] morto " + actorId.toString(16) + " (" + f.nome + "): loot " + JSON.stringify(ent.map(function (l) { return l.baseId.toString(16) + "x" + l.count; })));
     } catch (e) { log("[FAUNA] loot errore " + e); }
   }, 1500);
   return true;
@@ -2069,17 +2117,19 @@ global.__rbFaunaCmd = function (parts) {
       try { mpSet(id, "isDead", true); } catch (e) { atOut("FAUNA " + nm + " uccisione errore " + e); }
       setTimeout(function () {
         const inv = (mp.get(id, "inventory") || { entries: [] }).entries;
-        const exp = {}; f.loot.forEach(function (l) { exp[l[0]] = l[1]; });
+        const exp = {}, opz = {}; f.loot.forEach(function (l) { if (l.length < 3) exp[l[0]] = l[1]; else opz[l[0]] = l[1]; });
         const got = {}; inv.forEach(function (e) { got[e.baseId] = (got[e.baseId] || 0) + e.count; });
-        const same = Object.keys(exp).length === Object.keys(got).length && Object.keys(exp).every(function (k) { return got[k] === exp[k]; });
+        const same = Object.keys(exp).every(function (k) { return got[k] === exp[k]; }) && Object.keys(got).every(function (k) { return exp[k] !== undefined || (opz[k] !== undefined && got[k] === opz[k]); })
+          && (function () { const u = f.loot.filter(function (l) { return l[2] === "uno"; }); return !u.length || u.filter(function (l) { return got[l[0]]; }).length === 1; })();
         atOut("FAUNA " + nm + " cadavere: " + JSON.stringify(inv.map(function (e) { return e.baseId.toString(16) + "x" + e.count; })) + " -> " + (same ? "PASS (solo il loot previsto, niente tesoro)" : "FAIL (diverso dal previsto)"));
         const before = {}; f.loot.forEach(function (l) { before[l[0]] = qty(mp.get(a, "inventory"), l[0]); });
+        const sulCorpo = {}; inv.forEach(function (e) { sulCorpo[e.baseId] = (sulCorpo[e.baseId] || 0) + e.count; });
         doLoot(u, id, true);
         atOut("FAUNA " + nm + ": finestra del loot aperta (guarda lo schermo)");
         setTimeout(function () {
           const taken = f.loot.map(function (l) { return { baseId: l[0], count: qty(mp.get(id, "inventory"), l[0]) }; });
           applyTaken(u, id, taken);
-          const ok = f.loot.every(function (l) { return qty(mp.get(a, "inventory"), l[0]) === before[l[0]] + l[1]; });
+          const ok = f.loot.every(function (l) { return qty(mp.get(a, "inventory"), l[0]) === before[l[0]] + (sulCorpo[l[0]] || 0); });
           atOut("FAUNA " + nm + " dopo aver preso: " + (ok ? "PASS (tutto nel tuo inventario)" : "FAIL"));
           try { mpDestroy(id); } catch (e) { }
           setTimeout(next, 1500);
@@ -2103,10 +2153,10 @@ const FAUNA_SPECIE = { coniglio: 0x0006DC9D, cervo: 0x000CF89D, capra: 0x0002EBE
 global.__rbFauna = global.__rbFauna || { slots: null, actors: {}, nasciti: 0, cicli: 0 };
 function faunaCarica() {
   const F = global.__rbFauna;
-  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v4.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v2: " + e); }   // v2 = altezze lette da Skyrim.esm
-  if (F.ver !== 6) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
+  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v6.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v6: " + e); }   // [gm_v27] v6 = punti su terreno percorribile (niente pareti o versanti da scalare), quote vere da Skyrim.esm, lontani da forti e luoghi sicuri
+  if (F.ver !== 8) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
     Object.keys(F.actors).forEach(function (id) { try { mpDestroy(Number(id)); } catch (e) { } });
-    F.actors = {}; F.slots = null; F.ver = 6; log("[FAUNA] punti v4b (spawn tolti dalle zone dei forti) (altezze vere, senza rocce, edifici e alberi): animali vecchi rimossi, ricreo tutto");
+    F.actors = {}; F.slots = null; F.ver = 8; log("[FAUNA] punti v6 (terreno percorribile, niente pareti): animali vecchi rimossi, ricreo tutto");
   }
   const nuovo = !F.slots; if (!F.slots) F.slots = [];
   const gia = {}; F.slots.forEach(function (sl) { gia[sl.sp] = 1; });
@@ -2114,7 +2164,10 @@ function faunaCarica() {
   Object.keys(pts).forEach(function (sp) {
     if (!FAUNA_SPECIE[sp] || (!nuovo && gia[sp])) return;
     ["Windhelm", "Riften"].forEach(function (fe) {
-      (pts[sp][fe] || []).forEach(function (p, i) { F.slots.push({ sp: sp, fe: fe, idx: i, x: p.x, y: p.y, z: p.z, m: p.m || null, n: FAUNA_BRANCO[sp] || 1, ids: [] }); });
+      (pts[sp][fe] || []).forEach(function (p, i) {
+        const vicino = FORTS.filter(function (f) { return Math.hypot(p.x - f.cx, p.y - f.cy) < GREEN_R + (FAUNA_RAGGI[sp] || FAUNA_RAGGIO) + 1500; })[0];   // [gm_v27] sicurezza: mai un'area animale dentro la zona di guerra di un forte orco
+        if (vicino) { log("[FAUNA] punto " + sp + "/" + fe + "/" + i + " SCARTATO: troppo vicino a " + vicino.name); return; }
+        F.slots.push({ sp: sp, fe: fe, idx: i, x: p.x, y: p.y, z: p.z, m: p.m || null, n: FAUNA_BRANCO[sp] || 1, ids: [] }); });
     });
   });
   log("[FAUNA] punti caricati: " + F.slots.length);
@@ -2196,7 +2249,7 @@ global.__rbFaunaCmd = function (parts) {
     const us = onlineUsers(); if (!us.length) { atOut("nessun giocatore online"); return; }
     const me = mp.getUserActor(us[0]); const home = mp.get(me, "pos");
     const lista = []; faunaCarica().forEach(function (sl) { lista.push({ sp: sl.sp, fe: sl.fe, idx: String(sl.idx), x: sl.x, y: sl.y, z: sl.z }); });   // solo i centri (i membri del branco sono a 350 unita')
-    const res = []; let i = 0;
+    const res = []; let i = Number(parts[2]) || 0;   // [gm_v27] "fauna misura 40" riparte dal punto 40
     global.__rbMisuraOn = true; atOut("MISURA: " + lista.length + " punti (circa " + Math.round(lista.length * 12 / 60) + " minuti): non muovere il personaggio");
     (function passo() {
       if (i >= lista.length) {
@@ -2205,10 +2258,14 @@ global.__rbFaunaCmd = function (parts) {
         const bad = res.filter(function (r) { return r.z === null || Math.abs(r.z - r.zf) > 120; });
         global.__rbMisuraOn = false; atOut("MISURA: finito " + res.length + " punti, " + bad.length + " con altezza diversa dal file (oltre 120): misura-fauna.json"); return;
       }
+      let vivo = false; try { vivo = !!mp.getUserActor(us[0]); } catch (e) { }
+      if (!vivo) { global.__rbMisuraOn = false; atOut("MISURA: il giocatore si e' scollegato, mi fermo dopo " + res.length + " punti (misura-fauna.json)"); return; }   // [gm_v27] niente misure finte
       const sl = lista[i]; mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl.x, sl.y, sl.z + 700], rot: [0, 0, 0] });
       setTimeout(function () {
         let z = null; try { z = mp.get(me, "pos")[2]; } catch (e) { }
         res.push({ sp: sl.sp, fe: sl.fe, idx: sl.idx, x: sl.x, y: sl.y, zf: sl.z, z: z });
+        try { _fs.writeFileSync("misura-fauna.json", JSON.stringify(res)); } catch (e) { }   // [gm_v27] salvata a ogni punto
+        if (res.length % 10 === 0) atOut("MISURA: " + res.length + "/" + lista.length);
         try { setHp(me, 1); } catch (e) { }
         i++; passo();
       }, 12000);

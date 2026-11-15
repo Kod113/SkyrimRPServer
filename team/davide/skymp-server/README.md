@@ -15,7 +15,9 @@ Il server vero gira in `Desktop\Server\skymp-server` sul PC di Davide; questa ca
 | `client-mappa-estratto.js` | Estratto (solo lettura) dei blocchi del client `skymp5-client.js` che gestiscono mappa, porte e confini |
 | `magic-swap.json` | Oggetti magici/incantati → versione normale (0 = tolto dal loot) |
 | `weapon-ids.json` | ID delle armi |
-| `terra-punti-v4.json`, `quote-montagna.json` | Punti a terra verificati per gli spawn (versione attuale) e quote delle montagne |
+| `terra-punti-v6.json` | Punti di spawn degli animali (versione attuale, 15/11): terreno percorribile, quote vere da Skyrim.esm, lontani da forti e luoghi sicuri. Tutto spiegato in `../spawn-debug.md` |
+| `terra-punti-v4.json`, `quote-montagna.json` | Versione precedente dei punti (non più usata dal gamemode) e quote delle montagne |
+| `pesci-punti-v2.json` | Punti dei pesci macellaio (versione attuale, 15/11): senza doppioni né punti vicino a luoghi sicuri o forti |
 | `forts-state.json`, `osserva-forti.json` | Stato e misure dei forti orchi (Riften, Windhelm) |
 | `osserva-fauna.json`, `raccolta-consentita.json` | Fauna osservata; oggetti raccoglibili consentiti |
 | `pesci-*.json`, `raccolta-*.txt` | Dati raccolti in gioco (pesca, ingredienti, oggetti, bottino, terreno) usati per costruire spawn e loot |
@@ -40,4 +42,4 @@ Doppio clic su `sincronizza_su_github.bat` (nel server locale), poi GitHub Deskt
 
 ## Test automatici (file `autotest-cmd.txt`)
 
-Si scrive una riga nel file `autotest-cmd.txt` (cartella del server). Il risultato esce in `autotest-result.txt`. Per la mappa: `mappa stato`, `mappa sblocca 1/0`, `mappa porta <id>`, `mappa guarda <id>`, `mappa esci <id>` (dettagli in `../mappa-pulita.md`).
+Si scrive una riga nel file `autotest-cmd.txt` (cartella del server). Il risultato esce in `autotest-result.txt`. Per gli spawn: `verifica marcatori`, `verifica loot`, `verifica id <hex,...>`, `fauna misura`, `fauna provaloot tutti` (dettagli in `../spawn-debug.md`). Per la mappa: `mappa stato`, `mappa sblocca 1/0`, `mappa porta <id>`, `mappa guarda <id>`, `mappa esci <id>` (dettagli in `../mappa-pulita.md`).
