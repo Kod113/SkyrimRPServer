@@ -11,7 +11,8 @@ Il server vero gira in `Desktop\Server\skymp-server` sul PC di Davide; questa ca
 | `server-settings.json` | Impostazioni del server locale (offline, porta 7777, `npcEnabled: false`, console per tutti, load order vanilla + DLC) |
 | `guardiano.ps1`, `avvia_server_sicuro.bat`, `riavvia_*.bat` | Avvio/riavvio del server; il *guardiano* lo riavvia da solo se crasha o si blocca e scrive i motivi in `crash-log.txt` |
 | `chiudi_gioco.bat`, `diagnosi.bat` | Chiude Skyrim; raccoglie CPU e errori di Windows in `diagnosi.txt` |
-| `mappa-config.json` | Mappa custom: luoghi visibili ai player, confini |
+| `mappa-config.json` | Mappa pulita (v7): luoghi tenuti, marcatori da nascondere, porte da chiudere e da riaprire, accampamenti militari spenti, marcatori da spostare fuori mappa. Tutto spiegato in `../mappa-pulita.md` |
+| `client-mappa-estratto.js` | Estratto (solo lettura) dei blocchi del client `skymp5-client.js` che gestiscono mappa, porte e confini |
 | `magic-swap.json` | Oggetti magici/incantati → versione normale (0 = tolto dal loot) |
 | `weapon-ids.json` | ID delle armi |
 | `terra-punti-v4.json`, `quote-montagna.json` | Punti a terra verificati per gli spawn (versione attuale) e quote delle montagne |
@@ -24,7 +25,7 @@ Il server vero gira in `Desktop\Server\skymp-server` sul PC di Davide; questa ca
 
 ## Comandi admin principali (console)
 
-`evoca_<creatura>_<n>`, `evoca_orco`, `sbloccatutto`, e i comandi di prova `fauna`, `macellaio`, `raccolta`, `quota`, `misura`, `misurafort`, `giro`, `giroforti`, `tp`, `vai`, `stato`, `pulisci`, `uccidi`, `loot`.
+`evoca_<creatura>_<n>`, `evoca_orco`, `sblocca_tutto`, e i comandi di prova `fauna`, `macellaio`, `raccolta`, `quota`, `misura`, `misurafort`, `giro`, `giroforti`, `tp`, `vai`, `stato`, `pulisci`, `uccidi`, `loot`.
 
 ## Come provarlo
 
@@ -36,3 +37,7 @@ Il server vero gira in `Desktop\Server\skymp-server` sul PC di Davide; questa ca
 ## Come si aggiorna
 
 Doppio clic su `sincronizza_su_github.bat` (nel server locale), poi GitHub Desktop → **Commit to main** → **Push origin**.
+
+## Test automatici (file `autotest-cmd.txt`)
+
+Si scrive una riga nel file `autotest-cmd.txt` (cartella del server). Il risultato esce in `autotest-result.txt`. Per la mappa: `mappa stato`, `mappa sblocca 1/0`, `mappa porta <id>`, `mappa guarda <id>`, `mappa esci <id>` (dettagli in `../mappa-pulita.md`).

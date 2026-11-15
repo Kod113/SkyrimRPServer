@@ -724,7 +724,7 @@ function mappaHi(userId, c) {
   let cfg; try { cfg = JSON.parse(_fs.readFileSync("mappa-config.json", "utf8")); } catch (e) { log("[MAPPA] nessun mappa-config.json: " + e); return; }
   const H = cfg.hide || [], L = cfg.lock || [], UH = cfg.unhide || H, UL = cfg.unlock || L, CH = 150;
   const n = Math.max(Math.ceil(H.length / CH), Math.ceil(L.length / CH), Math.ceil(UH.length / CH), Math.ceil(UL.length / CH), 1);
-  for (let i = 0; i < n; i++) sendTo(userId, { customPacketType: "rbMappa", first: i === 0, last: i === n - 1, hide: H.slice(i * CH, (i + 1) * CH), lock: L.slice(i * CH, (i + 1) * CH), uh: UH.slice(i * CH, (i + 1) * CH), ul: UL.slice(i * CH, (i + 1) * CH) });
+  for (let i = 0; i < n; i++) sendTo(userId, { customPacketType: "rbMappa", first: i === 0, last: i === n - 1, hide: H.slice(i * CH, (i + 1) * CH), lock: L.slice(i * CH, (i + 1) * CH), uh: UH.slice(i * CH, (i + 1) * CH), ul: UL.slice(i * CH, (i + 1) * CH), hp: i === 0 ? (cfg.hideParents || []) : [], st: i === 0 ? (cfg.stubborn || []) : [], ro: i === 0 ? (cfg.reopen || []) : [], kp: i === 0 ? (cfg.keep || []) : [], cap: i === 0 ? (cfg.capitali || []) : [] });   // cap = icone delle capitali: sempre visibili, sblocca_tutto non le tocca   // kp = luoghi tenuti: sblocca_tutto li mostra tutti sulla mappa   // ro = porte dei luoghi tenuti chiuse da versioni vecchie: il client le riapre   // st = marcatori che il gioco non lascia spegnere: il client li sposta fuori mappa   // hp = "genitori" degli accampamenti militari: spenti loro, sparisce tutto il campo e il suo marcatore
   log("[MAPPA] inviata la mappa pulita a " + userId + ": " + H.length + " marcatori nascosti, " + L.length + " porte chiuse");
 }
 
@@ -736,11 +736,11 @@ function spawnCreatures(userId, name, qty) {
 
   if (!isAdminUser(userId)) { reply("Comando riservato agli admin."); return; }
   const _k0 = normName(name);
-  if (_k0 === "sbloccatutto") {   // sblocca_tutto: solo admin. Mostra tutti i luoghi esplorabili e apre tutte le porte; richiamato di nuovo torna alla mappa dei giocatori
+  if (_k0 === "sbloccatutto") {   // sblocca_tutto: solo admin. Mostra sulla mappa tutti i luoghi tenuti, anche non scoperti (NON apre le serrature); richiamato di nuovo torna alla mappa dei giocatori
     global.__rbMappaUnlock = global.__rbMappaUnlock || {};
     const on = !global.__rbMappaUnlock[userId]; global.__rbMappaUnlock[userId] = on;
     sendTo(userId, { customPacketType: "rbMappaSblocca", on: on });
-    reply(on ? "Mappa SBLOCCATA: vedi tutti i dungeon e i luoghi esplorabili dentro i confini e le loro porte sono aperte (scrivi di nuovo sblocca_tutto per tornare alla mappa dei giocatori)." : "Mappa dei giocatori ripristinata.");
+    reply(on ? "Vista admin: vedi sulla mappa tutti i luoghi tenuti, anche quelli non ancora scoperti. Le porte chiuse restano chiuse (scrivi di nuovo sblocca_tutto per tornare alla mappa dei giocatori)." : "Mappa dei giocatori ripristinata.");
     log("[MAPPA] sblocca_tutto " + (on ? "ATTIVO" : "SPENTO") + " per utente " + userId); return;
   }
   if (_k0 === "riattiva") {   // evoca_riattiva_1 (Windhelm) / evoca_riattiva_2 (Riften): azzera il conteggio e riaccende il forte
@@ -973,6 +973,7 @@ global.__rbCustomPacket = function (userId, rawContent) {
     if (c.customPacketType === "rbDbg") { log("[DBG] console: " + c.text); return; }
     if (c.customPacketType === "rbSpawn") { spawnCreatures(userId, c.name, c.qty); return; }
     if (c.customPacketType === "rbMappaHi") { mappaHi(userId, c); return; }
+    if (c.customPacketType === "rbMappaTestRes") { atOut("[MAPPA-TEST] utente " + userId + " " + JSON.stringify(c)); return; }
   } catch (e) { log("[SPAWN] errore pacchetto: " + e); }
   if (_prevCustom) _prevCustom(userId, rawContent);
 };
@@ -1283,6 +1284,19 @@ function runAutotest(cmd) {
         atOut("  inventario: " + JSON.stringify(((inv && inv.entries) || []).map(function (e) { return e.baseId.toString(16) + "x" + e.count + (e.worn ? "*" : ""); })));
         atOut("  equipaggiamento: " + JSON.stringify(eq).slice(0, 600));
       } catch (e) { atOut("diag errore " + e); }
+    });
+    return;
+  }
+  if (what === "mappa") {   // TEST MAPPA (gm_v25): mappa stato | mappa sblocca 1/0 | mappa porta <hex> | mappa guarda <hex> | mappa esci <hex>
+    const users = onlineUsers(); if (!users.length) { atOut("MAPPA: nessun giocatore online"); return; }
+    const op = parts[1];
+    users.forEach(function (u) {
+      if (op === "sblocca") {
+        global.__rbMappaUnlock = global.__rbMappaUnlock || {}; const on = parts[2] === "1"; global.__rbMappaUnlock[u] = on;
+        sendTo(u, { customPacketType: "rbMappaSblocca", on: on }); atOut("MAPPA: sblocca_tutto " + (on ? "ACCESO" : "SPENTO") + " per utente " + u);
+      } else if (op === "stato" || op === "porta" || op === "guarda" || op === "esci" || op === "prova" || op === "sposta") {
+        sendTo(u, { customPacketType: "rbMappaTest", op: op, id: parts[2] ? parseInt(parts[2], 16) : 0, x: Number(parts[3]) || 0, y: Number(parts[4]) || 0, z: Number(parts[5]) || 0 }); atOut("MAPPA: richiesta '" + op + "' inviata a utente " + u);
+      } else atOut("MAPPA: comando sconosciuto " + op);
     });
     return;
   }
@@ -1749,7 +1763,7 @@ function raccoltaAnnulla(target, caster, t) {
   });
 }
 if (!global.__rbActBase) global.__rbActBase = { prev: (typeof mp.onActivate === "function") ? mp.onActivate : null };
-function rbPortaChiusa(target, caster) {   // [MAPPA] porte dei luoghi eliminati: chiuse anche lato server (a meno che l'admin abbia acceso sblocca_tutto)
+function rbPortaChiusa(target, caster) {   // [MAPPA] porte dei luoghi eliminati: chiuse anche lato server (per tutti, admin compresi)
   try {
     let st = global.__rbPorte; const now = Date.now();
     if (!st || now - st.t > 60000) {
@@ -1759,7 +1773,7 @@ function rbPortaChiusa(target, caster) {   // [MAPPA] porte dei luoghi eliminati
     if (!st.set[target]) return false;
     const u = onlineUsers().find(function (x) { return mp.getUserActor(x) === caster; });
     if (u === undefined) return false;   // non e' un giocatore (NPC/creatura): non tocchiamo
-    if (global.__rbMappaUnlock && global.__rbMappaUnlock[u] && (global.__rbMappaUnlockLock || {})[target] !== 0) { const ul = global.__rbPorte.ul || (global.__rbPorte.ul = (function () { let o = {}; try { const c = JSON.parse(_fs.readFileSync("mappa-config.json", "utf8")); (c.unlock || c.lock || []).forEach(function (i) { o[i] = 1; }); } catch (e) { } return o; })()); if (ul[target]) return false; }
+    // sblocca_tutto NON apre le serrature: nessuna eccezione per gli admin
     global.__rbPorteBloccate = (global.__rbPorteBloccate || 0) + 1;
     log("[MAPPA] porta chiusa " + Number(target).toString(16) + " per utente " + u + " (totale " + global.__rbPorteBloccate + ")");
     return true;
@@ -2090,9 +2104,9 @@ global.__rbFauna = global.__rbFauna || { slots: null, actors: {}, nasciti: 0, ci
 function faunaCarica() {
   const F = global.__rbFauna;
   let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v4.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v2: " + e); }   // v2 = altezze lette da Skyrim.esm
-  if (F.ver !== 5) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
+  if (F.ver !== 6) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
     Object.keys(F.actors).forEach(function (id) { try { mpDestroy(Number(id)); } catch (e) { } });
-    F.actors = {}; F.slots = null; F.ver = 5; log("[FAUNA] punti v4b (spawn tolti dalle zone dei forti) (altezze vere, senza rocce, edifici e alberi): animali vecchi rimossi, ricreo tutto");
+    F.actors = {}; F.slots = null; F.ver = 6; log("[FAUNA] punti v4b (spawn tolti dalle zone dei forti) (altezze vere, senza rocce, edifici e alberi): animali vecchi rimossi, ricreo tutto");
   }
   const nuovo = !F.slots; if (!F.slots) F.slots = [];
   const gia = {}; F.slots.forEach(function (sl) { gia[sl.sp] = 1; });
