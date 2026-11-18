@@ -91,6 +91,7 @@ mp.onDeath = function (actorId, killerId) {
     setTimeout(function () {
       try {
         sanitizeInventory(actorId, "morte");
+        try { if (global.__rbGigPulisci) global.__rbGigPulisci(actorId); } catch (e) { log("[GIGANTI] pulizia loot errore " + e); }   // [gm_v28]
         const inv = mp.get(actorId, "inventory");
         log("[NPC] loot sul cadavere " + actorId.toString(16) + ": " + JSON.stringify(inv && inv.entries ? inv.entries.map(e => e.baseId.toString(16) + "x" + e.count) : []));
       } catch (e) { log("[NPC] lettura loot: " + e); }
@@ -437,7 +438,7 @@ function setHp(id, v) {
   mpSet(id, "percentages", o);
 }
 // Vita desiderata per tipo (barra piena alla nascita; i danni sono moltiplicati per base/vita, base stimata 225, capo 200)
-const ORC_HP = { orco: 36, orco_guerriero: 36, orco_furioso: 29, orco_corazzato: 56, orco_capo: 104 };   // pensate per giocatori con equip in acciaio (spada 8, spadone 17 di danno)
+const ORC_HP = { orco: 36, orco_guerriero: 36, orco_furioso: 29, orco_corazzato: 56, orco_capo: 104, gigante: 200, mammut: 250 };   // [gm_v28] gigante 200 e mammut 250 decisi da Davide il 17/11/2026 (danno invariato; pensati per party da 5-10 con skill tree)   // pensate per giocatori con equip in acciaio (spada 8, spadone 17 di danno)
 const BOSS_N = 40;   // i primi 40 orchi sono normali/furiosi, il 41esimo (n = 40) e' il capo, dal 42esimo solo corazzati
 const STEEL_SWORD = 0x13989, STEEL_GREATSWORD = 0x13987, STEEL_SHIELD = 0x13955;
 let _wid = null;
@@ -461,7 +462,7 @@ function equipOrc(id, kind) {
     log("[EQUIP] " + kind + " " + id.toString(16) + ": tolti [" + before.join(",") + "], messi " + (twoH ? "spadone" : "spada+scudo") + " d'acciaio");
   } catch (e) { log("[EQUIP] errore " + e); }
 }
-const ORC_BASE_HP = { orco: 225, orco_guerriero: 225, orco_furioso: 225, orco_corazzato: 225, orco_cacciatore: 225, orco_capo: 200 };
+const ORC_BASE_HP = { orco: 225, orco_guerriero: 225, orco_furioso: 225, orco_corazzato: 225, orco_cacciatore: 225, orco_capo: 200, gigante: 250, mammut: 500 };   // giganti/mammut: vita del server = vita base della razza (GiantRace 250, MammothRace 500) + scarto ACBS 0
 // Barra piena: l'orco nasce con percentuale 1 (barra rossa PIENA). Il server toglie danno/base (225), quindi ogni calo viene
 // moltiplicato per base/vita_voluta: cosi' i colpi necessari sono quelli di una vita di "ORC_HP" ma la barra parte da piena.
 global.__rbHpScale = global.__rbHpScale || {};
@@ -482,6 +483,7 @@ global.__rbScaleTimer = setInterval(function () {
     try {
       const hp = getHp(id);
       if (typeof hp !== "number" || hp <= 0) { delete T[k]; return; }
+      if (sc.ignora && Date.now() < sc.ignora) { sc.last = hp; return; }   // [gm_v28] vita cambiata dal server (prove, rientro a vita piena): non e' un colpo
       if (hp < sc.last - 0.00005) {
         const raw = sc.last - hp;
         let f = sc.mul, blk = false;
@@ -692,6 +694,7 @@ global.__rbCustomPacket = function (userId, rawContent) {
     if (c.customPacketType === "rbGodHit") {   // colpo di un giocatore: misura il danno reale; con godmod o spadone daedrico l'NPC muore subito (danno 999)
       const gp = profileOfUser(userId), tid = Number(c.id);
       if (!tid || onlineUsers().some(function (u) { return mp.getUserActor(u) === tid; })) return;
+      try { if (global.__rbGigHit) global.__rbGigHit(userId, tid, c.src); } catch (e) { log("[GIGANTI] colpo errore " + e); }   // [gm_v28]
       let hp0; try { hp0 = getHp(tid); } catch (e) { }
       if (c.blocked) markBlocked(tid);
       let okSword = false;
@@ -724,7 +727,7 @@ function mappaHi(userId, c) {
   let cfg; try { cfg = JSON.parse(_fs.readFileSync("mappa-config.json", "utf8")); } catch (e) { log("[MAPPA] nessun mappa-config.json: " + e); return; }
   const H = cfg.hide || [], L = cfg.lock || [], UH = cfg.unhide || H, UL = cfg.unlock || L, CH = 150;
   const n = Math.max(Math.ceil(H.length / CH), Math.ceil(L.length / CH), Math.ceil(UH.length / CH), Math.ceil(UL.length / CH), 1);
-  for (let i = 0; i < n; i++) sendTo(userId, { customPacketType: "rbMappa", first: i === 0, last: i === n - 1, hide: H.slice(i * CH, (i + 1) * CH), lock: L.slice(i * CH, (i + 1) * CH), uh: UH.slice(i * CH, (i + 1) * CH), ul: UL.slice(i * CH, (i + 1) * CH), hp: i === 0 ? (cfg.hideParents || []) : [], st: i === 0 ? (cfg.stubborn || []) : [], ro: i === 0 ? (cfg.reopen || []) : [], kp: i === 0 ? (cfg.keep || []) : [], cap: i === 0 ? (cfg.capitali || []) : [] });   // cap = icone delle capitali: sempre visibili, sblocca_tutto non le tocca   // kp = luoghi tenuti: sblocca_tutto li mostra tutti sulla mappa   // ro = porte dei luoghi tenuti chiuse da versioni vecchie: il client le riapre   // st = marcatori che il gioco non lascia spegnere: il client li sposta fuori mappa   // hp = "genitori" degli accampamenti militari: spenti loro, sparisce tutto il campo e il suo marcatore
+  for (let i = 0; i < n; i++) sendTo(userId, { customPacketType: "rbMappa", first: i === 0, last: i === n - 1, hide: H.slice(i * CH, (i + 1) * CH), lock: L.slice(i * CH, (i + 1) * CH), uh: UH.slice(i * CH, (i + 1) * CH), ul: UL.slice(i * CH, (i + 1) * CH), hp: i === 0 ? (cfg.hideParents || []) : [], st: i === 0 ? (cfg.stubborn || []) : [], ro: i === 0 ? (cfg.reopen || []) : [], kp: i === 0 ? (cfg.keep || []) : [], cap: i === 0 ? (cfg.capitali || []) : [], mv: i === 0 ? (cfg.mv || []) : [] });   // mv = marcatori spostati (accampamenti dei giganti custom)   // cap = icone delle capitali: sempre visibili, sblocca_tutto non le tocca   // kp = luoghi tenuti: sblocca_tutto li mostra tutti sulla mappa   // ro = porte dei luoghi tenuti chiuse da versioni vecchie: il client le riapre   // st = marcatori che il gioco non lascia spegnere: il client li sposta fuori mappa   // hp = "genitori" degli accampamenti militari: spenti loro, sparisce tutto il campo e il suo marcatore
   log("[MAPPA] inviata la mappa pulita a " + userId + ": " + H.length + " marcatori nascosti, " + L.length + " porte chiuse");
 }
 
@@ -826,6 +829,22 @@ function spawnCreatures(userId, name, qty) {
     const dx = _pp[0] - f.cx, dy = _pp[1] - f.cy, L = Math.hypot(dx, dy), R = Number(qty) * 100;
     mpSet(playerId, "locationalData", { cellOrWorldDesc: WORLD, pos: [f.cx + dx / L * R, f.cy + dy / L * R, _pp[2] + 120], rot: [0, 0, 0] });
     reply("Sei a " + R + " unita dal centro di Riften."); log("[FORTI] teletrasporto a raggio " + R); return;
+  }
+  if (_k0 === "vaigiganti") {   // [gm_v28] evoca_vaigiganti_N (1-4): ti porta sul bordo dell'accampamento dei giganti N (fuori dall'area d'attacco)
+    const c = gigCampi().find(function (x) { return x.id === Number(qty); });
+    if (!c) { reply("Accampamento non valido (1-4)."); return; }
+    mpSet(playerId, "locationalData", { cellOrWorldDesc: WORLD, pos: [c.x + 4500, c.y, c.z + 2500], rot: [0, 0, 0] });
+    reply("Sei vicino all'accampamento " + c.id + ": " + c.nome + " (" + c.feudo + ")."); log("[GIGANTI] teletrasporto al campo " + c.id); return;
+  }
+  if (_k0 === "vaiforziere") {   // [gm_v28] evoca_vaiforziere_N: ti porta accanto ai forzieri dell'accampamento N (prova)
+    const c = gigCampi().find(function (x) { return x.id === Number(qty); }); const f = c && (c.forzieri || [])[0];
+    if (!f) { reply("Accampamento non valido (1-4)."); return; }
+    mpSet(playerId, "locationalData", { cellOrWorldDesc: WORLD, pos: [f.x + 250, f.y, f.z + 150], rot: [0, 0, 0] });
+    reply("Sei accanto ai forzieri dell'accampamento " + c.id + "."); return;
+  }
+  if (_k0 === "giganti") {   // [gm_v28] evoca_giganti_0 = stato, evoca_giganti_1 = rinascita subito (solo i morti)
+    if (Number(qty) === 1) { reply("Giganti: rinascono subito " + gigCiclo("comando") + " creature."); return; }
+    reply(global.__rbGigStato()); return;
   }
   if (_k0 === "vaiforte") {   // evoca_vaiforte_1 (Windhelm) / evoca_vaiforte_2 (Riften): ti porta poco fuori dal forte, prima della zona di guerra
     const _inner = Number(qty) >= 10; const f = FORTS.find(x => x.id === (Number(qty) % 10));
@@ -954,6 +973,7 @@ function spawnCreatures(userId, name, qty) {
       mpSet(id, "private.rbEvoked", true);
       try { mpSet(id, "private.rbFauna", CREATURES[key]); } catch (e) { }
       if (TITLES[key]) mpSet(id, "private.rbTitle", TITLES[key]);
+      if (key === "gigante" || key === "mammut") { applyOrcHp(id, key); if (key === "gigante") mpSet(id, "private.rbGig", true); }   // [gm_v28] stessa vita dei giganti degli accampamenti
       if (ORC_BASE[kOrc] !== undefined) { ORCS[id] = { fort: 0, kind: kOrc, tipo: "staff", slot: null }; applyOrcHp(id, kOrc); (function (aid, k) { setTimeout(function () { equipOrc(aid, k); }, 900); })(id, kOrc); }
       (function (aid) { setTimeout(function () { sanitizeInventory(aid, "nascita"); }, 700); })(id);
       ok++;
@@ -1338,6 +1358,7 @@ function runAutotest(cmd) {
     };
     tick(); return;
   }
+  if (what === "giganti") { try { global.__rbGigCmd(parts); } catch (e) { atOut("giganti errore " + e); } return; }
   if (what === "fauna") { try { global.__rbFaunaCmd(parts); } catch (e) { atOut("fauna errore " + e); } return; }
   if (what === "macellaio") { try { global.__rbPesciCmd(parts); } catch (e) { atOut("macellaio errore " + e); } return; }
   if (what === "raccolta") {   // raccolta <riferimento in esadecimale>: dice cosa e' e se verrebbe bloccato; raccolta scan: elenca le basi di piante/ingredienti/miniere
@@ -1819,6 +1840,7 @@ function rbPortaChiusa(target, caster) {   // [MAPPA] porte dei luoghi eliminati
 }
 mp.onActivate = function (target, caster) {
   try { if (rbPortaChiusa(target, caster)) return false; } catch (e) { }
+  try { if (global.__rbGigChiusi && global.__rbGigChiusi[target] && onlineUsers().some(function (u) { return mp.getUserActor(u) === caster; })) { log("[GIGANTI] forziere " + Number(target).toString(16) + " chiuso: il server non lo apre"); return false; } } catch (e) { }   // [gm_v28] forzieri dei giganti chiusi a chiave
   try {
     const R = global.__rbRaccolta;
     if (R && R.off) {
@@ -2153,10 +2175,10 @@ const FAUNA_SPECIE = { coniglio: 0x0006DC9D, cervo: 0x000CF89D, capra: 0x0002EBE
 global.__rbFauna = global.__rbFauna || { slots: null, actors: {}, nasciti: 0, cicli: 0 };
 function faunaCarica() {
   const F = global.__rbFauna;
-  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v6.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v6: " + e); }   // [gm_v27] v6 = punti su terreno percorribile (niente pareti o versanti da scalare), quote vere da Skyrim.esm, lontani da forti e luoghi sicuri
-  if (F.ver !== 8) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
+  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v7.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v7: " + e); }   // [gm_v28] v7 = v6 con 2 punti spostati lontano dagli accampamenti dei giganti (volpe artica Riften 4, alce Riften 2)   // [gm_v27] v6 = punti su terreno percorribile (niente pareti o versanti da scalare), quote vere da Skyrim.esm, lontani da forti e luoghi sicuri
+  if (F.ver !== 9) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
     Object.keys(F.actors).forEach(function (id) { try { mpDestroy(Number(id)); } catch (e) { } });
-    F.actors = {}; F.slots = null; F.ver = 8; log("[FAUNA] punti v6 (terreno percorribile, niente pareti): animali vecchi rimossi, ricreo tutto");
+    F.actors = {}; F.slots = null; F.ver = 9; try { (global.__rbGiganti && global.__rbGiganti.posti || []).forEach(function (sl) { sl.ids = []; }); } catch (e) { } log("[FAUNA] punti v7: animali vecchi rimossi, ricreo tutto");
   }
   const nuovo = !F.slots; if (!F.slots) F.slots = [];
   const gia = {}; F.slots.forEach(function (sl) { gia[sl.sp] = 1; });
@@ -2216,7 +2238,7 @@ function faunaInvia() {
       ids.forEach(function (sid) {
         const sl = F.actors[sid]; if (!sl) return;
         if (Math.hypot(p.pos[0] - sl.x, p.pos[1] - sl.y) > 22000) return;
-        list.push([Number(sid), sl.x, sl.y, sl.z, FAUNA_RAGGI[sl.sp] || FAUNA_RAGGIO, (FAUNA_OSTILI[sl.sp] || 0)]);
+        list.push([Number(sid), sl.x, sl.y, sl.z, FAUNA_RAGGI[sl.sp] || FAUNA_RAGGIO, (sl.ostile !== undefined ? sl.ostile : (FAUNA_OSTILI[sl.sp] || 0)), sl.aggro || null, sl.bersaglio !== undefined ? sl.bersaglio : null, sl.campo ? 1 : 0]);   // 8 = 1: creature degli accampamenti (calme finche' il server non dice di attaccare)   // [gm_v28] 6 = distanza d'attacco, 7 = bersaglio imposto (giganti)   // [gm_v28] ostile per singolo animale (giganti: dipende dall'area e da chi li colpisce)
       });
       const tp = {}; playersList(users).forEach(function (q) { if (!q.fake && q.world === 0x3c) tp[q.pid] = q.actor; });
       if (list.length) sendTo(p.user, { customPacketType: "rbFauna", list: list, tp: tp });
@@ -2228,6 +2250,652 @@ global.__rbFaunaTimer = setInterval(function () { try { faunaCiclo("30 minuti");
 if (global.__rbFaunaSend) clearInterval(global.__rbFaunaSend);
 global.__rbFaunaSend = setInterval(faunaInvia, 3000);
 if (!global.__rbFaunaBoot) { global.__rbFaunaBoot = true; setTimeout(function () { try { faunaCiclo("avvio"); } catch (e) { log("[FAUNA] errore avvio " + e); } }, 30000); }
+// ================== ACCAMPAMENTI DEI GIGANTI [gm_v28] ==================
+// Regole di Davide (15/11/2026): 4 accampamenti custom sulle montagne (2 Windhelm, 2 Riften), punti in giganti-punti.json.
+// v2 (17/11/2026): punti e quote VERE da Skyrim.esm (comando "giganti esm"): ogni membro ha il suo posto in piano con la sua quota.
+// Ogni accampamento: 2 giganti + 3 mammut (deciso il 17/11/2026, prima 3+4). Ogni ora e mezza si contano e rinascono SOLO quelli morti.
+// Comportamento (IA di Skyrim + sistema rbFauna gia' nel client):
+//  - finche' nessun giocatore entra nell'area (GIG_AREA dal centro) pascolano tranquilli (IA di Skyrim);
+//  - appena un giocatore entra nell'area, i GIGANTI di quell'accampamento attaccano (tipo 2 = attacco a vista) e inseguono;
+//  - i MAMMUT pascolano tranquilli finche' non vengono colpiti o un giocatore gli arriva entro 1500 (bestiame dei giganti);
+//  - lore: i giganti hanno sensi poco sviluppati: se ne colpisci uno da lontano, gli altri lontani non se ne accorgono (si puo' attirarli uno alla volta);
+//  - oltre il limite di inseguimento (~8000) tornano a piedi al loro posto e, arrivati, riprendono la vita PIENA (anti-abuso);
+//  - chi viene colpito da lontano (freccia/incantesimo) lascia il bersaglio "piu' vicino" e reagisce come in Skyrim contro chi l'ha colpito;
+//  - quando tutti i giocatori sono oltre il limite, l'accampamento torna tranquillo.
+const GIG_SPECIE = { gigante: 0x00023AAE, mammut: 0x00023AB4 };
+const GIG_RAGGIO = 7000;   // il client li riporta a casa oltre 7000 x 1,15 = ~8000 unita' (limite di inseguimento), rientrano sotto 7000 x 0,9
+const GIG_AREA = 3500;     // area dell'accampamento: entrandoci si viene attaccati
+const GIG_DISTANZA = 900;  // colpo da piu' lontano di cosi' = colpo a distanza (arco, incantesimo)
+const GIG_MAMMUT_VICINO = 1500;   // i mammut reagiscono solo se colpiti o con un giocatore entro questa distanza (deciso il 17/11/2026)
+const GIG_CICLO_MS = 90 * 60 * 1000;   // [g41] 18/11/2026: giganti e mammut rinascono ogni ora e mezza
+const GIG_VER = 7;   // v3 (17/11/2026): 2 giganti + 3 mammut per accampamento
+FAUNA_RAGGI.gigante = GIG_RAGGIO; FAUNA_RAGGI.mammut = GIG_RAGGIO;
+global.__rbGiganti = global.__rbGiganti || { posti: null, nati: 0, cicli: 0, rientri: 0 };
+function gigTerreno(x, y) {   // quota del terreno da Skyrim.esm (giganti-esm.json: celle attorno agli accampamenti)
+  if (!global.__rbGigEsm) { try { global.__rbGigEsm = JSON.parse(_fs.readFileSync("giganti-esm.json", "utf8")).celle; } catch (e) { global.__rbGigEsm = {}; } }
+  const gx = Math.floor(x / 4096), gy = Math.floor(y / 4096); let H = global.__rbGigEsm[gx + "," + gy];
+  if (!H) { if (!global.__rbGigEsmT) { try { const T = JSON.parse(_fs.readFileSync("giganti-esm-tutto.json", "utf8")); global.__rbGigEsmT = T.celle || T; } catch (e) { global.__rbGigEsmT = {}; } } H = global.__rbGigEsmT[gx + "," + gy]; }
+  if (!H) return null;
+  const fx = (x - gx * 4096) / 128, fy = (y - gy * 4096) / 128, c0 = Math.min(Math.floor(fx), 31), r0 = Math.min(Math.floor(fy), 31), tx = fx - c0, ty = fy - r0;
+  const h = function (r, c) { return H[r * 33 + c]; };
+  return Math.round(h(r0, c0) * (1 - tx) * (1 - ty) + h(r0, c0 + 1) * tx * (1 - ty) + h(r0 + 1, c0) * (1 - tx) * ty + h(r0 + 1, c0 + 1) * tx * ty);
+}
+function gigCampi() {
+  try { return JSON.parse(_fs.readFileSync("giganti-punti.json", "utf8")).campi || []; } catch (e) { log("[GIGANTI] nessun giganti-punti.json: " + e); return []; }
+}
+function gigPosti() {   // un "posto" per ogni membro, con la quota vera del suo punto (giganti-punti.json -> membri)
+  const G = global.__rbGiganti;
+  if (G.ver !== GIG_VER) {   // punti cambiati: via i giganti nati sui punti vecchi, si rifanno
+    (G.posti || []).forEach(function (sl) { sl.ids.forEach(function (id) { try { delete global.__rbFauna.actors[id]; mpDestroy(id); } catch (e) { } }); });
+    G.posti = null; G.ver = GIG_VER; log("[GIGANTI] punti v" + GIG_VER + " (quote vere da Skyrim.esm): giganti vecchi rimossi");
+  }
+  if (G.posti) return G.posti;
+  G.posti = [];
+  gigCampi().forEach(function (c) {
+    const vicino = FORTS.filter(function (f) { return Math.hypot(c.x - f.cx, c.y - f.cy) < GREEN_R + GIG_RAGGIO * 1.15 + 1500; })[0];
+    if (vicino) { log("[GIGANTI] accampamento " + c.id + " SCARTATO: troppo vicino a " + vicino.name); return; }
+    (c.membri || []).forEach(function (m, k) {
+      G.posti.push({ sp: m.sp, fe: c.feudo, campo: c.id, cx: c.x, cy: c.y, nomeCampo: c.nome, idx: k, x: m.x, y: m.y, z: m.z, n: 1, ids: [], fuori: {}, ostile: 0, colpiti: {} });
+    });
+  });
+  log("[GIGANTI] accampamenti caricati: " + G.posti.length + " posti (" + gigCampi().length + " accampamenti)");
+  return G.posti;
+}
+function gigNasci(sl) {
+  const id = mpPlace(GIG_SPECIE[sl.sp]);
+  mpSet(id, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl.x, sl.y, sl.z + 60], rot: [0, 0, Math.floor(Math.random() * 360)] });   // quota vera del terreno + 60
+  mpSet(id, "private.rbEvoked", true);   // tolti a ogni riavvio del server e rifatti
+  mpSet(id, "private.rbTitle", sl.sp === "gigante" ? "Gigante" : "Mammut");
+  if (sl.sp === "gigante") mpSet(id, "private.rbGig", true);
+  try { setHp(id, 1); } catch (e) { }
+  applyOrcHp(id, sl.sp);   // vita voluta: gigante 150, mammut 200 (barra piena)
+  global.__rbFauna.actors[id] = sl; sl.ids.push(id); global.__rbGiganti.nati++;
+  return id;
+}
+// ---------- FORZIERI DI RICOMPENSA [gm_v28] ----------
+// 2 per accampamento (giganti-punti.json -> forzieri), proposta di team/david/db/spawn_rules.json (giant_camps.chests).
+// Quando i giganti/mammut di un accampamento tornano in vita (ciclo di 1 ora e mezza) il contenuto dei suoi forzieri viene RIFATTO da capo: niente accumulo.
+const GIG_FORZIERE_BASE = { fuoco: 0x000774C6, tesoro: 0x000774BF };   // TreasGiantChest / TreasGiantChestBoss (il contenuto di Skyrim viene sostituito)
+const GIG_OGGETTI = { oro: 0xF, cheese: 0x669A3, zanna: 0x3AD6C, dito: 0x3AD64, pozioneCura: 0x3EADE, carne: 0x669A2, carneCotta: 0x722BD, pelleCervo: 0x3AD90, pellicciaLupo: 0x3AD74,
+  gemme: [0x63B45, 0x63B46, 0x63B42, 0x63B44, 0x63B43], diamante: 0x63B47, lingottoAcciaio: 0x5ACE5, anelloArgento: 0x3B97C, pozioneFreddo: 0x39B8A };
+function gigTiraForziere(tipo) {
+  const O = GIG_OGGETTI, e = []; const add = function (id, n) { if (n > 0) e.push({ baseId: id, count: n }); }; const ch = function (p) { return Math.random() < p; };
+  if (tipo === "fuoco") {
+    add(O.cheese, 3); add(O.zanna, 2); add(O.dito, 2); add(O.oro, 250);
+    if (ch(0.45)) add(O.pozioneCura, 2);
+    if (ch(0.6)) add(ch(0.5) ? O.carne : O.carneCotta, 3);
+    if (ch(0.4)) add(ch(0.5) ? O.pelleCervo : O.pellicciaLupo, 2);
+  } else {
+    add(O.oro, 400); add(O.gemme[Math.floor(Math.random() * O.gemme.length)], 1);
+    if (ch(0.5)) add(O.gemme[Math.floor(Math.random() * O.gemme.length)], 1);
+    if (ch(0.1)) add(O.diamante, 1);
+    if (ch(0.4)) add(O.lingottoAcciaio, 3);
+    if (ch(0.15)) add(O.anelloArgento, 1);
+    if (ch(0.3)) add(O.pozioneFreddo, 1);
+  }
+  const m = {}; e.forEach(function (x) { m[x.baseId] = (m[x.baseId] || 0) + x.count; });
+  return Object.keys(m).map(function (k) { return { baseId: Number(k), count: m[k] }; });
+}
+global.__rbGigForzieri = global.__rbGigForzieri || null;
+// ---------- FORZIERI CHIUSI A CHIAVE [gm_v28] (deciso da Davide il 17/11/2026, contro power play e abusi) ----------
+// Il reward si prende quando si ripulisce l'accampamento: i forzieri sono chiusi con una serratura MEDIA (Esperto/Adept, livello 50)
+// e servono i grimaldelli. Appena un giocatore prova a scassinare, uno dei giganti vivi dell'accampamento lo prende come bersaglio.
+// Ogni volta che i forzieri si riempiono, si richiudono. Il minigioco e' quello di Skyrim (client); il server non apre un forziere chiuso.
+const GIG_SERRATURA = 50, GRIMALDELLO = 0x0000000A;
+global.__rbGigChiusi = global.__rbGigChiusi || {};
+function gigForziereDi(id) { const F = global.__rbGigForzieri || {}; const k = Object.keys(F).find(function (x) { return Number(F[x]) === Number(id); }); return k ? { k: k, campo: Number(k.split("_")[0]) } : null; }
+function gigInviaForzieri() {
+  try {
+    const ids = Object.keys(global.__rbGigChiusi).map(Number); const tutti = Object.values(global.__rbGigForzieri || {}).map(Number);
+    onlineUsers().forEach(function (u) { sendTo(u, { customPacketType: "rbGigForzieri", chiusi: ids, tutti: tutti, lvl: GIG_SERRATURA }); });
+  } catch (e) { }
+}
+if (global.__rbGigForzTimer) clearInterval(global.__rbGigForzTimer);
+global.__rbGigForzTimer = setInterval(gigInviaForzieri, 4000);
+(function () {   // pacchetti del client: tentativo di scasso e serratura aperta
+  const prev = global.__rbCustomPacket;
+  global.__rbCustomPacket = function (userId, raw) {
+    let c = null; try { c = JSON.parse(raw); } catch (e) { }
+    if (c && c.customPacketType === "rbGigScasso") { try { gigScasso(userId, Number(c.id)); } catch (e) { log("[GIGANTI] scasso errore " + e); } return; }
+    if (c && c.customPacketType === "rbGigAperto") { try { gigAperto(userId, Number(c.id), Number(c.usati) || 0, c.aperto !== false); } catch (e) { log("[GIGANTI] apertura errore " + e); } return; }
+    if (prev) return prev(userId, raw);
+  };
+})();
+function gigScasso(userId, id) {
+  const fz = gigForziereDi(id); if (!fz || !global.__rbGigChiusi[id]) return;
+  global.__rbGigScassi = global.__rbGigScassi || {}; global.__rbGigScassi[id + ":" + userId] = Date.now();   // [g40] ricorda chi ha davvero aperto il minigioco
+  const pid = profileOfUser(userId); let pp = null; try { pp = playersList([userId])[0].pos; } catch (e) { }
+  const giganti = (global.__rbGiganti.posti || []).filter(function (sl) { return sl.campo === fz.campo && sl.sp === "gigante" && sl.ids.some(faunaVivo); });
+  if (!giganti.length) { log("[GIGANTI] scasso forziere " + fz.k + " da " + pid + ": nessun gigante vivo, accampamento ripulito"); return; }
+  giganti.sort(function (a, b) { const da = pp ? Math.hypot(a.x - pp[0], a.y - pp[1]) : 0, db = pp ? Math.hypot(b.x - pp[0], b.y - pp[1]) : 0; return da - db; });
+  const sl = giganti[0], gid = sl.ids.find(faunaVivo);
+  sl.colpiti[gid] = { pid: pid, t: Date.now() }; sl.allarme = true;
+  log("[GIGANTI] scasso forziere " + fz.k + " da " + pid + ": il gigante " + Number(gid).toString(16) + " lo prende come bersaglio");
+}
+function gigAperto(userId, id, usati, aperto) {
+  const fz = gigForziereDi(id); if (!fz) return;
+  const pid = profileOfUser(userId), act = mp.getUserActor(userId);
+  if (usati > 0) {   // grimaldelli rotti nel minigioco: tolti anche sul server (altrimenti tornerebbero)
+    try { const inv = mp.get(act, "inventory"); const out = (inv.entries || []).map(function (e) { return e.baseId === GRIMALDELLO ? { baseId: e.baseId, count: Math.max(0, e.count - usati), worn: e.worn } : e; }).filter(function (e) { return e.count > 0; }); mpSet(act, "inventory", { entries: out }); } catch (e) { log("[GIGANTI] grimaldelli errore " + e); }
+  }
+  if (!aperto) { log("[GIGANTI] forziere " + fz.k + ": tentativo fallito di " + pid + " (grimaldelli rotti " + usati + ")"); return; }
+  const t0 = (global.__rbGigScassi || {})[id + ":" + userId];
+  if (global.__rbGigChiusi[id] && !(t0 && Date.now() - t0 < 600000)) { log("[GIGANTI] forziere " + fz.k + ": " + pid + " dice di averlo aperto SENZA aver fatto lo scasso: ignorato (resta chiuso)"); gigInviaForzieri(); return; }   // [g40] anti-abuso
+  log("[GIGANTI] forziere " + fz.k + ": " + (global.__rbGigChiusi[id] ? "SCASSINATO" : "gia' aperto") + " da " + pid + " (grimaldelli rotti " + usati + ")");
+  delete global.__rbGigChiusi[id]; gigInviaForzieri();
+}
+
+function gigForzieri(motivo, soloCampi) {   // [g41] soloCampi: rifa' il contenuto solo di questi campi (gli altri restano come sono)
+  if (!global.__rbGigForzieri) { try { global.__rbGigForzieri = JSON.parse(_fs.readFileSync("giganti-forzieri.json", "utf8")); } catch (e) { global.__rbGigForzieri = {}; } }
+  const F = global.__rbGigForzieri; let nuovi = 0, pieni = 0;
+  gigCampi().forEach(function (c) {
+    (c.forzieri || []).forEach(function (f) {
+      const k = c.id + "_" + f.tipo; let id = F[k];
+      let pos0 = null; try { pos0 = id ? mp.get(id, "pos") : null; } catch (e) { pos0 = null; }
+      const fuoriPosto = !pos0 || Math.hypot(pos0[0] - f.x, pos0[1] - f.y) > 50 || Math.abs(pos0[2] - (f.z + 5)) > 15;
+      if (!pos0 || fuoriPosto) {
+        // i riferimenti (non attori) non si spostano con mp.set: si usa Papyrus del server (PlaceAtMe sul gigante del campo, poi SetPosition)
+        const forma = function (x) { let d = null; try { d = mp.getDescFromId(x); } catch (e) { } if (!d) d = x.toString(16) + ":Skyrim.esm"; return { type: "form", desc: d }; };
+        try { if (id) mp.callPapyrusFunction("method", "ObjectReference", "Disable", forma(id), [false]); } catch (e) { }
+        const ancora = (global.__rbGiganti.posti || []).filter(function (sl) { return sl.campo === c.id; }).map(function (sl) { return sl.ids.find(faunaVivo); }).filter(Boolean)[0];
+        let nuovo = null;
+        if (!id) { id = mpPlace(GIG_FORZIERE_BASE[f.tipo]); F[k] = id; nuovi++; }   // forziere nuovo (mp.place), poi spostato con MoveTo
+        if (!nuovo && id) {   // piano B: sposto il forziere gia' creato
+          try { mp.callPapyrusFunction("method", "ObjectReference", "MoveTo", forma(id), [forma(ancora), f.x - (mp.get(ancora, "pos") || [0])[0], f.y - (mp.get(ancora, "pos") || [0, 0])[1], f.z + 5 - (mp.get(ancora, "pos") || [0, 0, 0])[2], true]); log("[GIGANTI] forziere " + k + ": MoveTo fatto"); } catch (e) { log("[GIGANTI] forziere " + k + " MoveTo fallito: " + e); }
+          try { mp.callPapyrusFunction("method", "ObjectReference", "Enable", forma(id), [false]); } catch (e) { }
+        }
+        if (nuovo) {
+          id = nuovo; F[k] = id; nuovi++;
+          try { mp.callPapyrusFunction("method", "ObjectReference", "SetPosition", forma(id), [f.x, f.y, f.z + 5]); } catch (e) { log("[GIGANTI] forziere " + k + " SetPosition fallito: " + e); }
+          try { mp.callPapyrusFunction("method", "ObjectReference", "SetAngle", forma(id), [0, 0, f.rot || 0]); } catch (e) { }
+        }
+      }
+      if (soloCampi && !soloCampi[c.id]) return;   // [g41] in questo campo non e' rinato nessuno: forziere lasciato com'e'
+      global.__rbGigChiusi[id] = true;   // ogni riempimento lo richiude
+      try { mpSet(id, "inventory", { entries: gigTiraForziere(f.tipo) }); pieni++; } catch (e) { log("[GIGANTI] forziere " + k + " errore riempimento " + e); }
+    });
+  });
+  try { _fs.writeFileSync("giganti-forzieri.json", JSON.stringify(F)); } catch (e) { }
+  log("[GIGANTI] forzieri (" + motivo + "): " + pieni + " riempiti, " + nuovi + " creati");
+  gigInviaForzieri();
+}
+// ---------- DECOR DEGLI ACCAMPAMENTI [gm_v28] (17/11/2026: "gli accampamenti come in Skyrim") ----------
+// Copia dell'accampamento di giganti di Skyrim (fuoco, pietre, pali con ossa, pelli, spiedi, fieno) messa al centro di ogni accampamento custom,
+// con le quote adattate al terreno vero (giganti-decor.json, generato da Skyrim.esm). Si piazza una volta sola (id in giganti-decor-ids.json).
+function gigDecor(rifai) {
+  let D = {}; try { D = JSON.parse(_fs.readFileSync("giganti-decor.json", "utf8")); } catch (e) { log("[GIGANTI] nessun giganti-decor.json"); return; }
+  let IDS = {}; try { IDS = JSON.parse(_fs.readFileSync("giganti-decor-ids.json", "utf8")); } catch (e) { }
+  const forma = function (x) { let d = null; try { d = mp.getDescFromId(x); } catch (e) { } if (!d) d = x.toString(16) + ":Skyrim.esm"; return { type: "form", desc: d }; };
+  const F = global.__rbGigForzieri || {}; const coda = [];
+  Object.keys(D).forEach(function (cid) {
+    if (IDS[cid] && IDS[cid].length && !rifai) return;
+    (IDS[cid] || []).forEach(function (id) { try { mp.callPapyrusFunction("method", "ObjectReference", "Disable", forma(id), [false]); } catch (e) { } });
+    IDS[cid] = [];
+    const ancora = F[cid + "_fuoco"]; if (!ancora) { log("[GIGANTI] decor campo " + cid + ": manca il forziere (ancora)"); return; }
+    D[cid].forEach(function (e) { coda.push({ cid: cid, e: e, ancora: ancora }); });
+  });
+  if (!coda.length) return;
+  let i = 0, ok = 0, err = 0;
+  const t = setInterval(function () {
+    for (let c = 0; c < 8 && i < coda.length; c++, i++) {
+      const q = coda[i];
+      try {
+        const id = mpPlace(q.e.base); const ap = mp.get(q.ancora, "pos");
+        mp.callPapyrusFunction("method", "ObjectReference", "MoveTo", forma(id), [forma(q.ancora), q.e.x - ap[0], q.e.y - ap[1], q.e.z - ap[2], false]);
+        mp.callPapyrusFunction("method", "ObjectReference", "SetAngle", forma(id), [q.e.r[0] || 0, q.e.r[1] || 0, q.e.r[2] || 0]);
+        IDS[q.cid].push(id); ok++;
+      } catch (x) { err++; if (err < 5) log("[GIGANTI] decor " + q.e.ed + " errore " + x); }
+    }
+    if (i >= coda.length) { clearInterval(t); try { _fs.writeFileSync("giganti-decor-ids.json", JSON.stringify(IDS)); } catch (e) { } log("[GIGANTI] decor piazzato: " + ok + " oggetti, " + err + " errori"); }
+  }, 250);
+}
+function gigCiclo(motivo) {
+  try { faunaCarica(); } catch (e) { }   // prima la fauna (che al cambio versione rifa' tutto), poi i giganti
+  const G = global.__rbGiganti, posti = gigPosti(); G.cicli++;
+  const coda = [];
+  posti.forEach(function (sl) {
+    sl.ids = sl.ids.filter(function (id) { if (faunaVivo(id)) return true; delete global.__rbFauna.actors[id]; return false; });
+    if (!sl.ids.length) coda.push(sl);
+  });
+  log("[GIGANTI] ciclo (" + motivo + "): posti " + posti.length + ", rinascono " + coda.length);
+  const conForzieri = motivo !== "prova" && motivo.indexOf("prova") !== 0;
+  // [g41] 18/11/2026: i forzieri di un accampamento si rifanno appena i suoi giganti/mammut tornano in vita (all'avvio del server: tutti)
+  const campiRinati = {}; coda.forEach(function (sl) { campiRinati[sl.campo] = true; });
+  const soloCampi = motivo === "avvio" ? null : campiRinati;   // i forzieri si rifanno (non nelle rinascite delle prove), DOPO le nascite (servono i giganti vivi per spostarli)
+  let i = 0;
+  const t = setInterval(function () {   // 2 alla volta: giganti e mammut sono pesanti
+    for (let c = 0; c < 2 && i < coda.length; c++, i++) { try { gigNasci(coda[i]); } catch (e) { log("[GIGANTI] nascita errore " + e); } }
+    if (i >= coda.length) { clearInterval(t); if (conForzieri) setTimeout(function () { try { gigForzieri(motivo, soloCampi); gigDecor(false); } catch (e) { log("[GIGANTI] forzieri errore " + e); } }, 1500); }
+  }, 700);
+  return coda.length;
+}
+// ogni 2 s: area d'attacco, colpiti da lontano, rientro a vita piena
+function gigControlla() {
+  try {
+    const posti = global.__rbGiganti.posti || []; if (!posti.length) return;
+    const users = onlineUsers();
+    const pl = playersList(users).filter(function (p) { return (!p.fake || global.__rbGigProvaFake) && p.world === 0x3c && p.pos; });   // i giocatori finti contano solo durante "giganti prova"
+    const now = Date.now(); const campi = {};
+    posti.forEach(function (sl) { if (!campi[sl.campo]) campi[sl.campo] = { cx: sl.cx, cy: sl.cy, posti: [] }; campi[sl.campo].posti.push(sl); });
+    Object.keys(campi).forEach(function (k) {
+      const c = campi[k];
+      const dentro = pl.some(function (p) { return Math.hypot(p.pos[0] - c.cx, p.pos[1] - c.cy) < GIG_AREA; });
+      const vicini = pl.some(function (p) { return Math.hypot(p.pos[0] - c.cx, p.pos[1] - c.cy) < GIG_RAGGIO * 1.15 + 1500; });
+      if (dentro && c.posti.some(function (sl) { return !sl.allarme; })) { c.posti.forEach(function (sl) { sl.allarme = true; }); log("[GIGANTI] campo " + k + ": giocatore nell'area, attaccano"); }
+      if (!vicini) {   // nessun giocatore nei paraggi: chi e' rimasto lontano da casa (nessuno lo "guida") torna al suo posto, e tutti tornano a vita piena (anti-abuso)
+        c.posti.forEach(function (sl) { (sl.ids || []).forEach(function (id) {
+          if (!faunaVivo(id)) return; let ps = null; try { ps = mp.get(id, "pos"); } catch (e) { }
+          if (ps && Math.hypot(ps[0] - sl.x, ps[1] - sl.y) > 1500) { try { mpSet(id, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl.x, sl.y, sl.z + 60], rot: [0, 0, sl.rz || 0] }); log("[GIGANTI] " + sl.sp + " del campo " + sl.campo + " rimasto lontano: rimesso al suo posto"); } catch (e) { } }
+          let hp = 1; try { hp = getHp(id); } catch (e) { } if (hp !== null && hp < 0.999) { try { if (global.__rbHpScale[id]) global.__rbHpScale[id].ignora = Date.now() + 1500; setHp(id, 1); log("[GIGANTI] " + sl.sp + " del campo " + sl.campo + ": vita piena (nessun giocatore vicino)"); } catch (e) { } }
+          if (sl.fuori) delete sl.fuori[id];
+        }); });
+      }
+      if (!vicini && c.posti.some(function (sl) { return sl.allarme || sl.provocato; })) { c.posti.forEach(function (sl) { sl.allarme = false; sl.provocato = false; sl.colpiti = {}; }); log("[GIGANTI] campo " + k + ": nessun giocatore vicino, tornano tranquilli"); }
+      c.posti.forEach(function (sl) {
+        // colpito da lontano: reazione di Skyrim contro chi ha colpito (finche' l'arciere/mago resta entro il limite)
+        let mira = false; sl.bersaglio = null;
+        sl.colpiti = sl.colpiti || {}; sl.fuori = sl.fuori || {};
+        Object.keys(sl.colpiti).forEach(function (id) {
+          const r = sl.colpiti[id]; const p = pl.find(function (q) { return String(q.pid) === String(r.pid); });
+          if (!p || Math.hypot(p.pos[0] - sl.x, p.pos[1] - sl.y) > GIG_RAGGIO * 1.15 || now - r.t > 60000) delete sl.colpiti[id]; else { mira = true; sl.bersaglio = r.pid; }
+        });
+        sl.aggro = sl.sp === "gigante" ? GIG_AREA + 1000 : 2500;   // giganti: attaccano chi e' dentro l'area anche se lontano dal gigante
+        if (sl.sp === "mammut") {   // mammut: bestiame dei giganti, pacifici finche' non vengono colpiti o un giocatore gli arriva vicino (GIG_MAMMUT_VICINO)
+          if (!sl.provocato) sl.ids.forEach(function (id) { let p = null; try { p = mp.get(id, "pos"); } catch (e) { } if (p && pl.some(function (q) { return Math.hypot(q.pos[0] - p[0], q.pos[1] - p[1]) < GIG_MAMMUT_VICINO; })) { sl.provocato = true; log("[GIGANTI] mammut del campo " + sl.campo + ": giocatore troppo vicino, attacca"); } });
+          sl.ostile = (mira || sl.provocato) ? 2 : 0;
+        } else sl.ostile = (mira || sl.allarme) ? 2 : 0;   // giganti: attaccano appena un giocatore entra nell'area; colpiti da lontano puntano chi li ha colpiti (campo bersaglio)
+        sl.ids.forEach(function (id) {
+          if (!faunaVivo(id)) return;
+          let p = null; try { p = mp.get(id, "pos"); } catch (e) { } if (!p) return;
+          const d = Math.hypot(p[0] - sl.x, p[1] - sl.y);
+          if (d > GIG_RAGGIO * 1.15) { if (!sl.fuori[id]) log("[GIGANTI] " + sl.sp + " del campo " + sl.campo + " oltre il limite (" + Math.round(d) + "): torna indietro"); sl.fuori[id] = true; delete sl.colpiti[id]; }
+          else if (sl.fuori[id] && d < GIG_RAGGIO * 0.9) { delete sl.fuori[id]; try { if (global.__rbHpScale[id]) global.__rbHpScale[id].ignora = Date.now() + 1500; setHp(id, 1); } catch (e) { } global.__rbGiganti.rientri++; log("[GIGANTI] " + sl.sp + " del campo " + sl.campo + " rientrato: vita piena"); }
+        });
+      });
+    });
+  } catch (e) { log("[GIGANTI] controllo errore " + e); }
+}
+// chiamata dal pacchetto rbGodHit (colpo di un giocatore): se il colpo viene da lontano, quel gigante/mammut punta chi l'ha colpito
+// loot del gigante (deciso da Davide il 17/11/2026): via la mazza, la zanna di horker e la pelle di mucca. Vale anche per i giganti evocati da console.
+const GIG_LOOT_VIA = { CrGiantClub: 1, HorkerTusk: 1, CowHide: 1 };
+global.__rbGigPulisci = function (actorId) {
+  let mam = false; try { const slm = global.__rbFauna && global.__rbFauna.actors[actorId]; mam = !!(slm && slm.sp === "mammut" && slm.campo); } catch (e) { }
+  if (!mam) try { mam = (global.__rbGiganti.posti || []).some(function (q) { return q.sp === "mammut" && q.ids.some(function (x) { return Number(x) === Number(actorId); }); }); } catch (e) { }
+  if (!mam) try { mam = Number(mp.get(actorId, "private.rbFauna")) === GIG_SPECIE.mammut && (global.__rbGiganti.posti || []).some(function (q) { return q.sp === "mammut" && Math.hypot(q.x - mp.get(actorId, "pos")[0], q.y - mp.get(actorId, "pos")[1]) < 9000; }); } catch (e) { }   // [g41] dopo un ricaricamento la lista della fauna puo' non averlo
+  if (mam) {   // DeathItemMammoth: carne di mammut + zanna di mammut (+10% piccolo tesoro: qualche moneta)
+    const iv = mp.get(actorId, "inventory") || { entries: [] }; const en = iv.entries || [];
+    if (!en.some(function (e) { return e.baseId === 0x3AD6C; })) { en.push({ baseId: 0x669A4, count: 1 }); en.push({ baseId: 0x3AD6C, count: 1 }); if (Math.random() < 0.1) en.push({ baseId: 0xF, count: 1 + Math.floor(Math.random() * 9) }); log("[GIGANTI] loot " + actorId.toString(16) + ": aggiunto il bottino di Skyrim del mammut"); }
+    const zn = 1 + Math.floor(Math.random() * 2); en.forEach(function (e) { if (e.baseId === 0x3AD6C) e.count = zn; });   // [g41] zanne di mammut: da 1 a 2
+    mpSet(actorId, "inventory", { entries: en }); log("[GIGANTI] loot " + actorId.toString(16) + ": zanne di mammut " + zn);
+    return;
+  }
+  let gig = false; try { gig = mp.get(actorId, "private.rbGig") === true || mp.get(actorId, "private.rbFauna") === GIG_SPECIE.gigante; } catch (e) { }
+  if (!gig) return;
+  const inv = mp.get(actorId, "inventory") || { entries: [] }; inv.entries = inv.entries || [];
+  // se il server non ha messo il bottino di Skyrim (DeathItemGiant: sempre 1 dito del gigante + 3 tiri al 75% tra pelli/zanne) lo aggiungo io, senza mazza/pelle di vacca/zanna di horker
+  if (!inv.entries.some(function (e) { return e.baseId === 0x3AD64; })) {
+    const PARTI = [0x3AD52, 0x3AD90, 0x3AD93, 0x3AD74, 0x3AD8E, 0x3AD6C, 0x3AD75];   // pelle d'orso, di cervo, di cavallo, di lupo, di capra, zanna di mammut, pelle di lupo dei ghiacci
+    const ag = function (b, n) { const e = inv.entries.find(function (x) { return x.baseId === b; }); if (e) e.count += n; else inv.entries.push({ baseId: b, count: n }); };
+    ag(0x3AD64, 1); for (let i = 0; i < 3; i++) if (Math.random() < 0.75) ag(PARTI[Math.floor(Math.random() * PARTI.length)], 1);
+    mpSet(actorId, "inventory", { entries: inv.entries }); log("[GIGANTI] loot " + actorId.toString(16) + ": aggiunto il bottino di Skyrim (dito + parti)");
+  }
+  const dn = 1 + Math.floor(Math.random() * 3); inv.entries.forEach(function (e) { if (e.baseId === 0x3AD64) e.count = dn; });   // [g41] dita di gigante: da 1 a 3
+  mpSet(actorId, "inventory", { entries: inv.entries }); log("[GIGANTI] loot " + actorId.toString(16) + ": dita di gigante " + dn);
+  const tolti = []; const out = inv.entries.filter(function (e) { let ed = ""; try { const rr = mp.lookupEspmRecordById(e.baseId); ed = rr && rr.record ? String(rr.record.editorId || "") : ""; } catch (x) { } if (GIG_LOOT_VIA[ed]) { tolti.push(ed); return false; } return true; });
+  if (tolti.length) { mpSet(actorId, "inventory", { entries: out }); log("[GIGANTI] loot " + actorId.toString(16) + ": tolti " + tolti.join(", ")); }
+};
+global.__rbGigHit = function (userId, tid, src) {
+  const sl = global.__rbFauna.actors[tid]; if (!sl || !GIG_SPECIE[sl.sp] || !sl.colpiti) return;
+  let pa = null, pt = null; try { pa = playersList([userId])[0].pos; } catch (e) { } try { pt = mp.get(tid, "pos"); } catch (e) { } if (!pa || !pt) { log("[GIGANTI] colpo: posizione mancante"); return; }
+  const d = Math.hypot(pa[0] - pt[0], pa[1] - pt[1]);
+  let tipo = ""; try { const rr = mp.lookupEspmRecordById(Number(src)); tipo = rr && rr.record ? String(rr.record.type) : ""; } catch (e) { }
+  if (sl.sp === "mammut" && !sl.provocato) { sl.provocato = true; log("[GIGANTI] mammut del campo " + sl.campo + " colpito: attacca"); }
+  // ogni colpo (anche da vicino) fa puntare chi ha colpito per 60 s: cosi' una creatura attirata col pull non si "calma" a meta' combattimento.
+  // Lore: i giganti hanno sensi poco sviluppati, gli altri lontani non se ne accorgono.
+  gigColpitoDaLontano(sl, tid, profileOfUser(userId), d, tipo);
+};
+// pull: SOLO la creatura colpita reagisce (punta chi l'ha colpita); gli altri dell'accampamento non se ne accorgono (lore: sensi poco sviluppati)
+function gigColpitoDaLontano(sl, tid, pid, d, tipo) {
+  sl.colpiti[tid] = { pid: pid, t: Date.now() };
+  if (sl.sp === "gigante") sl.allarme = true; else sl.provocato = true;
+  log("[GIGANTI] " + sl.sp + " del campo " + sl.campo + " colpito da lontano (" + Math.round(d) + ", " + (tipo || "?") + ") dal giocatore " + pid + ": punta lui, gli altri non se ne accorgono");
+}
+// quando un gigante muore, dopo 5 secondi l'altro gigante del suo accampamento attacca se ci sono giocatori dentro l'area (deciso da Davide il 17/11/2026)
+const GIG_VENDETTA_MS = 5000;
+(function () {   // come la fauna: il gancio si rifa' a ogni caricamento (la catena di __rbFortDeath riparte da capo)
+  const prevG = global.__rbFortDeath;
+  global.__rbFortDeath = function (a, k) { try { if (global.__rbGigMorte) global.__rbGigMorte(a); } catch (e) { log("[GIGANTI] errore morte " + e); } if (prevG) return prevG(a, k); };
+})();
+global.__rbGigMorte = function (actorId) {
+  const sl = global.__rbFauna.actors[actorId]; if (!sl || sl.sp !== "gigante" || !sl.campo) return;
+  log("[GIGANTI] gigante del campo " + sl.campo + " ucciso: tra " + (GIG_VENDETTA_MS / 1000) + " s l'altro gigante attacca");
+  setTimeout(function () {
+    try {
+      (global.__rbGiganti.posti || []).forEach(function (o) {
+        if (o.campo !== sl.campo || o.sp !== "gigante" || o === sl || !o.ids.some(faunaVivo)) return;
+        // attacca solo se c'e' ancora qualcuno DENTRO L'AREA dell'accampamento (cerchio pieno, GIG_AREA); fuori dall'area (anche se dentro il cerchio giallo) resta fermo (deciso il 17/11/2026)
+        const users = onlineUsers(); const dentro = playersList(users).some(function (p) { return (!p.fake || global.__rbGigProvaFake) && p.world === 0x3c && p.pos && Math.hypot(p.pos[0] - o.cx, p.pos[1] - o.cy) < GIG_AREA; });
+        if (!dentro) { log("[GIGANTI] campo " + o.campo + ": nessuno dentro l'area, l'altro gigante resta fermo"); return; }
+        o.allarme = true; log("[GIGANTI] campo " + o.campo + ": l'altro gigante attacca (vendetta)");
+      });
+    } catch (e) { log("[GIGANTI] vendetta errore " + e); }
+  }, GIG_VENDETTA_MS);
+};
+if (global.__rbGigTimer) clearInterval(global.__rbGigTimer);
+global.__rbGigTimer = setInterval(function () { try { gigCiclo("ogni ora e mezza"); } catch (e) { log("[GIGANTI] errore ciclo " + e); } }, GIG_CICLO_MS);
+if (global.__rbGigRientri) clearInterval(global.__rbGigRientri);
+global.__rbGigRientri = setInterval(gigControlla, 2000);
+if (!global.__rbGigBoot) { global.__rbGigBoot = true; setTimeout(function () { try { gigCiclo("avvio"); } catch (e) { log("[GIGANTI] errore avvio " + e); } }, 45000); }
+else if (global.__rbGiganti.ver !== GIG_VER || global.__rbFauna.ver !== 9) setTimeout(function () { try { faunaCiclo("punti nuovi"); gigCiclo("punti nuovi"); } catch (e) { log("[GIGANTI] errore aggiornamento " + e); } }, 5000);
+try { (global.__rbGiganti.posti || []).forEach(function (sl) { sl.ids.forEach(function (id) { if (faunaVivo(id) && !(global.__rbHpScale[id] && global.__rbHpScale[id].want === ORC_HP[sl.sp])) applyOrcHp(id, sl.sp); }); }); } catch (e) { log("[GIGANTI] vita: " + e); }   // giganti gia' vivi: nuova vita subito
+global.__rbGigStato = function () {
+  const per = {}; (global.__rbGiganti.posti || gigPosti()).forEach(function (sl) { const k = "campo " + sl.campo; per[k] = per[k] || { giganti: 0, mammut: 0, allarme: !!sl.allarme }; sl.ids.forEach(function (id) { if (faunaVivo(id)) per[k][sl.sp === "gigante" ? "giganti" : "mammut"]++; }); });
+  return "GIGANTI vivi " + JSON.stringify(per) + " | nati " + global.__rbGiganti.nati + ", cicli " + global.__rbGiganti.cicli + ", rientri a vita piena " + global.__rbGiganti.rientri;
+};
+global.__rbGigCmd = function (parts) {   // [gm_v28] autotest: giganti stato | giganti ciclo | giganti sonda <hex>[,<hex>] | giganti scan <tipo> <da hex> <a hex>
+  const op = parts[1];
+  if (op === "stato") { atOut(global.__rbGigStato()); return; }
+  if (op === "tp" || op === "tpforziere" || op === "colpisci" || op === "uccidi" || op === "guarda" || op === "ferisci") {   // [gm_v28] comandi per i TEST IN GIOCO col giocatore collegato
+    const us = onlineUsers(); if (!us.length) { atOut("nessun giocatore online"); return; } const u = us[0], act = mp.getUserActor(u), pid = profileOfUser(u);
+    const c = gigCampi().find(function (x) { return x.id === Number(parts[2]); }); if (!c) { atOut("campo non valido"); return; }
+    const faccia = function (x, y, tx, ty) { return Math.atan2(tx - x, ty - y) * 180 / Math.PI; };
+    if (op === "tp") {   // giganti tp <campo> <distanza> [direzione in gradi dal nord]
+      const d = Number(parts[3]) || 0, a = (Number(parts[4]) || 90) * Math.PI / 180; const x = c.x + Math.sin(a) * d, y = c.y + Math.cos(a) * d;
+      const z = gigTerreno(x, y); mpSet(act, "locationalData", { cellOrWorldDesc: WORLD, pos: [x, y, (z === null ? c.z : z) + 150], rot: [0, 0, faccia(x, y, c.x, c.y)] });
+      atOut("TP campo " + c.id + " a " + d + " dal centro, terreno " + z); return;
+    }
+    if (op === "tpforziere") {   // giganti tpforziere <campo> <fuoco|tesoro>
+      const f = (c.forzieri || []).find(function (x) { return x.tipo === (parts[3] || "fuoco"); }); const a = ((f.rot || 0) + 0) * Math.PI / 180;
+      const x = f.x + Math.sin(a) * 110, y = f.y + Math.cos(a) * 110; const z = gigTerreno(x, y);
+      mpSet(act, "locationalData", { cellOrWorldDesc: WORLD, pos: [x, y, (z === null ? f.z : z) + 60], rot: [0, 0, faccia(x, y, f.x, f.y)] });
+      atOut("TP davanti al forziere " + c.id + "_" + f.tipo); return;
+    }
+    const sl = (global.__rbGiganti.posti || []).filter(function (q) { return q.campo === c.id && q.sp === (parts[3] || "gigante"); })[Number(parts[4]) || 0];
+    const id = sl && sl.ids.find(faunaVivo); if (!id) { atOut("nessuna creatura viva"); return; }
+    if (op === "colpisci") { let pa = null; try { pa = playersList([u])[0].pos; } catch (e) { } gigColpitoDaLontano(sl, id, pid, pa ? Math.hypot(pa[0] - sl.x, pa[1] - sl.y) : 0, "PROVA"); atOut("COLPITO (finto) " + sl.sp + " " + id.toString(16) + " dal giocatore " + pid); return; }
+    if (op === "uccidi") { mpSet(id, "isDead", true); atOut("UCCISO " + sl.sp + " " + id.toString(16)); return; }
+    if (op === "ferisci") { if (global.__rbHpScale[id]) global.__rbHpScale[id].ignora = Date.now() + 1500; setHp(id, Number(parts[5]) || 0.5); atOut("FERITO " + sl.sp + " " + id.toString(16) + " vita " + (Number(parts[5]) || 0.5)); return; }
+    if (op === "guarda") { const p = mp.get(id, "pos"), pa = playersList([u])[0].pos; mpSet(act, "locationalData", { cellOrWorldDesc: WORLD, pos: pa, rot: [0, 0, faccia(pa[0], pa[1], p[0], p[1])] }); atOut("GUARDA " + sl.sp + " " + id.toString(16)); return; }
+  }
+  if (op === "vicino" || op === "svuota") {   // prova: elenca (vicino) o porta via (svuota) le creature del server entro R da x,y
+    const x = Number(parts[2]), y = Number(parts[3]), R = Number(parts[4]) || 12000; const A = global.__rbFauna.actors; const out = [];
+    Object.keys(A).forEach(function (k) { const id = Number(k); let ps = null; try { ps = mp.get(id, "pos"); } catch (e) { } if (!ps) return; const d = Math.hypot(ps[0] - x, ps[1] - y); if (d > R) return;
+      out.push(A[k].sp + ":" + id.toString(16) + "@" + Math.round(d)); if (op === "svuota") { try { mpSet(id, "locationalData", { cellOrWorldDesc: WORLD, pos: [ps[0], ps[1], -60000], rot: [0, 0, 0] }); } catch (e) { } } });
+    atOut((op === "svuota" ? "SVUOTATE " : "VICINO ") + out.length + ": " + out.join(", ")); return;
+  }
+  if (op === "tpxy") {   // prova: giganti tpxy <x> <y> : porta il personaggio ff000000 in un punto qualsiasi (z dal terreno, se noto)
+    const x = Number(parts[2]), y = Number(parts[3]); let z = null; try { z = gigTerreno(x, y); } catch (e) { }
+    if (z === null || z === undefined) z = Number(parts[4]) || 0;
+    mpSet(0xff000000, "locationalData", { cellOrWorldDesc: WORLD, pos: [x, y, z + 150], rot: [0, 0, 0] }); atOut("TPXY " + x + "," + y + " z " + z); return;
+  }
+  if (op === "tpattore") {   // prova: giganti tpattore <hex attore> <campo> <distanza> : sposta un personaggio anche se il giocatore e' scollegato (rientrera' li')
+    const c = gigCampi().find(function (x) { return x.id === Number(parts[3]); }); const d = Number(parts[4]) || 4000; if (!c) { atOut("campo?"); return; }
+    const x = c.x + d, y = c.y; const z = gigTerreno(x, y);
+    mpSet(parseInt(parts[2], 16), "locationalData", { cellOrWorldDesc: WORLD, pos: [x, y, (z === null ? c.z : z) + 100], rot: [0, 0, -90] }); atOut("TPATTORE " + parts[2] + " -> campo " + c.id + " a " + d); return;
+  }
+  if (op === "scassina") {   // prova: simula un minigioco riuscito sul forziere <hex> con <n> grimaldelli rotti (come il pacchetto rbGigAperto del client)
+    const us = onlineUsers(); if (!us.length) { atOut("nessun giocatore online"); return; }
+    if (parts[4] !== "senza") gigScasso(us[0], parseInt(parts[2], 16));   // "senza" = prova dell'anti-abuso (aperto senza minigioco)
+    gigAperto(us[0], parseInt(parts[2], 16), Number(parts[3]) || 0, true); atOut("SCASSINATO (prova) " + parts[2] + ": chiuso ora? " + !!(global.__rbGigChiusi || {})[parseInt(parts[2], 16)]); return;
+  }
+  if (op === "inv") {   // giganti inv <hex>: inventario di un cadavere o forziere + stato serratura
+    const id = parseInt(parts[2], 16); let inv = null, lk = null; try { inv = mp.get(id, "inventory"); } catch (e) { } try { lk = (global.__rbGigChiusi || {})[id] ? "CHIUSO" : "aperto"; } catch (e) { }
+    atOut("INV " + id.toString(16) + " [" + lk + "]: " + ((inv && inv.entries) || []).map(function (e) { let ed = ""; try { const r = mp.lookupEspmRecordById(e.baseId); ed = r && r.record ? r.record.editorId : ""; } catch (x) { } return e.baseId.toString(16) + (ed ? "(" + ed + ")" : "") + "x" + e.count; }).join(", ")); return;
+  }
+  if (op === "dai") {   // giganti dai <hex> <n>: da' oggetti al giocatore collegato (prove: grimaldelli = a)
+    const us = onlineUsers(); if (!us.length) { atOut("nessun giocatore online"); return; } const act = mp.getUserActor(us[0]);
+    const b = parseInt(parts[2], 16), n = Number(parts[3]) || 1; const inv = mp.get(act, "inventory") || { entries: [] }; const out = (inv.entries || []).slice(); const e = out.find(function (x) { return x.baseId === b; });
+    if (e) e.count += n; else out.push({ baseId: b, count: n }); mpSet(act, "inventory", { entries: out }); atOut("DATI " + n + " x " + b.toString(16)); return;
+  }
+  if (op === "stato2") {   // posizione VERA (simulata dal gioco) di ogni gigante/mammut rispetto al terreno di Skyrim.esm
+    const us = onlineUsers(); let pa = null, hpP = null; if (us.length) { try { const pl0 = playersList(us).find(function (q) { return !q.fake; }); pa = pl0 && pl0.pos; hpP = getHp(mp.getUserActor(us[0])); } catch (e) { } }
+    atOut("posti " + (global.__rbGiganti.posti || []).length + ", vivi " + (global.__rbGiganti.posti || []).filter(function (q) { return q.ids.some(faunaVivo); }).length);
+    atOut("GIOCATORE pos " + JSON.stringify(pa && pa.map(Math.round)) + " vita " + hpP + (pa ? " terreno " + gigTerreno(pa[0], pa[1]) : ""));
+    (global.__rbGiganti.posti || []).filter(function (q) { return !parts[2] || q.campo === Number(parts[2]); }).forEach(function (q) {
+      q.ids.forEach(function (id) { if (!faunaVivo(id)) return; const p = mp.get(id, "pos"); const t = gigTerreno(p[0], p[1]);
+        atOut("  campo " + q.campo + " " + q.sp + " " + id.toString(16) + " pos " + p.map(Math.round).join(",") + " terreno " + t + " dz " + (t === null ? "?" : Math.round(p[2] - t)) + " da casa " + Math.round(Math.hypot(p[0] - q.x, p[1] - q.y)) + (pa ? " dal giocatore " + Math.round(Math.hypot(p[0] - pa[0], p[1] - pa[1])) : "") + " vita " + (getHp(id) || 0).toFixed(2) + " ostile " + q.ostile + (q.bersaglio ? " bersaglio " + q.bersaglio : "") + (q.allarme ? " ALLARME" : "") + (q.provocato ? " PROVOCATO" : "") + (q.fuori[id] ? " FUORI" : "")); });
+    });
+    return;
+  }
+  if (op === "decorsolo") {   // prova: accende solo il decor delle basi indicate (hex separati da virgola), spegne il resto
+    let IDS = {}, D = {}; try { IDS = JSON.parse(_fs.readFileSync("giganti-decor-ids.json", "utf8")); D = JSON.parse(_fs.readFileSync("giganti-decor.json", "utf8")); } catch (e) { }
+    const vuoi = String(parts[2] || "").split(",").map(function (h) { return parseInt(h, 16); }); let on = 0, off = 0;
+    Object.keys(IDS).forEach(function (k) { IDS[k].forEach(function (id, j) { const b = D[k] && D[k][j] ? D[k][j].base : -1; const acc = vuoi.indexOf(b) >= 0; try { mp.callPapyrusFunction("method", "ObjectReference", acc ? "Enable" : "Disable", { type: "form", desc: mp.getDescFromId(id) }, [false]); acc ? on++ : off++; } catch (e) { } }); });
+    atOut("DECOR solo " + parts[2] + ": accesi " + on + ", spenti " + off); return;
+  }
+  if (op === "decorspegni" || op === "decoraccendi") {   // prova: spegne/riaccende tutto il decor degli accampamenti
+    let IDS = {}; try { IDS = JSON.parse(_fs.readFileSync("giganti-decor-ids.json", "utf8")); } catch (e) { }
+    const fn = op === "decorspegni" ? "Disable" : "Enable"; let n = 0;
+    Object.keys(IDS).forEach(function (k) { if (parts[2] && String(parts[2]) !== String(k)) return; IDS[k].forEach(function (id) { try { mp.callPapyrusFunction("method", "ObjectReference", fn, { type: "form", desc: mp.getDescFromId(id) }, [false]); n++; } catch (e) { } }); });
+    atOut("DECOR " + fn + ": " + n); return;
+  }
+  if (op === "decorpiazza") { gigForzieri("comando"); gigDecor(parts[2] === "rifai"); atOut("DECOR: piazzamento avviato (vedi log [GIGANTI] decor)"); return; }
+  if (op === "forzieri") {   // giganti forzieri: crea/riempie subito i forzieri e dice cosa c'e' dentro
+    gigForzieri("comando"); const F = global.__rbGigForzieri || {};
+    Object.keys(F).forEach(function (k) { let inv = null, pos = null; try { inv = mp.get(F[k], "inventory"); pos = mp.get(F[k], "pos"); } catch (e) { } atOut("FORZIERE " + k + " id " + Number(F[k]).toString(16) + " pos " + JSON.stringify(pos && pos.map(Math.round)) + ": " + JSON.stringify((inv && inv.entries || []).map(function (e) { return e.baseId.toString(16) + "x" + e.count; }))); });
+    return;
+  }
+  if (op === "ciclo") { atOut("GIGANTI: rinascono " + gigCiclo("autotest")); return; }
+  if (op === "sonda") {
+    String(parts[2] || "").split(",").forEach(function (h) {
+      try {
+        const rr = mp.lookupEspmRecordById(parseInt(h, 16)); if (!rr) { atOut("SONDA " + h + ": nulla"); return; }
+        const r = rr.record; const o = { keys: Object.keys(rr) };
+        Object.keys(rr).forEach(function (k) { if (k !== "record") { try { o[k] = JSON.stringify(rr[k]).slice(0, 300); } catch (e) { } } });
+        if (r) { o.recKeys = Object.keys(r); o.type = r.type; o.ed = r.editorId; o.id = r.id; o.flags = r.flags; o.fields = (r.fields || []).map(function (f) { if (f.type === "DATA" && f.data && f.data.length === 24) { try { const b = Buffer.from(f.data); return "POS[" + [0, 4, 8].map(function (i) { return Math.round(b.readFloatLE(i)); }).join(",") + "]"; } catch (e) { } } return f.type + ":" + (f.data ? f.data.length : 0) + (f.data && f.data.length <= 16 ? "[" + Array.prototype.slice.call(f.data).join(",") + "]" : ""); }); }
+        atOut("SONDA " + h + ": " + JSON.stringify(o));
+      } catch (e) { atOut("SONDA " + h + " errore " + e); }
+    });
+    return;
+  }
+  if (op === "dati") {   // giganti dati <hex>,<hex>: campi grezzi dei record (per calcolare vita e danni) -> giganti-dati.json
+    const out = {}; let zlib = null; try { zlib = require("zlib"); } catch (e) { }
+    String(parts[2] || "").split(",").forEach(function (h) {
+      try { const rr = mp.lookupEspmRecordById(parseInt(h, 16)); const r = rr && rr.record; if (!r) { out[h] = null; return; }
+        out[h] = { type: r.type, ed: r.editorId, flags: r.flags, fields: (r.fields || []).filter(function (f) { return f.data && f.data.length <= 400; }).map(function (f) { return [f.type, Array.prototype.slice.call(f.data)]; }) };
+      } catch (e) { out[h] = "errore " + e; }
+    });
+    _fs.writeFileSync("giganti-dati.json", JSON.stringify(out)); atOut("DATI: " + Object.keys(out).length + " record -> giganti-dati.json"); return;
+  }
+  if (op === "prova") {   // [gm_v28] TEST COMPLETO lato server: nascita, loot, rinascita, area d'attacco, limite e vita piena
+    const posti = gigPosti(); const W = function (ms, f) { setTimeout(function () { try { f(); } catch (e) { atOut("PROVA errore " + e); } }, ms); };
+    const nome = function (b) { try { const rr = mp.lookupEspmRecordById(b); const r = rr && rr.record; if (!r) return b.toString(16); const fu = (r.fields || []).find(function (f) { return f.type === "FULL"; }); return String(r.type) + " " + String(r.editorId || b.toString(16)); } catch (e) { return b.toString(16); } };
+    atOut("===== PROVA GIGANTI =====");
+    // 1) nascita
+    const perCampo = {}; let errPos = 0, tot = 0;
+    posti.forEach(function (sl) { const k = sl.campo; perCampo[k] = perCampo[k] || { gigante: 0, mammut: 0 }; sl.ids.forEach(function (id) { if (!faunaVivo(id)) return; perCampo[k][sl.sp]++; tot++; const p = mp.get(id, "pos"); const d = Math.hypot(p[0] - sl.x, p[1] - sl.y), dz = p[2] - sl.z; if (d > 50 || dz < 0 || dz > 300) { errPos++; atOut("  posizione strana " + sl.sp + " campo " + k + ": distanza " + Math.round(d) + ", quota +" + Math.round(dz)); } }); });
+    Object.keys(perCampo).forEach(function (k) { const c = perCampo[k]; atCheck({ checks: [] }, "campo " + k + ": 2 giganti + 3 mammut vivi", c.gigante === 2 && c.mammut === 3, JSON.stringify(c)); });
+    let okHp = 0, nHp = 0; posti.forEach(function (sl) { sl.ids.forEach(function (id) { if (!faunaVivo(id)) return; nHp++; const sc = global.__rbHpScale[id]; if (sc && sc.want === ORC_HP[sl.sp]) okHp++; }); });
+    atCheck({ checks: [] }, "vita: gigante 200, mammut 250 (barra piena)", okHp === nHp, okHp + "/" + nHp);
+    atCheck({ checks: [] }, "posizioni e quote dei " + tot + " (sul terreno vero, +60)", errPos === 0, errPos + " strani");
+    // 2) loot: 6 giganti e 6 mammut di prova uccisi in un posto isolato (campo 2 + 3000 a sud)
+    const c2 = gigCampi().find(function (c) { return c.id === 2; }); const prova = [];
+    for (let i = 0; i < 12; i++) { const sp = i < 6 ? "gigante" : "mammut"; const id = mpPlace(GIG_SPECIE[sp]); mpSet(id, "locationalData", { cellOrWorldDesc: WORLD, pos: [c2.x + (i % 6) * 300 - 750, c2.y - 3000 - (i < 6 ? 0 : 400), c2.z + 400], rot: [0, 0, 0] }); mpSet(id, "private.rbEvoked", true); if (sp === "gigante") mpSet(id, "private.rbGig", true); prova.push({ id: id, sp: sp }); }
+    W(1500, function () { prova.forEach(function (t) { mpSet(t.id, "isDead", true); }); atOut("  uccisi 12 di prova (6 giganti, 6 mammut), leggo il loot..."); });
+    W(4000, function () {
+      const agg = { gigante: {}, mammut: {} }; let magici = 0;
+      prova.forEach(function (t) {
+        let inv = null; try { inv = mp.get(t.id, "inventory"); } catch (e) { }
+        const L = (inv && inv.entries || []).map(function (e) { const n = nome(e.baseId); agg[t.sp][n] = (agg[t.sp][n] || 0) + 1; if (/ENCH|SoulGem|Staff|Scroll/i.test(n)) magici++; return n + " x" + e.count; });
+        atOut("  loot " + t.sp + " " + t.id.toString(16) + ": " + (L.join(", ") || "VUOTO"));
+      });
+      ["gigante", "mammut"].forEach(function (sp) { atOut("  RIEPILOGO " + sp + " (su 6): " + Object.keys(agg[sp]).map(function (k) { return k + " " + agg[sp][k] + "/6"; }).join(" | ")); });
+      atCheck({ checks: [] }, "loot gigante: Dito di gigante sempre", Object.keys(agg.gigante).some(function (k) { return /GiantToe/i.test(k) && agg.gigante[k] === 6; }));
+      atCheck({ checks: [] }, "loot mammut: zanna sempre", Object.keys(agg.mammut).some(function (k) { return /MammothTusk/i.test(k) && agg.mammut[k] === 6; }));
+      atCheck({ checks: [] }, "nessun oggetto magico nel loot", magici === 0, magici + " trovati");
+      atCheck({ checks: [] }, "loot gigante senza mazza, zanna di horker e pelle di mucca", !Object.keys(agg.gigante).some(function (k) { return /CrGiantClub|HorkerTusk|CowHide/.test(k); }));
+      prova.forEach(function (t) { try { mpDestroy(t.id); } catch (e) { } });
+    });
+    // 3) rinascita: uccido i 5 del campo 1, poi ciclo orario anticipato: devono rinascere SOLO quei 5
+    W(5000, function () {
+      const c1 = posti.filter(function (sl) { return sl.campo === 1; }); let k = 0;
+      c1.forEach(function (sl) { sl.ids.forEach(function (id) { if (faunaVivo(id)) { mpSet(id, "isDead", true); k++; } }); });
+      atOut("  uccisi " + k + " del campo 1 (simulo dei giocatori)");
+      W(2500, function () { const n = gigCiclo("prova"); atCheck({ checks: [] }, "rinascita oraria: rinascono solo i morti (5)", n === 5, "rinascono " + n); });
+      W(9000, function () { let v = 0; c1.forEach(function (sl) { sl.ids.forEach(function (id) { if (faunaVivo(id)) v++; }); }); atCheck({ checks: [] }, "campo 1 di nuovo pieno", v === 5, v + " vivi"); });
+    });
+    // 4) area d'attacco con un giocatore finto al campo 3
+    const c3 = gigCampi().find(function (c) { return c.id === 3; }); const sl3 = posti.find(function (sl) { return sl.campo === 3 && sl.sp === "gigante"; });
+    const finto = function (d) { global.__rbFakePlayers = global.__rbFakePlayers || {}; global.__rbFakePlayers.gigprova = { t: Date.now(), world: 0x3c, pos: [c3.x + d, c3.y, c3.z] }; };
+    W(16000, function () { global.__rbGigProvaFake = true; finto(5000); });
+    W(19000, function () { atCheck({ checks: [] }, "giocatore a 5000 dal centro (fuori area): tranquilli", !sl3.allarme && sl3.ostile === 0, "ostile " + sl3.ostile); finto(3000); });
+    W(22000, function () { atCheck({ checks: [] }, "giocatore a 3000 (dentro area): i giganti attaccano (tipo 2)", sl3.allarme && sl3.ostile === 2, "ostile " + sl3.ostile);
+      const mm = posti.filter(function (sl) { return sl.campo === 3 && sl.sp === "mammut"; }); atCheck({ checks: [] }, "giocatore a 3000: i mammut restano pacifici", mm.every(function (sl) { return sl.ostile === 0; }), mm.map(function (sl) { return sl.ostile; }).join(","));
+      const m0 = mm[0]; const L0 = Math.hypot(m0.x - m0.cx, m0.y - m0.cy); global.__rbFakePlayers.gigprova.pos = [m0.x + (m0.x - m0.cx) / L0 * 900, m0.y + (m0.y - m0.cy) / L0 * 900, m0.z]; });
+    W(24400, function () { const mm = posti.filter(function (sl) { return sl.campo === 3 && sl.sp === "mammut"; }); atCheck({ checks: [] }, "giocatore a 900 da un mammut (verso l'esterno): quel mammut attacca, gli altri no", mm[0].ostile === 2 && mm.slice(1).every(function (sl) { return sl.ostile === 0; }), mm.map(function (sl) { return sl.ostile; }).join(",")); finto(6000); });
+    W(25000, function () { atCheck({ checks: [] }, "giocatore a 6000 (fuggito, entro il limite): continuano", sl3.allarme && sl3.ostile === 2, "ostile " + sl3.ostile); finto(11000); });
+    W(28000, function () { atCheck({ checks: [] }, "giocatore a 11000 (oltre il limite): tornano tranquilli", !sl3.allarme && sl3.ostile === 0, "ostile " + sl3.ostile); delete global.__rbFakePlayers.gigprova; global.__rbGigProvaFake = false; });
+    // 5) limite di inseguimento e vita piena: porto un gigante del campo 4 a 9000 dal suo posto con vita al 30%, poi lo riporto a casa
+    const sl4 = posti.find(function (sl) { return sl.campo === 4 && sl.sp === "gigante"; }); const g4 = sl4 && sl4.ids.find(faunaVivo);
+    W(30000, function () { if (!g4) { atOut("  nessun gigante vivo al campo 4"); return; } mpSet(g4, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl4.x + 9000, sl4.y, sl4.z + 2000], rot: [0, 0, 0] }); if (global.__rbHpScale[g4]) global.__rbHpScale[g4].ignora = Date.now() + 1500; setHp(g4, 0.3); });
+    W(33500, function () { if (g4) atCheck({ checks: [] }, "gigante oltre il limite (9000): segnato come 'torna indietro'", !!sl4.fuori[g4]); if (g4) mpSet(g4, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl4.x, sl4.y, sl4.z + 60], rot: [0, 0, 0] }); });
+    W(37000, function () { if (g4) atCheck({ checks: [] }, "rientrato al suo posto: vita piena", Math.abs((getHp(g4) || 0) - 1) < 0.01 && !sl4.fuori[g4], "vita " + getHp(g4)); });
+    // 6) vendetta: muore un gigante del campo 2; dopo 5 s l'altro attacca SOLO se un giocatore e' ancora dentro il cerchio giallo (~8000)
+    const c2b = gigCampi().find(function (c) { return c.id === 2; }); const g2 = posti.filter(function (sl) { return sl.campo === 2 && sl.sp === "gigante"; });
+    const finto2 = function (d) { global.__rbGigProvaFake = true; global.__rbFakePlayers = global.__rbFakePlayers || {}; global.__rbFakePlayers.gigprova = { t: Date.now(), world: 0x3c, pos: [c2b.x + d, c2b.y, c2b.z] }; };
+    W(38000, function () { finto2(6000); });
+    W(40000, function () { const v = g2[0].ids.find(faunaVivo); if (v) mpSet(v, "isDead", true); });
+    W(46000, function () { atCheck({ checks: [] }, "gigante ucciso, giocatore a 6000 (fuori dall'area): l'altro NON attacca", !g2[1].allarme, "ostile " + g2[1].ostile); gigCiclo("prova vendetta"); });
+    W(52000, function () { finto2(6000); });
+    W(54000, function () { atCheck({ checks: [] }, "campo 2 tranquillo con il giocatore a 6000 (fuori area)", !g2[1].allarme); const v = g2[0].ids.find(faunaVivo); if (v) mpSet(v, "isDead", true); finto2(2500); });
+    W(57000, function () { atCheck({ checks: [] }, "giocatore entrato nell'area: l'altro gigante attacca (regola dell'area)", g2[1].allarme); });
+    W(60500, function () { atCheck({ checks: [] }, "5 s dopo la morte, giocatore dentro l'area: l'altro gigante attacca", g2[1].allarme && g2[1].ostile === 2, "ostile " + g2[1].ostile); finto2(11000); gigCiclo("prova pull"); });
+    // 7) pull: giocatore a 6000 dal campo 4 (fuori area) colpisce con l'arco UN gigante: solo quello lo punta, gli altri restano tranquilli
+    const c4 = gigCampi().find(function (c) { return c.id === 4; }); const p4 = posti.filter(function (sl) { return sl.campo === 4; });
+    W(66000, function () { global.__rbFakePlayers.gigprova = { t: Date.now(), world: 0x3c, pos: [c4.x + 6000, c4.y, c4.z] }; });
+    W(68000, function () { const gA = p4.find(function (sl) { return sl.sp === "gigante"; }); const id = gA.ids.find(faunaVivo); gigColpitoDaLontano(gA, id, "gigprova", 6000, "WEAP"); });
+    W(71000, function () { const gs = p4.filter(function (sl) { return sl.sp === "gigante"; }), ms = p4.filter(function (sl) { return sl.sp === "mammut"; });
+      atCheck({ checks: [] }, "pull: il gigante colpito punta l'arciere (bersaglio imposto)", gs[0].allarme && String(gs[0].bersaglio) === "gigprova" && gs[0].ostile === 2, "ostile " + gs[0].ostile + ", bersaglio " + gs[0].bersaglio);
+      atCheck({ checks: [] }, "pull: l'altro gigante non se ne accorge", !gs[1].allarme && gs[1].ostile === 0, "ostile " + gs[1].ostile);
+      atCheck({ checks: [] }, "pull: i mammut non se ne accorgono", ms.every(function (sl) { return sl.ostile === 0; }), ms.map(function (sl) { return sl.ostile; }).join(","));
+      delete global.__rbFakePlayers.gigprova; global.__rbGigProvaFake = false; gigCiclo("fine prova"); atOut("===== FINE PROVA GIGANTI ====="); });
+    return;
+  }
+  if (op === "decor") {   // giganti decor <x> <y> <raggio>: tutti i riferimenti (REFR) di Skyrim.esm attorno a un accampamento di Skyrim -> giganti-decor-sorgente.json
+    const cx = Number(parts[2]), cy = Number(parts[3]), R = Number(parts[4]) || 2500; const t0 = Date.now();
+    let zlib = null; try { zlib = require("zlib"); } catch (e) { }
+    const want = {}; for (let gx = Math.floor((cx - R) / 4096); gx <= Math.floor((cx + R) / 4096); gx++) for (let gy = Math.floor((cy - R) / 4096); gy <= Math.floor((cy + R) / 4096); gy++) want[gx + "," + gy] = 1;
+    let path = null; try { path = JSON.parse(_fs.readFileSync("server-settings.json", "utf8")).loadOrder[0]; } catch (e) { }
+    const fd = _fs.openSync(path, "r"); const hb = Buffer.alloc(24);
+    const rd = function (pos, n) { const b = Buffer.alloc(n); _fs.readSync(fd, b, 0, n, pos); return b; };
+    const recData = function (pos, h) { let d = rd(pos + 24, h.size); if (h.flags & 0x40000) d = zlib.inflateSync(d.slice(4)); return d; };
+    const hdr = function (pos) { _fs.readSync(fd, hb, 0, 24, pos); return { tag: hb.toString("latin1", 0, 4), size: hb.readUInt32LE(4), a: hb.readUInt32LE(8), b: hb.readInt32LE(12), flags: hb.readUInt32LE(8), id: hb.readUInt32LE(12) }; };
+    const out = []; let cur = null;
+    const walk = function (pos, end, depth) {
+      while (pos < end) {
+        const h = hdr(pos);
+        if (h.tag === "GRUP") {
+          const gtype = h.b, label = h.a, gend = pos + h.size; let enter = false;
+          if (depth === 0) enter = hb.toString("latin1", 8, 12) === "WRLD"; else if (gtype === 1) enter = label === 0x3c; else if (gtype === 4 || gtype === 5) enter = true; else if (gtype === 6 || gtype === 8 || gtype === 9) enter = !!(cur && want[cur]);
+          if (enter) walk(pos + 24, gend, depth + 1); pos = gend; continue;
+        }
+        if (h.tag === "CELL" && depth >= 2) { cur = null; try { const d = recData(pos, h); let o = 0; while (o < d.length) { const ft = d.toString("latin1", o, o + 4), fs = d.readUInt16LE(o + 6 - 2); if (ft === "XCLC") { cur = d.readInt32LE(o + 6) + "," + d.readInt32LE(o + 10); break; } o += 6 + fs; } } catch (e) { } }
+        else if (h.tag === "REFR" && cur && want[cur]) {
+          try { const d = recData(pos, h); let o = 0, base = 0, P = null, sc = 1, dis = (h.flags & 0x800) ? 1 : 0; const id = h.id;
+            while (o < d.length) { const ft = d.toString("latin1", o, o + 4), fs = d.readUInt16LE(o + 4); if (ft === "NAME") base = d.readUInt32LE(o + 6); if (ft === "DATA") P = [d.readFloatLE(o + 6), d.readFloatLE(o + 10), d.readFloatLE(o + 14), d.readFloatLE(o + 18), d.readFloatLE(o + 22), d.readFloatLE(o + 26)]; if (ft === "XSCL") sc = d.readFloatLE(o + 6); o += 6 + fs; }
+            if (P && Math.hypot(P[0] - cx, P[1] - cy) <= R) { let bt = "", be = ""; try { const rr = mp.lookupEspmRecordById(base); if (rr && rr.record) { bt = String(rr.record.type); be = String(rr.record.editorId || ""); } } catch (e) { } out.push({ id: id, base: base, t: bt, ed: be, p: P.slice(0, 3).map(Math.round), r: P.slice(3, 6).map(function (v) { return Math.round(v * 1800 / Math.PI) / 10; }), s: Math.round(sc * 100) / 100, dis: dis }); }
+          } catch (e) { }
+        }
+        pos += 24 + h.size;
+      }
+    };
+    try { walk(0, _fs.fstatSync(fd).size, 0); } catch (e) { atOut("DECOR errore " + e); }
+    try { _fs.closeSync(fd); } catch (e) { }
+    _fs.writeFileSync("giganti-decor-sorgente.json", JSON.stringify({ cx: cx, cy: cy, R: R, refs: out }));
+    atOut("DECOR: " + out.length + " riferimenti attorno a " + cx + "," + cy + " in " + (Date.now() - t0) + " ms -> giganti-decor-sorgente.json"); return;
+  }
+  if (op === "esm") {   // giganti esm [raggio]: legge le altezze VERE del terreno da Skyrim.esm attorno ai 4 accampamenti -> giganti-esm.json
+    const R = Number(parts[2]) || 10000; const t0 = Date.now();
+    let zlib = null; try { zlib = require("zlib"); } catch (e) { }
+    if (!zlib) { atOut("ESM: zlib non disponibile"); return; }
+    const want = {}; if (parts[2] === "tutto") { for (let gx = 13; gx <= 55; gx++) for (let gy = -38; gy <= 21; gy++) want[gx + "," + gy] = 1; } else gigCampi().forEach(function (c) { for (let gx = Math.floor((c.x - R) / 4096); gx <= Math.floor((c.x + R) / 4096); gx++) for (let gy = Math.floor((c.y - R) / 4096); gy <= Math.floor((c.y + R) / 4096); gy++) want[gx + "," + gy] = 1; });
+    let path = null; try { path = JSON.parse(_fs.readFileSync("server-settings.json", "utf8")).loadOrder[0]; } catch (e) { }
+    const fd = _fs.openSync(path, "r"); const hb = Buffer.alloc(24);
+    const rd = function (pos, n) { const b = Buffer.alloc(n); _fs.readSync(fd, b, 0, n, pos); return b; };
+    const recData = function (pos, h) { let d = rd(pos + 24, h.size); if (h.flags & 0x40000) d = zlib.inflateSync(d.slice(4)); return d; };
+    const hdr = function (pos) { _fs.readSync(fd, hb, 0, 24, pos); return { tag: hb.toString("latin1", 0, 4), size: hb.readUInt32LE(4), a: hb.readUInt32LE(8), b: hb.readInt32LE(12), flags: hb.readUInt32LE(8), id: hb.readUInt32LE(12) }; };
+    const fileSize = _fs.fstatSync(fd).size; const out = {}; let cur = null, nCell = 0, nLand = 0;
+    const walk = function (pos, end, depth) {
+      while (pos < end) {
+        const h = hdr(pos);
+        if (h.tag === "GRUP") {
+          const gtype = h.b, label = h.a, gend = pos + h.size;
+          let enter = false;
+          if (depth === 0) enter = hb.toString("latin1", 8, 12) === "WRLD";
+          else if (gtype === 1) enter = label === 0x3c;
+          else if (gtype === 4 || gtype === 5) enter = true;
+          else if (gtype === 6) enter = !!(cur && want[cur]);
+          else if (gtype === 9) enter = !!(cur && want[cur]);
+          if (enter) walk(pos + 24, gend, depth + 1);
+          pos = gend; continue;
+        }
+        if (h.tag === "CELL" && depth >= 2) {
+          cur = null; nCell++;
+          try { const d = recData(pos, h); let o = 0; while (o < d.length) { const ft = d.toString("latin1", o, o + 4), fs = d.readUInt16LE(o + 4); if (ft === "XCLC") { cur = d.readInt32LE(o + 6) + "," + d.readInt32LE(o + 10); break; } o += 6 + fs; } } catch (e) { }
+        } else if (h.tag === "LAND" && cur && want[cur] && !out[cur]) {
+          try {
+            const d = recData(pos, h); let o = 0;
+            while (o < d.length) { const ft = d.toString("latin1", o, o + 4), fs = d.readUInt16LE(o + 4);
+              if (ft === "VHGT") { let off = d.readFloatLE(o + 6) * 8; const H = []; for (let r = 0; r < 33; r++) { off += d.readInt8(o + 10 + r * 33) * 8; let col = off; for (let c = 0; c < 33; c++) { if (c > 0) col += d.readInt8(o + 10 + r * 33 + c) * 8; H.push(Math.round(col)); } } out[cur] = H; nLand++; break; }
+              o += 6 + fs; }
+          } catch (e) { atOut("ESM: LAND errore " + e); }
+        }
+        pos += 24 + h.size;
+      }
+    };
+    try { walk(0, fileSize, 0); } catch (e) { atOut("ESM: errore lettura " + e); }
+    try { _fs.closeSync(fd); } catch (e) { }
+    _fs.writeFileSync(parts[2] === "tutto" ? "giganti-esm-tutto.json" : "giganti-esm.json", JSON.stringify({ R: R, campi: gigCampi(), celle: out })); global.__rbGigEsm = null;
+    atOut("ESM: celle volute " + Object.keys(want).length + ", celle lette " + nCell + ", terreni trovati " + nLand + " in " + (Date.now() - t0) + " ms -> giganti-esm.json");
+    return;
+  }
+  if (op === "acqua") {   // giganti acqua: per ogni cella della zona dei due feudi legge da Skyrim.esm se ha acqua e a che quota (XCLW) -> giganti-acqua.json
+    let zlib = null; try { zlib = require("zlib"); } catch (e) { }
+    let path = null; try { path = JSON.parse(_fs.readFileSync("server-settings.json", "utf8")).loadOrder[0]; } catch (e) { }
+    const fd = _fs.openSync(path, "r"); const hb = Buffer.alloc(24);
+    const rd = function (pos, n) { const b = Buffer.alloc(n); _fs.readSync(fd, b, 0, n, pos); return b; };
+    const hdr = function (pos) { _fs.readSync(fd, hb, 0, 24, pos); return { tag: hb.toString("latin1", 0, 4), size: hb.readUInt32LE(4), a: hb.readUInt32LE(8), b: hb.readInt32LE(12), flags: hb.readUInt32LE(8) }; };
+    const out = {}; let n = 0;
+    const walk = function (pos, end, depth) {
+      while (pos < end) {
+        const h = hdr(pos);
+        if (h.tag === "GRUP") { const gtype = h.b, label = h.a, gend = pos + h.size; let enter = false;
+          if (depth === 0) enter = hb.toString("latin1", 8, 12) === "WRLD"; else if (gtype === 1) enter = label === 0x3c; else if (gtype === 4 || gtype === 5) enter = true;
+          if (enter) walk(pos + 24, gend, depth + 1); pos = gend; continue; }
+        if (h.tag === "CELL" && depth >= 2) {
+          try { let d = rd(pos + 24, h.size); if (h.flags & 0x40000) d = zlib.inflateSync(d.slice(4)); let o = 0, key = null, w = null, fl = 0;
+            while (o < d.length) { const ft = d.toString("latin1", o, o + 4), fs = d.readUInt16LE(o + 4);
+              if (ft === "XCLC") key = d.readInt32LE(o + 6) + "," + d.readInt32LE(o + 10); else if (ft === "XCLW") w = d.readFloatLE(o + 6); else if (ft === "DATA") fl = d.readUInt8(o + 6);
+              o += 6 + fs; }
+            if (key) { const gx = Number(key.split(",")[0]), gy = Number(key.split(",")[1]); if (gx >= 13 && gx <= 55 && gy >= -38 && gy <= 21) { out[key] = (fl & 2) ? (w === null ? -14000 : Math.round(w)) : null; n++; } }
+          } catch (e) { }
+        }
+        pos += 24 + h.size;
+      }
+    };
+    try { walk(0, _fs.fstatSync(fd).size, 0); } catch (e) { atOut("ACQUA errore " + e); }
+    try { _fs.closeSync(fd); } catch (e) { }
+    _fs.writeFileSync("giganti-acqua.json", JSON.stringify(out)); atOut("ACQUA: " + n + " celle -> giganti-acqua.json"); return;
+  }
+  if (op === "scan") {   // conta i record di un tipo in un intervallo di id (per trovare LAND / CELL)
+    const tipo = parts[2], da = parseInt(parts[3], 16), a = parseInt(parts[4], 16); const trov = []; let n = 0;
+    for (let id = da; id < a; id++) { try { const rr = mp.lookupEspmRecordById(id); const r = rr && rr.record; if (r && r.type === tipo) { n++; if (trov.length < 15) trov.push(id.toString(16)); } } catch (e) { } }
+    atOut("SCAN " + tipo + " " + parts[3] + "-" + parts[4] + ": " + n + " trovati, primi " + trov.join(","));
+    return;
+  }
+  if (op === "cerca2") {   // giganti cerca2 MISC:gem,ALCH:mammoth,... (piu' ricerche in un solo giro) -> giganti-cerca.json
+    const Q = String(parts[2] || "").split(",").map(function (x) { const a = x.split(":"); return { t: a[0], s: String(parts[2] || "").toLowerCase() }; }); const out = [];
+    for (let id = 0; id < 0x110000; id++) { try { const rr = mp.lookupEspmRecordById(id); const r = rr && rr.record; if (!r) continue; const ed = String(r.editorId || "").toLowerCase(); if (Q.some(function (q) { return r.type === q.t && ed.indexOf(q.s) >= 0; })) out.push(r.type + " " + id.toString(16) + " " + r.editorId); } catch (e) { } }
+    _fs.writeFileSync("giganti-cerca.json", JSON.stringify(out)); atOut("CERCA2: " + out.length + " -> giganti-cerca.json"); return;
+  }
+  if (op === "cerca") {   // giganti cerca <TIPO> <testo>: record di quel tipo con l'editorId che contiene il testo -> giganti-cerca.json
+    const tipo = parts[2], txt = String(parts[3] || "").toLowerCase(); const out = [];
+    for (let id = 0; id < 0x110000; id++) { try { const rr = mp.lookupEspmRecordById(id); const r = rr && rr.record; if (r && r.type === tipo && String(r.editorId || "").toLowerCase().indexOf(txt) >= 0) out.push(id.toString(16) + " " + r.editorId); } catch (e) { } }
+    _fs.writeFileSync("giganti-cerca.json", JSON.stringify(out)); atOut("CERCA " + tipo + " '" + txt + "': " + out.length + " -> giganti-cerca.json");
+    return;
+  }
+  atOut("giganti: comando sconosciuto " + op);
+};
 const __faunaCmdProva = global.__rbFaunaCmd;
 global.__rbFaunaCmd = function (parts) {
   const cmd = parts[1];
