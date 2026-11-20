@@ -10792,11 +10792,17 @@ var getScreenResolution = function () {
         var L = faunaS.list || [];
         var nH = 0, nC = 0, dMin = 1e9;
         if (!faunaMem.__t || now - faunaMem.__t > 10000) { faunaMem.__t = now; faunaMem.__log = true; } else faunaMem.__log = false;
+        // [RB-NOLOTTE] 20/11/2026: gli animali del sistema (e giganti/mammut) non si attaccano MAI tra loro: combattono solo contro i giocatori
+        var faunaFid = {};
+        for (var j0 = 0; j0 < L.length; j0++) { try { var a0 = actorByRid(L[j0][0]); if (a0) faunaFid[a0.getFormID()] = 1; } catch (eF0) { } }
         for (var i = 0; i < L.length; i++) {
             try {
                 var rid = L[i][0]; if (!isHosted(rid)) continue; nH++;
                 var ac = actorByRid(rid); if (!ac || ac.isDead() || !ac.is3DLoaded()) continue; nC++;
                 var A = faunaMem[rid] || (faunaMem[rid] = {});
+                try {   // [RB-NOLOTTE] se il bersaglio e' un altro animale del sistema, fermo il combattimento (niente lotte tra animali)
+                    if (ac.isInCombat()) { var ctF = ac.getCombatTarget(); if (ctF && faunaFid[ctF.getFormID()]) { ac.stopCombat(); A.tgtPid = null; if (now - (A.flog || 0) > 8000) { A.flog = now; send({ customPacketType: "rbDbg", text: "[FAUNA] " + rid.toString(16) + " niente lotte tra animali: combattimento con " + ctF.getFormID().toString(16) + " fermato" }); } } }
+                } catch (eNL) { }
                 if (L[i][8] && !L[i][5] && !A.out) {   // [RB-GIGANTI] giganti/mammut degli accampamenti: calmi (niente aggressione di Skyrim) finche' il server non dice di attaccare
                     try { var dxH = ac.getPositionX() - L[i][1], dyH = ac.getPositionY() - L[i][2]; if (!ac.isInCombat() && Math.sqrt(dxH * dxH + dyH * dyH) > 1800) walkTo(ac, A, L[i][1], L[i][2], L[i][3], false, now); } catch (eW) { }
                     try { if (ac.getActorValue("Aggression") !== 0) ac.setActorValue("Aggression", 0); if (ac.isInCombat()) { ac.stopCombat(); A.tgtPid = null; if (now - (A.clog || 0) > 8000) { A.clog = now; send({ customPacketType: "rbDbg", text: "[FAUNA] " + rid.toString(16) + " (accampamento) calmato: nessun ordine di attacco" }); } } } catch (eC) { }

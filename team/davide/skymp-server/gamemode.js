@@ -1739,6 +1739,7 @@ global.__rbHpTimer = setInterval(function () {
     onlineUsers().forEach(function (u) {
       const a = mp.getUserActor(u); if (!a) return;
       const hp = getHp(a); if (typeof hp !== "number") return;
+      if (global.__rbGiroProt && hp > 0 && hp < 0.999) { setHp(a, 1); global.__rbHpLast[a] = 1; return; }   // [gm_v30] durante il giro di prova il personaggio non puo' morire
       const last = global.__rbHpLast[a];
       const bonus = extraHpOf(u, a);
       if (bonus > 0 && typeof last === "number" && hp < last - 0.0001 && hp > 0) {
@@ -1899,11 +1900,12 @@ const PESCI_ZONE = {
   MFc: { nome: "Mare dei Fantasmi (vicino a riva)", cap: 5 }, MFl: { nome: "Mare dei Fantasmi (al largo)", cap: 5 },
 };
 global.__rbPesci = global.__rbPesci || { fish: {}, nasciti: 0, morti: 0, cicli: 0 };
-if (global.__rbPesci.ver !== 2) {   // [gm_v27] punti nuovi: via i pesci nati sui punti vecchi, il ciclo li rifa'
+if (global.__rbPesci.ver !== 3) {   // [gm_v27] punti nuovi: via i pesci nati sui punti vecchi, il ciclo li rifa'
   Object.keys(global.__rbPesci.fish).forEach(function (sid) { try { mpDestroy(Number(sid)); } catch (e) { } });
-  global.__rbPesci.fish = {}; global.__rbPesci.ver = 2;
+  global.__rbPesci.fish = {}; global.__rbPesci.ver = 3;
 }
 function pesciPunti() {
+  try { return JSON.parse(_fs.readFileSync("pesci-punti-v3.json", "utf8")); } catch (e) { }   // [gm_v29] v3: tolto il punto 0 del Darkwater (a 560 unita' dall'ingresso di una caverna)
   try { return JSON.parse(_fs.readFileSync("pesci-punti-v2.json", "utf8")); } catch (e) { }   // [gm_v27] v2: tolti doppioni e punti vicini a luoghi sicuri / zona di guerra di Largashbur
   try { return JSON.parse(_fs.readFileSync("pesci-punti.json", "utf8")); } catch (e) { }
   try { return JSON.parse(_fs.readFileSync("pesci-candidati.json", "utf8")); } catch (e) { log("[PESCI] nessun file punti: " + e); return {}; }
@@ -2175,10 +2177,10 @@ const FAUNA_SPECIE = { coniglio: 0x0006DC9D, cervo: 0x000CF89D, capra: 0x0002EBE
 global.__rbFauna = global.__rbFauna || { slots: null, actors: {}, nasciti: 0, cicli: 0 };
 function faunaCarica() {
   const F = global.__rbFauna;
-  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v7.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v7: " + e); }   // [gm_v28] v7 = v6 con 2 punti spostati lontano dagli accampamenti dei giganti (volpe artica Riften 4, alce Riften 2)   // [gm_v27] v6 = punti su terreno percorribile (niente pareti o versanti da scalare), quote vere da Skyrim.esm, lontani da forti e luoghi sicuri
-  if (F.ver !== 9) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
+  let pts = {}; try { pts = JSON.parse(_fs.readFileSync("terra-punti-v8.json", "utf8")); } catch (e) { log("[FAUNA] nessun file punti v8: " + e); }   // [gm_v29] 18/11/2026 v8 = v7 con 41 punti spostati: dentro il confine del gioco (BorderRegionSkyrim), lontani da caverne/rovine/tane, Riften neve solo sopra quota 14000   // [gm_v28] v7 = v6 con 2 punti spostati lontano dagli accampamenti dei giganti (volpe artica Riften 4, alce Riften 2)   // [gm_v27] v6 = punti su terreno percorribile (niente pareti o versanti da scalare), quote vere da Skyrim.esm, lontani da forti e luoghi sicuri
+  if (F.ver !== 10) {   // cambio versione punti: via gli animali nati sui punti vecchi (quote sbagliate), si rifanno tutti
     Object.keys(F.actors).forEach(function (id) { try { mpDestroy(Number(id)); } catch (e) { } });
-    F.actors = {}; F.slots = null; F.ver = 9; try { (global.__rbGiganti && global.__rbGiganti.posti || []).forEach(function (sl) { sl.ids = []; }); } catch (e) { } log("[FAUNA] punti v7: animali vecchi rimossi, ricreo tutto");
+    F.actors = {}; F.slots = null; F.ver = 10; try { (global.__rbGiganti && global.__rbGiganti.posti || []).forEach(function (sl) { sl.ids = []; }); } catch (e) { } log("[FAUNA] punti v8: animali vecchi rimossi, ricreo tutto");
   }
   const nuovo = !F.slots; if (!F.slots) F.slots = [];
   const gia = {}; F.slots.forEach(function (sl) { gia[sl.sp] = 1; });
@@ -2238,7 +2240,7 @@ function faunaInvia() {
       ids.forEach(function (sid) {
         const sl = F.actors[sid]; if (!sl) return;
         if (Math.hypot(p.pos[0] - sl.x, p.pos[1] - sl.y) > 22000) return;
-        list.push([Number(sid), sl.x, sl.y, sl.z, FAUNA_RAGGI[sl.sp] || FAUNA_RAGGIO, (sl.ostile !== undefined ? sl.ostile : (FAUNA_OSTILI[sl.sp] || 0)), sl.aggro || null, sl.bersaglio !== undefined ? sl.bersaglio : null, sl.campo ? 1 : 0]);   // 8 = 1: creature degli accampamenti (calme finche' il server non dice di attaccare)   // [gm_v28] 6 = distanza d'attacco, 7 = bersaglio imposto (giganti)   // [gm_v28] ostile per singolo animale (giganti: dipende dall'area e da chi li colpisce)
+        list.push([Number(sid), sl.x, sl.y, sl.z, FAUNA_RAGGI[sl.sp] || FAUNA_RAGGIO, (global.__rbGiroProt ? 0 : (sl.ostile !== undefined ? sl.ostile : (FAUNA_OSTILI[sl.sp] || 0))), sl.aggro || null, sl.bersaglio !== undefined ? sl.bersaglio : null, sl.campo ? 1 : 0]);   // 8 = 1: creature degli accampamenti (calme finche' il server non dice di attaccare)   // [gm_v28] 6 = distanza d'attacco, 7 = bersaglio imposto (giganti)   // [gm_v28] ostile per singolo animale (giganti: dipende dall'area e da chi li colpisce)
       });
       const tp = {}; playersList(users).forEach(function (q) { if (!q.fake && q.world === 0x3c) tp[q.pid] = q.actor; });
       if (list.length) sendTo(p.user, { customPacketType: "rbFauna", list: list, tp: tp });
@@ -2271,6 +2273,7 @@ const GIG_CICLO_MS = 90 * 60 * 1000;   // [g41] 18/11/2026: giganti e mammut rin
 const GIG_VER = 7;   // v3 (17/11/2026): 2 giganti + 3 mammut per accampamento
 FAUNA_RAGGI.gigante = GIG_RAGGIO; FAUNA_RAGGI.mammut = GIG_RAGGIO;
 global.__rbGiganti = global.__rbGiganti || { posti: null, nati: 0, cicli: 0, rientri: 0 };
+global.__rbGigMam = global.__rbGigMam || {}; try { (global.__rbGiganti.posti || []).forEach(function (q) { if (q.sp === "mammut") q.ids.forEach(function (x) { global.__rbGigMam[x] = true; }); }); } catch (e) { }   // [g41]
 function gigTerreno(x, y) {   // quota del terreno da Skyrim.esm (giganti-esm.json: celle attorno agli accampamenti)
   if (!global.__rbGigEsm) { try { global.__rbGigEsm = JSON.parse(_fs.readFileSync("giganti-esm.json", "utf8")).celle; } catch (e) { global.__rbGigEsm = {}; } }
   const gx = Math.floor(x / 4096), gy = Math.floor(y / 4096); let H = global.__rbGigEsm[gx + "," + gy];
@@ -2307,6 +2310,7 @@ function gigNasci(sl) {
   mpSet(id, "private.rbEvoked", true);   // tolti a ogni riavvio del server e rifatti
   mpSet(id, "private.rbTitle", sl.sp === "gigante" ? "Gigante" : "Mammut");
   if (sl.sp === "gigante") mpSet(id, "private.rbGig", true);
+  if (sl.sp === "mammut") { global.__rbGigMam = global.__rbGigMam || {}; global.__rbGigMam[id] = true; }   // [g41] per il loot (alla morte la fauna lo toglie dalle liste)
   try { setHp(id, 1); } catch (e) { }
   applyOrcHp(id, sl.sp);   // vita voluta: gigante 150, mammut 200 (barra piena)
   global.__rbFauna.actors[id] = sl; sl.ids.push(id); global.__rbGiganti.nati++;
@@ -2520,8 +2524,7 @@ function gigControlla() {
 const GIG_LOOT_VIA = { CrGiantClub: 1, HorkerTusk: 1, CowHide: 1 };
 global.__rbGigPulisci = function (actorId) {
   let mam = false; try { const slm = global.__rbFauna && global.__rbFauna.actors[actorId]; mam = !!(slm && slm.sp === "mammut" && slm.campo); } catch (e) { }
-  if (!mam) try { mam = (global.__rbGiganti.posti || []).some(function (q) { return q.sp === "mammut" && q.ids.some(function (x) { return Number(x) === Number(actorId); }); }); } catch (e) { }
-  if (!mam) try { mam = Number(mp.get(actorId, "private.rbFauna")) === GIG_SPECIE.mammut && (global.__rbGiganti.posti || []).some(function (q) { return q.sp === "mammut" && Math.hypot(q.x - mp.get(actorId, "pos")[0], q.y - mp.get(actorId, "pos")[1]) < 9000; }); } catch (e) { }   // [g41] dopo un ricaricamento la lista della fauna puo' non averlo
+  if (!mam) mam = !!(global.__rbGigMam || {})[actorId];   // [g41] mammut degli accampamenti (registrati alla nascita)
   if (mam) {   // DeathItemMammoth: carne di mammut + zanna di mammut (+10% piccolo tesoro: qualche moneta)
     const iv = mp.get(actorId, "inventory") || { entries: [] }; const en = iv.entries || [];
     if (!en.some(function (e) { return e.baseId === 0x3AD6C; })) { en.push({ baseId: 0x669A4, count: 1 }); en.push({ baseId: 0x3AD6C, count: 1 }); if (Math.random() < 0.1) en.push({ baseId: 0xF, count: 1 + Math.floor(Math.random() * 9) }); log("[GIGANTI] loot " + actorId.toString(16) + ": aggiunto il bottino di Skyrim del mammut"); }
@@ -2958,13 +2961,19 @@ global.__rbFaunaCmd = function (parts) {
     slots.forEach(function (sl) { per[sl.sp] = per[sl.sp] || []; per[sl.sp].push(sl); });
     Object.keys(per).forEach(function (sp) { const a = per[sp]; const pick = [a[0], a[Math.floor(a.length / 2)], a[a.length - 1]].filter(function (x, i, arr) { return arr.indexOf(x) === i; }); (parts[2] === 'tutti' ? a : pick.slice(0, Number(parts[2]) || 2)).forEach(function (x) { lista.push(x); }); });
     if (parts[2] === 'lista') { lista.length = 0; String(parts[3] || '').split(',').forEach(function (t) { const q = t.split(':'); const f = slots.filter(function (x) { return x.sp === q[0] && x.fe === q[1] && String(x.idx) === q[2]; })[0]; if (f) lista.push(f); }); }
-    const res = []; let i = 0; global.__rbMisuraOn = true;
+    const res = []; let i = 0; global.__rbMisuraOn = true; global.__rbGiroProt = true;   // [gm_v30] animali non ostili + vita piena durante il giro
     const snap = function () { const out = []; let pp = null; try { pp = mp.get(me, "pos"); } catch (e) { } Object.keys(F.actors).forEach(function (id) { try { const sl = F.actors[id]; const p = mp.get(Number(id), "pos"); if (pp && Math.hypot(p[0] - pp[0], p[1] - pp[1]) < 6000 && mp.get(Number(id), "isDead") !== true) out.push({ id: Number(id), sp: sl.sp, hx: sl.x, hy: sl.y, hz: sl.z, p: p }); } catch (e) { } }); return { pl: pp, a: out }; };
     atOut("GIRO: " + lista.length + " punti (circa " + Math.round(lista.length * 30 / 60) + " minuti)");
     (function passo() {
-      if (i >= lista.length) { try { _fs.writeFileSync("osserva-fauna.json", JSON.stringify(res)); } catch (e) { } global.__rbMisuraOn = false; mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: home, rot: [0, 0, 0] }); atOut("GIRO: finito " + res.length + " punti (osserva-fauna.json)"); return; }
+      if (i >= lista.length) { try { _fs.writeFileSync("osserva-fauna.json", JSON.stringify(res)); } catch (e) { } global.__rbMisuraOn = false; mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: home, rot: [0, 0, 0] }); global.__rbGiroProt = false; atOut("GIRO: finito " + res.length + " punti (osserva-fauna.json)"); return; }
+      if (!onlineUsers().length) { global.__rbMisuraOn = false; global.__rbGiroProt = false; try { _fs.writeFileSync("osserva-fauna.json", JSON.stringify(res)); } catch (e) { } atOut("GIRO: il giocatore si e' scollegato, mi fermo dopo " + res.length + " punti"); return; }   // [gm_v30] niente letture finte
       const sl = lista[i]; mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: home, rot: [0, 0, 0] });
-      setTimeout(function () { mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: [sl.x + 250, sl.y, sl.z + 80], rot: [0, 0, 0] }); }, 6000);
+      setTimeout(function () {   // [gm_v30] il giocatore arriva 450 a sud dell'animale del punto (guarda a nord, quindi lo vede davanti)
+        let ap = null; try { const aid = Object.keys(F.actors).map(Number).filter(function (id) { const q = F.actors[id]; return q && q.sp === sl.sp && Math.abs(q.x - sl.x) < 2 && Math.abs(q.y - sl.y) < 2 && mp.get(id, "isDead") !== true; })[0]; if (aid) ap = mp.get(aid, "pos"); } catch (e) { }
+        if (!ap || Math.hypot(ap[0] - sl.x, ap[1] - sl.y) > 6000) ap = [sl.x, sl.y, sl.z];
+        mpSet(me, "locationalData", { cellOrWorldDesc: WORLD, pos: [ap[0], ap[1] - 450, ap[2] + 80], rot: [0, 0, 0] });   // a sud dell'animale: il personaggio guarda a nord e lo ha davanti
+        atOut("GIRO " + (i + 1) + "/" + lista.length + " arrivato: " + sl.sp + ":" + sl.fe + ":" + sl.idx + " animale a " + Math.round(ap[0]) + "," + Math.round(ap[1]) + "," + Math.round(ap[2]));
+      }, 6000);
       setTimeout(function () { const s1 = snap(); setTimeout(function () { const s2 = snap(); res.push({ sp: sl.sp, fe: sl.fe, idx: sl.idx, x: sl.x, y: sl.y, z: sl.z, s1: s1, s2: s2 }); try { _fs.writeFileSync("osserva-fauna.json", JSON.stringify(res)); } catch (e) { } i++; passo(); }, 8000); }, (parts[2] === 'lista' ? 46000 : 28000));
     })();
     return;

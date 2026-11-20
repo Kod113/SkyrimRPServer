@@ -15,9 +15,10 @@ Il server vero gira in `Desktop\Server\skymp-server` sul PC di Davide; questa ca
 | `client-mappa-estratto.js` | Estratto (solo lettura) dei blocchi del client `skymp5-client.js` che gestiscono mappa, porte e confini |
 | `magic-swap.json` | Oggetti magici/incantati → versione normale (0 = tolto dal loot) |
 | `weapon-ids.json` | ID delle armi |
-| `terra-punti-v6.json` | Punti di spawn degli animali (versione attuale, 15/11): terreno percorribile, quote vere da Skyrim.esm, lontani da forti e luoghi sicuri. Tutto spiegato in `../spawn-debug.md` |
+| `terra-punti-v8.json` | Punti di spawn degli animali (versione attuale, 18/11): terreno percorribile, quote vere da Skyrim.esm, dentro il confine del gioco (`BorderRegionSkyrim`), lontani da forti, luoghi sicuri, dungeon e accampamenti dei giganti. Tutto spiegato in `../spawn-debug.md` |
+| `terra-punti-v6.json`, `terra-punti-v7.json` | Versioni precedenti dei punti (non più usate dal gamemode) |
 | `terra-punti-v4.json`, `quote-montagna.json` | Versione precedente dei punti (non più usata dal gamemode) e quote delle montagne |
-| `pesci-punti-v2.json` | Punti dei pesci macellaio (versione attuale, 15/11): senza doppioni né punti vicino a luoghi sicuri o forti |
+| `pesci-punti-v3.json` | Punti dei pesci macellaio (versione attuale, 18/11): senza doppioni né punti vicino a luoghi sicuri, forti o ingressi di caverne (`pesci-punti-v2.json` è la versione precedente) |
 | `forts-state.json`, `osserva-forti.json` | Stato e misure dei forti orchi (Riften, Windhelm) |
 | `osserva-fauna.json`, `raccolta-consentita.json` | Fauna osservata; oggetti raccoglibili consentiti |
 | `pesci-*.json`, `raccolta-*.txt` | Dati raccolti in gioco (pesca, ingredienti, oggetti, bottino, terreno) usati per costruire spawn e loot |

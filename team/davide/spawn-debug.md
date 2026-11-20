@@ -112,3 +112,110 @@ I rientri falliti dello storico (es. orso fermo a 5.900 unità) succedevano sui 
 | Loot di tutti gli animali in gioco | 17/17 PASS |
 | Caduta del personaggio su ogni punto (`fauna misura`): rocce sopra il punto | **non affidabile**: con 12 s di attesa il personaggio è ancora a mezz'aria nei punti lontani, e i teletrasporti in serie hanno fatto chiudere Skyrim una volta. Ora la prova salva ogni punto, riparte da un indice (`fauna misura 40`) e si ferma se il giocatore si scollega davvero |
 | Da fare | giro a vista dei punti spostati (`fauna giro lista ...`) o passeggiata in gioco: verificare che nessun animale sia dentro una roccia |
+
+---
+
+## Aggiornamento 18–19/11/2026: confini del gioco, dungeon, accampamenti dei giganti (punti v8)
+
+**Problema:** alcuni punti stavano dove il giocatore non può arrivare, perché il gioco ferma il giocatore con il messaggio "non puoi andare in quella direzione".
+Il limite vero del gioco è la regione **`BorderRegionSkyrim`** di Skyrim.esm (REGN 0x000C5859, poligono di 173 punti). Il vecchio controllo usava i confini dei feudi disegnati da noi, non quel poligono, e per questo i punti sbagliati erano passati.
+
+**Regole aggiunte a quelle di prima** (che restano tutte: terreno in piano, raggiungibile a piedi, quota vera, niente rocce sopra, niente forti o luoghi sicuri, stesso feudo, neve / non neve):
+- il punto deve stare **dentro `BorderRegionSkyrim`**, e tutta l'area di movimento deve restare dentro con **1.500 unità di margine**;
+- lontano dai **dungeon**: caverne, accampamenti di banditi, forti, rovine nordiche, rovine naniche, tane di drago. Distanza minima dal marcatore = area dell'animale + 2.000;
+- lontano dagli **accampamenti dei giganti custom**: distanza minima dal centro = 7.000 × 1,15 (limite d'inseguimento) + 1.500 + area dell'animale;
+- la regola della neve di Riften (sopra quota 14.000) ora vale anche per i punti già esistenti, non solo per quelli spostati.
+
+**Risultato:** 108 punti tenuti, **41 spostati** sul punto valido più vicino:
+- 17 erano fuori dal confine del gioco, quasi tutti animali delle nevi nell'estremo est di Windhelm;
+- 17 erano vicino a un dungeon;
+- 6 erano nel feudo sbagliato o sul terreno sbagliato (neve / non neve);
+- 1 aveva una roccia sopra.
+
+I lupi spostati hanno di nuovo i loro 3 membri del branco.
+**Neve di Riften:** i pianori sopra quota 14.000 sono pochi e stanno vicino al confine sud e ai due accampamenti dei giganti dello Jerall. Per 3 animali non c'era posto con le distanze normali: per scelta di Davide sono stati messi **stretti sui pianori** (distanza minima 2.500 da altri animali e 3.000 dalla stessa specie, invece di 3.000 e 5.000).
+
+| Animale | Feudo | Punto | Motivo | Spostato di (unità) |
+|---|---|---|---|---|
+| Coniglio | Windhelm | 1 | fuori dal confine del gioco | 48.747 |
+| Coniglio | Windhelm | 3 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) | 21.287 |
+| Coniglio | Windhelm | 6 | vicino a caverna 0x16273 | 7.186 |
+| Coniglio | Riften | 3 | vicino a rovina nordica Angarvunde | 3.072 |
+| Coniglio | Riften | 5 | vicino a rovina nordica ShroudHearth | 2.172 |
+| Coniglio | Riften | 9 | vicino a caverna 0x16219 | 4.720 |
+| Cervo | Windhelm | 4 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) | 10.571 |
+| Cervo | Riften | 9 | vicino a caverna 0x16267 | 3.060 |
+| Capra | Windhelm | 3 | vicino a caverna 0xb6046 | 1.846 |
+| Capra | Windhelm | 5 | fuori dal confine del gioco | 49.611 |
+| Capra | Windhelm | 8 | fuori dal confine del gioco | 41.688 |
+| Capra | Riften | 0 | vicino a caverna 0x16243 | 1.144 |
+| Capra | Riften | 2 | vicino a caverna 0x16267 | 3.114 |
+| Capra | Riften | 5 | vicino a caverna 0x16243 | 5.345 |
+| Volpe | Windhelm | 2 | vicino a caverna 0x16227 | 9.941 |
+| Volpe | Windhelm | 3 | fuori dal confine del gioco | 58.147 |
+| Volpe | Riften | 7 | vicino a caverna 0xf52d8 | 1.024 |
+| Lupo | Windhelm | 3 | fuori dal confine del gioco | 61.655 |
+| Lupo | Riften | 3 | vicino a caverna 0xf52d8 | 1.619 |
+| Lupo | Riften | 5 | vicino a rovina nordica GeirmundsHall | 13.833 |
+| Orso | Windhelm | 2 | vicino a caverna EldergleamSanctuary | 2.664 |
+| Orso | Riften | 0 | vicino a caverna nightingaleCave | 2.610 |
+| Gatto a sciabola | Windhelm | 3 | vicino a caverna StonyCreekCave | 22.678 |
+| Gatto delle nevi | Windhelm | 0 | fuori dal confine del gioco | 31.532 |
+| Gatto delle nevi | Windhelm | 1 | area oltre il confine del gioco | 13.604 |
+| Gatto delle nevi | Windhelm | 2 | fuori dal confine del gioco | 32.325 |
+| Lupo di ghiaccio | Windhelm | 0 | fuori dal confine del gioco | 38.522 |
+| Lupo di ghiaccio | Windhelm | 1 | fuori dal confine del gioco | 39.596 |
+| Lupo di ghiaccio | Windhelm | 2 | fuori dal confine del gioco | 42.096 |
+| Lupo di ghiaccio | Windhelm | 3 | fuori dal confine del gioco | 35.546 |
+| Lupo di ghiaccio | Riften | 2 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) — messo stretto sui pianori alti di Riften | 20.294 |
+| Volpe artica | Windhelm | 0 | fuori dal confine del gioco | 25.290 |
+| Volpe artica | Windhelm | 1 | fuori dal confine del gioco | 32.223 |
+| Volpe artica | Windhelm | 3 | fuori dal confine del gioco | 26.076 |
+| Volpe artica | Windhelm | 5 | vicino a caverna StonyCreekCave | 42.096 |
+| Volpe artica | Riften | 0 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) | 102.720 |
+| Volpe artica | Riften | 2 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) | 101.258 |
+| Volpe artica | Riften | 3 | feudo sbagliato o terreno neve/non neve sbagliato (per la neve di Riften: sotto quota 14.000) — messo stretto sui pianori alti di Riften | 91.457 |
+| Volpe artica | Riften | 4 | roccia/edificio sopra — messo stretto sui pianori alti di Riften | 1.639 |
+| Orso delle nevi | Windhelm | 0 | fuori dal confine del gioco | 22.925 |
+| Orso delle nevi | Windhelm | 1 | fuori dal confine del gioco | 26.426 |
+
+**Pesci (v3):** tutti dentro il confine. È stato tolto il punto 0 del fiume Darkwater, che stava a 560 unità dall'ingresso di una caverna.
+**Accampamenti dei giganti:** tutti i membri e i forzieri sono dentro il confine. I campi 3 e 4 (Jerall) sono a 2.250 e 4.700 unità dal confine: si raggiungono a piedi, ma il limite d'inseguimento dei giganti (circa 8.000 unità) sconfina oltre il bordo del gioco.
+
+**Verifica finale (Skyrim.esm):** 149/149 punti OK con tutte le regole. Nessun punto fuori dal confine, vicino a dungeon o ad accampamenti dei giganti. Distanza minima tra due punti: 2.560 unità.
+**Nel server (18/11, dopo il riavvio):** `[FAUNA] punti v8: … punti caricati: 149`, nessun punto scartato, 187 animali nati e al ciclo dopo `mancano 0`. Pesci v3 a 5 per zona; giganti: 4 accampamenti caricati.
+Gamemode: `gm_v29` (legge `terra-punti-v8.json` con `F.ver = 10` e `pesci-punti-v3.json` con `ver = 3`).
+Mappe in `mappe-spawn/01..13` rigenerate con i punti v8 e i pesci v3.
+
+
+### Test in gioco dei punti v8 (19–20/11/2026)
+
+**Prove automatiche (19/11), tutte passate:**
+- `fauna stato`: 187 animali vivi su 187.
+- `fauna prova` (nascita, uccisione, rinascita): 3/3.
+- `fauna provaloot tutti`: 17/17. Il cervo è stato ripetuto da solo: al primo tentativo la finestra del loot era arrivata in ritardo.
+- `fauna provatarget`: il lupo sceglie il giocatore più vicino e tiene il bersaglio.
+- `fauna provaarea`: il cervo portato a 4.100 unità da casa rientra nella sua area in 60 s.
+- `macellaio prova`: 5/5. La prova 3 segna FAIL per un errore della prova stessa: riusa il controllo "tutte le zone piene", mentre 0 pesci vivi è il risultato giusto.
+- `giganti prova`: 26/27. Il FAIL "gigante oltre il limite segnato come torna indietro" nasce dalla regola del 18/11 che rimette subito a casa un gigante quando nessun giocatore è vicino; il comportamento è giusto, la prova è più vecchia della regola.
+
+**Giro in gioco sui 41 punti spostati** (`fauna giro lista …`, dati in `osserva-fauna.json`):
+- tutti i **41 punti** sono stati verificati con il gioco aperto: l'animale è nato sul suo punto ed è stato visto muoversi a terra, da 4 unità sotto a 100 unità sopra il terreno vero di Skyrim.esm. Nessun animale sotto terra o dentro una roccia;
+- 3 animali (2 volpi e la capra 8 di Windhelm) sono usciti di poco dall'area perché scappavano; poi sono rientrati a piedi;
+- Skyrim si è chiuso due volte durante i giri lunghi, dopo circa 20 teleport di fila. Il giro ora si ferma da solo se il giocatore si scollega, e i punti mancanti sono stati rifatti.
+
+**Problema trovato e corretto: gli animali si uccidevano tra loro.**
+In 30 minuti di giro sono morti 8 animali senza giocatori coinvolti:
+- i lupi cacciavano capre e cervi;
+- il gatto delle nevi 0 di Riften ha sterminato in 20 secondi il branco di lupi 3 di Riften, che sta a 2.560 unità;
+- un orso delle nevi ha ucciso un altro predatore.
+
+In 24 coppie di punti le aree di due predatori di specie diverse si sovrappongono. Per scelta di Davide (20/11): **gli animali del sistema non si attaccano mai tra loro, solo i giocatori**.
+- **Correzione nel client** `skymp5-client.js` (`[RB-NOLOTTE]`, funzione `faunaAI`): se un animale del sistema ha come bersaglio un altro animale del sistema (giganti e mammut compresi), il combattimento viene fermato. Nel registro compare `[FAUNA] … niente lotte tra animali: combattimento con … fermato`.
+- **Verifica:** dopo la correzione, 0 animali morti nel giro, e il lupo 3 di Riften e la capra 8 di Windhelm restano vivi.
+
+**Aggiunte al giro di prova (gamemode `gm_v30`):**
+- durante il giro gli animali non sono ostili e il personaggio torna sempre a vita piena (`global.__rbGiroProt`);
+- il personaggio arriva 450 unità a sud dell'animale, così, guardando a nord, lo ha davanti;
+- ogni arrivo è scritto in `autotest-result.txt`;
+- il giro si ferma se il giocatore si scollega.
