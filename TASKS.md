@@ -8,15 +8,30 @@
 
 ---
 
+## Dalla riunione di sabato 21 novembre 2026
+
+Riassunto e trascrizione: `riunioni/2026-11-21/`. Priorità: **rendere tutti operativi** (materiale per lavorare e provare in gioco). Prossima riunione entro due settimane.
+
+| # | Chi | Task | Priorità | Consegna | Stato |
+|---|---|---|---|---|---|
+| T-008 | David | **Zone degli ingredienti:** dove nasce ogni ingrediente, con una lore (es. funghi in caverne buie e umide vicino all'acqua). Lontano da forti degli orchi, accampamenti dei giganti e miniere (in sospeso per l'economia di Davide). Rare e leggendarie: luoghi da scoprire giocando. | 🔴 Alta | Proposta in `team/david/`, poi sul Discord | ⏳ Aperta |
+| T-009 | David | **Launcher più automatico.** | 🟡 Media | Launcher aggiornato su un branch `david/…` | ⏳ Aperta |
+| T-010 | David + Giacomo | **Giacomo operativo:** SkyMP installato e nostra gamemode avviata sul PC di Giacomo, così può giocare e fare da tester (anche in chiamata con condivisione schermo). | 🔴 Alta | Giacomo entra nel suo server; i test vanno in un diario in `team/giacomo/` | ⏳ Aperta |
+| T-011 | Davide | **Dungeon:** lore, spawn di creature e ricompense per ogni dungeon, più la modalità conquista del luogo da parte di un party. | 🔴 Alta | Documentazione in `team/davide/` | ⏳ Aperta |
+| T-012 | Giacomo | **Crafting di oggetti non da guerra:** dall'elenco degli oggetti del gioco, scegliere quelli utili da craftare, per categoria (gioielleria, grimaldelli, cibo e bevande della locanda…). Solo oggetti utili. David gli passa l'elenco di partenza. | 🟡 Media | Lista sul Discord per i pareri, poi in `team/giacomo/` | ⏳ Aperta |
+| T-013 | Alessio | **Partire con Claude e GitHub:** GitHub Desktop, repo scaricato e progetto aperto con Claude (con David o Davide). Poi le idee su locanda e job. | 🔴 Alta | Cartella `team/alessio/` aggiornata da lui | ⏳ Aperta |
+
+---
+
 ## Settimana dal 30/10/2026 — decisa nella riunione di giovedì 29 ottobre
 
 Riassunto e trascrizione: `riunioni/2026-10-29/`. Priorità: **crafting prima dei job**. Ognuno ha un'area.
 
 | # | Chi | Task | Priorità | Consegna | Stato |
 |---|---|---|---|---|---|
-| T-005 | Alessio | **Alchimia e pozioni:** scegliere le pozioni da tenere, divise per rarità (comuni, non comuni, leggendarie), poi gli ingredienti che servono. Niente stessi ingredienti per la maggior parte delle pozioni. Insieme a Giacomo (T-007). | 🔴 Alta | Lista sul Discord per i pareri, poi in `team/alessio/` | ⏳ Aperta |
-| T-007 | Giacomo | **Ingredienti:** scegliere gli ingredienti da tenere nel gioco, lavorando con Alessio sulle pozioni e l'alchimia (T-005). *(Assegnata dopo la riunione.)* | 🔴 Alta | Lista sul Discord per i pareri, poi in `team/giacomo/` | ⏳ Aperta |
-| T-006 | David | **Armi e armature:** partendo dai mob e dalle miniere selezionati da Davide (ferro, acciaio, oricalco, nanico, elfico; vetro solo per i campioni dell'arena), decidere quali armi e armature si possono costruire. Niente semilavorati, tranne lingotti e strisce di cuoio. | 🔴 Alta | Lista in `team/david/` | ⏳ Aperta |
+| T-005 | Alessio | **Alchimia e pozioni:** scegliere le pozioni da tenere, divise per rarità (comuni, non comuni, leggendarie), poi gli ingredienti che servono. Niente stessi ingredienti per la maggior parte delle pozioni. Insieme a Giacomo (T-007). | 🔴 Alta | Lista sul Discord per i pareri, poi in `team/alessio/` | ✅ Fatta sul Discord (#lista-crafting-alchimia), confermata il 21/11 |
+| T-007 | Giacomo | **Ingredienti:** scegliere gli ingredienti da tenere nel gioco, lavorando con Alessio sulle pozioni e l'alchimia (T-005). *(Assegnata dopo la riunione.)* | 🔴 Alta | Lista sul Discord per i pareri, poi in `team/giacomo/` | ✅ Fatta sul Discord (#lista-ingredienti-alchemici), confermata il 21/11 |
+| T-006 | David | **Armi e armature:** partendo dai mob e dalle miniere selezionati da Davide (ferro, acciaio, oricalco, nanico, elfico; vetro solo per i campioni dell'arena), decidere quali armi e armature si possono costruire. Niente semilavorati, tranne lingotti e strisce di cuoio. | 🔴 Alta | Lista in `team/david/` | 🔄 Proposta in `team/david/armi_armature.md`, da smussare (metallo nanico, mercurio, 3 voci senza ricetta) |
 
 ---
 
@@ -50,8 +65,8 @@ Riassunto e trascrizione: `riunioni/2026-10-29/`. Priorità: **crafting prima de
 - 🟡 **Media** (probabili task della prossima settimana, aggiunte il 2/11 da david):
   - **Skill tree:** tutto quello che riguarda l'albero delle abilità.
   - **Abilità:** come si acquisiscono e come si ottengono.
-  - **Cibo e produzione:** tutto quello che riguarda il cibo e la sua produzione.
-  - **Crafting di oggetti** che non sono armi o armature (es. tiare e anelli).
+  - **Cibo e produzione:** tutto quello che riguarda il cibo e la sua produzione. → In parte in T-012 (cibo della locanda).
+  - **Crafting di oggetti** che non sono armi o armature (es. tiare e anelli). → Assegnato a Giacomo il 21/11 (T-012).
 
 ---
 
