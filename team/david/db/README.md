@@ -12,15 +12,15 @@
 | `prices.json` | ✅ completo | Fasce di prezzo, regole di equilibrio, guadagni e stipendi |
 | `jobs.json` | ✅ completo (tranne `allowed_actions`) | Catena economica dei job, bacheca, ruolo di partenza proposto |
 | `creatures.json` | 🟨 bozza | 25 creature (pesci, boschi, montagna, lupo incluso) con habitat, comportamento, drop e piccolo bottino 10%. Percentuali completate il 20 ott 2026 con #animali-e-loot; restano `null` solo Falco e Uovo di pesce macellaio |
-| `loot.json` | 🟨 bozza (20 ott) | Loot di 86 creature dal Discord del 18 ott: 33 animali e 53 mostri (draugr, banditi, maghi, negromanti, Rinnegati, vampiri, licantropi, Falmer, chaurus, Thalmor, giganti, troll, drago, orchi). Regola "niente oggetti magici" in `rules` |
+| `loot.json` | 🟨 bozza (21 nov) | Loot di 86 creature dal Discord del 18 ott: 33 animali e 53 mostri (draugr, banditi, maghi, negromanti, Rinnegati, vampiri, licantropi, Falmer, chaurus, Thalmor, giganti, troll, drago, orchi). Regola "niente oggetti magici" in `rules` |
 | `world_summary.json`, `world_refs.csv` | ✅ dati reali | Piante, alberi e animali piazzati in Eastmarch e Rift (coordinate, tipo, bioma), letti da `Skyrim.esm` |
 | `zones.json` | 🟨 bozza | % di terreno per feudo, 10 luoghi, confine, conteggio icone. Mancano i poligoni veri (solo schema a mano) |
-| `spawn_rules.json` | 🟨 bozza (20 ott) | Regole generali (respawn ogni ora, niente spawn nei luoghi sicuri), terreno → specie, schema dei gruppi (gruppi veri da decidere in gioco), 5 accampamenti di giganti con forzieri, 2 forti degli orchi |
+| `spawn_rules.json` | 🟨 bozza (21 nov) | Regole generali (rinascita ogni 30 minuti, luoghi sicuri e dungeon esclusi), terreno → specie, punti e rarità per specie (`species_spawn`), pesci per zona d'acqua, 4 accampamenti di giganti con forzieri, 2 forti degli orchi. I punti veri sono nei file del server di Davide |
 | `races.json` | 🟨 provvisorio | 10 razze: bonus abilità, potere giornaliero, passive, ruoli ideali, proposte alternative (molti valori 'da cambiare' nel Discord) |
 | `spells.json` | 🟨 provvisorio | 81 voci di incantesimi: permessi (44), vietati (14), limitati a quest/evento/staff/fazione/dungeon/shop (23) |
 | `progression.json` | 🟨 bozza | Sistema exp e livelli di Shoonish; mancano exp per livello, azioni e perk |
 | `world_rules.json` | 🟨 bozza | Ciclo giorno/notte e struttura di una città (tetto 70 player da rivalutare su SkyMP) |
-| `tools/` | | `build_loot_spawn.py` (genera `loot.json` e `spawn_rules.json` dai testi in `discord_2026-10-18/`), `build_db.py` (genera i JSON), `data_ingredients.py` e `data_world.py` (dati grezzi), `build_discord.py` (razze, incantesimi, progressione, regole di mondo), `validate_db.py` (controlli) |
+| `tools/` | | `build_loot_spawn.py` (genera `loot.json` e `spawn_rules.json` dai testi in `discord_2026-10-18/`), `applica_discord_2026-11-20.py` (poi applica il Discord del 15–20 novembre, testi in `discord_2026-11-20/`), `build_db.py` (genera i JSON), `data_ingredients.py` e `data_world.py` (dati grezzi), `build_discord.py` (razze, incantesimi, progressione, regole di mondo), `validate_db.py` (controlli) |
 
 ## Formato comune
 
@@ -65,11 +65,13 @@ Dalla cartella `tools/`:
 ```
 python3 build_db.py ..
 python3 build_loot_spawn.py ..
+(cd .. && python3 tools/applica_discord_2026-11-20.py)
 python3 validate_db.py ..
 ```
 
 - `python3`: l'interprete Python.
 - `build_db.py` / `build_loot_spawn.py` / `validate_db.py`: i due script che generano i JSON e quello che li controlla.
+- `(cd .. && python3 tools/applica_discord_2026-11-20.py)`: entra nella cartella `db/` (`cd ..`) e applica a `loot.json` e `spawn_rules.json` le modifiche del Discord di novembre. Le parentesi fanno sì che lo spostamento valga solo per quel comando.
 - `..`: la cartella dove scrivere (o da cui leggere) i JSON, cioè quella sopra `tools/` (`team/david/db/`).
 
 I dati vanno modificati in `data_ingredients.py`, `data_world.py` e `build_db.py`, poi si rigenera. Non si modificano a mano i JSON generati.
@@ -129,3 +131,26 @@ Nuove sezioni "SPAWN e CODICI DI SPAWN" e "MAPPA DI GIOCO", scritte da Dave_St. 
 - Capra: piccolo tesoro 19% (equivale ai due 10% già presenti: 1 − 0,9 × 0,9 ≈ 0,19).
 - In `#lore-e-spawn-giganti-e-mammut` le sezioni "Alchimia: ingredienti avanzati", "Respawn" e "Cosa è fatto e cosa no" sono nell'indice ma non ancora scritte.
 - Gli animali nuovi (lepre, alce femmina, capra domestica, lupo rosso, orso, granchi, horker, cavalli, mucca, gallina, cane, cinghiale) sono solo in `loot.json`, non in `creatures.json` (che ha habitat e comportamento).
+
+## Canali Discord del 15–20 novembre 2026 (letti il 21 novembre)
+
+Nuova categoria "Spawn animali e Loot" e canali degli accampamenti dei giganti, scritti da Dave_St. Testo copiato in `tools/discord_2026-11-20/`, applicato con `applica_discord_2026-11-20.py`. Corrisponde al server di Davide (`team/davide/spawn-debug.md`, `team/davide/accampamenti-giganti.md`).
+
+**Cosa cambia in `loot.json`**
+- Regola nuova per tutti gli animali: **niente piccolo tesoro** (oro, gemme, anelli) e **corna sempre al 100%**.
+- Capra (anche domestica): tolte le corna, perché in Skyrim non si lootano.
+- Gatti dai denti a sciabola: **uno solo tra Occhio e Dente**, 50% / 50% (campo `one_of`).
+- Pesce macellaio: squame da 1 a 5 (nel Discord "Scaglie").
+- Mammut: carne (proboscide) + 1–2 zanne. Gigante: 1–3 dita; tolte mazza, zanna di horker e pelle di mucca. Oro, armi, abiti e gemme del gigante non sono citati: restano come nel gioco, da confermare.
+
+**Cosa cambia in `spawn_rules.json`**
+- Rinascita ogni **30 minuti** (prima ogni ora), solo gli animali uccisi, sullo stesso punto, poche nascite alla volta.
+- Punti lontani da forti, fortezze degli orchi, dungeon, accampamenti di banditi, tane di drago e accampamenti dei giganti; luoghi sicuri anche paesi e stalle.
+- Gli animali non si attaccano tra loro; un predatore tiene come bersaglio il giocatore più vicino; fuori dalla sua area torna a casa a piedi.
+- Nuovo `species_spawn`: punti per feudo, rarità, branchi (lupi da 3) e raggio dell'area per 12 specie. Nuovo `fish_spawn`: 5 pesci per zona d'acqua (Mare dei Fantasmi 10).
+- Giganti: **4 accampamenti** (G1–G4, 2 per feudo), 2 giganti (200 vita) + 3 mammut (250 vita), rinascita ogni ora e mezza, pull, vendetta dopo 5 s, forzieri con serratura media. Il contenuto dei forzieri in questo file è ancora la proposta di ottobre.
+
+**Questioni del 20 ottobre ora chiuse dal Discord:** alce = "Pelle di alce"; gatto = uno tra Occhio e Dente; gruppi di spawn e numeri decisi (in `species_spawn`); la distanza "giocatore vicino" non serve più (rimossa).
+
+**Non aggiornato:** `creatures.json` ha ancora il piccolo bottino 10% e i drop del 14 ottobre: va allineato o tolto, visto che ora `loot.json` e il server di Davide fanno da riferimento.
+
