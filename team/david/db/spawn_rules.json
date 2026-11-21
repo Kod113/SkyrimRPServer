@@ -1,32 +1,33 @@
 {
  "_meta": {
   "version": "0.1.0",
-  "date": "2026-10-20",
+  "date": "2026-11-21",
   "author": "david",
-  "status": "bozza: prima proposta del Discord, numeri da confermare in gioco",
+  "status": "allineato al Discord del 20/11/2026 (server di Davide, gm_v27 e seguenti)",
   "description": "Regole di spawn degli animali (zone, gruppi, respawn), accampamenti dei giganti e forti degli orchi. Coordinate in unita' di Skyrim (z da leggere in gioco). Specie = id di loot.json, terreni = id di zones.json.",
   "sources": [
    "Discord #spawn-linee-generali",
    "Discord #lore-e-spawn-giganti-e-mammut",
    "Discord #forti-degli-orchi",
    "Discord #funzione-e-info-generali",
-   "Discord #mappa-che-vedranno-i-player"
+   "Discord #mappa-che-vedranno-i-player",
+   "Discord categoria 'Spawn animali e Loot' e accampamenti dei giganti (15-20 nov 2026)"
   ]
  },
  "general": {
-  "respawn_check_s": 3600,
-  "respawn_rule": "ogni ora rinascono solo gli animali morti del gruppo, ne' prima ne' di piu'",
+  "respawn_check_s": 1800,
+  "respawn_rule": "ogni 30 minuti rinascono solo gli animali uccisi, sullo stesso punto; niente accumulo",
   "spawn_all_on_server_start": true,
   "reset_on_restart": true,
   "no_spawn_in_safe_places": true,
   "safe_place_kinds": [
    "capital",
+   "village",
    "settlement",
    "mine",
-   "shack"
+   "shack",
+   "stable"
   ],
-  "wait_if_player_near": true,
-  "player_near_distance": null,
   "corpse_despawn_s": 30,
   "staff_summon": {
    "min": 1,
@@ -35,7 +36,22 @@
    "cleanup_command": "evoca_pulisci_1",
    "despawn_on_restart": true,
    "humans_hostile_to_summoner": true
-  }
+  },
+  "spawn_in_small_batches": true,
+  "keep_away_from": [
+   "fort",
+   "dwarven_fort",
+   "orc_stronghold",
+   "dungeon",
+   "bandit_camp",
+   "dragon_lair",
+   "giant_camp"
+  ],
+  "ai": "originale di Skyrim: i pacifici fuggono, i predatori cacciano",
+  "animals_fight_each_other": false,
+  "hostile_target": "giocatore piu' vicino, finche' non muore o sparisce",
+  "leash": "fuori dalla sua area smette di combattere e torna a casa a piedi, senza teletrasporto",
+  "points_file": "team/davide/skymp-server/terra-punti-v8.json (pesci: pesci-punti-v2.json)"
  },
  "terrain_species": [
   {
@@ -129,19 +145,22 @@
   "radius": "raggio della zona del gruppo"
  },
  "groups": [],
- "groups_note": "i gruppi veri (posizioni e numeri) si decidono camminando nelle zone",
+ "groups_note": "punti veri nei file di Davide (points_file); qui il riepilogo per specie (species_spawn)",
  "giant_camps": {
   "per_hold": 2,
   "camp": {
-   "giants": 3,
-   "mammoths_grazing": 5,
-   "mammoth_spawn_points": 2,
-   "mammoths_per_point_per_hour": 2,
-   "perimeter_radius": 8500,
-   "keep_mammoths_inside": true
+   "giants": 2,
+   "mammoths": 3,
+   "giant_hp": 200,
+   "mammoth_hp": 250,
+   "respawn_s": 5400,
+   "respawn_rule": "rinascono solo quelli morti",
+   "pull": "colpito da lontano reagisce solo quel gigante",
+   "revenge_s": 5,
+   "leash": "oltre il limite di inseguimento tornano a casa a vita piena"
   },
   "chests": {
-   "status": "proposta, quantita' e nomi da verificare in gioco",
+   "status": "2 forzieri confermati il 18/11 (fuoco e tesoro); contenuto sotto ancora quello proposto a ottobre: quello vero e' nel server di Davide",
    "per_camp": 2,
    "items": [
     {
@@ -224,7 +243,9 @@
       }
      ]
     }
-   ]
+   ],
+   "lock": "media (grimaldelli)",
+   "refill": "quando giganti e mammut dell'accampamento tornano in vita"
   },
   "items": [
    {
@@ -282,7 +303,31 @@
     "z": null,
     "verified_in_game": false
    }
-  ]
+  ],
+  "list": [
+   {
+    "id": "G1",
+    "name_it": "Altopiani di nord-ovest",
+    "hold": "windhelm"
+   },
+   {
+    "id": "G2",
+    "name_it": "Monti del confine",
+    "hold": "windhelm"
+   },
+   {
+    "id": "G3",
+    "name_it": "Pendici dello Jerall (ovest)",
+    "hold": "riften"
+   },
+   {
+    "id": "G4",
+    "name_it": "Pendici dello Jerall (est)",
+    "hold": "riften"
+   }
+  ],
+  "vanilla_camps_hidden": true,
+  "docs": "team/davide/accampamenti-giganti.md"
  },
  "orc_forts": {
   "lore_it": "La guerra degli orchi: dopo 400 anni di pace gli orchi, schiavizzati per ricostruire i regni, si ribellano guidati da Ugrosh gro-Barzul 'lo Spezzacatene'. Un forte per regno.",
@@ -331,5 +376,146 @@
  "staff_only": [
   "drago",
   "gigante_del_gelo"
- ]
+ ],
+ "species_spawn": [
+  {
+   "species": "coniglio",
+   "rarity": "comune",
+   "points": {
+    "windhelm": 10,
+    "riften": 10
+   },
+   "pack_size": 1,
+   "area_radius": 1800
+  },
+  {
+   "species": "cervo",
+   "rarity": "comune",
+   "points": {
+    "windhelm": 10,
+    "riften": 10
+   },
+   "pack_size": 1,
+   "area_radius": 3000
+  },
+  {
+   "species": "capra",
+   "rarity": "comune",
+   "points": {
+    "windhelm": 10,
+    "riften": 10
+   },
+   "pack_size": 1,
+   "area_radius": 3000
+  },
+  {
+   "species": "volpe",
+   "rarity": "comune",
+   "points": {
+    "windhelm": 10,
+    "riften": 10
+   },
+   "pack_size": 1,
+   "area_radius": 2600
+  },
+  {
+   "species": "alce",
+   "rarity": "non_comune",
+   "points": {
+    "windhelm": 6,
+    "riften": 6
+   },
+   "pack_size": 1,
+   "area_radius": 3500
+  },
+  {
+   "species": "lupo",
+   "rarity": "non_comune",
+   "points": {
+    "windhelm": 6,
+    "riften": 6
+   },
+   "pack_size": 3,
+   "area_radius": 4500
+  },
+  {
+   "species": "orso",
+   "rarity": "raro",
+   "points": {
+    "windhelm": 3,
+    "riften": 3
+   },
+   "pack_size": 1,
+   "area_radius": 4500
+  },
+  {
+   "species": "gatto_dai_denti_a_sciabola",
+   "rarity": "non_comune",
+   "points": {
+    "windhelm": 6,
+    "riften": 6
+   },
+   "pack_size": 1,
+   "area_radius": 4000
+  },
+  {
+   "species": "gatto_dai_denti_a_sciabola_delle_nevi",
+   "rarity": "raro",
+   "points": {
+    "windhelm": 3,
+    "riften": 2
+   },
+   "pack_size": 1,
+   "area_radius": 4000
+  },
+  {
+   "species": "lupo_di_ghiaccio",
+   "rarity": "non_comune",
+   "points": {
+    "windhelm": 4,
+    "riften": 3
+   },
+   "pack_size": 3,
+   "area_radius": 4500
+  },
+  {
+   "species": "volpe_artica",
+   "rarity": "comune",
+   "points": {
+    "windhelm": 6,
+    "riften": 5
+   },
+   "pack_size": 1,
+   "area_radius": 2600
+  },
+  {
+   "species": "orso_delle_nevi",
+   "rarity": "raro",
+   "points": {
+    "windhelm": 2,
+    "riften": 2
+   },
+   "pack_size": 1,
+   "area_radius": 4500
+  }
+ ],
+ "fish_spawn": {
+  "species": "pesce_macellaio",
+  "alive_per_zone": 5,
+  "zones": {
+   "windhelm": [
+    "Fiume Bianco",
+    "Fiume Darkwater",
+    "Ruscello di Eastmarch",
+    "Mare dei Fantasmi (riva)",
+    "Mare dei Fantasmi (largo)"
+   ],
+   "riften": [
+    "Fiume centrale del Rift",
+    "Lago Geir",
+    "Lago Honrich"
+   ]
+  },
+  "note": "Mare dei Fantasmi: 10 in tutto (5 a riva + 5 al largo); rinascita su punti a caso della zona"
+ }
 }

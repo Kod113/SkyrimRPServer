@@ -1,7 +1,7 @@
 {
  "_meta": {
   "version": "0.1.0",
-  "date": "2026-10-20",
+  "date": "2026-11-21",
   "author": "david",
   "status": "bozza: dati del Discord",
   "description": "Loot di animali e mostri. chance = probabilita' di trovare almeno uno di quell'oggetto (0-1), calcolata da Dave_St dai dati ufficiali di Skyrim per un personaggio di livello ~30. kind: item | gold | category (categoria di oggetti, con gli esempi piu' probabili).",
@@ -10,7 +10,8 @@
    "Discord #mob-mostri-e-loot",
    "Discord #come-leggere-le-percentuali",
    "Discord #funzione-e-info-generali",
-   "Discord #forti-degli-orchi"
+   "Discord #forti-degli-orchi",
+   "Discord categoria 'Spawn animali e Loot' e accampamenti dei giganti (15-20 nov 2026)"
   ]
  },
  "rules": {
@@ -53,7 +54,10 @@
   ],
   "small_treasure_it": "oro (1-9), una gemma o un anello d'argento normale",
   "keep_human_flesh": true,
-  "client_requirement": "tutti i giocatori devono avere il CombatSettings.esp aggiornato (pellicce visibili)"
+  "client_requirement": "tutti i giocatori devono avere il CombatSettings.esp aggiornato (pellicce visibili)",
+  "animals_no_treasure": true,
+  "animals_horns_always": true,
+  "animals_note_it": "Discord 15/11: loot degli animali identico a Skyrim, ma niente tesoro (oro, gemme, anelli) e corna sempre al 100%."
  },
  "items": [
   {
@@ -76,15 +80,8 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Corna grandi",
-     "chance": 0.5,
+     "chance": 1.0,
      "qty": 1,
      "kind": "item"
     }
@@ -111,15 +108,8 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Corna grandi",
-     "chance": 0.5,
+     "chance": 1.0,
      "qty": 1,
      "kind": "item"
     }
@@ -146,15 +136,8 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Piccole corna",
-     "chance": 0.5,
+     "chance": 1.0,
      "qty": 1,
      "kind": "item"
     }
@@ -179,19 +162,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.19,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
-     "item_it": "Corna di capra",
-     "chance": 0.5,
-     "qty": 1,
-     "kind": "item"
     }
    ],
    "wears_it": []
@@ -212,19 +182,6 @@
     {
      "item_it": "Cosciotto di capra",
      "chance": 1.0,
-     "qty": 1,
-     "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.19,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
-     "item_it": "Corna di capra",
-     "chance": 0.5,
      "qty": 1,
      "kind": "item"
     }
@@ -307,13 +264,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -330,13 +280,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -353,13 +296,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -376,13 +312,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     },
     {
      "item_it": "Artigli di orso",
@@ -407,13 +336,6 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Artigli di orso",
      "chance": 1.0,
      "qty": 1,
@@ -434,13 +356,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     },
     {
      "item_it": "Artigli di orso",
@@ -465,23 +380,18 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Occhio di tigre dai denti a sciabola",
      "chance": 0.5,
      "qty": 1,
-     "kind": "item"
+     "kind": "item",
+     "one_of": "occhio_o_dente"
     },
     {
      "item_it": "Dente di tigre dai denti a sciabola",
      "chance": 0.5,
      "qty": 1,
-     "kind": "item"
+     "kind": "item",
+     "one_of": "occhio_o_dente"
     }
    ],
    "wears_it": []
@@ -500,23 +410,18 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Occhio di tigre dai denti a sciabola",
      "chance": 0.5,
      "qty": 1,
-     "kind": "item"
+     "kind": "item",
+     "one_of": "occhio_o_dente"
     },
     {
      "item_it": "Dente di tigre dai denti a sciabola",
      "chance": 0.5,
      "qty": 1,
-     "kind": "item"
+     "kind": "item",
+     "one_of": "occhio_o_dente"
     }
    ],
    "wears_it": []
@@ -533,13 +438,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -556,13 +454,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     },
     {
      "item_it": "Zampe di granchio del fango",
@@ -587,13 +478,6 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Zampe di granchio del fango",
      "chance": 1.0,
      "qty": 1,
@@ -616,13 +500,6 @@
      "kind": "item"
     },
     {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
-    },
-    {
      "item_it": "Zampe di granchio del fango",
      "chance": 1.0,
      "qty": 1,
@@ -641,15 +518,11 @@
     {
      "item_it": "Squame di pesce macellaio",
      "chance": 1.0,
-     "qty": 1,
-     "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
+     "qty": null,
+     "kind": "item",
+     "qty_min": 1,
+     "qty_max": 5,
+     "notes": "'Scaglie' nel Discord"
     }
    ],
    "wears_it": []
@@ -672,13 +545,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -694,20 +560,16 @@
      "item_it": "Proboscide di mammut",
      "chance": 1.0,
      "qty": 1,
-     "kind": "item"
+     "kind": "item",
+     "notes": "'carne di mammut' nel Discord"
     },
     {
      "item_it": "Zanna di mammut",
      "chance": 1.0,
-     "qty": 1,
-     "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
+     "qty": null,
+     "kind": "item",
+     "qty_min": 1,
+     "qty_max": 2
     }
    ],
    "wears_it": [],
@@ -749,13 +611,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -772,13 +627,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -795,13 +643,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": [],
@@ -845,13 +686,6 @@
      "chance": 0.333,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.033,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -874,13 +708,6 @@
      "chance": 0.333,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.033,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -903,13 +730,6 @@
      "chance": 0.333,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.033,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -932,13 +752,6 @@
      "chance": 1.0,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.1,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -971,13 +784,6 @@
      "chance": 0.5,
      "qty": 1,
      "kind": "item"
-    },
-    {
-     "item_it": "Piccolo tesoro (oro/gemma/anello)",
-     "chance": 0.05,
-     "qty": 1,
-     "kind": "category",
-     "category": "small_treasure"
     }
    ],
    "wears_it": []
@@ -4208,14 +4014,10 @@
     {
      "item_it": "Dito di gigante",
      "chance": 1.0,
-     "qty": 1,
-     "kind": "item"
-    },
-    {
-     "item_it": "Mazza gigante",
-     "chance": 1.0,
-     "qty": 1,
-     "kind": "item"
+     "qty": null,
+     "kind": "item",
+     "qty_min": 1,
+     "qty_max": 3
     },
     {
      "chance": 0.86,
@@ -4279,19 +4081,14 @@
      "kind": "item"
     },
     {
-     "item_it": "Zanna di horker",
-     "chance": 0.056,
-     "qty": 3,
-     "kind": "item"
-    },
-    {
      "item_it": "Pelliccia di tigre dai denti a sciabola delle nevi",
      "chance": 0.056,
      "qty": 3,
      "kind": "item"
     }
    ],
-   "wears_it": []
+   "wears_it": [],
+   "notes": "Discord 18/11: 1-3 dita di gigante + pelli e zanne; tolte mazza, zanna di horker e pelle di mucca. Oro, armi, abiti e gemme non sono citati: restano come nel gioco, da confermare."
   },
   {
    "id": "gigante_del_gelo",
