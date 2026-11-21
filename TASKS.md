@@ -1,6 +1,6 @@
-# TASKS — Task settimanali del team
+# TASKS — Task del team
 
-> **Come funziona:** ognuno ha **una task piccola a settimana**, con una consegna chiara. Le task vengono assegnate di persona. Questo file è lo **storico scritto** di cosa è stato assegnato e consegnato, settimana per settimana. Ogni venerdì c'è la riunione: si guarda cosa è stato chiuso, si raccolgono le idee nuove e si decidono le task della settimana dopo.
+> **Come funziona:** ognuno ha **una task piccola tra una riunione e l'altra**, con una consegna chiara. Le task vengono assegnate di persona. Questo file è lo **storico scritto** di cosa è stato assegnato e consegnato, riunione per riunione. Le riunioni non hanno una cadenza fissa: in ognuna si guarda cosa è stato chiuso, si raccolgono le idee nuove e si decidono le task fino alla riunione successiva.
 >
 > **Regola:** una task va **portata a termine**. Se non si chiude, in riunione si dice perché e si fissa una nuova data.
 >
