@@ -25,7 +25,7 @@ La community e la comunicazione viva (chat, voce, annunci, lore narrativa per i 
 | `VISION.md` | Visione strategica del progetto (immutabile, citabile) |
 | `STEP_0.md` | Roadmap della prima fase con criteri di completamento |
 | `ROADMAP.md` | Fasi successive (preliminare) |
-| `TASKS.md` | Task settimanali del team (aggiornato alla riunione del venerdì) |
+| `TASKS.md` | Task del team (aggiornato a ogni riunione) |
 | `comms/` | Messaggio settimanale + promemoria riunione (Discord automatico, WhatsApp con un clic) |
 | `DEV_SETUP.md` | Tool e mod obbligatori per il reparto dev |
 | `MODLIST.md` | Lista mod unica: profilo MO2 attivo + tutte le mod con stato di compatibilità (da ricontrollare su SkyMP) |
