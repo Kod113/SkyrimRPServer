@@ -2913,5 +2913,1546 @@
     }
    ]
   }
- ]
+ ],
+ "server": {
+  "_meta": {
+   "version": "0.1.0",
+   "date": "2026-11-27",
+   "author": "david",
+   "status": "deciso con Davide (T-006)",
+   "description": "Ricette del nostro server. Sostituiscono quelle del gioco base qui sopra (che restano come riferimento). Niente strisce di pelle (SkyMP): si usano le pelli. Gli oggetti in new_items con verified=false hanno l'EditorID scritto a mano: va controllato con xedit/build_crafting.py.",
+   "source": "team/david/armi_armature.md"
+  },
+  "tiers": {
+   "1": "Pelliccia, ferro, archi in legno",
+   "2": "Acciaio",
+   "3": "Orchesco",
+   "4": "Nanico ed elfico"
+  },
+  "new_items": {
+   "ANY_PELT": {
+    "name_it": "Pelle di qualsiasi animale",
+    "kind": "group",
+    "any_of": [
+     "DeerHide",
+     "GoatHide",
+     "HorseHide",
+     "DeerHide02",
+     "DLC1DeerHide",
+     "CowHide",
+     "DLC1SabreCatHide",
+     "WolfPelt",
+     "WolfIcePelt",
+     "BearPelt",
+     "BearCavePelt",
+     "BearSnowPelt",
+     "SabreCatPelt",
+     "SabreCatSnowPelt",
+     "FoxPelt",
+     "FoxPeltSnow"
+    ]
+   },
+   "BEAR_PELT": {
+    "name_it": "Pelliccia d'orso (qualsiasi orso)",
+    "kind": "group",
+    "any_of": [
+     "BearPelt",
+     "BearCavePelt",
+     "BearSnowPelt"
+    ]
+   },
+   "DWEMER_SCRAP": {
+    "name_it": "Rottame Dwemer (qualsiasi)",
+    "kind": "group",
+    "any_of": [
+     "DwarvenLargeScrap",
+     "DwarvenLargeScrap3",
+     "DwarvenPlateMetalLarge",
+     "DwarvenLargeScrap2",
+     "DwarvenPlateMetalSmall",
+     "DwarvenScrapBent"
+    ]
+   },
+   "ArmorIronHelmet": {
+    "name_it": "Elmo di ferro",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorIronGauntlets": {
+    "name_it": "Guanti di ferro",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorIronBoots": {
+    "name_it": "Stivali di ferro",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorIronShield": {
+    "name_it": "Scudo di ferro",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorSteelHelmetA": {
+    "name_it": "Elmo d'acciaio",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorSteelGauntletsA": {
+    "name_it": "Guanti d'acciaio",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorSteelBootsA": {
+    "name_it": "Stivali d'acciaio",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorSteelShield": {
+    "name_it": "Scudo d'acciaio",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorOrcishHelmet": {
+    "name_it": "Elmo orchesco",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorOrcishGauntlets": {
+    "name_it": "Guanti orcheschi",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorOrcishBoots": {
+    "name_it": "Stivali orcheschi",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorOrcishShield": {
+    "name_it": "Scudo orchesco",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorDwarvenHelmet": {
+    "name_it": "Elmo nanico",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorDwarvenGauntlets": {
+    "name_it": "Guanti nanici",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorDwarvenBoots": {
+    "name_it": "Stivali nanici",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorDwarvenShield": {
+    "name_it": "Scudo nanico",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorElvenHelmet": {
+    "name_it": "Elmo elfico",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorElvenGauntlets": {
+    "name_it": "Guanti elfici",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorElvenBoots": {
+    "name_it": "Stivali elfici",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorElvenShield": {
+    "name_it": "Scudo elfico",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorBanditBoots": {
+    "name_it": "Stivali di pelliccia",
+    "kind": "armor",
+    "verified": false
+   },
+   "ArmorBanditGauntlets": {
+    "name_it": "Guanti di pelliccia",
+    "kind": "armor",
+    "verified": false
+   },
+   "ElvenDagger": {
+    "name_it": "Pugnale elfico",
+    "kind": "weapon",
+    "verified": false
+   }
+  },
+  "recipes": [
+   {
+    "id": "AtronachRecipeIngotIron",
+    "output": "IngotIron",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "OreIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIngotCorundum",
+    "output": "IngotCorundum",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "OreCorundum",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIngotSteel",
+    "output": "IngotSteel",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "IngotCorundum",
+      "qty": 1
+     }
+    ],
+    "note": "ricetta nuova (gioco base: 1 ferro grezzo + 1 corindone grezzo)"
+   },
+   {
+    "id": "AtronachRecipeIngotOrichalcum",
+    "output": "IngotOrichalcum",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "OreOrichalcum",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIngotDwarven",
+    "output": "IngotDwarven",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "DWEMER_SCRAP",
+      "qty": 2
+     }
+    ],
+    "note": "ricetta nuova: sostituisce tutte le fusioni dei rottami"
+   },
+   {
+    "id": "AtronachRecipeIngotQuicksilver",
+    "output": "IngotQuicksilver",
+    "qty": 1,
+    "bench": "CraftingSmelter",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "OreQuicksilver",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ],
+    "note": "ricetta nuova (gioco base: 2 mercurio grezzo)"
+   },
+   {
+    "id": "AtronachRecipeArmorBanditCuirass",
+    "output": "ArmorBanditCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 3
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 7
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorBanditBoots",
+    "output": "ArmorBanditBoots",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 4
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorBanditGauntlets",
+    "output": "ArmorBanditGauntlets",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 4
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronSword",
+    "output": "IronSword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronWarAxe",
+    "output": "IronWarAxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronMace",
+    "output": "IronMace",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 3
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronGreatsword",
+    "output": "IronGreatsword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 4
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronBattleaxe",
+    "output": "IronBattleaxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 4
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronWarhammer",
+    "output": "IronWarhammer",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 4
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeIronArrow",
+    "output": "IronArrow",
+    "qty": 24,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "Firewood01",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorIronCuirass",
+    "output": "ArmorIronCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 5
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorIronHelmet",
+    "output": "ArmorIronHelmet",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorIronGauntlets",
+    "output": "ArmorIronGauntlets",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorIronBoots",
+    "output": "ArmorIronBoots",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorIronShield",
+    "output": "ArmorIronShield",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorStuddedCuirass",
+    "output": "ArmorStuddedCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "ANY_PELT",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeLongBow",
+    "output": "LongBow",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "Firewood01",
+      "qty": 5
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeHuntingBow",
+    "output": "HuntingBow",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 1,
+    "inputs": [
+     {
+      "item": "Firewood01",
+      "qty": 7
+     },
+     {
+      "item": "BEAR_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelSword",
+    "output": "SteelSword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelWarAxe",
+    "output": "SteelWarAxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelMace",
+    "output": "SteelMace",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 3
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelGreatsword",
+    "output": "SteelGreatsword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelBattleaxe",
+    "output": "SteelBattleaxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelWarhammer",
+    "output": "SteelWarhammer",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeSteelArrow",
+    "output": "SteelArrow",
+    "qty": 24,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 1
+     },
+     {
+      "item": "Firewood01",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorSteelCuirassA",
+    "output": "ArmorSteelCuirassA",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorSteelHelmetA",
+    "output": "ArmorSteelHelmetA",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorSteelGauntletsA",
+    "output": "ArmorSteelGauntletsA",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorSteelBootsA",
+    "output": "ArmorSteelBootsA",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorSteelShield",
+    "output": "ArmorSteelShield",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 2,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishSword",
+    "output": "OrcishSword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishWarAxe",
+    "output": "OrcishWarAxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishMace",
+    "output": "OrcishMace",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 3
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishGreatsword",
+    "output": "OrcishGreatsword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishBattleaxe",
+    "output": "OrcishBattleaxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishWarhammer",
+    "output": "OrcishWarhammer",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeOrcishBow",
+    "output": "OrcishBow",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorOrcishCuirass",
+    "output": "ArmorOrcishCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 4
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorOrcishHelmet",
+    "output": "ArmorOrcishHelmet",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorOrcishGauntlets",
+    "output": "ArmorOrcishGauntlets",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorOrcishBoots",
+    "output": "ArmorOrcishBoots",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorOrcishShield",
+    "output": "ArmorOrcishShield",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 3,
+    "inputs": [
+     {
+      "item": "IngotOrichalcum",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenSword",
+    "output": "DwarvenSword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenWarAxe",
+    "output": "DwarvenWarAxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenMace",
+    "output": "DwarvenMace",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenGreatsword",
+    "output": "DwarvenGreatsword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 3
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenBattleaxe",
+    "output": "DwarvenBattleaxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 3
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenWarhammer",
+    "output": "DwarvenWarhammer",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 3
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenBow",
+    "output": "DwarvenBow",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 2
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeDwarvenArrow",
+    "output": "DwarvenArrow",
+    "qty": 24,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     },
+     {
+      "item": "Firewood01",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorDwarvenCuirass",
+    "output": "ArmorDwarvenCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 3
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 3
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorDwarvenHelmet",
+    "output": "ArmorDwarvenHelmet",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 1
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorDwarvenGauntlets",
+    "output": "ArmorDwarvenGauntlets",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorDwarvenBoots",
+    "output": "ArmorDwarvenBoots",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorDwarvenShield",
+    "output": "ArmorDwarvenShield",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotSteel",
+      "qty": 1
+     },
+     {
+      "item": "IngotDwarven",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenDagger",
+    "output": "ElvenDagger",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "OreQuicksilver",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenSword",
+    "output": "ElvenSword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenWarAxe",
+    "output": "ElvenWarAxe",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenMace",
+    "output": "ElvenMace",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "IngotIron",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenGreatsword",
+    "output": "ElvenGreatsword",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 2
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenBow",
+    "output": "ElvenBow",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 2
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeElvenArrow",
+    "output": "ElvenArrow",
+    "qty": 24,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "Firewood01",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorElvenHelmet",
+    "output": "ArmorElvenHelmet",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorElvenCuirass",
+    "output": "ArmorElvenCuirass",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 3
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorElvenGauntlets",
+    "output": "ArmorElvenGauntlets",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorElvenBoots",
+    "output": "ArmorElvenBoots",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "ANY_PELT",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "AtronachRecipeArmorElvenShield",
+    "output": "ArmorElvenShield",
+    "qty": 1,
+    "bench": "CraftingSmithingForge",
+    "tier": 4,
+    "inputs": [
+     {
+      "item": "IngotQuicksilver",
+      "qty": 1
+     },
+     {
+      "item": "IngotIron",
+      "qty": 1
+     }
+    ]
+   }
+  ],
+  "starting_kit": [
+   {
+    "item": "ArmorHideCuirass",
+    "note": "Armatura di cuoio: non si costruisce, la ricevono quasi tutti i personaggi all'inizio"
+   }
+  ],
+  "not_craftable": [
+   {
+    "item": "GlassSword",
+    "note": "solo campioni dell'arena"
+   },
+   {
+    "item": "GlassBow",
+    "note": "solo campioni dell'arena"
+   },
+   {
+    "item": "ArmorGlassCuirass",
+    "note": "solo campioni dell'arena"
+   },
+   {
+    "item": "DLC1CrossBow",
+    "note": "solo con la quest (dungeon permadeath, unica forgia)"
+   },
+   {
+    "item": "DLC1CrossBowEnhanced",
+    "note": "solo con la quest (dungeon permadeath, unica forgia)"
+   }
+  ],
+  "resources": {
+   "Firewood01": "ingrediente raccoglibile nei boschi: circa 78 punti per regno, stessa quantita' nei due regni",
+   "OreQuicksilver": "Quicksilver Mine di Dawnstar (dopo la conquista): 12 ogni 30 minuti, massimo 36, poi si ricarica al riavvio del server",
+   "OreOrichalcum": "forti degli orchi dopo la conquista: 10 per regno a ciclo, vene ogni 15-20 minuti",
+   "IngotQuicksilver": "anche nelle casse dei dungeon (10-15%)",
+   "DWEMER_SCRAP": "automi nanici nelle miniere naniche (dungeon permadeath, solo nel Rift)"
+  }
+ }
 }

@@ -106,6 +106,13 @@
         "hunter"
       ],
       "note": "Può chiedere a giovani avventurieri di recuperare materiali.",
+      "tiers": {
+        "1": "Pelliccia, ferro, archi in legno",
+        "2": "Acciaio",
+        "3": "Orchesco",
+        "4": "Nanico ed elfico"
+      },
+      "tiers_note": "Ricette per tier in crafting.json -> server.recipes (T-006, 27/11/2026). L'elfico lo costruisce con il mercurio portato dai giocatori, non lo vende alla massa.",
       "earns_from": [
         "vendite nello shop",
         "forniture al Jarl",

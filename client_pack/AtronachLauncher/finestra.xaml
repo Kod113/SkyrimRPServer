@@ -1,0 +1,477 @@
+<!-- Finestra del launcher Atronach RP (WPF). La apre launcher.ps1.
+     Misure in pixel "logici": il contenuto è 960 x 600, con 18 di margine trasparente per l'ombra.
+     La riga dei controlli è scritta una volta sola fra i segni RIGA: launcher.ps1 la ripete per ogni
+     controllo, cambiando "RigaN_" in "Riga0_", "Riga1_"... -->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Atronach RP" Width="996" Height="636"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        FontFamily="Segoe UI" FontSize="13" Foreground="#E6ECF2">
+
+  <Window.Resources>
+    <!-- Colori: il mondo è freddo (notte, brina), quello che fa il giocatore è caldo (brace). -->
+    <SolidColorBrush x:Key="Brina" Color="#E6ECF2"/>
+    <SolidColorBrush x:Key="Nebbia" Color="#8E9BAB"/>
+    <SolidColorBrush x:Key="Brace" Color="#F0764A"/>
+    <SolidColorBrush x:Key="Pronto" Color="#6FCF9B"/>
+    <SolidColorBrush x:Key="TestoSuBrace" Color="#1F1206"/>
+    <LinearGradientBrush x:Key="BraceSfumata" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Offset="0" Color="#F6B454"/>
+      <GradientStop Offset="1" Color="#E87A35"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BraceSfumataChiara" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Offset="0" Color="#FBC670"/>
+      <GradientStop Offset="1" Color="#F08A45"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BraceSfumataScura" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Offset="0" Color="#E5A040"/>
+      <GradientStop Offset="1" Color="#D2672A"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GiocaSfumata" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Offset="0" Color="#F8BC5C"/>
+      <GradientStop Offset="1" Color="#E0672F"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GiocaSfumataChiara" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Offset="0" Color="#FCCB78"/>
+      <GradientStop Offset="1" Color="#EC7A3E"/>
+    </LinearGradientBrush>
+    <DropShadowEffect x:Key="Bagliore" Color="#F0764A" BlurRadius="26" ShadowDepth="0" Opacity="0.5"/>
+
+    <!-- Contorno che compare quando ci si sposta con il tasto Tab -->
+    <Style x:Key="Fuoco">
+      <Setter Property="Control.Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border BorderBrush="#F6B454" BorderThickness="1.5" CornerRadius="8" Margin="-3"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Pulsante pieno: l'azione da fare adesso -->
+    <Style x:Key="BtnPrimario" TargetType="Button">
+      <Setter Property="Height" Value="30"/>
+      <Setter Property="Padding" Value="14,0"/>
+      <Setter Property="FontSize" Value="12.5"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Foreground" Value="{StaticResource TestoSuBrace}"/>
+      <Setter Property="Background" Value="{StaticResource BraceSfumata}"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource Fuoco}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="b" CornerRadius="6" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="b" Property="Background" Value="{StaticResource BraceSfumataChiara}"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="b" Property="Background" Value="{StaticResource BraceSfumataScura}"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.45"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Pulsante con il solo bordo: le altre azioni -->
+    <Style x:Key="BtnSecondario" TargetType="Button">
+      <Setter Property="Height" Value="30"/>
+      <Setter Property="Padding" Value="14,0"/>
+      <Setter Property="FontSize" Value="12.5"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Foreground" Value="{StaticResource Brina}"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource Fuoco}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="b" CornerRadius="6" Background="#00FFFFFF" BorderBrush="#38FFFFFF" BorderThickness="1" Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="b" Property="Background" Value="#1AFFFFFF"/>
+                <Setter TargetName="b" Property="BorderBrush" Value="#66FFFFFF"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="b" Property="Background" Value="#0DFFFFFF"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.45"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Scritta cliccabile (Guida, Ricontrolla...) -->
+    <Style x:Key="BtnScritta" TargetType="Button">
+      <Setter Property="FontSize" Value="12.5"/>
+      <Setter Property="Foreground" Value="{StaticResource Nebbia}"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource Fuoco}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Background="#00FFFFFF" Padding="0,2">
+              <TextBlock x:Name="t" Text="{TemplateBinding Content}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource Brina}"/>
+                <Setter TargetName="t" Property="TextDecorations" Value="Underline"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.45"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Riduci a icona / Chiudi -->
+    <Style x:Key="BtnFinestra" TargetType="Button">
+      <Setter Property="Width" Value="44"/>
+      <Setter Property="Height" Value="32"/>
+      <Setter Property="Foreground" Value="#C5CFDA"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource Fuoco}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="b" CornerRadius="6" Background="#00FFFFFF">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="b" Property="Background" Value="#24FFFFFF"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="BtnChiudi" TargetType="Button" BasedOn="{StaticResource BtnFinestra}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="b" CornerRadius="6" Background="#00FFFFFF">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="b" Property="Background" Value="#D9434B"/>
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- GIOCA: spento finché manca un passo, acceso (brace) quando è tutto pronto -->
+    <Style x:Key="BtnGioca" TargetType="Button">
+      <Setter Property="FontSize" Value="22"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="#57E6ECF2"/>
+      <Setter Property="FocusVisualStyle" Value="{StaticResource Fuoco}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Grid>
+              <Border x:Name="b" CornerRadius="10" Background="#0EFFFFFF" BorderBrush="#14FFFFFF" BorderThickness="1"/>
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsEnabled" Value="True">
+                <Setter TargetName="b" Property="Background" Value="{StaticResource GiocaSfumata}"/>
+                <Setter TargetName="b" Property="BorderBrush" Value="#00FFFFFF"/>
+                <Setter TargetName="b" Property="Effect" Value="{StaticResource Bagliore}"/>
+                <Setter Property="Foreground" Value="{StaticResource TestoSuBrace}"/>
+                <Setter Property="Cursor" Value="Hand"/>
+              </Trigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="IsEnabled" Value="True"/>
+                  <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="b" Property="Background" Value="{StaticResource GiocaSfumataChiara}"/>
+              </MultiTrigger>
+              <MultiTrigger>
+                <MultiTrigger.Conditions>
+                  <Condition Property="IsEnabled" Value="True"/>
+                  <Condition Property="IsPressed" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter TargetName="b" Property="Background" Value="{StaticResource BraceSfumataScura}"/>
+              </MultiTrigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Casella di testo delle domande -->
+    <Style x:Key="Campo" TargetType="TextBox">
+      <Setter Property="Height" Value="38"/>
+      <Setter Property="FontSize" Value="15"/>
+      <Setter Property="Foreground" Value="{StaticResource Brina}"/>
+      <Setter Property="CaretBrush" Value="{StaticResource Brina}"/>
+      <Setter Property="SelectionBrush" Value="{StaticResource Brace}"/>
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <Border x:Name="b" CornerRadius="6" Background="#0B1119" BorderBrush="#2EFFFFFF" BorderThickness="1">
+              <ScrollViewer x:Name="PART_ContentHost" Margin="10,0" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter TargetName="b" Property="BorderBrush" Value="#F2A03D"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <!-- Fumetto che compare tenendo il mouse fermo su un testo tagliato -->
+    <Style TargetType="ToolTip">
+      <Setter Property="Foreground" Value="{StaticResource Brina}"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ToolTip">
+            <Border Background="#131B26" BorderBrush="#2EFFFFFF" BorderThickness="1" CornerRadius="6" Padding="10,7">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Window.Resources>
+
+  <!-- La finestra compare con una dissolvenza -->
+  <Window.Triggers>
+    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+      <BeginStoryboard>
+        <Storyboard>
+          <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.25"/>
+        </Storyboard>
+      </BeginStoryboard>
+    </EventTrigger>
+  </Window.Triggers>
+
+  <Grid x:Name="Radice" Width="996" Height="636">
+    <!-- Ombra della finestra -->
+    <Border Margin="18" CornerRadius="12" Background="#0A1018">
+      <Border.Effect>
+        <DropShadowEffect Color="#000000" BlurRadius="18" ShadowDepth="5" Direction="270" Opacity="0.55"/>
+      </Border.Effect>
+    </Border>
+
+    <Grid x:Name="Contenuto" Margin="18" Width="960" Height="600" Background="#0A1018">
+      <Grid.Clip>
+        <RectangleGeometry Rect="0,0,960,600" RadiusX="12" RadiusY="12"/>
+      </Grid.Clip>
+
+      <!-- Sfondo (risorse/sfondo.jpg) e veli che scuriscono i punti dove c'è del testo -->
+      <Image x:Name="Sfondo" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+      <Rectangle IsHitTestVisible="False">
+        <Rectangle.Fill>
+          <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Offset="0.40" Color="#00060A10"/>
+            <GradientStop Offset="0.76" Color="#C7060A10"/>
+          </LinearGradientBrush>
+        </Rectangle.Fill>
+      </Rectangle>
+      <Rectangle IsHitTestVisible="False">
+        <Rectangle.Fill>
+          <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#8C05080D"/>
+            <GradientStop Offset="0.24" Color="#0005080D"/>
+            <GradientStop Offset="0.64" Color="#0005080D"/>
+            <GradientStop Offset="0.92" Color="#E005080D"/>
+          </LinearGradientBrush>
+        </Rectangle.Fill>
+      </Rectangle>
+
+      <!-- Emblema -->
+      <Viewbox Width="22" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,13,0,0" IsHitTestVisible="False">
+        <Canvas Width="64" Height="64">
+          <Path Data="M32,5 L11,59 L21,59 L32,29 Z" Fill="#E6ECF2"/>
+          <Path Data="M32,5 L53,59 L43,59 L32,29 Z" Fill="#9FB4CC"/>
+          <Path Data="M32,36 L26,47 L32,58 Z" Fill="#F2913A"/>
+          <Path Data="M32,36 L38,47 L32,58 Z" Fill="#E0672F"/>
+        </Canvas>
+      </Viewbox>
+
+      <!-- Nome del server e frase sotto (config.json: "nome" e "sottotitolo") -->
+      <TextBlock x:Name="Titolo" Text="ATRONACH RP" FontSize="50" Foreground="#F1F4F8" MaxWidth="484" TextTrimming="CharacterEllipsis"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,84,0,0" IsHitTestVisible="False">
+        <TextBlock.Effect>
+          <DropShadowEffect Color="#03060A" BlurRadius="14" ShadowDepth="2" Direction="270" Opacity="0.75"/>
+        </TextBlock.Effect>
+      </TextBlock>
+      <TextBlock x:Name="Sottotitolo" FontSize="15" Foreground="#CCE6ECF2" TextWrapping="Wrap" MaxWidth="470"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="46,152,0,0" IsHitTestVisible="False">
+        <TextBlock.Effect>
+          <DropShadowEffect Color="#03060A" BlurRadius="8" ShadowDepth="1" Direction="270" Opacity="0.9"/>
+        </TextBlock.Effect>
+      </TextBlock>
+
+      <!-- Pannello dei controlli -->
+      <Border x:Name="Pannello" Width="396" Height="432" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="540,56,0,0"
+              Background="#D10C121B" BorderBrush="#12FFFFFF" BorderThickness="1" CornerRadius="10">
+        <Grid>
+          <TextBlock Text="Prima di giocare" FontSize="16" FontWeight="SemiBold"
+                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,0,0"/>
+          <Button x:Name="BtnRicontrolla" Style="{StaticResource BtnScritta}" Content="Ricontrolla"
+                  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,20,0"/>
+          <Border x:Name="Traccia" Width="302" Height="3" CornerRadius="2" Background="#17FFFFFF"
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,48,0,0">
+            <Border x:Name="Avanzamento" Width="0" CornerRadius="2" Background="{StaticResource Pronto}" HorizontalAlignment="Left"/>
+          </Border>
+          <TextBlock x:Name="Conteggio" FontSize="12" Foreground="{StaticResource Nebbia}"
+                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,40,20,0"/>
+
+          <StackPanel x:Name="Righe" VerticalAlignment="Top" Margin="0,64,0,0">
+            <!--RIGA-->
+            <Grid x:Name="RigaN_Riga" Height="60">
+              <Border x:Name="RigaN_Sfondo" Background="#13F0764A" Visibility="Collapsed"/>
+              <Border x:Name="RigaN_Barra" Width="2" HorizontalAlignment="Left" Background="{StaticResource Brace}" Visibility="Collapsed"/>
+              <!-- linea che unisce i passi -->
+              <Rectangle x:Name="RigaN_LineaSu" Width="1" Height="6" Fill="#1AFFFFFF" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,0,0,0"/>
+              <Rectangle x:Name="RigaN_LineaGiu" Width="1" Fill="#1AFFFFFF" HorizontalAlignment="Left" Margin="29,34,0,0"/>
+              <!-- stato: in attesa (cerchio vuoto), pronto (spunta), da fare (punto color brace) -->
+              <Grid Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,10,0,0">
+                <Ellipse x:Name="RigaN_Attesa" Stroke="#38FFFFFF" StrokeThickness="1.5"/>
+                <Grid x:Name="RigaN_Fatto" Visibility="Collapsed">
+                  <Ellipse Fill="#1C3A30"/>
+                  <Path Data="M6.5,10.2 L9,12.7 L13.5,7.6" Stroke="{StaticResource Pronto}" StrokeThickness="1.8"
+                        StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"/>
+                </Grid>
+                <Grid x:Name="RigaN_DaFare" Visibility="Collapsed">
+                  <Ellipse Fill="#33F0764A"/>
+                  <Ellipse Width="8" Height="8" Fill="{StaticResource Brace}"/>
+                </Grid>
+                <!-- anello che pulsa: solo sul passo da fare adesso -->
+                <Ellipse x:Name="RigaN_Anello" Stroke="{StaticResource Brace}" StrokeThickness="1.5" Opacity="0"
+                         Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+                  <Ellipse.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                  </Ellipse.RenderTransform>
+                  <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                      <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                          <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.8" To="0" Duration="0:0:1.6"/>
+                          <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" From="1" To="1.8" Duration="0:0:1.6"/>
+                          <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" From="1" To="1.8" Duration="0:0:1.6"/>
+                        </Storyboard>
+                      </BeginStoryboard>
+                    </EventTrigger>
+                  </Ellipse.Triggers>
+                </Ellipse>
+              </Grid>
+              <Grid VerticalAlignment="Top" Margin="52,8,16,0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="RigaN_Testi">
+                  <TextBlock x:Name="RigaN_Nome" FontSize="13.5" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                  <TextBlock x:Name="RigaN_Dettaglio" FontSize="12" Foreground="{StaticResource Nebbia}" Margin="0,1,0,0"
+                             TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="31"
+                             LineHeight="15" LineStackingStrategy="BlockLineHeight"/>
+                </StackPanel>
+                <Button x:Name="RigaN_Pulsante" Grid.Column="1" Style="{StaticResource BtnSecondario}"
+                        VerticalAlignment="Top" Margin="10,5,0,0" Visibility="Collapsed"/>
+              </Grid>
+            </Grid>
+            <!--/RIGA-->
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <!-- In basso a sinistra: cosa sta succedendo -->
+      <TextBlock x:Name="StatoTitolo" FontSize="15" FontWeight="SemiBold"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,500,0,0" IsHitTestVisible="False"/>
+      <TextBlock x:Name="StatoTesto" FontSize="12.5" Foreground="#A3AFBD" TextTrimming="CharacterEllipsis" MaxWidth="480"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,523,0,0" IsHitTestVisible="False"/>
+      <Border x:Name="Caricamento" Width="300" Height="3" CornerRadius="2" Background="#1AFFFFFF" ClipToBounds="True"
+              HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,549,0,0" Visibility="Collapsed" IsHitTestVisible="False">
+        <Rectangle Width="110" Height="3" RadiusX="2" RadiusY="2" Fill="#F2A03D" HorizontalAlignment="Left">
+          <Rectangle.RenderTransform>
+            <TranslateTransform X="-110"/>
+          </Rectangle.RenderTransform>
+          <Rectangle.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+              <BeginStoryboard>
+                <Storyboard RepeatBehavior="Forever">
+                  <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" From="-110" To="300" Duration="0:0:1.4"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+          </Rectangle.Triggers>
+        </Rectangle>
+      </Border>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,564,0,0">
+        <Button x:Name="BtnGuida" Style="{StaticResource BtnScritta}" Content="Guida" Margin="0,0,22,0"/>
+        <Button x:Name="BtnDiscord" Style="{StaticResource BtnScritta}" Content="Discord" Margin="0,0,22,0"/>
+        <Button x:Name="BtnReport" Style="{StaticResource BtnScritta}" Content="Report per lo staff" Margin="0,0,22,0"/>
+        <Button x:Name="BtnIcona" Style="{StaticResource BtnScritta}" Content="Icona sul Desktop"/>
+      </StackPanel>
+
+      <!-- GIOCA e, sotto, server e versione del launcher -->
+      <Button x:Name="BtnGioca" Style="{StaticResource BtnGioca}" Content="GIOCA" IsEnabled="False"
+              Width="396" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="540,502,0,0"/>
+      <TextBlock x:Name="InfoServer" FontSize="11.5" Foreground="#D98E9BAB"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="540,572,0,0" IsHitTestVisible="False"/>
+      <TextBlock x:Name="InfoVersione" FontSize="11.5" Foreground="#D98E9BAB"
+                 HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,572,24,0" IsHitTestVisible="False"/>
+
+      <!-- Domande e avvisi: coprono la finestra finché non si risponde -->
+      <Grid x:Name="Velo" Background="#BD04070C" Visibility="Collapsed">
+        <Border Width="440" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="28,26,28,22"
+                Background="#131B26" BorderBrush="#1AFFFFFF" BorderThickness="1" CornerRadius="12">
+          <StackPanel>
+            <TextBlock x:Name="VeloTitolo" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,0,0,10"/>
+            <TextBlock x:Name="VeloTesto" FontSize="13.5" Foreground="#B4BFCC" TextWrapping="Wrap"
+                       LineHeight="20" LineStackingStrategy="BlockLineHeight"/>
+            <TextBox x:Name="VeloCampo" Style="{StaticResource Campo}" Margin="0,16,0,0" MaxLength="12" Visibility="Collapsed"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,22,0,0">
+              <Button x:Name="VeloNo" Style="{StaticResource BtnSecondario}" Height="34" MinWidth="88" Padding="18,0" Margin="0,0,10,0" IsCancel="True"/>
+              <Button x:Name="VeloSi" Style="{StaticResource BtnPrimario}" Height="34" MinWidth="88" Padding="18,0" IsDefault="True"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
+      </Grid>
+
+      <!-- Riduci a icona e Chiudi (sopra a tutto, così si può sempre chiudere) -->
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0">
+        <Button x:Name="BtnRiduci" Style="{StaticResource BtnFinestra}" ToolTip="Riduci a icona" AutomationProperties.Name="Riduci a icona">
+          <Path Width="11" Height="11" Data="M1,5.5 L10,5.5" StrokeThickness="1.2"
+                Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+        <Button x:Name="BtnChiudi" Style="{StaticResource BtnChiudi}" ToolTip="Chiudi" AutomationProperties.Name="Chiudi">
+          <Path Width="11" Height="11" Data="M1,1 L10,10 M10,1 L1,10" StrokeThickness="1.2"
+                Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        </Button>
+      </StackPanel>
+
+      <!-- Bordo sottile della finestra -->
+      <Border CornerRadius="12" BorderBrush="#17FFFFFF" BorderThickness="1" IsHitTestVisible="False"/>
+    </Grid>
+  </Grid>
+</Window>

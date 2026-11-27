@@ -16,6 +16,7 @@
 | `world_summary.json`, `world_refs.csv` | ✅ dati reali | Piante, alberi e animali piazzati in Eastmarch e Rift (coordinate, tipo, bioma), letti da `Skyrim.esm` |
 | `zones.json` | 🟨 bozza | % di terreno per feudo, 10 luoghi, confine, conteggio icone. Mancano i poligoni veri (solo schema a mano) |
 | `spawn_rules.json` | 🟨 bozza (21 nov) | Regole generali (rinascita ogni 30 minuti, luoghi sicuri e dungeon esclusi), terreno → specie, punti e rarità per specie (`species_spawn`), pesci per zona d'acqua, 4 accampamenti di giganti con forzieri, 2 forti degli orchi. I punti veri sono nei file del server di Davide |
+| `ingredient_spawns.json` | 🟨 da provare in gioco (27 nov) | Spawn degli ingredienti (T-008): 21 ingredienti (piante e funghi), 234 punti e 868 piante con coordinate vere, rarità, rinascita, lore. Generato da `tools/build_ingredienti_spawn.py`, mappe con `tools/disegna_mappe_ingredienti.py`. Spiegazione: `../spawn_ingredienti.md` |
 | `races.json` | 🟨 provvisorio | 10 razze: bonus abilità, potere giornaliero, passive, ruoli ideali, proposte alternative (molti valori 'da cambiare' nel Discord) |
 | `spells.json` | 🟨 provvisorio | 81 voci di incantesimi: permessi (44), vietati (14), limitati a quest/evento/staff/fazione/dungeon/shop (23) |
 | `progression.json` | 🟨 bozza | Sistema exp e livelli di Shoonish; mancano exp per livello, azioni e perk |

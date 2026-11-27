@@ -1,0 +1,42 @@
+# Pacchetto del launcher per i giocatori.
+# Quando su main cambia client_pack/AtronachLauncher/, crea AtronachRP.zip e lo mette nella release "launcher".
+# Il link per scaricarlo resta sempre lo stesso:
+#   https://github.com/Kod113/SkyrimRPServer/releases/download/launcher/AtronachRP.zip
+name: Pacchetto launcher
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "client_pack/AtronachLauncher/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pacchetto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Crea lo zip
+        run: |
+          mkdir -p "pacchetto/Atronach RP"
+          cp "client_pack/AtronachLauncher/Avvia Atronach RP.bat" \
+             client_pack/AtronachLauncher/launcher.ps1 \
+             client_pack/AtronachLauncher/finestra.xaml \
+             client_pack/AtronachLauncher/config.json \
+             "client_pack/AtronachLauncher/Imposta server.bat" \
+             client_pack/AtronachLauncher/imposta_server.ps1 \
+             "pacchetto/Atronach RP/"
+          cp -r client_pack/AtronachLauncher/risorse "pacchetto/Atronach RP/"
+          cd pacchetto && zip -r ../AtronachRP.zip "Atronach RP"
+      - name: Pubblica nella release "launcher"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view launcher > /dev/null 2>&1; then
+            gh release create launcher --title "Launcher Atronach RP" \
+              --notes "Scarica AtronachRP.zip, estrailo e fai doppio clic su 'Avvia Atronach RP.bat'. Lo zip viene rifatto a ogni modifica del launcher."
+          fi
+          gh release upload launcher AtronachRP.zip --clobber

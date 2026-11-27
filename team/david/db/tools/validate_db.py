@@ -211,6 +211,72 @@ if os.path.exists(os.path.join(DIR, "crafting.json")):
     print(f"Ricette di forgia: {len(cr['recipes'])} | Lista armi e corazze: {len(cr['catalog'])} "
           f"({sum(c['craftable'] for c in cr['catalog'])} costruibili)")
 
+    # ricette del nostro server (T-006, aggiunto il 27 novembre)
+    sv = cr.get("server")
+    if sv:
+        known = set(cr["items"]) | set(sv["new_items"])
+        for k, v in sv["new_items"].items():
+            for ref in v.get("any_of", []):
+                if ref not in cr["items"]:
+                    errors.append(f"Gruppo {k}: oggetto sconosciuto '{ref}'")
+        outs = Counter(r["output"] for r in sv["recipes"])
+        for o, n in outs.items():
+            if n > 1:
+                errors.append(f"Ricette del server: '{o}' ha {n} ricette")
+        for r in sv["recipes"]:
+            for ref in [r["output"]] + [x["item"] for x in r["inputs"]]:
+                if ref not in known:
+                    errors.append(f"Ricetta del server {r['id']}: oggetto sconosciuto '{ref}'")
+            if r["bench"] not in cr["benches"]:
+                errors.append(f"Ricetta del server {r['id']}: banco sconosciuto '{r['bench']}'")
+            if str(r["tier"]) not in sv["tiers"]:
+                errors.append(f"Ricetta del server {r['id']}: tier sconosciuto '{r['tier']}'")
+            for x in r["inputs"]:
+                if x["item"] == "LeatherStrips":
+                    errors.append(f"Ricetta del server {r['id']}: usa le strisce di pelle, che in SkyMP non esistono")
+        for x in sv.get("starting_kit", []) + sv.get("not_craftable", []):
+            if x["item"] not in known:
+                errors.append(f"Server: oggetto sconosciuto '{x['item']}'")
+        unverified = [k for k, v in sv["new_items"].items() if v.get("verified") is False]
+        if unverified:
+            warnings.append(f"[crafting] {len(unverified)} oggetti nuovi con EditorID da verificare con xedit/build_crafting.py")
+        print(f"Ricette del server: {len(sv['recipes'])} | Oggetti nuovi: {len(sv['new_items'])}")
+
+# ----- spawn degli ingredienti (T-008, aggiunto il 27 novembre)
+if os.path.exists(os.path.join(DIR, "ingredient_spawns.json")):
+    sp = load("ingredient_spawns.json")
+    ing_ids = {i["id"] for i in ing}
+    rules = sp["_meta"]["rules"]["rarity"]
+    seen = set()
+    for g in sp["ingredients"] + sp["not_spawnable"]:
+        if g["id"] not in ing_ids:
+            errors.append(f"Spawn ingredienti: ingrediente sconosciuto '{g['id']}'")
+    spawnable = {g["id"]: g for g in sp["ingredients"]}
+    for p in sp["points"]:
+        if p["id"] in seen:
+            errors.append(f"Spawn ingredienti: punto doppio {p['id']}")
+        seen.add(p["id"])
+        g = spawnable.get(p["ingredient"])
+        if not g:
+            errors.append(f"Spawn ingredienti {p['id']}: ingrediente non spawnabile '{p['ingredient']}'")
+            continue
+        if p["hold"] not in ("Windhelm", "Riften"):
+            errors.append(f"Spawn ingredienti {p['id']}: feudo sconosciuto '{p['hold']}'")
+        r = rules.get(p["rarity"])
+        if not r or p["rarity"] != g["rarity"]:
+            errors.append(f"Spawn ingredienti {p['id']}: rarità '{p['rarity']}' sbagliata")
+        elif len(p["plants"]) != r["plants"] or p["respawn_min"] != r["respawn_min"]:
+            errors.append(f"Spawn ingredienti {p['id']}: piante o rinascita diverse dalla regola '{p['rarity']}'")
+        for pl in p["plants"]:
+            if pl["base"] not in g["bases"] or not pl.get("anchor", {}).get("ref"):
+                errors.append(f"Spawn ingredienti {p['id']}: pianta senza base valida o senza appoggio")
+    for g in sp["ingredients"]:
+        n = sum(1 for p in sp["points"] if p["ingredient"] == g["id"])
+        if n != g["points_windhelm"] + g["points_riften"]:
+            errors.append(f"Spawn ingredienti {g['id']}: conteggio punti diverso dall'elenco")
+    print(f"Spawn ingredienti: {len(sp['points'])} punti, {sum(len(p['plants']) for p in sp['points'])} piante, "
+          f"{len(sp['ingredients'])} ingredienti")
+
 # ----- report
 print(f"Ingredienti: {len(ing)} | Effetti: {len(eff)} | Job: {len(jobs['items'])}")
 state = Counter(i["feudi"]["availability"] for i in ing)

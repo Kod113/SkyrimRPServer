@@ -1,72 +1,58 @@
 # Come installare e collegarti al server (SkyMP)
 
-> **Versione provvisoria (novembre 2026), per i test con il team.** Due cose cambieranno quando il server aprirà ai giocatori: l'**indirizzo del server** e il **pacchetto delle mod**, che arriverà con Wabbajack. I punti che cambieranno sono segnati con 🔜.
+> **Versione provvisoria (novembre 2026), per i test con il team.** Quando il server aprirà ai giocatori cambieranno l'**indirizzo del server** e il **pacchetto delle mod**. I punti che cambieranno sono segnati con 🔜.
 
-Ti serve circa mezz'ora. Si fa una volta sola.
+Fa quasi tutto il **launcher Atronach RP**. Tu devi solo seguire quello che ti chiede. Si fa una volta sola.
 
 ---
 
 ## Cosa ti serve
 
-- **Skyrim Special Edition** su Steam, per PC Windows.
-- La versione del gioco deve essere la **1.6.1170**. SkyMP funziona solo con questa: la versione più recente che Steam installa (1.7.x) non va bene.
-- Il **pacchetto giocatore** del server. Contiene i file `avvia_skymp.bat`, `skymp_fix.bat`, `skymp_check.bat` e `skymp_net_check.bat`. 🔜 Per ora te lo passa lo staff.
+- **Skyrim Special Edition** comprato su **Steam**, installato e su un PC Windows.
+- Circa **20 GB liberi** sul disco di Steam, se Steam ti ha installato la versione più recente del gioco (serve per riportarlo alla versione giusta).
+- Un po' di pazienza: la prima volta i download possono durare parecchio.
+
+## 1. Scarica il launcher
+
+1. Scarica **[AtronachRP.zip](https://github.com/Kod113/SkyrimRPServer/releases/download/launcher/AtronachRP.zip)**.
+2. Tasto destro sul file → **Estrai tutto** → **Estrai**.
+3. Nella cartella che si apre, fai **doppio clic** su **`Avvia Atronach RP.bat`**. Usa un doppio clic normale, **non** "Esegui come amministratore".
+
+Se Windows mostra **"Windows ha protetto il PC"**: clicca **Ulteriori informazioni** e poi **Esegui comunque**. Succede perché il launcher non ha una firma digitale a pagamento.
+
+## 2. Premi SISTEMA TUTTO
+
+Il launcher controlla il PC e sistema da solo quello che manca. Ogni tanto ti chiede qualcosa:
+
+- **"Devo chiudere Steam, lo chiudo?"** → rispondi **Sì**.
+- **Versione del gioco:** se Steam ti ha installato la versione più nuova (1.7.x), il launcher la riporta alla **1.6.1170**, l'unica che funziona con SkyMP. Apre la **console di Steam** e copia lui il comando. Tu fai solo:
+  1. clic nella barra in basso della console;
+  2. **Ctrl+V**;
+  3. **Invio**.
+
+  Lo farai **3 volte**, una alla volta: il launcher ti dice quando passare alla successiva. Non chiudere Steam mentre scarica.
+- **Numero di giocatore:** alla fine ti mostra il tuo numero. **Scrivilo allo staff sul Discord**: serve a riconoscere il tuo personaggio. 🔜 In futuro si entrerà con il login di Discord.
+
+Quando tutti i punti sono verdi, il pulsante diventa **GIOCA**.
+
+## 3. Gioca
+
+Da adesso in poi avvia sempre il gioco dal launcher: doppio clic su `Avvia Atronach RP.bat` e poi **GIOCA**.
+
+**Non avviare Skyrim dal pulsante "Gioca" di Steam:** partirebbe senza SkyMP.
 
 ---
 
-## 1. Blocca gli aggiornamenti di Skyrim
+## Se qualcosa non va
 
-Se Steam aggiorna Skyrim, il gioco smette di funzionare con il server.
+- Premi **Report per lo staff**: crea un file `.zip` sul Desktop. Mandalo sul Discord del server.
+- Se un punto resta rosso, leggi la frase accanto: di solito dice cosa fare.
+- Altri problemi: [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
-1. In Steam fai tasto destro su **Skyrim Special Edition** → **Proprietà** → **Aggiornamenti**.
-2. Scegli **"Aggiorna questo gioco solo quando lo avvio"**.
-3. Da adesso in poi **non avviare mai Skyrim da Steam**: si avvia solo con `avvia_skymp.bat` (punto 5).
+## Per il team: server di un altro PC
 
-**Se il tuo Skyrim è già aggiornato (1.7.x):** usa il patcher di downgrade `Skyrim_1_7_104_to_1_6_1170_patcher.exe` nella cartella di Skyrim. Se non ce l'hai, chiedilo allo staff. 🔜 Il link arriverà nel canale Discord dell'installazione.
+🔜 Per ora l'indirizzo del server te lo dà lo staff.
 
-## 2. Installa SkyMP
+Se devi collegarti al server di un altro PC (per esempio quello di David tramite **Tailscale**), prima di aprire il launcher fai doppio clic su `Imposta server.bat`, nella stessa cartella del launcher, e scrivi l'indirizzo che ti hanno dato.
 
-1. Vai su **https://skymp.net** e scarica il launcher.
-2. Avvialo e scegli la cartella di Skyrim. Scarica da solo il client e i file che servono, dentro la cartella `Data`.
-3. **Usa il launcher solo per installare e aggiornare, non per giocare.** Il launcher avvia il gioco come amministratore, e così SkyMP resta bloccato sul caricamento.
-
-## 3. Togli "Esegui come amministratore"
-
-1. **Chiudi Steam** (anche dall'icona vicino all'orologio).
-2. Fai doppio clic su `skymp_fix.bat`. Toglie la spunta "Esegui come amministratore" da Steam, Mod Organizer 2 e Skyrim.
-3. Riapri Steam normalmente.
-
-> **Perché:** se il gioco parte come amministratore, la finestra interna di SkyMP (quella del login) non si apre e resti fermo sulla schermata di caricamento con la musica.
-
-## 4. Collegati al nostro server
-
-🔜 Per ora l'indirizzo del server e il tuo **numero di profilo** te li dà lo staff.
-
-1. Apri con il Blocco note questo file nella cartella di Skyrim:
-   `Data\Platform\Plugins\skymp5-client-settings.txt`
-2. Cambia i due valori e salva:
-   - `"server-ip"`: l'indirizzo che ti ha dato lo staff;
-   - `"profileId"`: il tuo numero. **Ognuno ha il suo**: se usi il numero di un altro, entri con il suo personaggio.
-
-Se lo staff ti ha detto di usare **Tailscale** (una rete privata tra i nostri PC), installalo da https://tailscale.com/download, fai l'accesso con il tuo account e accetta il link di invito che ti manda lo staff.
-
-## 5. Gioca
-
-1. Fai **doppio clic** su `avvia_skymp.bat`, con un doppio clic normale e **non** con "Esegui come amministratore".
-2. Lo script controlla la versione di Skyrim e Steam, poi avvia il gioco con SkyMP.
-3. Se tutto va bene, arrivi alla **creazione del personaggio**.
-
-Se qualcosa non va, guarda [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
-
----
-
-## Se Skyrim è in un'altra cartella
-
-Gli script cercano Skyrim in `C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition`.
-Se il tuo è altrove, apri con il Blocco note `avvia_skymp.ps1` e cambia la riga che inizia con `$Skyrim =` con il percorso giusto. Per esempio:
-
-```
-$Skyrim = 'D:\SteamLibrary\steamapps\common\Skyrim Special Edition'
-```
-- `$Skyrim`: la variabile con la cartella del gioco, che lo script usa per trovare Skyrim;
-- `'D:\SteamLibrary\...'`: il percorso della tua cartella di Skyrim, tra apici singoli.
+Tailscale è una rete privata tra i nostri PC: installalo da https://tailscale.com/download, fai l'accesso con il tuo account e accetta il link di invito che ti manda lo staff.
