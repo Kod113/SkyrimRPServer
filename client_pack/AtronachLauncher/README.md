@@ -1,4 +1,4 @@
-# Launcher Atronach RP (prototipo, v0.3.2)
+# Launcher Atronach RP (prototipo, v0.3.3)
 
 Specifica completa: `specs/platform/launcher.md`.
 

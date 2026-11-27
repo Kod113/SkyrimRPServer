@@ -20,7 +20,7 @@ param(
   [string]$Anteprima = ''
 )
 
-$Versione = '0.3.2'
+$Versione = '0.3.3'
 
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName PresentationCore
