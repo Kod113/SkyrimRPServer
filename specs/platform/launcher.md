@@ -55,6 +55,7 @@ La v0.3 unisce le due versioni fatte in parallelo: la **grafica** della finestra
 - Il pulsante grande dice **SISTEMA TUTTO** finché manca un passo, poi **GIOCA**. Mentre il launcher lavora (download, downgrade) la barra di caricamento è accesa e gli altri pulsanti sono spenti.
 - Il report per lo staff contiene anche la fine del log della console di Steam.
 - L'Action del pacchetto copia nello zip anche `finestra.xaml` e `risorse\`.
+- **Il mondo del giocatore** (`mondo_locale` in `config.json`): con il server su `127.0.0.1` il launcher prepara un server SkyMP sul PC del giocatore (Node.js 22 portatile, server `jqntn-2026-10-05`, impostazioni con i `.esm` della sua cartella di Skyrim, offline mode) e lo accende con GIOCA. Il passo "Collegato al server" diventa "Collegato al tuo mondo". Zip pronto in `pacchetto_giocatori/`.
 
 ## Cosa cambia nella v0.2 (27 novembre 2026): PC nuovo senza niente
 

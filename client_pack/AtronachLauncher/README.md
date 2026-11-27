@@ -15,14 +15,15 @@ Specifica completa: `specs/platform/launcher.md`.
 
 Serve solo **Skyrim Special Edition installato da Steam**.
 
-1. Scarica **https://github.com/Kod113/SkyrimRPServer/releases/download/launcher/AtronachRP.zip**, estrailo (tasto destro → *Estrai tutto*).
+1. Scarica lo zip (`pacchetto_giocatori/AtronachRP.zip` nel repo, oppure **https://github.com/Kod113/SkyrimRPServer/releases/download/launcher/AtronachRP.zip**), estrailo (tasto destro → *Estrai tutto*).
 2. Doppio clic su **`Avvia Atronach RP.bat`**. Se Windows dice *"Windows ha protetto il PC"*: **Ulteriori informazioni → Esegui comunque**.
 3. Premi **SISTEMA TUTTO**. Il launcher, dall'alto in basso:
    - blocca gli aggiornamenti automatici di Skyrim (chiude Steam un attimo, chiedendo prima);
    - se Skyrim è alla 1.7.x, lo riporta alla **1.6.1170** con la console di Steam: il giocatore fa solo **Ctrl+V e Invio** 3 volte, il launcher gli dice quando;
    - toglie la spunta "Esegui come amministratore" da Steam, Skyrim e SKSE;
    - scarica e installa **SKSE 2.2.6** e il **client SkyMP** dello stesso server che usiamo (`jqntn-2026-10-05`);
-   - imposta il server e dà al giocatore un **numero di giocatore** (da comunicare allo staff).
+   - imposta il server e dà al giocatore un **numero di giocatore** (da comunicare allo staff);
+   - se `server_ip` è `127.0.0.1` e in `config.json` c'è `mondo_locale` attivo, prepara **il mondo del giocatore**: Node.js portatile (controllato con SHA-256) e il server SkyMP della stessa release, in `%APPDATA%\AtronachRP\mondo`. Il server si accende quando si preme GIOCA, in una finestra ridotta a icona; se un server è già acceso sulla porta 7777 (per esempio `server_locale.bat`) usa quello.
 4. Quando hanno tutti la spunta verde il pulsante diventa **GIOCA**. Ogni riga ha anche il suo pulsante, per sistemare un passo alla volta.
 
 In basso a sinistra: **Guida**, **Discord** (solo se in `config.json` c'è il link), **Report per lo staff** e **Icona sul Desktop**.

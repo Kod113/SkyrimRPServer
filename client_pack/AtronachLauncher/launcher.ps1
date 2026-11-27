@@ -3,6 +3,7 @@
 # Controlla il PC del giocatore, sistema da solo quello che può e avvia il gioco collegato al server.
 # Da v0.3: installa da solo SKSE e il client SkyMP, riporta Skyrim alla versione giusta (downgrade)
 # e dà il numero di giocatore. Il pulsante grande dice SISTEMA TUTTO finché manca qualcosa, poi GIOCA.
+# Con "mondo_locale" in config.json prepara anche un server SkyMP sul PC del giocatore (il suo mondo).
 # Specifica: specs/platform/launcher.md
 #
 # Com'è fatto:
@@ -57,7 +58,7 @@ if (Test-Path $ServerPath) {
 $State = $null
 if (Test-Path $StatePath) { try { $State = Get-Content $StatePath -Raw -Encoding UTF8 | ConvertFrom-Json } catch { $State = $null } }
 if (-not $State) { $State = New-Object PSObject }
-foreach ($p in 'skyrim', 'profileId', 'clientNuovo') {
+foreach ($p in 'skyrim', 'profileId', 'clientNuovo', 'mondoAvvisato') {
   if (-not $State.PSObject.Properties[$p]) { $State | Add-Member -NotePropertyName $p -NotePropertyValue $null }
 }
 function Save-State { $State | ConvertTo-Json | Set-Content -Path $StatePath -Encoding UTF8 }
@@ -533,6 +534,108 @@ function Set-ClientServer {
   Write-Log "Client impostato su $($Cfg.server_ip):$($Cfg.server_port)"
 }
 
+# ------------------------------------------------------------------ il tuo mondo (server SkyMP sul PC del giocatore)
+# Se config.json ha "mondo_locale" attivo e il server è 127.0.0.1, il launcher prepara un server SkyMP
+# tutto suo in %APPDATA%\AtronachRP\mondo (Node.js portatile + server della stessa release del client)
+# e lo accende quando si preme GIOCA. Niente installazioni in Windows e niente amministratore.
+
+$MondoDir = Join-Path $AppDir 'mondo'
+function Get-ServerDir { return (Join-Path $MondoDir 'skymp-server') }
+function Get-NodePath { $p = Join-Path $MondoDir 'node\node.exe'; if (Test-Path $p) { return $p } else { return $null } }
+
+function Test-MondoLocale {
+  return [bool]($Cfg.mondo_locale -and $Cfg.mondo_locale.attivo -and ($Cfg.server_ip -in '127.0.0.1', 'localhost'))
+}
+
+function Test-MondoOk {
+  return [bool]((Get-NodePath) -and (Test-Path (Join-Path (Get-ServerDir) 'dist_back\skymp5-server.js')))
+}
+
+# Impostazioni del server: i file .esm sono quelli della cartella di Skyrim di questo PC.
+function Write-MondoSettings {
+  $data = Join-Path $script:Skyrim 'Data'
+  $esm = 'Skyrim.esm', 'Update.esm', 'Dawnguard.esm', 'HearthFires.esm', 'Dragonborn.esm'
+  $s = [ordered]@{
+    name        = [string]$Cfg.mondo_locale.nome
+    dataDir     = 'data'
+    loadOrder   = @($esm | ForEach-Object { (Join-Path $data $_) -replace '\\', '/' })
+    port        = [int]$Cfg.server_port
+    maxPlayers  = 10
+    offlineMode = $true
+    master      = ''
+    npcEnabled  = $false
+    npcSettings = @{}
+  }
+  # Senza BOM: Node non legge il JSON con il BOM
+  [System.IO.File]::WriteAllText((Join-Path (Get-ServerDir) 'server-settings.json'), ($s | ConvertTo-Json -Depth 5), (New-Object System.Text.UTF8Encoding($false)))
+}
+
+function Install-Mondo {
+  $tmp = Join-Path $AppDir 'download'
+  New-Item -ItemType Directory -Force -Path $tmp | Out-Null
+  New-Item -ItemType Directory -Force -Path $MondoDir | Out-Null
+  try {
+    if (-not (Get-NodePath)) {
+      $z = Join-Path $tmp 'node.zip'
+      Get-File $Cfg.mondo_locale.node_url $z "Node.js $($Cfg.mondo_locale.node_versione)"
+      # Controllo che il file sia proprio quello pubblicato da nodejs.org
+      if ((Get-FileHash $z -Algorithm SHA256).Hash -ne ([string]$Cfg.mondo_locale.node_sha256).ToUpper()) { throw 'Il file di Node.js scaricato non è quello giusto (controllo SHA-256 non riuscito)' }
+      Set-Status 'Estraggo Node.js…'
+      $x = Join-Path $tmp 'node'
+      Expand-Any $z $x
+      $exe = Get-ChildItem $x -Recurse -Filter 'node.exe' | Select-Object -First 1
+      if (-not $exe) { throw 'Nel pacchetto di Node.js non trovo node.exe' }
+      $dest = Join-Path $MondoDir 'node'
+      if (Test-Path $dest) { Remove-Item $dest -Recurse -Force }
+      Move-Item $exe.DirectoryName $dest
+      Write-Log "Node.js $($Cfg.mondo_locale.node_versione) pronto in $dest"
+    }
+    if (-not (Test-Path (Join-Path (Get-ServerDir) 'dist_back\skymp5-server.js'))) {
+      $z = Join-Path $tmp 'skymp-server.zip'
+      Get-File $Cfg.mondo_locale.server_url $z 'il server SkyMP'
+      Set-Status 'Preparo il tuo mondo…'
+      Expand-Any $z $MondoDir
+      if (-not (Test-Path (Join-Path (Get-ServerDir) 'dist_back\skymp5-server.js'))) { throw 'Nel pacchetto del server non trovo skymp-server\dist_back\skymp5-server.js' }
+      Write-Log "Server SkyMP pronto in $(Get-ServerDir)"
+    }
+    Write-MondoSettings
+  } finally { Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue }
+}
+
+# Il server è acceso se qualcuno ascolta sulla porta UDP del gioco (può essere anche un server avviato a mano).
+function Test-PortaInUso($port) {
+  try { return [bool](Get-NetUDPEndpoint -LocalPort $port -ErrorAction Stop) } catch { return $false }
+}
+
+function Start-Mondo {
+  $port = [int]$Cfg.server_port
+  if (Test-PortaInUso $port) { Write-Log "Porta $port già in uso: uso il server già acceso"; return $true }
+  if (-not (Test-MondoOk)) { Show-Info 'Il tuo mondo non è ancora pronto: premi SISTEMA TUTTO.' 'Manca il tuo mondo'; return $false }
+  if (-not $State.mondoAvvisato) {
+    Show-Info ("Accendo il tuo mondo: un piccolo server SkyMP che gira sul tuo PC.`n`n" +
+      "Lo trovi ridotto a icona nella barra in basso. Lascialo aperto mentre giochi: se chiudi quella finestra il mondo si spegne.`n`n" +
+      "Se Windows chiede il permesso del firewall per Node.js, premi Consenti.") 'Il tuo mondo'
+    $State.mondoAvvisato = $true; Save-State
+  }
+  Write-MondoSettings
+  $node = Get-NodePath
+  $titolo = "$($Cfg.mondo_locale.nome) - server: chiudi questa finestra per spegnere il mondo"
+  Start-Process cmd.exe -ArgumentList "/c title $titolo & `"$node`" dist_back\skymp5-server.js" -WorkingDirectory (Get-ServerDir) -WindowStyle Minimized
+  Write-Log 'Server del mondo avviato'
+  # Se Windows non ha Get-NetUDPEndpoint non posso controllare la porta: aspetto e basta.
+  if (-not (Get-Command Get-NetUDPEndpoint -ErrorAction SilentlyContinue)) { Set-Status 'Accendo il tuo mondo…'; Wait-Seconds 15; return $true }
+  $t = 0
+  while ($t -lt 90 -and -not $script:Chiusura) {
+    if (Test-PortaInUso $port) { Write-Log "Mondo acceso dopo $t s"; Wait-Seconds 2; return $true }
+    Set-Status "Accendo il tuo mondo… $t s"
+    Wait-Seconds 1; $t++
+  }
+  if ($script:Chiusura) { return $false }
+  Write-Log 'Il server del mondo non si è acceso entro 90 s'
+  Show-Info "Il tuo mondo non si è acceso. Apri la finestra del server nella barra in basso: se ci sono scritte in rosso, premi 'Report per lo staff' e manda anche una foto di quella finestra." 'Il mondo non si è acceso'
+  return $false
+}
+
 # ------------------------------------------------------------------ i controlli
 # Ogni controllo: Nome, Test (restituisce Ok + Dettaglio), Pulsante e Fix (cosa fa il pulsante).
 # Un controllo può anche essere "in attesa": non si può fare finché non è a posto uno precedente.
@@ -625,17 +728,26 @@ $Checks = @(
     Fix = { Install-SkyMP }
   },
   [pscustomobject]@{
-    Name = "Collegato al server $($Cfg.nome)"
+    Name = $(if (Test-MondoLocale) { 'Collegato al tuo mondo' } else { "Collegato al server $($Cfg.nome)" })
     Test = {
       if (-not $script:Skyrim -or -not (Test-Path (Get-SettingsPath))) { return (New-Result $false 'Prima serve SkyMP.' $true) }
       $s = Get-Content (Get-SettingsPath) -Raw -Encoding UTF8 | ConvertFrom-Json
       $okIp = ($s.'server-ip' -eq $Cfg.server_ip) -and ([int]$s.'server-port' -eq [int]$Cfg.server_port)
       $okId = (-not $Cfg.usa_profile_id) -or ($State.profileId -and $s.gameData -and ([int]$s.gameData.profileId -eq [int]$State.profileId) -and -not $s.master)
+      $mondo = Test-MondoLocale
+      $okMondo = (-not $mondo) -or (Test-MondoOk)
       $chi = if ($State.profileId) { " - giocatore n. $($State.profileId)" } else { '' }
-      if ($okIp -and $okId) { New-Result $true "$($Cfg.server_ip):$($Cfg.server_port)$chi" } else { New-Result $false 'Il gioco non è ancora impostato sul nostro server.' }
+      if ($okIp -and $okId -and $okMondo) {
+        if ($mondo) { New-Result $true "Server sul tuo PC, si accende con GIOCA$chi" } else { New-Result $true "$($Cfg.server_ip):$($Cfg.server_port)$chi" }
+      }
+      elseif (-not $okMondo) { New-Result $false 'Manca il tuo mondo (un server SkyMP sul tuo PC): lo preparo io.' }
+      else { New-Result $false 'Il gioco non è ancora impostato sul nostro server.' }
     }
     Button = 'Imposta'
-    Fix = { Set-ClientServer }
+    Fix = {
+      if ((Test-MondoLocale) -and -not (Test-MondoOk)) { Install-Mondo }
+      Set-ClientServer
+    }
   }
 )
 
@@ -666,6 +778,7 @@ function Start-Game {
   Set-Avvio $true
   try {
     if (Get-Process -Name SkyrimSE -ErrorAction SilentlyContinue) { Show-Info 'Skyrim è già aperto. Chiudilo e premi di nuovo GIOCA.' 'Skyrim è già aperto'; return }
+    if (Test-MondoLocale) { if (-not (Start-Mondo)) { return } }
     # Se Skyrim parte prima che Steam sia pronto, Steam lo riavvia senza SKSE (quindi senza SkyMP).
     if (-not (Wait-SteamReady)) { return }
 
@@ -705,6 +818,8 @@ function New-Report {
   $lines | Set-Content (Join-Path $dir 'controlli.txt') -Encoding UTF8
   if (Test-Path $LogPath) { Copy-Item $LogPath $dir }
   if ($script:Skyrim -and (Test-Path (Get-SettingsPath))) { Copy-Item (Get-SettingsPath) $dir }
+  $ms = Join-Path (Get-ServerDir) 'server-settings.json'
+  if (Test-Path $ms) { Copy-Item $ms (Join-Path $dir 'mondo-server-settings.json') }
   $steamLog = Join-Path (Get-SteamPath) 'logs\console_log.txt'
   if (Test-Path $steamLog) { Get-Content $steamLog -Tail 300 -ErrorAction SilentlyContinue | Set-Content (Join-Path $dir 'steam_console_log_fine.txt') -Encoding UTF8 }
   $games = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'My Games\Skyrim Special Edition'
@@ -908,7 +1023,7 @@ try {
 $Window.Title = $Cfg.nome
 $UI.Titolo.Text = $Cfg.nome.ToUpper()
 $UI.Sottotitolo.Text = [string]$Cfg.sottotitolo
-$UI.InfoServer.Text = "Server $($Cfg.server_ip):$($Cfg.server_port)" + $(if ($ServerPersonale) { ' (personale)' } else { '' })
+$UI.InfoServer.Text = if (Test-MondoLocale) { "Il tuo mondo sul PC (porta $($Cfg.server_port))" } else { "Server $($Cfg.server_ip):$($Cfg.server_port)" + $(if ($ServerPersonale) { ' (personale)' } else { '' }) }
 $UI.InfoVersione.Text = "Launcher $Versione"
 if (-not $Cfg.guida_url) { $UI.BtnGuida.Visibility = 'Collapsed' }
 if (-not $Cfg.discord_url) { $UI.BtnDiscord.Visibility = 'Collapsed' }
