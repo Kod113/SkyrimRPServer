@@ -75,6 +75,8 @@ Per cambiare numeri, rarità o regole: si modifica `build_ingredienti_spawn.py`,
 - `00_tutti_staff.jpg`: tutti i punti. **Solo staff.**
 - `01`…`21`: una mappa per ingrediente, come quelle degli animali di Davide. Quelle di rare e leggendarie (18–21) hanno la fascia rossa "SOLO STAFF".
 
+Stile identico alle mappe degli animali sul Discord: ogni ingrediente ha il suo colore (righe sotto il titolo e sopra il piè di pagina, cerchi). Nelle due mappe riassuntive ogni ingrediente ha il suo colore, con la legenda in basso divisa per rarità e il numero di punti. I colori sono in `COLORI` dentro `disegna_mappe_ingredienti.py`.
+
 La mappa di base è ricostruita dalle mappe di Davide (togliendo i cerchi); la conversione da coordinate di gioco a pixel è ricavata dai suoi cerchi, con errore sotto il pixel.
 
 ## 5. Come si prova in gioco
