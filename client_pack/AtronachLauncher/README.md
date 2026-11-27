@@ -1,4 +1,4 @@
-# Launcher Atronach RP (prototipo, v0.3)
+# Launcher Atronach RP (prototipo, v0.3.2)
 
 Specifica completa: `specs/platform/launcher.md`.
 
@@ -45,6 +45,8 @@ Lo zip lo crea da sola l'Action `pacchetto_launcher.yml` a ogni modifica di ques
 - Cartella di Skyrim: file del downgrade, SKSE, client SkyMP in `Data\`, il file `atronach-skymp-client.txt` (versione del client installata).
 - Impostazioni di Steam per Skyrim (`appmanifest_489830.acf`, solo "aggiorna quando lo avvio") e `%LOCALAPPDATA%\Skyrim Special Edition\ContentCatalog.txt`, che dopo il downgrade viene spostato in `%APPDATA%\AtronachRP\`.
 - I file scaricati per il downgrade (`Steam\steamapps\content\app_489830\`) vengono cancellati alla fine.
+
+A ogni **GIOCA** il launcher controlla che nelle impostazioni del client ci sia `"server-info-ignore": true`: senza, il nostro client chiede a skymp.net le informazioni sul server, la richiesta va in errore (`__filename is not defined`) e il gioco resta al menu principale.
 
 Per tornare al server ufficiale: ricopia `%APPDATA%\AtronachRP\skymp5-client-settings.originale.txt`, oppure usa `client_pack\SkyMP\client_profilo.bat ufficiale`.
 

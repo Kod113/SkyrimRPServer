@@ -20,7 +20,7 @@ param(
   [string]$Anteprima = ''
 )
 
-$Versione = '0.3.0'
+$Versione = '0.3.2'
 
 Add-Type -AssemblyName PresentationFramework
 Add-Type -AssemblyName PresentationCore
@@ -507,6 +507,21 @@ function Install-SkyMP {
 
 # ------------------------------------------------------------------ numero di giocatore e server
 
+# Il nostro client (jqntn), prima di collegarsi, chiede a skymp.net le informazioni sul server ("serverinfo").
+# Con questo SkyrimPlatform quella richiesta va in errore ("__filename is not defined") e il client resta al menu
+# principale senza mai collegarsi. Con "server-info-ignore" il client salta la richiesta e va dritto a server-ip:server-port.
+# Si controlla a ogni GIOCA (non costa niente).
+function Set-ClientPulito {
+  $path = Get-SettingsPath
+  if (-not (Test-Path $path)) { Write-Log "Set-ClientPulito: manca $path"; return }
+  $s = Get-Content $path -Raw -Encoding UTF8 | ConvertFrom-Json
+  if ($s.'server-info-ignore' -ne $true) {
+    $s | Add-Member -Force -NotePropertyName 'server-info-ignore' -NotePropertyValue $true
+    [System.IO.File]::WriteAllText($path, ($s | ConvertTo-Json -Depth 5))
+    Write-Log 'Client: attivato server-info-ignore'
+  }
+}
+
 function Set-ClientServer {
   $path = Get-SettingsPath
   $backup = Join-Path $AppDir 'skymp5-client-settings.originale.txt'
@@ -529,6 +544,7 @@ function Set-ClientServer {
     $s | Add-Member -Force -NotePropertyName 'server-master-key' -NotePropertyValue $null
     if (-not $s.gameData) { $s | Add-Member -Force -NotePropertyName 'gameData' -NotePropertyValue (New-Object PSObject) }
     $s.gameData | Add-Member -Force -NotePropertyName 'profileId' -NotePropertyValue ([int]$State.profileId)
+    $s | Add-Member -Force -NotePropertyName 'server-info-ignore' -NotePropertyValue $true
   }
   [System.IO.File]::WriteAllText($path, ($s | ConvertTo-Json -Depth 5))
   Write-Log "Client impostato su $($Cfg.server_ip):$($Cfg.server_port)"
@@ -781,6 +797,7 @@ function Start-Game {
     if (Test-MondoLocale) { if (-not (Start-Mondo)) { return } }
     # Se Skyrim parte prima che Steam sia pronto, Steam lo riavvia senza SKSE (quindi senza SkyMP).
     if (-not (Wait-SteamReady)) { return }
+    try { Set-ClientPulito } catch { Write-Log "Set-ClientPulito: $($_.Exception.Message)" }
 
     Set-Status 'Avvio il gioco…'
     Write-Log 'Avvio skse64_loader'
@@ -822,8 +839,32 @@ function New-Report {
   if (Test-Path $ms) { Copy-Item $ms (Join-Path $dir 'mondo-server-settings.json') }
   $steamLog = Join-Path (Get-SteamPath) 'logs\console_log.txt'
   if (Test-Path $steamLog) { Get-Content $steamLog -Tail 300 -ErrorAction SilentlyContinue | Set-Content (Join-Path $dir 'steam_console_log_fine.txt') -Encoding UTF8 }
+  # Log: prima i più recenti (SKSE, SkyrimPlatform, SkyMP), al massimo 40. Prima prendeva i primi 30 in ordine
+  # alfabetico, e i vecchi crash-*.log lasciavano fuori skse64.log e i log di SkyrimPlatform.
   $games = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'My Games\Skyrim Special Edition'
-  Get-ChildItem $games -Filter *.log -Recurse -Depth 2 -ErrorAction SilentlyContinue | Select-Object -First 30 | ForEach-Object { Copy-Item $_.FullName $dir }
+  $logDir = Join-Path $dir 'log'
+  New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+  $logs = @(Get-ChildItem $games -Include *.log -Recurse -Depth 3 -File -ErrorAction SilentlyContinue)
+  if ($script:Skyrim) { $logs += @(Get-ChildItem (Join-Path $script:Skyrim 'Data\Platform') -Include *.log -Recurse -File -ErrorAction SilentlyContinue) }
+  $logs | Sort-Object LastWriteTime -Descending | Select-Object -First 40 | ForEach-Object {
+    Copy-Item $_.FullName (Join-Path $logDir ($_.Directory.Name + '_' + $_.Name)) -ErrorAction SilentlyContinue
+  }
+  # Elenco delle mod installate: serve a trovare mod in conflitto con SkyMP
+  if ($script:Skyrim) {
+    $riga = { '{0}  {1:yyyy-MM-dd HH:mm}  {2} byte' -f $_.Name, $_.LastWriteTime, $_.Length }
+    $elenco = @('== Data\SKSE\Plugins')
+    $elenco += Get-ChildItem (Join-Path $script:Skyrim 'Data\SKSE\Plugins') -File -ErrorAction SilentlyContinue | ForEach-Object $riga
+    $elenco += '', '== Data\Platform\Plugins'
+    $elenco += Get-ChildItem (Join-Path $script:Skyrim 'Data\Platform\Plugins') -File -ErrorAction SilentlyContinue | ForEach-Object $riga
+    $elenco += '', '== Data (esm, esp, esl)'
+    $elenco += Get-ChildItem (Join-Path $script:Skyrim 'Data') -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -in '.esm', '.esp', '.esl' } | ForEach-Object $riga
+    $elenco += '', '== Cartella di Skyrim (dll ed exe)'
+    $elenco += Get-ChildItem $script:Skyrim -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -in '.dll', '.exe', '.ini' } | ForEach-Object $riga
+    $elenco | Set-Content (Join-Path $dir 'mod_installate.txt') -Encoding UTF8
+  }
+  # Ordine dei plugin attivi (plugins.txt)
+  $pl = Join-Path $env:LOCALAPPDATA 'Skyrim Special Edition\plugins.txt'
+  if (Test-Path $pl) { Copy-Item $pl $dir }
   $zip = Join-Path ([Environment]::GetFolderPath('Desktop')) "AtronachRP_report_$stamp.zip"
   Compress-Archive -Path (Join-Path $dir '*') -DestinationPath $zip -Force
   Remove-Item $dir -Recurse -Force
